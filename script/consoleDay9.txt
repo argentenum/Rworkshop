@@ -1,0 +1,290 @@
+> library(ggplot2)
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:NLP’:
+
+    annotate
+
+> head(diamonds)
+# A tibble: 6 x 10
+  carat cut       color clarity depth table price     x     y     z
+  <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+> ggplot(diamonds, aes(x=carat))
+> ggplot(diamonds, aes(x=carat, y=price))
+> ggplot(diamonds, aes(x=carat, color=cut))
+> ggplot(diamonds, aes(x=carat), color="steelblue")
+> ggplot(diamonds, aes(x=carat, y=price, color=cut)) + geom_point() + geom_smooth()
+`geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+> length(unique(diamonds$cut))
+[1] 5
+> gg <- ggplot(diamonds, aes(x=carat, y=price, color=cut)) + geom_point() + labs(title="Scatterplot", x="Carat", y="Price")
+> gg <- ggplot(diamonds, aes(x=carat, y=price, color=cut)) + geom_point() + labs(title="Scatterplot", x="Carat", y="Price")
+> print(gg)
+> setwd("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/ClassworkFiles")
+>     hist(rnorm(100,sd=1))
+>     hist(rnorm(100,sd=1))
+> for (i in 1:5)
++   {
++     fname <- paste("q",i,".pdf")
++     pdf(fname)
++     hist(rnorm(100,sd=1))
++     dev.off()
++ }
+> head(mtcars)
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+> plot1 <- ggplot(mtcars, aes(x=cyl)) + geom_bar() + labs(title="Frequency bar chart")
+> print(plot1)
+> df <- data.frame(var=c("a", "b", "c"), nums=c(1:3))
+> df
+  var nums
+1   a    1
+2   b    2
+3   c    3
+> plot2 <- ggplot(df, aes(x=var, y=nums))+ geom_bar(stat = c(1:3)) # + geom_bar(stat = "identity")
+Error in `check_subclass()`:
+! `stat` must be either a string or a Stat object, not an integer vector
+Run `rlang::last_error()` to see where the error occurred.
+> plot2 <- ggplot(df, aes(x=var, y=nums))+ geom_bar(stat = "identity")
+> print(plot2)
+> str(Nile)
+ Time-Series [1:100] from 1871 to 1970: 1120 1160 963 1210 1160 1160 813 1230 1370 1140 ...
+> head(Nile)
+[1] 1120 1160  963 1210 1160 1160
+> NileDF <- data.frame(c(1871:1970),Nile)
+> names(NileDF) <- c("Year", "Flow")
+> head(NileDF)
+  Year Flow
+1 1871 1120
+2 1872 1160
+3 1873  963
+4 1874 1210
+5 1875 1160
+6 1876 1160
+> ggplot(data = NileDF, aes(x = Year, y = Flow)) +
++   geom_line()
+Don't know how to automatically pick scale for object of type ts. Defaulting to continuous.
+> ggplot(data = NileDF, aes(x = Year, y = Flow)) +
++   geom_line(color="brown")
+Don't know how to automatically pick scale for object of type ts. Defaulting to continuous.
+> ggplot(data = NileDF, aes(x = Year, y = Flow)) +
++   geom_point()
+Don't know how to automatically pick scale for object of type ts. Defaulting to continuous.
+> ggplot(data = NileDF, aes(x = Year, y = Flow)) +
++   geom_point() + geom_line()
+Don't know how to automatically pick scale for object of type ts. Defaulting to continuous.
+> ggplot(data = NileDF, aes(x = Year, y = Flow)) +
++   geom_point(color="red") + geom_line(color="blue")
+Don't know how to automatically pick scale for object of type ts. Defaulting to continuous.
+> ggplot(data = NileDF, aes(x = Year, y = Flow)) + geom_bar(stat = 'identity', color = "red", fill = "blue")
+Don't know how to automatically pick scale for object of type ts. Defaulting to continuous.
+> ggplot(data =NileDF, aes(x=Flow)) + geom_histogram(bins = 10)  
+Don't know how to automatically pick scale for object of type ts. Defaulting to continuous.
+> ggplot(data =NileDF, aes(x=Flow)) + geom_histogram(bins = 20)  
+Don't know how to automatically pick scale for object of type ts. Defaulting to continuous.
+> library(tm)
+> src <- DirSource("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/ClassworkFiles/corpus")
+> docs <- Corpus(src)
+> #inspect(docs)
+> #docs$content
+> # Convert the text to lower case
+> docs <- tm_map(docs, content_transformer(tolower))
+> # Remove numbers
+> docs <- tm_map(docs, removeNumbers)
+> # Remove punctuations
+> docs <- tm_map(docs, removePunctuation)
+> # Eliminate extra white spaces
+> docs <- tm_map(docs, stripWhitespace)
+> # Remove additional stopwords
+> docs <- tm_map(docs, removeWords, c("disco0", "disco1", "disco2"))
+> #creating document term matrix
+> dtm <- TermDocumentMatrix(docs)
+> m <- as.matrix(dtm)
+> v <- sort(rowSums(m),decreasing=TRUE)
+> d <- data.frame(word = names(v),freq=v)
+> head(d, 10)
+             word freq
+the           the 1415
+and           and  870
+his           his  274
+was           was  247
+with         with  208
+that         that  193
+said         said  147
+pickwick pickwick  137
+which       which  125
+for           for  106
+> library(tm)
+> src <- DirSource("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/ClassworkFiles/corpus")
+> docs <- Corpus(src)
+> #inspect(docs)
+> #docs$content
+> # Convert the text to lower case
+> docs <- tm_map(docs, content_transformer(tolower))
+> # Remove numbers
+> docs <- tm_map(docs, removeNumbers)
+> # Remove english common stopwords
+> docs <- tm_map(docs, removeWords, c(stopwords("english")))
+> # Remove punctuations
+> docs <- tm_map(docs, removePunctuation)
+> # Eliminate extra white spaces
+> docs <- tm_map(docs, stripWhitespace)
+> # Remove additional stopwords
+> docs <- tm_map(docs, removeWords, c("disco0", "disco1", "disco2"))
+> #creating document term matrix
+> dtm <- TermDocumentMatrix(docs)
+> m <- as.matrix(dtm)
+> v <- sort(rowSums(m),decreasing=TRUE)
+> d <- data.frame(word = names(v),freq=v)
+> head(d, 10)
+             word freq
+said         said  147
+pickwick pickwick  137
+old           old   97
+â€\u009d â€\u009d   66
+one           one   57
+replied   replied   48
+upon         upon   48
+weller     weller   46
+winkle     winkle   46
+boy           boy   45
+> # Generate the WordCloud
+> library(wordcloud)
+> #contains library(RColorBrewer)
+> # http://applied-r.com/rcolorbrewer-palettes/#
+> #par(bg="white")
+> #png(file="WordCloud.png",width=1000,height=700, bg="grey30")
+> #wordcloud(d$word, d$freq, col=terrain.colors(length(d$word), alpha=0.9), random.order=FALSE, rot.per=0.3 )
+> wordcloud(words = d$word, 
++           freq = d$freq,
++           min.freq = 1, 
++           max.words = 200,
++           random.order = FALSE, 
++           rot.per = 0.35, 
++           colors = brewer.pal(8, "Dark2"))
+There were 50 or more warnings (use warnings() to see the first 50)
+> #contains library(RColorBrewer)
+> # http://applied-r.com/rcolorbrewer-palettes/#
+> #par(bg="white")
+> #png(file="WordCloud.png",width=1000,height=700, bg="grey30")
+> #wordcloud(d$word, d$freq, col=terrain.colors(length(d$word), alpha=0.9), random.order=FALSE, rot.per=0.3 )
+> wordcloud(words = d$word, 
++           freq = d$freq,
++           min.freq = 1, 
++           max.words = 200,
++           random.order = FALSE, 
++           rot.per = 0.35, 
++           colors = brewer.pal(8, "Dark2"))
+Error in wordcloud(words = d$word, freq = d$freq, min.freq = 1, max.words = 200,  : 
+  object 'd' not found
+> library(tm)
+> src <- DirSource("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/ClassworkFiles/corpus")
+> docs <- Corpus(src)
+> #inspect(docs)
+> #docs$content
+> # Convert the text to lower case
+> docs <- tm_map(docs, content_transformer(tolower))
+> # Remove numbers
+> docs <- tm_map(docs, removeNumbers)
+> # Remove english common stopwords
+> docs <- tm_map(docs, removeWords, c(stopwords("english")))
+> # Remove punctuations
+> docs <- tm_map(docs, removePunctuation)
+> # Eliminate extra white spaces
+> docs <- tm_map(docs, stripWhitespace)
+> # Text stemming (reduces words to their root form)
+> docs <- tm_map(docs, removeWords, c("disco0", "disco1", "disco2"))
+> #creating document term matrix
+> dtm <- TermDocumentMatrix(docs)
+> m <- as.matrix(dtm)
+> v <- sort(rowSums(m),decreasing=TRUE)
+> d <- data.frame(word = names(v),freq=v)
+> head(d, 10)
+             word freq
+said         said  147
+pickwick pickwick  137
+old           old   97
+â€\u009d â€\u009d   66
+one           one   57
+replied   replied   48
+upon         upon   48
+weller     weller   46
+winkle     winkle   46
+boy           boy   45
+> # Generate the WordCloud
+> library(wordcloud)
+> #contains library(RColorBrewer)
+> # http://applied-r.com/rcolorbrewer-palettes/#
+> #par(bg="white")
+> #png(file="WordCloud.png",width=1000,height=700, bg="grey30")
+> #wordcloud(d$word, d$freq, col=terrain.colors(length(d$word), alpha=0.9), random.order=FALSE, rot.per=0.3 )
+> wordcloud(words = d$word, 
++           freq = d$freq,
++           min.freq = 1, 
++           max.words = 200,
++           random.order = FALSE, 
++           rot.per = 0.35, 
++           colors = brewer.pal(8, "Dark2"))
+There were 50 or more warnings (use warnings() to see the first 50)
+> #title(main = "Opening Lines of Pride and Prejudice", font.main = 1, col.main = "cornsilk3", cex.main = 1.5)
+> head(d, 10)
+             word freq
+said         said  147
+pickwick pickwick  137
+old           old   97
+â€\u009d â€\u009d   66
+one           one   57
+replied   replied   48
+upon         upon   48
+weller     weller   46
+winkle     winkle   46
+boy           boy   45
+> library(tm)
+> src <- DirSource("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/ClassworkFiles/corpus")
+> docs <- Corpus(src)
+> #inspect(docs)
+> #docs$content
+> # Convert the text to lower case
+> docs <- tm_map(docs, content_transformer(tolower))
+> # Remove numbers
+> docs <- tm_map(docs, removeNumbers)
+> # Remove english common stopwords
+> docs <- tm_map(docs, removeWords, c(stopwords("english")))
+> # Remove punctuations
+> docs <- tm_map(docs, removePunctuation)
+> # Eliminate extra white spaces
+> docs <- tm_map(docs, stripWhitespace)
+> # Text stemming (reduces words to their root form)
+> library(SnowballC)
+> docs <- tm_map(docs, stemDocument)
+> # Remove additional stopwords
+> docs <- tm_map(docs, removeWords, c("disco0", "disco1", "disco2"))
+> #creating document term matrix
+> dtm <- TermDocumentMatrix(docs)
+> m <- as.matrix(dtm)
+> v <- sort(rowSums(m),decreasing=TRUE)
+> d <- data.frame(word = names(v),freq=v)
+> head(d, 10)
+             word freq
+said         said  147
+pickwick pickwick  138
+old           old   97
+â€\u009d â€\u009d   66
+one           one   59
+ladi         ladi   57
+repli       repli   51
+goblin     goblin   50
+boy           boy   49
+upon         upon   48

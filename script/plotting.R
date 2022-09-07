@@ -1,0 +1,35 @@
+# https://www.sharpsightlabs.com/blog/ggplot2-tutorial/
+plot(c(1,2,3), c(1,2,4))
+plot(c(-3,3), c(-1,5), xlab="x", ylab="y")
+titanicDF <- data.frame(Titanic)
+plot(titanicDF$Freq,titanicDF$Class, xlab = "Frequency", ylab = "Class")
+plot(titanicDF$Class,titanicDF$Freq, xlab = "Class", ylab = "Freq")
+#piechart
+x <- c(21, 62, 10, 53)
+labels <- c("London", "New York", "Singapore", "Mumbai")
+pie(x,labels)
+pie(x, labels, main = "City pie chart", col = rainbow(length(x)))
+library(ggplot2)
+ggplot(diamonds)
+ggplot(diamonds, aes(x=carat))
+ggplot(diamonds, aes(x=carat, y=price))
+ggplot(diamonds, aes(x=carat, color=cut))
+ggplot(diamonds, aes(x=carat), color="steelblue")
+ggplot(diamonds, aes(x=carat, y=price, color=cut)) + geom_point() + geom_smooth()
+gg <- ggplot(diamonds, aes(x=carat, y=price, color=cut)) + 
+  geom_point() + 
+  labs(title="Scatterplot", x="Carat", y="Price")
+print(gg)
+plot1 <- ggplot(mtcars, aes(x=cyl)) + geom_bar() + labs(title="Frequency bar chart")
+print(plot1)
+df <- data.frame(var=c("a", "b", "c"), nums=c(1:3))
+plot2 <- ggplot(df, aes(x=var, y=nums))+ geom_bar(stat = "identity")
+print(plot2)
+NileDF <- data.frame(c(1871:1970),Nile)
+names(NileDF) <- c("Year", "Flow")
+ggplot(data = NileDF, aes(x = Year, y = Flow)) +
+  geom_line()
+ggplot(data = NileDF, aes(x = Year, y = Flow)) +
+  geom_point()
+ggplot(data = NileDF, aes(x = Year, y = Flow)) + geom_bar(stat = 'identity', color = "red", fill = "blue")
+ggplot(data =NileDF, aes(x=Flow)) + geom_histogram(bins = 10)  

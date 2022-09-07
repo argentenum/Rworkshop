@@ -1,0 +1,84 @@
+> a <- 2
+> an apple <- 23
+Error: unexpected symbol in "an apple"
+> getApples <- 23
+> str(getApples)
+ num 23
+> getBananas <- "nuts"
+> str(getBananas)
+ chr "nuts"
+> ?str
+> ?print
+> march <- c(1,2,3,4,5,6,7,8)
+> str(march)
+ num [1:8] 1 2 3 4 5 6 7 8
+> print(march)
+[1] 1 2 3 4 5 6 7 8
+> march
+[1] 1 2 3 4 5 6 7 8
+> week <- c("mon","tue","wed","thu","fri","sat","sun")
+> week
+[1] "mon" "tue" "wed" "thu" "fri" "sat" "sun"
+> str(week)
+ chr [1:7] "mon" "tue" "wed" "thu" "fri" "sat" "sun"
+> sort(week)
+[1] "fri" "mon" "sat" "sun" "thu" "tue" "wed"
+> sort(week, decreasing = TRUE)
+[1] "wed" "tue" "thu" "sun" "sat" "mon" "fri"
+> march <- c(1,2,3,4,5,6,7)
+> marchList <- list(march, week)
+> marchList
+[[1]]
+[1] 1 2 3 4 5 6 7
+
+[[2]]
+[1] "mon" "tue" "wed" "thu" "fri" "sat" "sun"
+
+> print(marchList)
+[[1]]
+[1] 1 2 3 4 5 6 7
+
+[[2]]
+[1] "mon" "tue" "wed" "thu" "fri" "sat" "sun"
+
+> str(marchList)
+List of 2
+ $ : num [1:7] 1 2 3 4 5 6 7
+ $ : chr [1:7] "mon" "tue" "wed" "thu" ...
+> length(week)
+[1] 7
+> length(marchList)
+[1] 2
+> marchList[1]
+[[1]]
+[1] 1 2 3 4 5 6 7
+
+> week[3]
+[1] "wed"
+> length(marchList[1])
+[1] 1
+> length(unlist(marchList[1]))
+[1] 7
+> marchFrame <- data.frame(march,week)
+> str(marchFrame)
+'data.frame':	7 obs. of  2 variables:
+ $ march: num  1 2 3 4 5 6 7
+ $ week : chr  "mon" "tue" "wed" "thu" ...
+> marchFrame[2]
+  week
+1  mon
+2  tue
+3  wed
+4  thu
+5  fri
+6  sat
+7  sun
+> marchFrame$week
+[1] "mon" "tue" "wed" "thu" "fri" "sat" "sun"
+> str(marchFrame[2])
+'data.frame':	7 obs. of  1 variable:
+ $ week: chr  "mon" "tue" "wed" "thu" ...
+> length(marchFrame[2])
+[1] 1
+> length(marchFrame$week)
+[1] 7

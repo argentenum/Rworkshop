@@ -1,0 +1,13 @@
+Question for R Workshop for IIT Jodhpur M.Sc DH students.
+
+Read http://web.iitd.ac.in/~arjunghosh/mountains.csv
+Do not download the file.
+It data about mountains, their height (in meters), their country and continent.
+Carry out the following steps:
+Ensure that there is only a single data row for a single mountain.
+1) Make a barplot for distribution of mountains across continents.
+2) Make a barplot for distribution of mountains across countries.
+3) Some of the mountain names contain words that are terms for “Mountains” in local languages viz. Peak, Pik, Parbat, Sar, Ri, Kang, Cerro, Nevado, Mount. Extract the data on these mountains and plot them on a map with a label giving the name of each mountain.
+4) Plot on a map all mountains above 8000 meters in height.
+
+Submit the R file that you have used to write the code.

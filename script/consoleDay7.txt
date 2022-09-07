@@ -1,0 +1,723 @@
+> as.Date("08-03-2022", "%d-%m-%y")
+[1] "2020-03-08"
+> as.Date(18329, origin = "1970-01-01")
+[1] "2020-03-08"
+> country <- c("India","Nepal","Bangladesh")
+> flag <- c("tricolor","triangle","sun")
+> color <- c("blue","red","green")
+> nationDF <- data.frame(country,flag)
+> colorDF <- data.frame(flag,color)
+> merge(nationDF,colorDF,by = 'flag')
+      flag    country color
+1      sun Bangladesh green
+2 triangle      Nepal   red
+3 tricolor      India  blue
+> country <- c("India","Pakistan","Sri Lanka")
+> lastCup <- c("2011","1992","1996")
+> worldCupDF <- data.frame(country,lastCup)
+> worldCupDF
+    country lastCup
+1     India    2011
+2  Pakistan    1992
+3 Sri Lanka    1996
+> merge(nationDF,worldCupDF,by = 'country')
+  country     flag lastCup
+1   India tricolor    2011
+> library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+> nchar("books")
+[1] 5
+> "books" %>% nchar
+[1] 5
+> c(5,8,11) %>% mean
+[1] 8
+> c(5,8,11) %>% min
+[1] 5
+> reviewsDF %>% select(Publisher,Year,Price) %>% filter(Year == 1988) %>% str
+'data.frame':	527 obs. of  3 variables:
+ $ Publisher: chr  "Publisher Name: Concept Publishing Company, New Delhi" "Publisher Name: Oxford University Press" "Publisher Name: Pustak Mahal, New Delhi" "Publisher Name: Hanover and London: University Press of New England" ...
+ $ Year     : num  1988 1988 1988 1988 1988 ...
+ $ Price    : chr  "Book Price: 300" "Book Price: 120" "Book Price: 24.00" "Book Price: price not stated." ...
+> reviewsDF %>% select(Publisher,Year,Price) %>% filter(Year == 1988) %>% assign("result", ., inherits = TRUE)
+> result
+                                                                                           Publisher
+1                                              Publisher Name: Concept Publishing Company, New Delhi
+2                                                            Publisher Name: Oxford University Press
+3                                                            Publisher Name: Pustak Mahal, New Delhi
+4                                Publisher Name: Hanover and London: University Press of New England
+5                                                             Publisher Name: Uppal Publishing House
+6                                                           Publisher Name: Allied Publishers, Delhi
+7                                               Publisher Name: University of Illinois Press, U.S.A.
+8                                                              Publisher Name: Frank Brothers & Co.,
+9   Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+10                                                                 Publisher Name: Sage Publications
+11                                      Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+12                              Publisher Name: Ministry of Defence, Government of India publication
+13      Publisher Name: Oxford University Press, Delhi/Centre for Science and Environment, New Delhi
+14  Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+15                               Publisher Name: Hanover and London: University Press of New England
+16                              Publisher Name: Ministry of Defence, Government of India publication
+17  Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+18                                             Publisher Name: Allied Publishers Pvt. Ltd., N. Delhi
+19                                                          Publisher Name: Allied Publishers, Delhi
+20                                      Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+21                                                 Publisher Name: Uppal Publishing House, New Delhi
+22                                                          Publisher Name: Penguin India, New Delhi
+23                        Publisher Name: Northern Book Centre, N. Delhi/Allied Publishers, N. Delhi
+24                                        Publisher Name: Rebel Publishing House, Koln, West Germany
+25                                                   Publisher Name: ABC Publishing House, New Delhi
+26                        Publisher Name: Northern Book Centre, N. Delhi/Allied Publishers, N. Delhi
+27                                                                   Publisher Name: Collins, London
+28                                                                   Publisher Name: Collins, London
+29                                                           Publisher Name: Academic Press, Gurgaon
+30                                                    Publisher Name: Sterling Publishers, New Delhi
+31                                                   Publisher Name: ABC Publishing House, New Delhi
+32            Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+33                                        Publisher Name: Rebel Publishing House, Koln, West Germany
+34                                              Publisher Name: University of Illinois Press, U.S.A.
+35                                        Publisher Name: Rebel Publishing House, Koln, West Germany
+36                                                        Publisher Name: Spantech Publishers, Delhi
+37                                                                   Publisher Name: Collins, London
+38      Publisher Name: Oxford University Press, Delhi/Centre for Science and Environment, New Delhi
+39                                                                Publisher Name: Allied  Publishers
+40                                                                     Publisher Name: Penguin India
+41                                                     Publisher Name: Oxford University Press Delhi
+42                                                                   Publisher Name: Collins, London
+43                        Publisher Name: Northern Book Centre, N. Delhi/Allied Publishers, N. Delhi
+44                                             Publisher Name: Concept Publishing Company, New Delhi
+45                                                       Publisher Name: Ravi Dayal Publisher, Delhi
+46                                                            Publisher Name: Uppal Publishing House
+47                                                           Publisher Name: Academic Press, Gurgaon
+48  Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+49                                                          Publisher Name: Allied Publishers, Delhi
+50                                                          Publisher Name: Penguin India, New Delhi
+51                                                      Publisher Name: Sage Publications, New Delhi
+52                                                      Publisher Name: Allied Publishers, New Delhi
+53  Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+54                                                                 Publisher Name: Sage Publications
+55                                             Publisher Name: Concept Publishing Company, New Delhi
+56                                                             Publisher Name: Frank Brothers & Co.,
+57                                             Publisher Name: Concept Publishing Company, New Delhi
+58                              Publisher Name: Ministry of Defence, Government of India publication
+59                                      Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+60                                                      Publisher Name: Sage Publications, New Delhi
+61                                              Publisher Name: University of Illinois Press, U.S.A.
+62                                                                Publisher Name: Allied  Publishers
+63                                      Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+64                                                          Publisher Name: Allied Publishers, Delhi
+65                                                   Publisher Name: ABC Publishing House, New Delhi
+66                                                                Publisher Name: Allied  Publishers
+67                                                                 Publisher Name: Tulika, New Delhi
+68                                                      Publisher Name: Allied Publishers, New Delhi
+69                                                          Publisher Name: Penguin India, New Delhi
+70                                                           Publisher Name: Oxford University Press
+71      Publisher Name: Oxford University Press, Delhi/Centre for Science and Environment, New Delhi
+72                                                      Publisher Name: Allied Publishers, New Delhi
+73                                                              Publisher Name: Manohar Publications
+74                                                 Publisher Name: South Asian Publishers, New Delhi
+75                                                          Publisher Name: Allied Publishers, Delhi
+76                                              Publisher Name: University of Illinois Press, U.S.A.
+77                                                      Publisher Name: Sage Publications, New Delhi
+78                                                                Publisher Name: Allied  Publishers
+79                                             Publisher Name: Concept Publishing Company, New Delhi
+80            Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+81                                      Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+82                                                                   Publisher Name: Collins, London
+83                                                           Publisher Name: Academic Press, Gurgaon
+84            Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+85                        Publisher Name: Northern Book Centre, N. Delhi/Allied Publishers, N. Delhi
+86  Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+87            Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+88                                            Publisher Name: Viking in association with Rupa & Co.,
+89                                                   Publisher Name: Manohar Publications, New Delhi
+90                                                      Publisher Name: Allied Publishers, Ahmedabad
+91                                      Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+92                                                                   Publisher Name: Collins, London
+93                                                              Publisher Name: Manohar Publications
+94  Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+95                                                                Publisher Name: Allied  Publishers
+96                                                           Publisher Name: Clarendon Press, Oxford
+97                                                      Publisher Name: Allied Publishers, New Delhi
+98            Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+99                                                                     Publisher Name: Penguin India
+100                                           Publisher Name: Viking in association with Rupa & Co.,
+101                                                       Publisher Name: Spantech Publishers, Delhi
+102                                                                  Publisher Name: Penguin (India)
+103                                             Publisher Name: University of Illinois Press, U.S.A.
+104                                                Publisher Name: Uppal Publishing House, New Delhi
+105                                                         Publisher Name: Allied Publishers, Delhi
+106                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+107     Publisher Name: Oxford University Press, Delhi/Centre for Science and Environment, New Delhi
+108                                                  Publisher Name: Both from Children's Book Trust
+109                       Publisher Name: Northern Book Centre, N. Delhi/Allied Publishers, N. Delhi
+110           Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+111                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+112                                            Publisher Name: Allied Publishers Pvt. Ltd., N. Delhi
+113                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+114                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+115                                                                Publisher Name: Sage Publications
+116                                                Publisher Name: South Asian Publishers, New Delhi
+117                                                     Publisher Name: Sage Publications, New Delhi
+118                                                     Publisher Name: Allied Publishers, Ahmedabad
+119                                                                  Publisher Name: Collins, London
+120                                                     Publisher Name: Allied Publishers, New Delhi
+121                                                  Publisher Name: Manohar Publications, New Delhi
+122                                                                Publisher Name: Atma Ram and Sons
+123                                                      Publisher Name: An INTACH series, New Delhi
+124                                                      Publisher Name: An INTACH series, New Delhi
+125                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+126                                                               Publisher Name: Allied  Publishers
+127                                           Publisher Name: Viking in association with Rupa & Co.,
+128                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+129                                               Publisher Name: Oxford University Press, New Delhi
+130                                           Publisher Name: Viking in association with Rupa & Co.,
+131                                       Publisher Name: Rebel Publishing House, Koln, West Germany
+132                                                                  Publisher Name: Collins, London
+133                                            Publisher Name: Allied Publishers Pvt. Ltd., N. Delhi
+134                                                                          Publisher Name: Penguin
+135                                                                  Publisher Name: Collins, London
+136 Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+137                                             Publisher Name: University of Illinois Press, U.S.A.
+138                                                  Publisher Name: Both from Children's Book Trust
+139                                                          Publisher Name: Oxford University Press
+140                                                     Publisher Name: Allied Publishers, New Delhi
+141                                                Publisher Name: Uppal Publishing House, New Delhi
+142                                                  Publisher Name: ABC Publishing House, New Delhi
+143                                                Publisher Name: South Asian Publishers, New Delhi
+144                                                    Publisher Name: Oxford University Press Delhi
+145                       Publisher Name: Northern Book Centre, N. Delhi/Allied Publishers, N. Delhi
+146                                                   Publisher Name: Oxford University Press, Delhi
+147                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+148                                                          Publisher Name: Oxford University Press
+149     Publisher Name: Oxford University Press, Delhi/Centre for Science and Environment, New Delhi
+150                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+151                             Publisher Name: Ministry of Defence, Government of India publication
+152                                                     Publisher Name: Sage Publications, New Delhi
+153                                                    Publisher Name: Oxford University Press Delhi
+154                                            Publisher Name: Allied Publishers Pvt. Ltd., N. Delhi
+155                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+156                                                     Publisher Name: Allied Publishers, New Delhi
+157                                             Publisher Name: University of Illinois Press, U.S.A.
+158                                                Publisher Name: South Asian Publishers, New Delhi
+159                                                          Publisher Name: Oxford University Press
+160                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+161                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+162           Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+163                                                  Publisher Name: Manohar Publications, New Delhi
+164                                                                  Publisher Name: Penguin (India)
+165                                                     Publisher Name: Allied Publishers, New Delhi
+166 Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+167                                                          Publisher Name: Oxford University Press
+168                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+169                                                      Publisher Name: An INTACH series, New Delhi
+170 Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+171                                                                    Publisher Name: Penguin India
+172           Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+173           Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+174                                                   Publisher Name: Sterling Publishers, New Delhi
+175                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+176                                            Publisher Name: Concept Publishing Company, New Delhi
+177                                                     Publisher Name: Allied Publishers, Ahmedabad
+178                                                             Publisher Name: Manohar Publications
+179                                                      Publisher Name: An INTACH series, New Delhi
+180           Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+181           Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+182                                                                  Publisher Name: Collins, London
+183                                                          Publisher Name: Oxford University Press
+184                                                                Publisher Name: Atma Ram and Sons
+185                                                                  Publisher Name: Collins, London
+186                                                  Publisher Name: ABC Publishing House, New Delhi
+187                             Publisher Name: Ministry of Defence, Government of India publication
+188                                                    Publisher Name: Oxford University Press Delhi
+189                                               Publisher Name: Oxford University Press, New Delhi
+190                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+191                                               Publisher Name: Oxford University Press, New Delhi
+192                                                          Publisher Name: Academic Press, Gurgaon
+193                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+194                                                         Publisher Name: Allied Publishers, Delhi
+195                                                     Publisher Name: Allied Publishers, Ahmedabad
+196                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+197                                                                Publisher Name: Tulika, New Delhi
+198                                                     Publisher Name: Allied Publishers, Ahmedabad
+199     Publisher Name: Oxford University Press, Delhi/Centre for Science and Environment, New Delhi
+200                                                                  Publisher Name: Collins, London
+201     Publisher Name: Oxford University Press, Delhi/Centre for Science and Environment, New Delhi
+202 Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+203                                            Publisher Name: Concept Publishing Company, New Delhi
+204                                       Publisher Name: Rebel Publishing House, Koln, West Germany
+205 Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+206                                                                    Publisher Name: Penguin India
+207                                                         Publisher Name: Allied Publishers, Delhi
+208                                                                    Publisher Name: Penguin India
+209                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+210                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+211                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+212                                                            Publisher Name: Frank Brothers & Co.,
+213                                                    Publisher Name: Oxford University Press Delhi
+214                                                          Publisher Name: Oxford University Press
+215                                               Publisher Name: Oxford University Press, New Delhi
+216                                                          Publisher Name: Oxford University Press
+217                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+218                       Publisher Name: Northern Book Centre, N. Delhi/Allied Publishers, N. Delhi
+219                                                                          Publisher Name: Penguin
+220                             Publisher Name: Ministry of Defence, Government of India publication
+221                                                            Publisher Name: Frank Brothers & Co.,
+222           Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+223                             Publisher Name: Ministry of Defence, Government of India publication
+224                                                       Publisher Name: Spantech Publishers, Delhi
+225                                                   Publisher Name: Sterling Publishers, New Delhi
+226                                                    Publisher Name: Oxford University Press Delhi
+227                             Publisher Name: Ministry of Defence, Government of India publication
+228                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+229                                                          Publisher Name: Pustak Mahal, New Delhi
+230                              Publisher Name: Hanover and London: University Press of New England
+231                             Publisher Name: Ministry of Defence, Government of India publication
+232                                                           Publisher Name: Uppal Publishing House
+233                                                          Publisher Name: Oxford University Press
+234                                                             Publisher Name: Manohar Publications
+235                                                                    Publisher Name: Penguin India
+236                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+237     Publisher Name: Oxford University Press, Delhi/Centre for Science and Environment, New Delhi
+238                                                                  Publisher Name: Collins, London
+239                                                            Publisher Name: Frank Brothers & Co.,
+240                                                  Publisher Name: ABC Publishing House, New Delhi
+241                                                         Publisher Name: Penguin India, New Delhi
+242                                            Publisher Name: Concept Publishing Company, New Delhi
+243                                                Publisher Name: Uppal Publishing House, New Delhi
+244                                                             Publisher Name: Manohar Publications
+245                                                           Publisher Name: Uppal Publishing House
+246                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+247                                                                Publisher Name: Atma Ram and Sons
+248                                                          Publisher Name: Pustak Mahal, New Delhi
+249           Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+250                                                  Publisher Name: Both from Children's Book Trust
+251                                                                Publisher Name: Sage Publications
+252                                                     Publisher Name: Allied Publishers, New Delhi
+253                                                     Publisher Name: Allied Publishers, Ahmedabad
+254                             Publisher Name: Ministry of Defence, Government of India publication
+255                                                                Publisher Name: Atma Ram and Sons
+256                                                     Publisher Name: Allied Publishers, Ahmedabad
+257                                                          Publisher Name: Oxford University Press
+258           Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+259                                                     Publisher Name: Allied Publishers, Ahmedabad
+260                                                   Publisher Name: Oxford University Press, Delhi
+261                                                    Publisher Name: Oxford University Press Delhi
+262                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+263                                                         Publisher Name: Penguin India, New Delhi
+264                                                          Publisher Name: Oxford University Press
+265                                                     Publisher Name: Allied Publishers, Ahmedabad
+266                                                     Publisher Name: Allied Publishers, Ahmedabad
+267                                                   Publisher Name: Sterling Publishers, New Delhi
+268                                                          Publisher Name: Academic Press, Gurgaon
+269                                            Publisher Name: Allied Publishers Pvt. Ltd., N. Delhi
+270 Publisher Name: Princeton University Press and Oxford University Press India (Paperback edition)
+271                                                      Publisher Name: Ravi Dayal Publisher, Delhi
+272                                       Publisher Name: Rebel Publishing House, Koln, West Germany
+273                                                               Publisher Name: Allied  Publishers
+274                                           Publisher Name: Viking in association with Rupa & Co.,
+275                                               Publisher Name: Oxford University Press, New Delhi
+276                                                Publisher Name: Uppal Publishing House, New Delhi
+277                                                          Publisher Name: Oxford University Press
+278                       Publisher Name: Northern Book Centre, N. Delhi/Allied Publishers, N. Delhi
+279                                                     Publisher Name: Allied Publishers, New Delhi
+280                                                  Publisher Name: Both from Children's Book Trust
+281                                       Publisher Name: Rebel Publishing House, Koln, West Germany
+282                                                  Publisher Name: Both from Children's Book Trust
+283                                                            Publisher Name: Frank Brothers & Co.,
+284                                                                Publisher Name: Atma Ram and Sons
+285                                                  Publisher Name: ABC Publishing House, New Delhi
+286                                                  Publisher Name: Both from Children's Book Trust
+287                                                                Publisher Name: Sage Publications
+288                                           Publisher Name: Viking in association with Rupa & Co.,
+289                                       Publisher Name: Rebel Publishing House, Koln, West Germany
+290                                            Publisher Name: Allied Publishers Pvt. Ltd., N. Delhi
+291                                                     Publisher Name: Allied Publishers, New Delhi
+292     Publisher Name: Oxford University Press, Delhi/Centre for Science and Environment, New Delhi
+293                                                Publisher Name: Uppal Publishing House, New Delhi
+294                                                                Publisher Name: Sage Publications
+295                                                     Publisher Name: Allied Publishers, New Delhi
+296                                                Publisher Name: Uppal Publishing House, New Delhi
+297                                                                  Publisher Name: Collins, London
+298                                                          Publisher Name: Clarendon Press, Oxford
+299                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+300                                                                    Publisher Name: Penguin India
+301                                                         Publisher Name: Allied Publishers, Delhi
+302                                                                  Publisher Name: Collins, London
+303                                                          Publisher Name: Oxford University Press
+304                                       Publisher Name: Rebel Publishing House, Koln, West Germany
+305                                                          Publisher Name: Academic Press, Gurgaon
+306                                           Publisher Name: Viking in association with Rupa & Co.,
+307                             Publisher Name: Ministry of Defence, Government of India publication
+308                                                     Publisher Name: Allied Publishers, New Delhi
+309                                                      Publisher Name: An INTACH series, New Delhi
+310                                                  Publisher Name: ABC Publishing House, New Delhi
+311                                                                Publisher Name: Atma Ram and Sons
+312                                           Publisher Name: Viking in association with Rupa & Co.,
+313                                                                  Publisher Name: Collins, London
+314     Publisher Name: Oxford University Press, Delhi/Centre for Science and Environment, New Delhi
+315                                                                Publisher Name: Tulika, New Delhi
+316                                            Publisher Name: Concept Publishing Company, New Delhi
+317                                                   Publisher Name: Oxford University Press, Delhi
+318                                                    Publisher Name: Oxford University Press Delhi
+319                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+320     Publisher Name: Oxford University Press, Delhi/Centre for Science and Environment, New Delhi
+321                                                                Publisher Name: Tulika, New Delhi
+322                                                          Publisher Name: Pustak Mahal, New Delhi
+323                                               Publisher Name: Oxford University Press, New Delhi
+324                                               Publisher Name: Oxford University Press, New Delhi
+325                             Publisher Name: Ministry of Defence, Government of India publication
+326                                                                          Publisher Name: Penguin
+327                                                     Publisher Name: Sage Publications, New Delhi
+328                                                                    Publisher Name: Penguin India
+329                                               Publisher Name: Oxford University Press, New Delhi
+330           Publisher Name: Jawaharlal Nehru Memorial Fund, distributed by Oxford University Press
+331                                                         Publisher Name: Allied Publishers, Delhi
+332                                                  Publisher Name: Manohar Publications, New Delhi
+333                                     Publisher Name: Affiliated East-West Press Pvt. Ltd., Madras
+    Year                         Price
+1   1988               Book Price: 300
+2   1988               Book Price: 120
+3   1988             Book Price: 24.00
+4   1988 Book Price: price not stated.
+5   1988               Book Price: 210
+6   1988             Book Price: 65.00
+7   1988  Book Price: Price not stated
+8   1988             Book Price: 18.00
+9   1988               Book Price: 160
+10  1988               Book Price: 125
+11  1988             Book Price: 36.00
+12  1988               Book Price: 150
+13  1988               Book Price: 110
+14  1988               Book Price: 160
+15  1988 Book Price: price not stated.
+16  1988               Book Price: 150
+17  1988               Book Price: 160
+18  1988               Book Price: 125
+19  1988             Book Price: 65.00
+20  1988             Book Price: 36.00
+21  1988               Book Price: 160
+22  1988             Book Price: 50.00
+23  1988              Book Price: 80.0
+24  1988               Book Price: 547
+25  1988             Book Price: 96.00
+26  1988              Book Price: 80.0
+27  1988           Book Price: Â£ 3.95
+28  1988           Book Price: Â£ 3.95
+29  1988             Book Price: 95.00
+30  1988               Book Price: 100
+31  1988             Book Price: 96.00
+32  1988               Book Price: 150
+33  1988               Book Price: 547
+34  1988  Book Price: Price not stated
+35  1988               Book Price: 547
+36  1988             Book Price: 80.00
+37  1988           Book Price: Â£ 3.95
+38  1988               Book Price: 110
+39  1988             Book Price: 75.00
+40  1988             Book Price: 45.00
+41  1988               Book Price: 170
+42  1988           Book Price: Â£ 3.95
+43  1988              Book Price: 80.0
+44  1988               Book Price: 300
+45  1988             Book Price: 90.00
+46  1988               Book Price: 210
+47  1988             Book Price: 95.00
+48  1988               Book Price: 160
+49  1988             Book Price: 65.00
+50  1988             Book Price: 50.00
+51  1988               Book Price: 190
+52  1988               Book Price: 150
+53  1988               Book Price: 160
+54  1988               Book Price: 125
+55  1988               Book Price: 300
+56  1988             Book Price: 18.00
+57  1988               Book Price: 300
+58  1988               Book Price: 150
+59  1988             Book Price: 36.00
+60  1988               Book Price: 190
+61  1988  Book Price: Price not stated
+62  1988             Book Price: 75.00
+63  1988             Book Price: 36.00
+64  1988             Book Price: 65.00
+65  1988             Book Price: 96.00
+66  1988             Book Price: 75.00
+67  1988               Book Price: 120
+68  1988               Book Price: 150
+69  1988             Book Price: 50.00
+70  1988               Book Price: 120
+71  1988               Book Price: 110
+72  1988             Book Price: 95.00
+73  1988               Book Price: 100
+74  1988               Book Price: 125
+75  1988             Book Price: 65.00
+76  1988  Book Price: Price not stated
+77  1988               Book Price: 190
+78  1988             Book Price: 75.00
+79  1988               Book Price: 300
+80  1988               Book Price: 150
+81  1988             Book Price: 36.00
+82  1988           Book Price: Â£ 3.95
+83  1988             Book Price: 95.00
+84  1988               Book Price: 150
+85  1988              Book Price: 80.0
+86  1988               Book Price: 160
+87  1988               Book Price: 150
+88  1988          Book Price: Â£ 17.95
+89  1988               Book Price: 200
+90  1988               Book Price: 125
+91  1988             Book Price: 36.00
+92  1988           Book Price: Â£ 3.95
+93  1988               Book Price: 100
+94  1988               Book Price: 160
+95  1988             Book Price: 75.00
+96  1988               Book Price: 225
+97  1988               Book Price: 150
+98  1988               Book Price: 150
+99  1988             Book Price: 55.00
+100 1988          Book Price: Â£ 17.95
+101 1988             Book Price: 80.00
+102 1988             Book Price: 85.00
+103 1988  Book Price: Price not stated
+104 1988               Book Price: 160
+105 1988             Book Price: 65.00
+106 1988             Book Price: 90.00
+107 1988               Book Price: 110
+108 1988             Book Price: 12/11
+109 1988              Book Price: 80.0
+110 1988               Book Price: 150
+111 1988             Book Price: 90.00
+112 1988               Book Price: 125
+113 1988             Book Price: 36.00
+114 1988             Book Price: 36.00
+115 1988               Book Price: 125
+116 1988               Book Price: 125
+117 1988               Book Price: 190
+118 1988               Book Price: 125
+119 1988           Book Price: Â£ 3.95
+120 1988             Book Price: 95.00
+121 1988               Book Price: 200
+122 1988               Book Price: 150
+123 1988  Book Price: price not stated
+124 1988  Book Price: price not stated
+125 1988             Book Price: 90.00
+126 1988             Book Price: 75.00
+127 1988          Book Price: Â£ 17.95
+128 1988             Book Price: 36.00
+129 1988               Book Price: 225
+130 1988          Book Price: Â£ 17.95
+131 1988               Book Price: 547
+132 1988           Book Price: Â£ 3.95
+133 1988               Book Price: 125
+134 1988             Book Price: 50.00
+135 1988           Book Price: Â£ 3.95
+136 1988               Book Price: 160
+137 1988  Book Price: Price not stated
+138 1988             Book Price: 12/11
+139 1988               Book Price: 120
+140 1988             Book Price: 95.00
+141 1988               Book Price: 160
+142 1988             Book Price: 96.00
+143 1988               Book Price: 125
+144 1988               Book Price: 170
+145 1988              Book Price: 80.0
+146 1988               Book Price: 140
+147 1988             Book Price: 90.00
+148 1988               Book Price: 120
+149 1988               Book Price: 110
+150 1988             Book Price: 90.00
+151 1988               Book Price: 150
+152 1988               Book Price: 190
+153 1988               Book Price: 170
+154 1988               Book Price: 125
+155 1988             Book Price: 90.00
+156 1988               Book Price: 150
+157 1988  Book Price: Price not stated
+158 1988               Book Price: 125
+159 1988               Book Price: 295
+160 1988             Book Price: 90.00
+161 1988             Book Price: 36.00
+162 1988               Book Price: 150
+163 1988               Book Price: 200
+164 1988             Book Price: 85.00
+165 1988             Book Price: 95.00
+166 1988               Book Price: 160
+167 1988               Book Price: 150
+168 1988             Book Price: 36.00
+169 1988  Book Price: price not stated
+170 1988               Book Price: 160
+171 1988             Book Price: 55.00
+172 1988               Book Price: 150
+173 1988               Book Price: 150
+174 1988               Book Price: 100
+175 1988             Book Price: 90.00
+176 1988               Book Price: 300
+177 1988               Book Price: 125
+178 1988               Book Price: 100
+179 1988  Book Price: price not stated
+180 1988               Book Price: 150
+181 1988               Book Price: 150
+182 1988           Book Price: Â£ 3.95
+183 1988               Book Price: 120
+184 1988               Book Price: 150
+185 1988           Book Price: Â£ 3.95
+186 1988             Book Price: 96.00
+187 1988               Book Price: 150
+188 1988               Book Price: 170
+189 1988               Book Price: 225
+190 1988             Book Price: 36.00
+191 1988               Book Price: 225
+192 1988             Book Price: 95.00
+193 1988             Book Price: 36.00
+194 1988             Book Price: 65.00
+195 1988               Book Price: 125
+196 1988             Book Price: 90.00
+197 1988               Book Price: 120
+198 1988               Book Price: 125
+199 1988               Book Price: 110
+200 1988           Book Price: Â£ 3.95
+201 1988               Book Price: 110
+202 1988               Book Price: 160
+203 1988               Book Price: 300
+204 1988               Book Price: 547
+205 1988               Book Price: 160
+206 1988             Book Price: 45.00
+207 1988             Book Price: 65.00
+208 1988             Book Price: 55.00
+209 1988             Book Price: 36.00
+210 1988             Book Price: 36.00
+211 1988             Book Price: 36.00
+212 1988             Book Price: 18.00
+213 1988               Book Price: 170
+214 1988               Book Price: 150
+215 1988               Book Price: 225
+216 1988               Book Price: 150
+217 1988             Book Price: 36.00
+218 1988              Book Price: 80.0
+219 1988             Book Price: 50.00
+220 1988               Book Price: 150
+221 1988             Book Price: 18.00
+222 1988               Book Price: 150
+223 1988               Book Price: 150
+224 1988             Book Price: 80.00
+225 1988               Book Price: 100
+226 1988               Book Price: 170
+227 1988               Book Price: 150
+228 1988             Book Price: 90.00
+229 1988             Book Price: 24.00
+230 1988 Book Price: price not stated.
+231 1988               Book Price: 150
+232 1988               Book Price: 210
+233 1988               Book Price: 295
+234 1988               Book Price: 100
+235 1988             Book Price: 55.00
+236 1988             Book Price: 90.00
+237 1988               Book Price: 110
+238 1988           Book Price: Â£ 3.95
+239 1988             Book Price: 18.00
+240 1988             Book Price: 96.00
+241 1988             Book Price: 50.00
+242 1988               Book Price: 300
+243 1988               Book Price: 160
+244 1988               Book Price: 100
+245 1988               Book Price: 210
+246 1988             Book Price: 90.00
+247 1988               Book Price: 150
+248 1988             Book Price: 24.00
+249 1988               Book Price: 150
+250 1988             Book Price: 12/11
+251 1988               Book Price: 125
+252 1988               Book Price: 150
+253 1988               Book Price: 125
+254 1988               Book Price: 150
+255 1988               Book Price: 150
+256 1988               Book Price: 125
+257 1988               Book Price: 120
+258 1988               Book Price: 150
+259 1988               Book Price: 125
+260 1988               Book Price: 140
+261 1988               Book Price: 170
+262 1988             Book Price: 36.00
+263 1988             Book Price: 50.00
+264 1988               Book Price: 150
+265 1988               Book Price: 125
+266 1988               Book Price: 125
+267 1988               Book Price: 100
+268 1988             Book Price: 95.00
+269 1988               Book Price: 125
+270 1988               Book Price: 160
+271 1988             Book Price: 90.00
+272 1988               Book Price: 547
+273 1988             Book Price: 75.00
+274 1988          Book Price: Â£ 17.95
+275 1988               Book Price: 225
+276 1988               Book Price: 160
+277 1988               Book Price: 120
+278 1988              Book Price: 80.0
+279 1988               Book Price: 100
+280 1988             Book Price: 12/11
+281 1988               Book Price: 547
+282 1988             Book Price: 12/11
+283 1988             Book Price: 18.00
+284 1988               Book Price: 150
+285 1988             Book Price: 96.00
+286 1988             Book Price: 12/11
+287 1988               Book Price: 125
+288 1988          Book Price: Â£ 17.95
+289 1988               Book Price: 547
+290 1988               Book Price: 125
+291 1988               Book Price: 100
+292 1988               Book Price: 110
+293 1988               Book Price: 160
+294 1988               Book Price: 125
+295 1988             Book Price: 95.00
+296 1988               Book Price: 160
+297 1988           Book Price: Â£ 3.95
+298 1988               Book Price: 225
+299 1988             Book Price: 36.00
+300 1988             Book Price: 45.00
+301 1988             Book Price: 65.00
+302 1988           Book Price: Â£ 3.95
+303 1988               Book Price: 295
+304 1988               Book Price: 547
+305 1988             Book Price: 95.00
+306 1988          Book Price: Â£ 17.95
+307 1988               Book Price: 150
+308 1988               Book Price: 100
+309 1988  Book Price: price not stated
+310 1988             Book Price: 96.00
+311 1988               Book Price: 150
+312 1988          Book Price: Â£ 17.95
+313 1988           Book Price: Â£ 3.95
+314 1988               Book Price: 110
+315 1988               Book Price: 120
+316 1988               Book Price: 300
+317 1988               Book Price: 140
+318 1988               Book Price: 170
+319 1988             Book Price: 36.00
+320 1988               Book Price: 110
+321 1988               Book Price: 120
+322 1988             Book Price: 24.00
+323 1988               Book Price: 225
+324 1988               Book Price: 225
+325 1988               Book Price: 150
+326 1988             Book Price: 50.00
+327 1988               Book Price: 190
+328 1988             Book Price: 45.00
+329 1988               Book Price: 225
+330 1988               Book Price: 150
+331 1988             Book Price: 65.00
+332 1988               Book Price: 200
+333 1988             Book Price: 36.00
+ [ reached 'max' / getOption("max.print") -- omitted 194 rows ]
+> pub
+[1] 624

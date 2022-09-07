@@ -1,0 +1,262 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+During startup - Warning message:
+Setting LC_CTYPE=(null) failed 
+[Workspace loaded from ~/.RData]
+
+> goat <- 33
+> dog <- 43
+> rat <- 33
+> goat==rat
+[1] TRUE
+> dog==goat
+[1] FALSE
+> dog=goat
+> dog
+[1] 33
+> goat <- c(33,43,53)
+> dog <- c(23,43,63)
+> goat==dog
+[1] FALSE  TRUE FALSE
+> goat+dog
+[1]  56  86 116
+> goat-dog
+[1]  10   0 -10
+> goat*dog
+[1]  759 1849 3339
+> goat/dog
+[1] 1.4347826 1.0000000 0.8412698
+> parrot <- c(2,3,4,5,6,7)
+> dog+parrot
+[1] 25 46 67 28 49 70
+> dog
+[1] 23 43 63
+> names(dog)
+NULL
+> names(dog) <- c("black","brown","white")
+> dog
+black brown white 
+   23    43    63 
+> str(dog)
+ Named num [1:3] 23 43 63
+ - attr(*, "names")= chr [1:3] "black" "brown" "white"
+> names(dog[2]) <- "grey"
+> dog
+black brown white 
+   23    43    63 
+> names(dog[2])
+[1] "brown"
+> names(dog[2]) <- c("grey")
+> dog
+black brown white 
+   23    43    63 
+> names(dog) <- c("black","grey","white")
+> job <- c("carpenter","plumber","electrician")
+> pay <- c(250,350,450)
+> rollList <- list(job,pay)
+> rollList
+[[1]]
+[1] "carpenter"   "plumber"     "electrician"
+
+[[2]]
+[1] 250 350 450
+
+> rollList[1]
+[[1]]
+[1] "carpenter"   "plumber"     "electrician"
+
+> str(rollList[1])
+List of 1
+ $ : chr [1:3] "carpenter" "plumber" "electrician"
+> rollList[[1]]
+[1] "carpenter"   "plumber"     "electrician"
+> str(rollList[[1]])
+ chr [1:3] "carpenter" "plumber" "electrician"
+> pay2 <- c(250,350,450,500)
+> rollList2 <- list(job,pay2)
+> rollList2
+[[1]]
+[1] "carpenter"   "plumber"     "electrician"
+
+[[2]]
+[1] 250 350 450 500
+
+> rollDF <- data.frame(job,pay2)
+Error in data.frame(job, pay2) : 
+  arguments imply differing number of rows: 3, 4
+> rollDF <- data.frame(job,pay)
+> rollDF
+          job pay
+1   carpenter 250
+2     plumber 350
+3 electrician 450
+> names(rollDF)
+[1] "job" "pay"
+> rollList <- rbind(rollList,c("gardener",200))
+> rollList
+         [,1]        [,2]     
+rollList character,3 numeric,3
+         "gardener"  "200"    
+> rollDF <- rbind(rollDF, c("gardener", 200))
+> rollDF
+          job pay
+1   carpenter 250
+2     plumber 350
+3 electrician 450
+4    gardener 200
+> rollDF <- cbind(rollDF, c(5,6,7,8,7.5))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 4, 5
+> rollDF <- cbind(rollDF, c(5,6,7,8))
+> rollDF
+          job pay c(5, 6, 7, 8)
+1   carpenter 250             5
+2     plumber 350             6
+3 electrician 450             7
+4    gardener 200             8
+> names(rollDF) <- c("job","pay","hours")
+> rollDF
+          job pay hours
+1   carpenter 250     5
+2     plumber 350     6
+3 electrician 450     7
+4    gardener 200     8
+> setwd("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/ClassworkFiles")
+> ?write.csv
+> write.csv(rollDF, file = "CostofLabour")
+> write.csv(rollDF, file = "CostofLabour.csv")
+> write.csv(rollDF, file = "CostofLabour.csv", append=TRUE)
+Warning message:
+In write.csv(rollDF, file = "CostofLabour.csv", append = TRUE) :
+  attempt to set 'append' ignored
+> write.csv(rollDF, file = "CostofLabour.csv", append = TRUE)
+Warning message:
+In write.csv(rollDF, file = "CostofLabour.csv", append = TRUE) :
+  attempt to set 'append' ignored
+> rollDF
+          job pay hours
+1   carpenter 250     5
+2     plumber 350     6
+3 electrician 450     7
+4    gardener 200     8
+> rollDF[2,3]
+[1] 6
+> rollDF$job
+[1] "carpenter"   "plumber"     "electrician" "gardener"   
+> rollDF$job[2]
+[1] "plumber"
+> rollDF[2,3]
+[1] 6
+> rollDF[1,2]
+[1] "250"
+> rollDF[2,2]
+[1] "350"
+> rollDF[2,1]
+[1] "plumber"
+> subset(rollDF$pay>400)
+Error in subset.default(rollDF$pay > 400) : 
+  argument "subset" is missing, with no default
+> subset(rollDF,rollDF$pay>400)
+          job pay hours
+3 electrician 450     7
+> str(subset(rollDF,rollDF$pay>400))
+'data.frame':	1 obs. of  3 variables:
+ $ job  : chr "electrician"
+ $ pay  : chr "450"
+ $ hours: num 7
+> str(subset(rollDF,rollDF$hours>6))
+'data.frame':	2 obs. of  3 variables:
+ $ job  : chr  "electrician" "gardener"
+ $ pay  : chr  "450" "200"
+ $ hours: num  7 8
+> subset(rollDF,rollDF$hours>6)
+          job pay hours
+3 electrician 450     7
+4    gardener 200     8
+> #Loops
+> disco <- c(1,2,3,4)
+> disco + 1
+[1] 2 3 4 5
+> sumEven <-0
+> for(n in 1:4) {sumEven <- sumEven + disco[n]}
+> sumEven
+[1] 10
+> sumEven <-0
+> for(n in 1:3) {sumEven <- sumEven + disco[n]}
+> sumEven
+[1] 6
+> sumEven <- 0
+> for (n in 1:length(disco))
++ {
++   sumEven <- sumEven + disco[n]
++ }
+> sumEven
+[1] 10
+> sumEven <- 0
+> for (n in 1:length(disco))
++ {
++   sumEven <- sumEven + disco[n]
++   print(n)
++   print(sumEven)
++ }
+[1] 1
+[1] 1
+[1] 2
+[1] 3
+[1] 3
+[1] 6
+[1] 4
+[1] 10
+> sumEven <- 0
+> for (n in 1:length(disco))
++ {
++   ifelse(disco[n] %% 2 == 0,jog <- disco[n], jog <- 0)
++   sumEven <- sumEven + jog
++   print(n)
++   print(sumEven)
++ }
+[1] 1
+[1] 0
+[1] 2
+[1] 2
+[1] 3
+[1] 2
+[1] 4
+[1] 6
+> readLines("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/ClassworkFiles/pnp.txt")
+[1] "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters."
+> scan("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/ClassworkFiles/pnp.txt"," ")
+Read 70 items
+ [1] "It"             "is"             "a"              "truth"         
+ [5] "universally"    "acknowledged,"  "that"           "a"             
+ [9] "single"         "man"            "in"             "possession"    
+[13] "of"             "a"              "good"           "fortune,"      
+[17] "must"           "be"             "in"             "want"          
+[21] "of"             "a"              "wife."          "However"       
+[25] "little"         "known"          "the"            "feelings"      
+[29] "or"             "views"          "of"             "such"          
+[33] "a"              "man"            "may"            "be"            
+[37] "on"             "his"            "first"          "entering"      
+[41] "a"              "neighbourhood," "this"           "truth"         
+[45] "is"             "so"             "well"           "fixed"         
+[49] "in"             "the"            "minds"          "of"            
+[53] "the"            "surrounding"    "families,"      "that"          
+[57] "he"             "is"             "considered"     "the"           
+[61] "rightful"       "property"       "of"             "some"          
+[65] "one"            "or"             "other"          "of"            
+[69] "their"          "daughters."

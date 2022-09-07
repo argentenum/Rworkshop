@@ -1,0 +1,163 @@
+
+> x <- c(1,3,5)
+> x
+[1] 1 3 5
+> x <- c(1:5)
+> x
+[1] 1 2 3 4 5
+> x[3]
+[1] 3
+> x[4]
+[1] 4
+> y <- c("a","b")
+> y[2]
+[1] "b"
+> y[length(y)-1]
+[1] "a"
+> x
+[1] 1 2 3 4 5
+> x <- c(x,7,8)
+> x
+[1] 1 2 3 4 5 7 8
+> x <- append(x,9999)
+> x
+[1]    1    2    3    4    5    7    8 9999
+> x <- append(x, "bad")
+> x
+[1] "1"    "2"    "3"    "4"    "5"    "7"    "8"    "9999" "bad" 
+> f <- c(50,100)
+> f+y
+Error in f + y : non-numeric argument to binary operator
+> append(f,y)
+[1] "50"  "100" "a"   "b"  
+> seq(x0, 6, 0.01)
+Error in seq(x0, 6, 0.01) : object 'x0' not found
+> seq(x, 6, 0.01)
+Error in seq.default(x, 6, 0.01) : 'from' must be of length 1
+> x3<-seq(1,100,by=5)
+> x3
+ [1]  1  6 11 16 21 26 31 36 41 46 51 56 61 66 71 76 81 86 91 96
+> length(x3)
+[1] 20
+> x3<-seq(1,100,by=(3*3))
+> x3
+ [1]   1  10  19  28  37  46  55  64  73  82  91 100
+> x3<-seq(1,100,by=(x3[2]*3))
+> x3
+[1]  1 31 61 91
+> x3[3] <- 71
+> x3
+[1]  1 31 71 91
+> x3<-seq(1,100,by=5)
+> x3
+ [1]  1  6 11 16 21 26 31 36 41 46 51 56 61 66 71 76 81 86 91 96
+> x3[4]
+[1] 16
+> x3[4:10]
+[1] 16 21 26 31 36 41 46
+> x <- c(1,3,5)
+> x3[x]
+[1]  1 11 21
+> x3[-1]
+ [1]  6 11 16 21 26 31 36 41 46 51 56 61 66 71 76 81 86 91 96
+> x3[-x]
+ [1]  6 16 26 31 36 41 46 51 56 61 66 71 76 81 86 91 96
+> ?which
+> which(x3>50)
+ [1] 11 12 13 14 15 16 17 18 19 20
+> x3[which(x3>50)]
+ [1] 51 56 61 66 71 76 81 86 91 96
+> y
+[1] "a" "b"
+> g = c(44,55)
+> g
+[1] 44 55
+> which(x3=51)
+Error in which(x3 = 51) : unused argument (x3 = 51)
+> which(x3==51)
+[1] 11
+> which(y=="b")
+[1] 2
+> length(which(y=="b"))
+[1] 1
+> far <- seq(1:100, by=10)
+Error in seq.default(1:100, by = 10) : 'from' must be of length 1
+> far <- seq(1,100, by=10)
+> far
+ [1]  1 11 21 31 41 51 61 71 81 91
+> near <- seq(1,100, length(6))
+> near
+  [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+ [18]  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34
+ [35]  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
+ [52]  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68
+ [69]  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85
+ [86]  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100
+> near <- seq(1,100, length=6)
+> near
+[1]   1.0  20.8  40.6  60.4  80.2 100.0
+> near <- seq(1,100, length=25)
+> near
+ [1]   1.000   5.125   9.250  13.375  17.500  21.625  25.750  29.875
+ [9]  34.000  38.125  42.250  46.375  50.500  54.625  58.750  62.875
+[17]  67.000  71.125  75.250  79.375  83.500  87.625  91.750  95.875
+[25] 100.000
+> x3
+ [1]  1  6 11 16 21 26 31 36 41 46 51 56 61 66 71 76 81 86 91 96
+> which(x3 %% 2)
+Error in which(x3%%2) : argument to 'which' is not logical
+> x3 %% 2
+ [1] 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+> which((x3 %% 2)>0)
+ [1]  1  3  5  7  9 11 13 15 17 19
+> (x3 %% 2)>0
+ [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+[12] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+> x3[which((x3 %% 2)>0)]
+ [1]  1 11 21 31 41 51 61 71 81 91
+> x3[which((x3 %% 2)==0)]
+ [1]  6 16 26 36 46 56 66 76 86 96
+> which((x3 %% 2)==0)
+ [1]  2  4  6  8 10 12 14 16 18 20
+> x3
+ [1]  1  6 11 16 21 26 31 36 41 46 51 56 61 66 71 76 81 86 91 96
+> first <- x3 %% 2
+> first
+ [1] 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+> second <- first == 0
+> second
+ [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+[12]  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+> third <- which(first == "TRUE")
+> third
+integer(0)
+> third <- which(first == TRUE)
+> third
+ [1]  1  3  5  7  9 11 13 15 17 19
+> fourth <- x3[third]
+> fourth
+ [1]  1 11 21 31 41 51 61 71 81 91
+> which((x3 %% 2)==0)
+ [1]  2  4  6  8 10 12 14 16 18 20
+> x3[which((x3 %% 2)==0)]
+ [1]  6 16 26 36 46 56 66 76 86 96
+> any(x3 > 10)
+[1] TRUE
+> all(x3 >10)
+[1] FALSE
+> all(x3 >1)
+[1] FALSE
+> all(x3 >0)
+[1] TRUE
+> ifelse(x3 > 10,"yes","no")
+ [1] "no"  "no"  "yes" "yes" "yes" "yes" "yes" "yes" "yes" "yes" "yes"
+[12] "yes" "yes" "yes" "yes" "yes" "yes" "yes" "yes" "yes"
+> str(ifelse(x3 > 10,"yes","no"))
+ chr [1:20] "no" "no" "yes" "yes" "yes" "yes" "yes" "yes" "yes" ...
+> ?ifelse
+> str(ifelse(x3 > 10,"heaven","hell"))
+ chr [1:20] "hell" "hell" "heaven" "heaven" "heaven" "heaven" ...
+> ifelse(x3 > 10,"heaven","hell")
+ [1] "hell"   "hell"   "heaven" "heaven" "heaven" "heaven" "heaven"
+ [8] "heaven" "heaven" "heaven" "heaven" "heaven" "heaven" "heaven"
+[15] "heaven" "heaven" "heaven" "heaven" "heaven" "heaven"

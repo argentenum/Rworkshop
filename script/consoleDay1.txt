@@ -1,0 +1,25 @@
+> 1+1
+[1] 2
+> print(1+1)
+[1] 2
+> ?print
+> print(workshop)
+Error in print(workshop) : object 'workshop' not found
+> print("workshop")
+[1] "workshop"
+> a <- 1000
+> a <- 2000
+> print(a0)
+Error in print(a0) : object 'a0' not found
+> print(a)
+[1] 2000
+> print(a)
+[1] 2000
+> a <- "workshop"
+> geoDummykiKarda <- "workshop"
+> print(geoDummykiKarda)
+[1] "workshop"
+> getwd()
+[1] "C:/Users/DELL/Documents"
+> setwd("~/R")
+> 
