@@ -26,4 +26,14 @@ marchFrame$week
 str(marchFrame[2])
 length(marchFrame)
 length(marchFrame[2])
+length(marchFrame$week)
 marchFrame[4,2]
+names(marchFrame)
+names(marchFrame) <- c("Order","Days of the Week")
+rownames(marchFrame)
+rownames(marchFrame) <- c("som","man","bud","gur",
+                          "suk","sha","rav")
+#Create a dataframe with the first column giving 
+#the names of every month in a year and the second 
+#column giving the corresponding number of days 
+#in each month.

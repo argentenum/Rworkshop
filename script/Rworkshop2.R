@@ -20,6 +20,7 @@ x <- c(1:5)
 x <- c(x,6,7)
 #append value in between vector values
 x <- append(x,8,2)
+x <- append(x,c(100,200),5)
 #appending character value to numerical vector
 x <- append(x, "bad")
 #creating vector through sequence
@@ -32,8 +33,8 @@ f <- seq(1,50, length=6)
 z <- c(1,3,5)
 y[z]
 y[-1]
-y[-x]
-#vector arthmetic
+y[-z]
+#vector arithmetic
 u <- c(2,4,6)
 z+u 
 u-z
@@ -46,9 +47,9 @@ u*t
 t*u
 u/t
 #which function - logical
-#logical symbols == > < >= <= !
-which(y>50)
+#logical symbols == > < >= <= !=
 y>50
+which(y>50)
 y[which(y>50)]
 which(week == "thu")
 #divisibility

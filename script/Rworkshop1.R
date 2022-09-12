@@ -30,4 +30,4 @@ setwd("~/R")
 #get working directory
 getwd()
 #setting up R project
-#seeting up directory structure (data, scripts, outputs)
+#setting up directory structure (data, scripts, outputs)
