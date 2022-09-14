@@ -14,7 +14,29 @@ jointFlower <- merge(flowerColour,flowerPrice, by = 'flower')
 #subset
 bigAttendance <- subset(marchFrame,marchFrame$attendance>15)
 #write.csv
+write.csv(jointFlower, file = "./output/jointFlower.csv")
+paste("this","is","a","vector",sep = " word ")
+Sys.Date()
+Sys.time()
+Sys.timezone()
+paste("./output/jointFlower",Sys.Date(),".csv", sep = "")
+write.csv(jointFlower,
+          file = paste("./output/jointFlower",Sys.Date(),".csv", sep = ""))
+#ifelse
+if (r==4) { 
+  s <- "yes"
+} else {
+    s <- "no"
+    }
+print(s)
 #while loop
+i <- 1
+while(i <= 10) i <- i+4
+#while loop 2
+while(TRUE) {
+  i <- i + 4
+  if (i > 10) break
+}
 #for loop
 #read.csv pnp
 #scan and exercise
