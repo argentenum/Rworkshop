@@ -27,3 +27,10 @@ PageContent <- page_content("en","wikipedia", page_name = "Mahatma Gandhi")
 PageContent <- page_content("en","wikipedia", page_name = "Mahatma Gandhi", as_wikitext = TRUE)
 #difference between two consequtive versions of a page
 DiffPages <- revision_diff("en","wikipedia", revisions = 1105239780, direction = "next")
+
+
+#rawScraping
+RevisionsPage <- readLines("https://en.wikipedia.org/w/index.php?title=Mahatma_Gandhi&action=history")
+library(rvest)
+RevisionsStripped <- read_html("https://en.wikipedia.org/w/index.php?title=Mahatma_Gandhi&action=history")
+RevisionsHtml <- RevisionsStrpped %>% html_nodes("body") %>% html_text()
