@@ -12,6 +12,7 @@ create_token(
   set_renv = TRUE
 )
 rt <- search_tweets("#AsiaCup2022Final", n = 1000, include_rts = FALSE)
+rt <- search_tweets("#AsiaCup2022Final", n = Inf, include_rts = FALSE, retryonratelimit = TRUE)
 #rate limit 18000 tweets in 15 mins
 #get user ids of those followed by an account
 RfriendsID <- get_friends("iitdelhi")
