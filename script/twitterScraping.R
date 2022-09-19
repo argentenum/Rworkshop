@@ -44,7 +44,7 @@ library(academictwitteR)
 tweets <-
   get_all_tweets(
     query = "happy",
-    start_tweets = "2022-09-09T10:00:00Z",
+    start_tweets = "2022-08-09T10:00:00Z",
     end_tweets = "2022-08-10T10:00:00Z",
     n = 100
   )

@@ -1,4 +1,3 @@
-#Rworks
 #rbind
 marchFrame <- rbind(marchFrame,c(8,"holiday"))
 #cbind
@@ -29,14 +28,5 @@ if (r==4) {
     s <- "no"
     }
 print(s)
-#while loop
-i <- 1
-while(i <= 10) i <- i+4
-#while loop 2
-while(TRUE) {
-  i <- i + 4
-  if (i > 10) break
-}
-#for loop
-#read.csv pnp
-#scan and exercise
+
+

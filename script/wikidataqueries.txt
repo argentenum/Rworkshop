@@ -1,0 +1,681 @@
+#Birth and Death of Indians
+
+
+# select all Indians with name, image, birthdate, birthplace and coordinates of the birthplace
+
+SELECT ?person ?personLabel ?image ?birthdate ?birthplaceLabel ?birthcoord ?deathdate ?deathplaceLabel ?deathcoord ?occupationLabel
+
+WHERE {
+  ?person  wdt:P27 wd:Q668;
+  wdt:P18 ?image;
+  wdt:P569 ?birthdate;
+  wdt:P19 ?birthplace;
+  wdt:P570 ?deathdate;
+  wdt:P20 ?deathplace;
+  wdt:P21 ?gender;
+  wdt:P106 ?occupation.
+ 
+  ?birthplace wdt:P625 ?birthcoord .
+  ?deathplace wdt:P625 ?deathcoord .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+ORDER BY DESC(?birthdate)
+
+
+3459 results (without gender)
+
+
+#Birth of Indians
+
+
+# select all Indians with name, image, birthdate, birthplace and coordinates of the birthplace
+
+SELECT ?person ?personLabel ?image ?birthdate ?birthplaceLabel ?birthcoord ?occupationLabel
+
+WHERE {
+  ?person  wdt:P27 wd:Q668;
+  wdt:P18 ?image;
+  wdt:P569 ?birthdate;
+  wdt:P19 ?birthplace;
+  wdt:P21 ?gender;
+  wdt:P106 ?occupation.
+ 
+  ?birthplace wdt:P625 ?birthcoord .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+ORDER BY DESC(?birthdate)
+
+16774 results (without gender)
+
+
+
+#Residence of Indians
+
+SELECT ?person ?personLabel ?image ?residenceLabel ?rescoord
+
+WHERE {
+  ?person  wdt:P27 wd:Q668;
+  wdt:P18 ?image;
+  wdt:P551 ?residence .
+           
+  ?residence wdt:P625 ?rescoord .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+ORDER BY DESC(?birthdate)
+
+1323 results
+
+
+
+
+#Education of Indians
+
+SELECT ?person ?personLabel ?image ?educationLabel
+
+WHERE {
+  ?person  wdt:P27 wd:Q668;
+  wdt:P18 ?image;
+  wdt:P69 ?education .
+           
+    
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+ORDER BY DESC(?birthdate)
+
+5872 results
+
+
+
+#Contemporary Indian actresses
+SELECT ?item ?itemLabel ?itemDescription (SAMPLE(?img) AS ?image) (SAMPLE(?dob) AS ?dob) (SAMPLE(?twitter) AS ?twitter) (SAMPLE(?instagram) AS ?instagram) ?sl
+WHERE {
+	?item wdt:P106 wd:Q33999 ;
+          wdt:P27 wd:Q668 ;
+          wdt:P21 wd:Q6581072 .
+	MINUS { ?item wdt:P570 [] }
+	OPTIONAL { ?item wdt:P18 ?img }
+	OPTIONAL { ?item wdt:P569 ?dob } 
+	OPTIONAL { ?item wikibase:sitelinks ?sl } 
+    OPTIONAL { ?item wdt:P2002 ?twitter} 
+    OPTIONAL { ?item wdt:P2003 ?instagram}
+  	SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en"}
+} GROUP BY ?item ?itemLabel ?itemDescription ?sl
+ORDER BY DESC(?sl)
+
+2663 results
+
+
+#All Indian Districts
+
+SELECT ?item ?itemLabel ?coords ?placetypeLabel ?area ?pop
+WHERE
+{
+  ?item wdt:P31 wd:Q1149652;
+        wdt:P31 ?placetype .
+  
+  OPTIONAL {?item wdt:P625 ?coords}
+  OPTIONAL {?item wdt:P2046 ?area}
+  OPTIONAL {?item wdt:P1082 ?pop}
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+860 results
+
+
+#All Indian Buildings
+
+SELECT ?item ?itemLabel ?coords ?placetypeLabel ?ownerLabel
+WHERE
+{
+  ?item wdt:P31 wd:Q41176;
+        wdt:P17 wd:Q668;
+        wdt:P31 ?placetype .
+  
+  OPTIONAL {?item wdt:P625 ?coords}
+  OPTIONAL {?item wdt:P2046 ?area}
+  OPTIONAL {?item wdt:P1082 ?pop}
+  OPTIONAL {?item wdt:P127 ?owner}
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+ ORDER BY xsd:integer(SUBSTR(STR(?owner),STRLEN("http://www.wikidata.org/entity/Q")+1))
+798 results
+
+
+#All places in India with recorded coords, area and population
+
+SELECT ?item ?itemLabel ?coords ?placetypeLabel ?ownerLabel ?area ?pop
+WHERE
+{
+  ?item wdt:P17 wd:Q668;
+        wdt:P31 ?placetype;
+        wdt:P625 ?coords;
+        wdt:P2046 ?area;
+        wdt:P1082 ?pop .
+  OPTIONAL {?item wdt:P127 ?owner}
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+7188 results
+
+
+# All humans born in India
+SELECT ?item ?itemLabel ?birthplaceLabel ?coords 
+WHERE {
+  ?item wdt:P31 wd:Q5 . #who are human
+  ?item wdt:P19 ?birthplace . #with a birthplace
+  ?birthplace wdt:P17 wd:Q668 . #which is in India
+    
+  OPTIONAL { ?birthplace wdt:P625 ?coords. }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+32305 results
+
+
+# All humans born in India but not citizens of India
+SELECT ?item ?itemLabel ?nationalityLabel
+WHERE {
+  ?item wdt:P31 wd:Q5 . #who are human
+  ?item wdt:P19 ?birthplace . #with a birthplace
+  ?birthplace wdt:P17 wd:Q668 . #which is in India
+MINUS {?item wdt:P27 wd:Q668} . #not citizens of India
+  
+  ?item wdt:P27 ?nationality .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+4180 results
+
+
+# All humans born in India but not citizens of India with nationality coordinates
+SELECT ?item ?itemLabel ?nationalityLabel ?coords
+WHERE {
+  ?item wdt:P31 wd:Q5 . #who are human
+  ?item wdt:P19 ?birthplace . #with a birthplace
+  ?birthplace wdt:P17 wd:Q668 . #which is in India
+MINUS {?item wdt:P27 wd:Q668} . #not citizens of India
+MINUS {?item wdt:P27 wd:Q129286} . #not subjects of British Raj
+   
+  ?item wdt:P27 ?nationality .
+  ?nationality wdt:P625 ?coords .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+2201 results
+
+
+# All humans born in India but not citizens of India with nationality coordinates
+#defaultView:BubbleChart
+SELECT (COUNT(?nationality) as ?count) ?nationalityLabel
+WHERE {
+  ?item wdt:P31 wd:Q5 . #who are human
+  ?item wdt:P19 ?birthplace . #with a birthplace
+  ?birthplace wdt:P17 wd:Q668 . #which is in India
+MINUS {?item wdt:P27 wd:Q668} . #not citizens of India
+MINUS {?item wdt:P27 wd:Q129286} . #not subjects of British Raj
+   
+  ?item wdt:P27 ?nationality .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+GROUP BY ?nationalityLabel
+
+120 results ie. 120 nationalities
+
+
+
+# Al Indian politicians whose father was also a politician
+SELECT ?item ?itemLabel ?fatherLabel ?dob
+WHERE {
+  ?item wdt:P31 wd:Q5 . #who are human
+  ?item wdt:P27 wd:Q668 . #who are Indians
+  ?item wdt:P106 wd:Q82955 . #whose occupation is politician
+  ?item wdt:P22 ?father . #find father
+  ?father wdt:P106 wd:Q82955 . #father a politician
+  ?item wdt:P569 ?dob .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+202 results
+
+
+#List of Indian actors with year of birth and/or death
+#added before 2016-10
+
+
+SELECT ?human ?humanLabel ?yob ?yod #?picture
+WHERE
+{
+	?human wdt:P31 wd:Q5
+	; wdt:P106 wd:Q33999;
+           wdt:P27 wd:Q668 .
+	#?human wdt:P18 ?picture .
+	OPTIONAL { ?human wdt:P569 ?dob . ?human wdt:P570 ?dod }.
+	BIND(YEAR(?dob) as ?yob) . #if available: year
+	BIND(YEAR(?dod) as ?yod) .
+	SERVICE wikibase:label {
+		bd:serviceParam wikibase:language "en" .
+	}
+}
+
+6316 results
+
+
+# Universities in India via wikibase:box
+#same as previous
+SELECT ?place ?placeLabel ?location
+WHERE {
+SERVICE wikibase:box {
+    ?place wdt:P625 ?location .
+    bd:serviceParam wikibase:cornerWest "Point(68.1941 35.674521)"^^geo:wktLiteral .
+    bd:serviceParam wikibase:cornerEast "Point(97.39564 6.74678)"^^geo:wktLiteral .
+  }
+SERVICE   wikibase:label { bd:serviceParam wikibase:language "en". }
+?place wdt:P31 wd:Q3918 .
+}
+
+1146 results
+
+
+# Schools in Delhi via wikibase:box
+#same as previous
+#defaultView:Map
+SELECT ?place ?placeLabel ?location
+WHERE {
+SERVICE wikibase:box {
+    ?place wdt:P625 ?location .
+    bd:serviceParam wikibase:cornerWest "Point(76.9 28.9)"^^geo:wktLiteral .
+    bd:serviceParam wikibase:cornerEast "Point(77.3 28.5)"^^geo:wktLiteral .
+  }
+SERVICE   wikibase:label { bd:serviceParam wikibase:language "en". }
+?place wdt:P31/wdt:P279* wd:Q3914 .
+}
+
+
+# Occupations of humans born in Delhi
+#defaultView:BubbleChart
+SELECT (COUNT(?occupationLabel) as ?count) ?occupationLabel
+WHERE {
+  ?person wdt:P31 wd:Q5 .
+  {?person wdt:P19 wd:Q1353 .}
+  UNION
+  {?person wdt:P19 wd:Q987 .}
+  ?person wdt:P21 ?gender .
+  ?person wdt:P106 ?occupation .
+ 
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+GROUP BY ?occupationLabel
+
+
+# Where were Indian scientists born
+#defaultView:BubbleChart
+SELECT (COUNT(?birthplaceLabel) as ?count) ?birthplaceLabel
+WHERE {
+  ?person wdt:P31 wd:Q5 . #humans
+  ?person wdt:P106 wd:Q901 . #who are scientists
+  ?person wdt:P27 wd:Q668 . #Indian citizens
+  
+  ?person wdt:P21 ?gender . #what is their gender
+  ?person wdt:P19 ?birthplace . #where were they born
+ 
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+GROUP BY ?birthplaceLabel
+
+
+
+# Indians religion before 1947
+
+SELECT (COUNT(?religionLabel) as ?count) ?religionLabel
+WHERE {
+  ?person wdt:P31 wd:Q5 .
+  ?person wdt:P27 wd:Q668 .
+  ?person wdt:P140 ?religion .
+  ?person wdt:P569 ?dob
+  FILTER (YEAR(?dob) <1948) .        
+  
+    
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+GROUP BY ?religionLabel
+
+
+
+
+# Humans killed and how and where, between specified dates
+#defaultView:Map
+SELECT ?person ?personLabel ?deathplaceLabel ?location ?image ?dod
+WHERE {
+?person wdt:P31 wd:Q5 .
+?person wdt:P1196 wd:Q149086 .
+        ?person wdt:P20 ?deathplace .
+        ?deathplace wdt:P625 ?location .
+        ?person wdt:P18 ?image .
+        ?person wdt:P570 ?dod .
+        FILTER (YEAR(?dod) >1980)
+        FILTER (YEAR(?dod) <2000)
+        SERVICE   wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+
+
+# humans residing in India wikibase:box
+
+SELECT ?person ?personLabel ?resLabel ?reslocation
+WHERE {
+SERVICE wikibase:box {
+    ?res wdt:P625 ?reslocation .
+    bd:serviceParam wikibase:cornerWest "Point(68.1941 35.674521)"^^geo:wktLiteral .
+    bd:serviceParam wikibase:cornerEast "Point(97.39564 6.74678)"^^geo:wktLiteral .
+  }
+SERVICE   wikibase:label { bd:serviceParam wikibase:language "en". }
+?person wdt:P31 wd:Q5 .
+?person wdt:P551 ?res
+}
+
+
+
+
+# humans residing in India wikibase:box
+
+SELECT ?person ?personLabel ?resLabel ?reslocation ?birthplaceLabel ?yob ?birlocation ?deathplace ?dod ?deathlocation
+WHERE {
+SERVICE wikibase:box {
+    ?res wdt:P625 ?reslocation .
+    bd:serviceParam wikibase:cornerWest "Point(68.1941 35.674521)"^^geo:wktLiteral .
+    bd:serviceParam wikibase:cornerEast "Point(97.39564 6.74678)"^^geo:wktLiteral .
+  }
+SERVICE   wikibase:label { bd:serviceParam wikibase:language "en". }
+?person wdt:P31 wd:Q5 .
+?person wdt:P551 ?res
+        
+        ?person wdt:P569 ?dob .
+        ?person wdt:P19  ?birthplace .
+        BIND(YEAR(?dob) as ?yob) .
+        ?birthplace wdt:P625 ?birlocation
+                    
+       OPTIONAL {?person wdt:P570 ?dod .}
+       OPTIONAL {?person wdt:P20  ?deathplace .}
+       OPTIONAL {?deathplace wdt:P625 ?deathlocation .} 
+       BIND(YEAR(?dod) as ?yod) .
+                    
+}
+
+Too heavy doesn't run
+
+
+
+# humans born in India wikibase:box
+#checking education led migration
+
+SELECT ?person ?personLabel ?birLabel ?educatedatLabel ?eduplaceLabel ?resLabel ?deathplaceLabel
+WHERE {
+SERVICE wikibase:box {
+    ?bir wdt:P625 ?birlocation .
+    bd:serviceParam wikibase:cornerWest "Point(68.1941 35.674521)"^^geo:wktLiteral .
+    bd:serviceParam wikibase:cornerEast "Point(97.39564 6.74678)"^^geo:wktLiteral .
+  }
+SERVICE   wikibase:label { bd:serviceParam wikibase:language "en". }
+?person wdt:P31 wd:Q5 . # human
+?person wdt:P19 ?bir . #place of residence
+        
+      ?person wdt:P69 ?educatedat .
+      ?educatedat wdt:P131 ?eduplace .
+      
+      OPTIONAL { ?person wdt:P20  ?deathplace . }
+      OPTIONAL { ?person wdt:P551 ?res .}
+      
+
+        
+}
+
+
+
+
+
+#search location by itemLabel
+
+SELECT ?item ?itemLabel ?typeLabel ?countryLabel ?lat ?lon
+WHERE 
+{ 
+    ?item rdfs:label "Madurai"@en .
+    ?item wdt:P31 ?type .
+    ?item wdt:P17 ?country .
+    ?item p:P625 ?coordinate.
+ ?item wdt:P2 
+   
+          ?coordinate ps:P625 ?coord.
+  ?coordinate psv:P625 ?coordinate_node.
+          ?coordinate_node wikibase:geoLongitude ?lon.
+   ?coordinate_node wikibase:geoLatitude ?lat.
+          SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+ }
+
+
+
+
+
+# derriving details about birth place
+
+SELECT ?item ?itemLabel ?place ?placeLabel ?countryLabel ?lon ?lat
+WHERE 
+{ 
+    ?item wdt:P19 wd:Q228405 .
+  
+  
+    ?item wdt:P19 ?place .
+    ?place wdt:P17 ?country .
+    ?place p:P625 ?coordinate.
+    ?coordinate ps:P625 ?coord.
+    ?coordinate psv:P625 ?coordinate_node.
+    ?coordinate_node wikibase:geoLongitude ?lon.
+    ?coordinate_node wikibase:geoLatitude ?lat.
+   
+          SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+                                 } limit 1
+
+
+
+
+# fetching key locations for a person
+#CONSTRUCT {?s ?p ?o} 
+SELECT ?s ?birthplace ?birthplaceLabel ?educatedat ?educatedatLabel ?residence ?residenceLabel ?deathplace ?deathplaceLabel
+WHERE {
+  VALUES (?s) {(wd:Q325611)}
+#  ?s ?p ?o . 
+    OPTIONAL {?s wdt:P19 ?birthplace .}
+    OPTIONAL {?s wdt:P69 ?educatedat .}
+    OPTIONAL {?s wdt:P551 ?residence.}
+    OPTIONAL {?s wdt:P20 ?deathplace}
+  
+                          SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+
+
+
+# fetching key coords for a location
+SELECT ?place ?placeLabel ?country ?countryLabel ?lon ?lat ?postcode
+WHERE {
+  VALUES (?place) {(wd:Q66485)}
+    ?place wdt:P17 ?country .
+    ?place p:P625 ?coordinate.
+    ?coordinate ps:P625 ?coord.
+    ?coordinate psv:P625 ?coordinate_node.
+    ?coordinate_node wikibase:geoLongitude ?lon.
+    ?coordinate_node wikibase:geoLatitude ?lat.
+  OPTIONAL {?place wdt:P281 ?postcode .}
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+
+
+
+# fetching key details for a person
+
+SELECT ?person ?personLabel ?birthplace ?birthplaceLabel ?educatedat ?educatedatLabel ?residence ?residenceLabel ?deathplace ?deathplaceLabel
+        ?yob ?yod ?country ?countryLabel ?genderLabel ?religion ?occupation ?occupationLabel
+        ?father ?mother ?sibling ?spouse ?child ?relative
+        ?fatherLabel ?motherLabel ?siblingLabel ?spouseLabel ?childLabel ?relativeLabel
+        ?fb ?twitter ?insta ?verified
+WHERE {
+  VALUES (?person) {(wd:Q325611)}
+
+    OPTIONAL {?person wdt:P19 ?birthplace .}
+    OPTIONAL {?person wdt:P69 ?educatedat .}
+    OPTIONAL {?person wdt:P551 ?residence.}
+    OPTIONAL {?person wdt:P20 ?deathplace.}
+    OPTIONAL {?person wdt:P569 ?dob . }
+    BIND(YEAR(?dob) as ?yob) .
+    OPTIONAL {?person wdt:P570 ?dod .}
+    BIND(YEAR(?dod) as ?yod) .
+    OPTIONAL {?person wdt:P27 ?country .}
+    OPTIONAL {?person wdt:P21 ?gender .}
+    OPTIONAL {?person wdt:P140 ?religion .}
+    OPTIONAL {?person wdt:P106 ?occupation .}
+   OPTIONAL { ?person wdt:P22 ?father . }
+  OPTIONAL { ?person wdt:P25 ?mother . }
+  OPTIONAL { ?person wdt:P3373 ?sibling . }
+  OPTIONAL { ?person wdt:P26 ?spouse . }
+  OPTIONAL { ?person wdt:P40 ?child . }
+  OPTIONAL { ?person wdt:P1038 ?relative . }
+  OPTIONAL { ?person wdt:P2013 ?fb . }
+  OPTIONAL { ?person wdt:P2002 ?twitter . }
+  OPTIONAL { ?person wdt:P2003 ?insta . }
+  OPTIONAL { ?person wdt:P1552 ?verified . }
+    
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+
+
+
+# checking parents/ profession by occupation of person
+
+SELECT ?person ?personLabel ?yob ?father ?fatherLabel ?mother ?motherLabel
+WHERE {
+  ?person wdt:P27 wd:Q668.        #indian
+  ?person wdt:P106 wd:Q82955.     #politician
+  ?person wdt:P569 ?dob.
+      BIND(YEAR(?dob) as ?yob) .
+  OPTIONAL {?person wdt:P22  ?father.}
+  #OPTIONAL {?father wdt:P106 ?fatheroccu.}
+  OPTIONAL {?person wdt:P25  ?mother.}
+  #OPTIONAL {?mother wdt:P106 ?motheroccu}
+    
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+
+
+
+
+# checking parents/ profession by occupation of person
+
+SELECT ?person ?personLabel ?yob ?father ?fatherLabel ?mother ?motherLabel
+WHERE {
+  ?person wdt:P27 wd:Q668.        #indian
+  {?person wdt:P106 wd:Q33999.}     #actor
+  UNION
+  {?person wdt:P106 wd:Q10798782.}  #television actor
+  UNION
+  {?person wdt:P106 wd:Q4610556.}    #model 
+  UNION
+  {?person wdt:P106 wd:Q10800557.}   #film actor
+  UNION
+  {?person wdt:P106 wd:Q2526255.}    #film director
+  UNION
+  {?person wdt:P106 wd:Q3282637.}    #film producer
+  UNION
+  {?person wdt:P106 wd:Q36834.}      #composer 
+  UNION
+  {?person wdt:P106 wd:Q177220.}     #singer 
+  UNION
+  {?person wdt:P106 wd:Q183945.}     #record producer
+  UNION
+  {?person wdt:P106 wd:Q1755412.}    #playback singer
+  ?person wdt:P569 ?dob.
+      BIND(YEAR(?dob) as ?yob) .
+  OPTIONAL {?person wdt:P22  ?father.}
+  #OPTIONAL {?father wdt:P106 ?fatheroccu.}
+  OPTIONAL {?person wdt:P25  ?mother.}
+  #OPTIONAL {?mother wdt:P106 ?motheroccu}
+    
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+
+
+#twiiter handles of Indian politicians
+SELECT ?person ?personLabel ?Twitter_user_numeric_ID 
+WHERE {
+  ?person wdt:P27 wd:Q668;
+          wdt:P106 wd:Q82955;
+          wdt:P2002 ?Twitter_user_numeric_ID.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  }
+ORDER BY DESC (?personLabel)
+
+
+
+SELECT ?person ?personLabel ?occupationLabel ?dateofbirth
+WHERE {
+  ?person wdt:P69 wd:Q1194650;
+          wdt:P569 ?dateofbirth;
+          wdt:P106 ?occupation.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+ORDER BY DESC (?date of birth)
+
+
+#iit delhi alumni grouped by occupation
+SELECT (COUNT(?occupationLabel) as ?count) ?occupationLabel
+WHERE {
+  ?person wdt:P69 wd:Q1194650.
+  ?person wdt:P569 ?dateofbirth.
+  ?person wdt:P106 ?occupation.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+GROUP BY ?occupationLabel
+
+
+#surnames of india
+#defaultView:BubbleChart
+SELECT ?surname ?surnameLabel ?count WHERE {
+  {
+    SELECT ?surname (COUNT(?person) AS ?count) WHERE {
+      ?person wdt:P27 wd:Q668;
+        wdt:P734 ?surname.
+    }
+    GROUP BY ?surname
+  }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+ORDER BY DESC (?count)
+LIMIT 100
+
+
+#givennames of those with "kaur" as surname
+#defaultView:BubbleChart
+SELECT ?givenname ?givennameLabel ?count WHERE {
+  {
+    SELECT ?givenname (COUNT(?person) AS ?count) WHERE {
+      ?person wdt:P734 wd:Q30834875;
+              wdt:P735 ?givenname.
+    }
+    GROUP BY ?givenname
+  }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+ORDER BY DESC (?count)
+LIMIT 100
