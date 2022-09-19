@@ -665,17 +665,3 @@ ORDER BY DESC (?count)
 LIMIT 100
 
 
-#givennames of those with "kaur" as surname
-#defaultView:BubbleChart
-SELECT ?givenname ?givennameLabel ?count WHERE {
-  {
-    SELECT ?givenname (COUNT(?person) AS ?count) WHERE {
-      ?person wdt:P734 wd:Q30834875;
-              wdt:P735 ?givenname.
-    }
-    GROUP BY ?givenname
-  }
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-}
-ORDER BY DESC (?count)
-LIMIT 100
