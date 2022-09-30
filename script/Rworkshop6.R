@@ -26,4 +26,8 @@ sprintf("the square of %d is %d",i,i^2)
 regexpr("uat","Equator")
 #gregexpr
 gregexpr("iss", "Mississipi")
+#sub replace substring - only first instance
+sub("iss","ant","Mississipi")
+#gsub replace substrings - all instances
+gsub("iss","ant","Mississipi")
 #from sonnets identify sonnet lines and create a list with each sonnet as one column of the list

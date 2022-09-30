@@ -1,0 +1,117 @@
+---
+title: "covid daily statewise"
+author: "arjun"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Preparing data table for plotting daily covid cases Statewise
+
+We access the data containing details of each covid cases in India.
+
+```{r}
+covidRaw <- read.csv("https://web.iitd.ac.in/~arjunghosh/RworkshopFiles/covidData.csv")
+```
+
+The read.csv function imports the .csv file and structures it in a data.frame format.
+
+Let us look at what are the various data headers in the dataset.
+
+```{r}
+names(covidRaw)
+```
+
+We want to plot a chart showing the daily case number reported from each state. To do so we need to reorganise the covidRaw dataframe to a new dataframe that has all the states as rows and all the dates as columns. In fine, we want our dataset to look like this:
+
+![](images/Screenshot%20(1).png)
+
+As you can see for this exercise we only need the data from two columns - "Date.Announced" and "Detected.State". First let us develop the list of states.
+
+```{r}
+unique(covidRaw$Detected.State)
+```
+
+Let us sort the names of the states alphabetically and assign them to a vector.
+
+```{r}
+statesList <- sort(unique(covidRaw$Detected.State))
+```
+
+Now let us take a closer look at the dates.
+
+```{r}
+unique(covidRaw$Date.Announced)
+str(covidRaw$Date.Announced)
+```
+
+As we can see, the dates - at least at the beginning of the covid onset were not continuous. If plotted it would give a false impression that the rise was continuous. So we need to ensure that continuity of time is maintained. The dates are formatted as characters. We need to convert them to dates. And then we need to create a date vector for the full range of dates.
+
+```{r}
+datesFormatted <- as.Date(covidRaw$Date.Announced, tryFormats = "%d/%m/%Y")
+datesFullRange <- as.Date(min(datesFormatted):max(datesFormatted), origin = "1970-01-01")
+datesFullRange
+```
+
+Now we see that all dates for the entire range of two months are represented even those dates that are not there in the covidRaw since no cases were reported on those days. In reality the covid count for all states on these dates would be zero.
+
+Let us now write the dates and states to a new dataframe.
+
+```{r}
+covidDaily <- data.frame("Date" = datesFormatted, "State" = covidRaw$Detected.State)
+```
+
+## Preparing empty dataframe
+
+We need to prepare an empty dataframe with the dates as columns and states as rows. At present all values will be zero. Later we will populate the each value after calculating the number of values that we find in each intersection of row and column name. To do this we follow these steps:
+
+-   create a vector with zero values for length(statesList)\*length(datesFullRange)
+
+-   convert the vector to a matrix of the number of columns equal to the number of days and the number of rows matching the number of states
+
+-   convert the matrix to a dataframe
+
+```{r}
+BlankVec <- NULL
+BlankVec[1:(length(statesList)*length(datesFullRange))] <- 0
+BlankMatrix <- matrix(BlankVec, nrow= length(statesList), ncol = length(datesFullRange))
+#transforming BlankMatrix to dataframe
+BlankDF <- as.data.frame(BlankMatrix)
+#naming the rows as states and columns as dates
+names(BlankDF) <- datesFullRange
+rownames(BlankDF) <- statesList
+head(BlankDF)
+```
+
+## Looping the loop
+
+Now we will replace the zeros with the count of rows from covidRaw where the "Dates" match the column name (datesFullRange) and "States" match the rowname (statesList).
+
+```{r}
+for (DIN in 1:length(datesFullRange)) {
+  for (RAJ in 1:length(statesList)){
+    Ginti <- sum(covidDaily$Date == as.Date(datesFullRange[DIN], tryFormats = "%Y-%m-%d", "1970-01-01") & 
+                   covidDaily$State == statesList[RAJ])
+    BlankDF[RAJ,DIN] <- Ginti
+  }
+}
+```
+
+What did we do here?
+
+-   We created two loops
+
+    -   Outer loop: The variable DIN loops through the indices of the datesFullRange
+
+    -   Inner loop: The variable RAJ loops through the indices of the statesList
+
+    -   In the inner core of the two loops "Ginti" fetches the count of rows where **covidDaily\$Date == as.Date(datesFullRange[DIN]** and **covidDaily\$State == statesList[RAJ]**
+
+Note each time we have to call the function **as.Date** as R stores dates as a numeric value.
+
+Now that BlankDF is not blank anymore, should we rename it?
+
+## 
