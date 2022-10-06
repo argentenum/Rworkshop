@@ -1,6 +1,6 @@
-setwd("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/data/corpus")
+#setwd("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/data/")
 library(tm)
-src <- DirSource("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/ClassworkFiles/corpus")
+src <- DirSource("./corpus")
 docs <- Corpus(src)
 #inspect(docs)
 #docs$content
