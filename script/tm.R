@@ -1,6 +1,6 @@
-#setwd("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/data/")
+#setwd("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/")
 library(tm)
-src <- DirSource("./corpus")
+src <- DirSource("./data/corpus")
 docs <- Corpus(src)
 #inspect(docs)
 #docs$content
@@ -15,10 +15,10 @@ docs <- tm_map(docs, removePunctuation)
 # Eliminate extra white spaces
 docs <- tm_map(docs, stripWhitespace)
 # Text stemming (reduces words to their root form)
-library(SnowballC)
-docs <- tm_map(docs, stemDocument)
 # Remove additional stopwords
 docs <- tm_map(docs, removeWords, c("disco0", "disco1", "disco2"))
+library(SnowballC)
+docs <- tm_map(docs, stemDocument)
 #creating document term matrix
 dtm <- TermDocumentMatrix(docs)
 m <- as.matrix(dtm)

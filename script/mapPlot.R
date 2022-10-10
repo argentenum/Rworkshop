@@ -1,7 +1,7 @@
 #setwd("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/data")
 #https://map-rfun.library.duke.edu/01_georeference.html
 #reading the data
-lifeDF <- read.csv("cleanoutput.csv", stringsAsFactors = FALSE)
+lifeDF <- read.csv("./data/cleanoutput.csv", stringsAsFactors = FALSE)
 library(sf)
 library(mapview)
 #converting data into spatial objects
