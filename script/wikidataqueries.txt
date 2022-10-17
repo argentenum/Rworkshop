@@ -616,7 +616,7 @@ WHERE {
 
 
 
-#twiiter handles of Indian politicians
+#twitter handles of Indian politicians
 SELECT ?person ?personLabel ?Twitter_user_numeric_ID 
 WHERE {
   ?person wdt:P27 wd:Q668;
