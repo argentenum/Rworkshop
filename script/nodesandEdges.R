@@ -1,6 +1,8 @@
 #http://humnviz.blogs.bucknell.edu/files/2015/11/Data-Preparation-for-Gephi.pdf
 #https://gephi.org/tutorials/gephi-tutorial-quick_start.pdf
 #https://seinecle.github.io/gephi-tutorials/generated-html/simple-project-from-a-to-z-en.html#_download_a_network_file
+#https://libguides.brown.edu/gephi/home
+#https://mdl.library.utoronto.ca/technology/tutorials/visualizing-network-dataset-using-gephi
 imdbRaw <- readxl::read_xlsx("./data/imdbfilm.xlsx")
 library(stringr)
 #converting relevant values from character to numeric
