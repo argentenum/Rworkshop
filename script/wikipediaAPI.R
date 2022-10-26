@@ -1,4 +1,5 @@
 #https://en.wikipedia.org/w/api.php
+#https://www.mediawiki.org/wiki/API:Main_page
 #Example of direct API query
 library(httr)
 #get contributions to Wikipedia by editor - latest 500 edits
