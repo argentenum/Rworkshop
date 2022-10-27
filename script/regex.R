@@ -1,9 +1,9 @@
 #https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432
 library(stringr)
 basicString <- "Drew has 3 watermelons, Alex has 4 hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels"
-#puling out every instance of one person's name from a string
+#pulling out every instance of one person's name from a string
 basicExtractAll <- str_extract_all(basicString, "Drew")
-#replaing pattern with a replacement string
+#replacing pattern with a replacement string
 basicReplaceAll <- str_replace_all(basicString, "Alex", "Shawn")
 #matching character set
 #here matching vowels
@@ -54,3 +54,5 @@ str_extract_all(fewNames, "([A-Z][a-z]+)\\s([A-Z][a-z]+)")
 #multiple names together
 str_extract_all(fewNames, "(([A-Z][a-z]+)\\s?){1,}") #need to strip extra spaces
 trimws(str_extract_all(fewNames, "(([A-Z][a-z]+)\\s?){1,}")[[1]])
+king <- "The king of England is Charles Phillip Arthur George, also known as Charles II"
+str_extract_all(king, "((([A-Z][a-z]+)\\s*)+){2,}")
