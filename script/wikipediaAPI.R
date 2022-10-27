@@ -10,7 +10,7 @@ contribsContent1 <- content(contribs1, as = 'parsed')
 PageInfo <- GET("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=info&titles=Albert%Einstein")
 
 library(WikipediaR)
-startPage <- "Nupur_Sharma_(politician)" #getting start page from user
+startPage <- "Virat_Kohli" #getting start page from user
 #edits of the start page - latest 500 edits
 contribs <- contribs(page = startPage, domain = "en")
 contribs$contribs$user
