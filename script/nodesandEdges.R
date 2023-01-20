@@ -3,6 +3,7 @@
 #https://seinecle.github.io/gephi-tutorials/generated-html/simple-project-from-a-to-z-en.html#_download_a_network_file
 #https://libguides.brown.edu/gephi/home
 #https://mdl.library.utoronto.ca/technology/tutorials/visualizing-network-dataset-using-gephi
+#https://lib.manhattan.edu/c.php?g=728252&p=5751040 (networks in a play)
 imdbRaw <- readxl::read_xlsx("./data/imdbfilm.xlsx")
 library(stringr)
 #converting relevant values from character to numeric

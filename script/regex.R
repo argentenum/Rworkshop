@@ -54,5 +54,5 @@ str_extract_all(fewNames, "([A-Z][a-z]+)\\s([A-Z][a-z]+)")
 #multiple names together
 str_extract_all(fewNames, "(([A-Z][a-z]+)\\s?){1,}") #need to strip extra spaces
 trimws(str_extract_all(fewNames, "(([A-Z][a-z]+)\\s?){1,}")[[1]])
-king <- "The king of England is Charles Phillip Arthur George, also known as Charles II"
+king <- "The king of England is Charles Phillip Arthur George, also known as Charles III"
 str_extract_all(king, "((([A-Z][a-z]+)\\s*)+){2,}")
