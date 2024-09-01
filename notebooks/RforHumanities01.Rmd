@@ -1,0 +1,161 @@
+---
+title: "R for Humanities: Lesson 1"
+output: 
+  html_notebook: 
+    number_sections: true
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.
+
+R is a a very powerful programming language with a focus on statistical analysis (ie. structured data). It is also able to produce very neat and customisable charts. R is Open Source and this means it is free and 'free'. And that there are many developers who are constantly working voluntarily to improve the tools for R.
+
+A first installation of R comes with a set of standard packages and commands. However, beyond this R has almost 10,000 packages that can be used for various programming task. These packages are mostly hosted on CRAN and can be installed through RStudio. Given these packages R can perform a wide range of tasks that are relevant for humanities scholars (ie. unstructured data).
+
+# Getting started: Installation
+
+For the purpose of this tutorial we will work on RStudio
+
+Depending on the system that you are working on you need to ensure that you have installed R as well as RStudio. If you are working on a Linux system, in all probability, your computer comes equipped with R. But you would still need to install RStudio.
+
+You can find a lot of help for installation of R and RStudio. Here is one https://techvidvan.com/tutorials/install-r/ 
+
+Once installed, launch RStudio and study the interface.
+
+# RStudio Interface
+
+https://hbctraining.github.io/Intro-to-R/img/Rstudio_interface.png
+
+The RStudio interface has four main panels:
+
+**Console**: where you can type commands and see output. The console is all you would see if you ran R in the command line without RStudio.
+    
+**Script editor**: where you can type out commands and save to file. You can also submit the commands to run in the console.
+    
+**Environment/History**: environment shows all active objects and history keeps track of all commands run in console
+    
+**Files/Plots/Packages/Help**
+
+
+# Working directory
+
+## Viewing your working directory
+
+Before we organize our working directory, let’s check to see where our current working directory is located by typing into the console:
+
+```{r}
+getwd()
+```
+
+## Running code on R
+
+To run a single line of code you can place the cursor in that line and click Ctrl+Enter
+To run a chuck of code, highlight that chunck (set of lines) and click Ctrl+Enter
+To run the entire code you can click the "Run" button in the Script editor.
+
+
+## Setting working directory
+Your installation will have a default working directory for R. But you may want to point your R session to a particular working directory or folder so that all scripts and output gets saved at a convenient location. You can in two ways.
+
+You can do it through the GUI - Session > Set working directory > Choose directory
+
+The working directory will get reset each time you start a new session. If you want that a script should run in a particular directory you can write a line of code to point to a particular directory on your computer.
+
+```{r}
+setwd("C:/Users/HP/Downloads/Rnotebook")
+```
+
+Make sure that you set the url of your choice.
+
+Now we are ready to start our first R operations
+
+# Basic operations
+
+## simple arithmetic operations
+
+```{r}
+1+1
+```
+
+
+## commenting
+
+## print function
+```{r}
+print(1+1)
+```
+
+
+## invoking help
+```{r}
+?print
+```
+
+## printing strings
+```{r}
+print("workshop")
+```
+
+
+# Variables
+
+## invoking and assigning variable and value
+
+```{r}
+a <- 1000
+```
+
+
+##reassigning value to a variable
+
+```{r}
+a <- 2000
+```
+
+
+## printing variables
+
+```{r}
+print(a)
+```
+
+
+## assigning strings to variables
+
+```{r}
+b <- "workshop"
+```
+
+
+## variables can be alphanumeric
+
+```{r}
+hijibiji300 <- "workshop"
+print(hijibiji300)
+```
+
+
+## variables need to be contiguous
+
+```{r}
+an apple <- 23 #produces errors
+getApples <- 23
+```
+
+
+## use meaningful variables
+
+```{r}
+getBananas <- "nuts"
+
+```
+
+
+## study structure of a value
+
+```{r}
+str(getBananas)
+```
+
+
