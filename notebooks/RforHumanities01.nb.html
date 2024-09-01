@@ -1752,6 +1752,8 @@ display: none;
 
 
 <!-- rnb-text-begin -->
+<p><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities01.nb.html">View
+this page in a browser</a></p>
 <p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a>
 Notebook. When you execute code within the notebook, the results appear
 beneath the code.</p>
@@ -1804,177 +1806,341 @@ directory</h2>
 our current working directory is located by typing into the console:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0d2QoKVxuYGBgIn0= -->
-<pre class="r"><code>getwd()</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="running-code-on-r" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Running code on
-R</h2>
-<p>To run a single line of code you can place the cursor in that line
-and click Ctrl+Enter To run a chuck of code, highlight that chunck (set
-of lines) and click Ctrl+Enter To run the entire code you can click the
-“Run” button in the Script editor.</p>
-</div>
-<div id="setting-working-directory" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Setting working
-directory</h2>
-<p>Your installation will have a default working directory for R. But
-you may want to point your R session to a particular working directory
-or folder so that all scripts and output gets saved at a convenient
-location. You can in two ways.</p>
-<p>You can do it through the GUI - Session &gt; Set working directory
-&gt; Choose directory</p>
-<p>The working directory will get reset each time you start a new
-session. If you want that a script should run in a particular directory
-you can write a line of code to point to a particular directory on your
-computer.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0d2QoXCJDOi9Vc2Vycy9IUC9Eb3dubG9hZHMvUm5vdGVib29rXCIpXG5gYGAifQ== -->
-<pre class="r"><code>setwd(&quot;C:/Users/HP/Downloads/Rnotebook&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Make sure that you set the url of your choice.</p>
-<p>Now we are ready to start our first R operations</p>
-</div>
-</div>
-<div id="basic-operations" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Basic operations</h1>
-<div id="simple-arithmetic-operations" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> simple arithmetic
-operations</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMSsxXG5gYGAifQ== -->
-<pre class="r"><code>1+1</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="commenting" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> commenting</h2>
-</div>
-<div id="print-function" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> print function</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoMSsxKVxuYGBgIn0= -->
-<pre class="r"><code>print(1+1)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="invoking-help" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> invoking help</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuP3ByaW50XG5gYGAifQ== -->
-<pre class="r"><code>?print</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="printing-strings" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> printing strings</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoXCJ3b3Jrc2hvcFwiKVxuYGBgIn0= -->
-<pre class="r"><code>print(&quot;workshop&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-</div>
-<div id="variables" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Variables</h1>
-<div id="invoking-and-assigning-variable-and-value" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> invoking and
-assigning variable and value</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYSA8LSAxMDAwXG5gYGAifQ== -->
-<pre class="r"><code>a &lt;- 1000</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>##reassigning value to a variable</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYSA8LSAyMDAwXG5gYGAifQ== -->
-<pre class="r"><code>a &lt;- 2000</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="printing-variables" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> printing
-variables</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoYSlcbmBgYCJ9 -->
-<pre class="r"><code>print(a)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="assigning-strings-to-variables" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> assigning strings to
-variables</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYiA8LSBcIndvcmtzaG9wXCJcbmBgYCJ9 -->
-<pre class="r"><code>b &lt;- &quot;workshop&quot;</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="variables-can-be-alphanumeric" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> variables can be
-alphanumeric</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGlqaWJpamkzMDAgPC0gXCJ3b3Jrc2hvcFwiXG5wcmludChoaWppYmlqaTMwMClcbmBgYCJ9 -->
-<pre class="r"><code>hijibiji300 &lt;- &quot;workshop&quot;
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZ2V0d2QoKVxuYGBgXG5gYGAifQ== -->
+<pre class="r"><code>```r
+getwd()</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Running code on R
+
+To run a single line of code you can place the cursor in that line and click Ctrl+Enter
+To run a chuck of code, highlight that chunck (set of lines) and click Ctrl+Enter
+To run the entire code you can click the &quot;Run&quot; button in the Script editor.
+
+
+## Setting working directory
+Your installation will have a default working directory for R. But you may want to point your R session to a particular working directory or folder so that all scripts and output gets saved at a convenient location. You can in two ways.
+
+You can do it through the GUI - Session &gt; Set working directory &gt; Choose directory
+
+The working directory will get reset each time you start a new session. If you want that a script should run in a particular directory you can write a line of code to point to a particular directory on your computer.
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2V0d2QoXFxDOi9Vc2Vycy9IUC9Eb3dubG9hZHMvUm5vdGVib29rXFwpXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+setwd(\C:/Users/HP/Downloads/Rnotebook\)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+Make sure that you set the url of your choice.
+
+Now we are ready to start our first R operations
+
+# Basic operations
+
+## simple arithmetic operations
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuMSsxXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+1+1</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+## commenting
+
+## print function
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucHJpbnQoMSsxKVxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+print(1+1)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+## invoking help
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuP3ByaW50XG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+?print</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## printing strings
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucHJpbnQoXFx3b3Jrc2hvcFxcKVxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+print(\workshop\)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+# Variables
+
+## invoking and assigning variable and value
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYSA8LSAxMDAwXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+a &lt;- 1000</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+##reassigning value to a variable
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYSA8LSAyMDAwXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+a &lt;- 2000</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+## printing variables
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucHJpbnQoYSlcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+print(a)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+## assigning strings to variables
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYiA8LSBcXHdvcmtzaG9wXFxcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+b &lt;- \workshop\</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+## variables can be alphanumeric
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuaGlqaWJpamkzMDAgPC0gXFx3b3Jrc2hvcFxcXG5wcmludChoaWppYmlqaTMwMClcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+hijibiji300 &lt;- \workshop\
 print(hijibiji300)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="variables-need-to-be-contiguous" class="section level2" number="5.5">
-<h2><span class="header-section-number">5.5</span> variables need to be
-contiguous</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW4gYXBwbGUgPC0gMjMgI3Byb2R1Y2VzIGVycm9yc1xuZ2V0QXBwbGVzIDwtIDIzXG5gYGAifQ== -->
-<pre class="r"><code>an apple &lt;- 23 #produces errors
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+## variables need to be contiguous
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYW4gYXBwbGUgPC0gMjMgI3Byb2R1Y2VzIGVycm9yc1xuZ2V0QXBwbGVzIDwtIDIzXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+an apple &lt;- 23 #produces errors
 getApples &lt;- 23</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="use-meaningful-variables" class="section level2" number="5.6">
-<h2><span class="header-section-number">5.6</span> use meaningful
-variables</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0QmFuYW5hcyA8LSBcIm51dHNcIlxuXG5gYGAifQ== -->
-<pre class="r"><code>getBananas &lt;- &quot;nuts&quot;
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+## use meaningful variables
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZ2V0QmFuYW5hcyA8LSBcXG51dHNcXFxuXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+getBananas &lt;- \nuts\
 </code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="study-structure-of-a-value" class="section level2" number="5.7">
-<h2><span class="header-section-number">5.7</span> study structure of a
-value</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGdldEJhbmFuYXMpXG5gYGAifQ== -->
-<pre class="r"><code>str(getBananas)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+## study structure of a value
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3RyKGdldEJhbmFuYXMpXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+str(getBananas)</code></pre>
+<p>```</p>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1982,7 +2148,7 @@ value</h2>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiAxIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4NCg0KVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkN0cmwrU2hpZnQrRW50ZXIqLg0KDQpSIGlzIGEgYSB2ZXJ5IHBvd2VyZnVsIHByb2dyYW1taW5nIGxhbmd1YWdlIHdpdGggYSBmb2N1cyBvbiBzdGF0aXN0aWNhbCBhbmFseXNpcyAoaWUuIHN0cnVjdHVyZWQgZGF0YSkuIEl0IGlzIGFsc28gYWJsZSB0byBwcm9kdWNlIHZlcnkgbmVhdCBhbmQgY3VzdG9taXNhYmxlIGNoYXJ0cy4gUiBpcyBPcGVuIFNvdXJjZSBhbmQgdGhpcyBtZWFucyBpdCBpcyBmcmVlIGFuZCAnZnJlZScuIEFuZCB0aGF0IHRoZXJlIGFyZSBtYW55IGRldmVsb3BlcnMgd2hvIGFyZSBjb25zdGFudGx5IHdvcmtpbmcgdm9sdW50YXJpbHkgdG8gaW1wcm92ZSB0aGUgdG9vbHMgZm9yIFIuDQoNCkEgZmlyc3QgaW5zdGFsbGF0aW9uIG9mIFIgY29tZXMgd2l0aCBhIHNldCBvZiBzdGFuZGFyZCBwYWNrYWdlcyBhbmQgY29tbWFuZHMuIEhvd2V2ZXIsIGJleW9uZCB0aGlzIFIgaGFzIGFsbW9zdCAxMCwwMDAgcGFja2FnZXMgdGhhdCBjYW4gYmUgdXNlZCBmb3IgdmFyaW91cyBwcm9ncmFtbWluZyB0YXNrLiBUaGVzZSBwYWNrYWdlcyBhcmUgbW9zdGx5IGhvc3RlZCBvbiBDUkFOIGFuZCBjYW4gYmUgaW5zdGFsbGVkIHRocm91Z2ggUlN0dWRpby4gR2l2ZW4gdGhlc2UgcGFja2FnZXMgUiBjYW4gcGVyZm9ybSBhIHdpZGUgcmFuZ2Ugb2YgdGFza3MgdGhhdCBhcmUgcmVsZXZhbnQgZm9yIGh1bWFuaXRpZXMgc2Nob2xhcnMgKGllLiB1bnN0cnVjdHVyZWQgZGF0YSkuDQoNCiMgR2V0dGluZyBzdGFydGVkOiBJbnN0YWxsYXRpb24NCg0KRm9yIHRoZSBwdXJwb3NlIG9mIHRoaXMgdHV0b3JpYWwgd2Ugd2lsbCB3b3JrIG9uIFJTdHVkaW8NCg0KRGVwZW5kaW5nIG9uIHRoZSBzeXN0ZW0gdGhhdCB5b3UgYXJlIHdvcmtpbmcgb24geW91IG5lZWQgdG8gZW5zdXJlIHRoYXQgeW91IGhhdmUgaW5zdGFsbGVkIFIgYXMgd2VsbCBhcyBSU3R1ZGlvLiBJZiB5b3UgYXJlIHdvcmtpbmcgb24gYSBMaW51eCBzeXN0ZW0sIGluIGFsbCBwcm9iYWJpbGl0eSwgeW91ciBjb21wdXRlciBjb21lcyBlcXVpcHBlZCB3aXRoIFIuIEJ1dCB5b3Ugd291bGQgc3RpbGwgbmVlZCB0byBpbnN0YWxsIFJTdHVkaW8uDQoNCllvdSBjYW4gZmluZCBhIGxvdCBvZiBoZWxwIGZvciBpbnN0YWxsYXRpb24gb2YgUiBhbmQgUlN0dWRpby4gSGVyZSBpcyBvbmUgaHR0cHM6Ly90ZWNodmlkdmFuLmNvbS90dXRvcmlhbHMvaW5zdGFsbC1yLyANCg0KT25jZSBpbnN0YWxsZWQsIGxhdW5jaCBSU3R1ZGlvIGFuZCBzdHVkeSB0aGUgaW50ZXJmYWNlLg0KDQojIFJTdHVkaW8gSW50ZXJmYWNlDQoNCmh0dHBzOi8vaGJjdHJhaW5pbmcuZ2l0aHViLmlvL0ludHJvLXRvLVIvaW1nL1JzdHVkaW9faW50ZXJmYWNlLnBuZw0KDQpUaGUgUlN0dWRpbyBpbnRlcmZhY2UgaGFzIGZvdXIgbWFpbiBwYW5lbHM6DQoNCioqQ29uc29sZSoqOiB3aGVyZSB5b3UgY2FuIHR5cGUgY29tbWFuZHMgYW5kIHNlZSBvdXRwdXQuIFRoZSBjb25zb2xlIGlzIGFsbCB5b3Ugd291bGQgc2VlIGlmIHlvdSByYW4gUiBpbiB0aGUgY29tbWFuZCBsaW5lIHdpdGhvdXQgUlN0dWRpby4NCiAgICANCioqU2NyaXB0IGVkaXRvcioqOiB3aGVyZSB5b3UgY2FuIHR5cGUgb3V0IGNvbW1hbmRzIGFuZCBzYXZlIHRvIGZpbGUuIFlvdSBjYW4gYWxzbyBzdWJtaXQgdGhlIGNvbW1hbmRzIHRvIHJ1biBpbiB0aGUgY29uc29sZS4NCiAgICANCioqRW52aXJvbm1lbnQvSGlzdG9yeSoqOiBlbnZpcm9ubWVudCBzaG93cyBhbGwgYWN0aXZlIG9iamVjdHMgYW5kIGhpc3Rvcnkga2VlcHMgdHJhY2sgb2YgYWxsIGNvbW1hbmRzIHJ1biBpbiBjb25zb2xlDQogICAgDQoqKkZpbGVzL1Bsb3RzL1BhY2thZ2VzL0hlbHAqKg0KDQoNCiMgV29ya2luZyBkaXJlY3RvcnkNCg0KIyMgVmlld2luZyB5b3VyIHdvcmtpbmcgZGlyZWN0b3J5DQoNCkJlZm9yZSB3ZSBvcmdhbml6ZSBvdXIgd29ya2luZyBkaXJlY3RvcnksIGxldOKAmXMgY2hlY2sgdG8gc2VlIHdoZXJlIG91ciBjdXJyZW50IHdvcmtpbmcgZGlyZWN0b3J5IGlzIGxvY2F0ZWQgYnkgdHlwaW5nIGludG8gdGhlIGNvbnNvbGU6DQoNCmBgYHtyfQ0KZ2V0d2QoKQ0KYGBgDQoNCiMjIFJ1bm5pbmcgY29kZSBvbiBSDQoNClRvIHJ1biBhIHNpbmdsZSBsaW5lIG9mIGNvZGUgeW91IGNhbiBwbGFjZSB0aGUgY3Vyc29yIGluIHRoYXQgbGluZSBhbmQgY2xpY2sgQ3RybCtFbnRlcg0KVG8gcnVuIGEgY2h1Y2sgb2YgY29kZSwgaGlnaGxpZ2h0IHRoYXQgY2h1bmNrIChzZXQgb2YgbGluZXMpIGFuZCBjbGljayBDdHJsK0VudGVyDQpUbyBydW4gdGhlIGVudGlyZSBjb2RlIHlvdSBjYW4gY2xpY2sgdGhlICJSdW4iIGJ1dHRvbiBpbiB0aGUgU2NyaXB0IGVkaXRvci4NCg0KDQojIyBTZXR0aW5nIHdvcmtpbmcgZGlyZWN0b3J5DQpZb3VyIGluc3RhbGxhdGlvbiB3aWxsIGhhdmUgYSBkZWZhdWx0IHdvcmtpbmcgZGlyZWN0b3J5IGZvciBSLiBCdXQgeW91IG1heSB3YW50IHRvIHBvaW50IHlvdXIgUiBzZXNzaW9uIHRvIGEgcGFydGljdWxhciB3b3JraW5nIGRpcmVjdG9yeSBvciBmb2xkZXIgc28gdGhhdCBhbGwgc2NyaXB0cyBhbmQgb3V0cHV0IGdldHMgc2F2ZWQgYXQgYSBjb252ZW5pZW50IGxvY2F0aW9uLiBZb3UgY2FuIGluIHR3byB3YXlzLg0KDQpZb3UgY2FuIGRvIGl0IHRocm91Z2ggdGhlIEdVSSAtIFNlc3Npb24gPiBTZXQgd29ya2luZyBkaXJlY3RvcnkgPiBDaG9vc2UgZGlyZWN0b3J5DQoNClRoZSB3b3JraW5nIGRpcmVjdG9yeSB3aWxsIGdldCByZXNldCBlYWNoIHRpbWUgeW91IHN0YXJ0IGEgbmV3IHNlc3Npb24uIElmIHlvdSB3YW50IHRoYXQgYSBzY3JpcHQgc2hvdWxkIHJ1biBpbiBhIHBhcnRpY3VsYXIgZGlyZWN0b3J5IHlvdSBjYW4gd3JpdGUgYSBsaW5lIG9mIGNvZGUgdG8gcG9pbnQgdG8gYSBwYXJ0aWN1bGFyIGRpcmVjdG9yeSBvbiB5b3VyIGNvbXB1dGVyLg0KDQpgYGB7cn0NCnNldHdkKCJDOi9Vc2Vycy9IUC9Eb3dubG9hZHMvUm5vdGVib29rIikNCmBgYA0KDQpNYWtlIHN1cmUgdGhhdCB5b3Ugc2V0IHRoZSB1cmwgb2YgeW91ciBjaG9pY2UuDQoNCk5vdyB3ZSBhcmUgcmVhZHkgdG8gc3RhcnQgb3VyIGZpcnN0IFIgb3BlcmF0aW9ucw0KDQojIEJhc2ljIG9wZXJhdGlvbnMNCg0KIyMgc2ltcGxlIGFyaXRobWV0aWMgb3BlcmF0aW9ucw0KDQpgYGB7cn0NCjErMQ0KYGBgDQoNCg0KIyMgY29tbWVudGluZw0KDQojIyBwcmludCBmdW5jdGlvbg0KYGBge3J9DQpwcmludCgxKzEpDQpgYGANCg0KDQojIyBpbnZva2luZyBoZWxwDQpgYGB7cn0NCj9wcmludA0KYGBgDQoNCiMjIHByaW50aW5nIHN0cmluZ3MNCmBgYHtyfQ0KcHJpbnQoIndvcmtzaG9wIikNCmBgYA0KDQoNCiMgVmFyaWFibGVzDQoNCiMjIGludm9raW5nIGFuZCBhc3NpZ25pbmcgdmFyaWFibGUgYW5kIHZhbHVlDQoNCmBgYHtyfQ0KYSA8LSAxMDAwDQpgYGANCg0KDQojI3JlYXNzaWduaW5nIHZhbHVlIHRvIGEgdmFyaWFibGUNCg0KYGBge3J9DQphIDwtIDIwMDANCmBgYA0KDQoNCiMjIHByaW50aW5nIHZhcmlhYmxlcw0KDQpgYGB7cn0NCnByaW50KGEpDQpgYGANCg0KDQojIyBhc3NpZ25pbmcgc3RyaW5ncyB0byB2YXJpYWJsZXMNCg0KYGBge3J9DQpiIDwtICJ3b3Jrc2hvcCINCmBgYA0KDQoNCiMjIHZhcmlhYmxlcyBjYW4gYmUgYWxwaGFudW1lcmljDQoNCmBgYHtyfQ0KaGlqaWJpamkzMDAgPC0gIndvcmtzaG9wIg0KcHJpbnQoaGlqaWJpamkzMDApDQpgYGANCg0KDQojIyB2YXJpYWJsZXMgbmVlZCB0byBiZSBjb250aWd1b3VzDQoNCmBgYHtyfQ0KYW4gYXBwbGUgPC0gMjMgI3Byb2R1Y2VzIGVycm9ycw0KZ2V0QXBwbGVzIDwtIDIzDQpgYGANCg0KDQojIyB1c2UgbWVhbmluZ2Z1bCB2YXJpYWJsZXMNCg0KYGBge3J9DQpnZXRCYW5hbmFzIDwtICJudXRzIg0KDQpgYGANCg0KDQojIyBzdHVkeSBzdHJ1Y3R1cmUgb2YgYSB2YWx1ZQ0KDQpgYGB7cn0NCnN0cihnZXRCYW5hbmFzKQ0KYGBgDQoNCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiAxIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KW1ZpZXcgdGhpcyBwYWdlIGluIGEgYnJvd3Nlcl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDEubmIuaHRtbCkNCg0KDQpUaGlzIGlzIGFuIFtSIE1hcmtkb3duXShodHRwOi8vcm1hcmtkb3duLnJzdHVkaW8uY29tKSBOb3RlYm9vay4gV2hlbiB5b3UgZXhlY3V0ZSBjb2RlIHdpdGhpbiB0aGUgbm90ZWJvb2ssIHRoZSByZXN1bHRzIGFwcGVhciBiZW5lYXRoIHRoZSBjb2RlLg0KDQpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ3RybCtTaGlmdCtFbnRlciouDQoNClIgaXMgYSBhIHZlcnkgcG93ZXJmdWwgcHJvZ3JhbW1pbmcgbGFuZ3VhZ2Ugd2l0aCBhIGZvY3VzIG9uIHN0YXRpc3RpY2FsIGFuYWx5c2lzIChpZS4gc3RydWN0dXJlZCBkYXRhKS4gSXQgaXMgYWxzbyBhYmxlIHRvIHByb2R1Y2UgdmVyeSBuZWF0IGFuZCBjdXN0b21pc2FibGUgY2hhcnRzLiBSIGlzIE9wZW4gU291cmNlIGFuZCB0aGlzIG1lYW5zIGl0IGlzIGZyZWUgYW5kICdmcmVlJy4gQW5kIHRoYXQgdGhlcmUgYXJlIG1hbnkgZGV2ZWxvcGVycyB3aG8gYXJlIGNvbnN0YW50bHkgd29ya2luZyB2b2x1bnRhcmlseSB0byBpbXByb3ZlIHRoZSB0b29scyBmb3IgUi4NCg0KQSBmaXJzdCBpbnN0YWxsYXRpb24gb2YgUiBjb21lcyB3aXRoIGEgc2V0IG9mIHN0YW5kYXJkIHBhY2thZ2VzIGFuZCBjb21tYW5kcy4gSG93ZXZlciwgYmV5b25kIHRoaXMgUiBoYXMgYWxtb3N0IDEwLDAwMCBwYWNrYWdlcyB0aGF0IGNhbiBiZSB1c2VkIGZvciB2YXJpb3VzIHByb2dyYW1taW5nIHRhc2suIFRoZXNlIHBhY2thZ2VzIGFyZSBtb3N0bHkgaG9zdGVkIG9uIENSQU4gYW5kIGNhbiBiZSBpbnN0YWxsZWQgdGhyb3VnaCBSU3R1ZGlvLiBHaXZlbiB0aGVzZSBwYWNrYWdlcyBSIGNhbiBwZXJmb3JtIGEgd2lkZSByYW5nZSBvZiB0YXNrcyB0aGF0IGFyZSByZWxldmFudCBmb3IgaHVtYW5pdGllcyBzY2hvbGFycyAoaWUuIHVuc3RydWN0dXJlZCBkYXRhKS4NCg0KIyBHZXR0aW5nIHN0YXJ0ZWQ6IEluc3RhbGxhdGlvbg0KDQpGb3IgdGhlIHB1cnBvc2Ugb2YgdGhpcyB0dXRvcmlhbCB3ZSB3aWxsIHdvcmsgb24gUlN0dWRpbw0KDQpEZXBlbmRpbmcgb24gdGhlIHN5c3RlbSB0aGF0IHlvdSBhcmUgd29ya2luZyBvbiB5b3UgbmVlZCB0byBlbnN1cmUgdGhhdCB5b3UgaGF2ZSBpbnN0YWxsZWQgUiBhcyB3ZWxsIGFzIFJTdHVkaW8uIElmIHlvdSBhcmUgd29ya2luZyBvbiBhIExpbnV4IHN5c3RlbSwgaW4gYWxsIHByb2JhYmlsaXR5LCB5b3VyIGNvbXB1dGVyIGNvbWVzIGVxdWlwcGVkIHdpdGggUi4gQnV0IHlvdSB3b3VsZCBzdGlsbCBuZWVkIHRvIGluc3RhbGwgUlN0dWRpby4NCg0KWW91IGNhbiBmaW5kIGEgbG90IG9mIGhlbHAgZm9yIGluc3RhbGxhdGlvbiBvZiBSIGFuZCBSU3R1ZGlvLiBIZXJlIGlzIG9uZSBodHRwczovL3RlY2h2aWR2YW4uY29tL3R1dG9yaWFscy9pbnN0YWxsLXIvIA0KDQpPbmNlIGluc3RhbGxlZCwgbGF1bmNoIFJTdHVkaW8gYW5kIHN0dWR5IHRoZSBpbnRlcmZhY2UuDQoNCiMgUlN0dWRpbyBJbnRlcmZhY2UNCg0KaHR0cHM6Ly9oYmN0cmFpbmluZy5naXRodWIuaW8vSW50cm8tdG8tUi9pbWcvUnN0dWRpb19pbnRlcmZhY2UucG5nDQoNClRoZSBSU3R1ZGlvIGludGVyZmFjZSBoYXMgZm91ciBtYWluIHBhbmVsczoNCg0KKipDb25zb2xlKio6IHdoZXJlIHlvdSBjYW4gdHlwZSBjb21tYW5kcyBhbmQgc2VlIG91dHB1dC4gVGhlIGNvbnNvbGUgaXMgYWxsIHlvdSB3b3VsZCBzZWUgaWYgeW91IHJhbiBSIGluIHRoZSBjb21tYW5kIGxpbmUgd2l0aG91dCBSU3R1ZGlvLg0KICAgIA0KKipTY3JpcHQgZWRpdG9yKio6IHdoZXJlIHlvdSBjYW4gdHlwZSBvdXQgY29tbWFuZHMgYW5kIHNhdmUgdG8gZmlsZS4gWW91IGNhbiBhbHNvIHN1Ym1pdCB0aGUgY29tbWFuZHMgdG8gcnVuIGluIHRoZSBjb25zb2xlLg0KICAgIA0KKipFbnZpcm9ubWVudC9IaXN0b3J5Kio6IGVudmlyb25tZW50IHNob3dzIGFsbCBhY3RpdmUgb2JqZWN0cyBhbmQgaGlzdG9yeSBrZWVwcyB0cmFjayBvZiBhbGwgY29tbWFuZHMgcnVuIGluIGNvbnNvbGUNCiAgICANCioqRmlsZXMvUGxvdHMvUGFja2FnZXMvSGVscCoqDQoNCg0KIyBXb3JraW5nIGRpcmVjdG9yeQ0KDQojIyBWaWV3aW5nIHlvdXIgd29ya2luZyBkaXJlY3RvcnkNCg0KQmVmb3JlIHdlIG9yZ2FuaXplIG91ciB3b3JraW5nIGRpcmVjdG9yeSwgbGV04oCZcyBjaGVjayB0byBzZWUgd2hlcmUgb3VyIGN1cnJlbnQgd29ya2luZyBkaXJlY3RvcnkgaXMgbG9jYXRlZCBieSB0eXBpbmcgaW50byB0aGUgY29uc29sZToNCg0KYGBge3J9DQpnZXR3ZCgpDQpgYGANCg0KIyMgUnVubmluZyBjb2RlIG9uIFINCg0KVG8gcnVuIGEgc2luZ2xlIGxpbmUgb2YgY29kZSB5b3UgY2FuIHBsYWNlIHRoZSBjdXJzb3IgaW4gdGhhdCBsaW5lIGFuZCBjbGljayBDdHJsK0VudGVyDQpUbyBydW4gYSBjaHVjayBvZiBjb2RlLCBoaWdobGlnaHQgdGhhdCBjaHVuY2sgKHNldCBvZiBsaW5lcykgYW5kIGNsaWNrIEN0cmwrRW50ZXINClRvIHJ1biB0aGUgZW50aXJlIGNvZGUgeW91IGNhbiBjbGljayB0aGUgIlJ1biIgYnV0dG9uIGluIHRoZSBTY3JpcHQgZWRpdG9yLg0KDQoNCiMjIFNldHRpbmcgd29ya2luZyBkaXJlY3RvcnkNCllvdXIgaW5zdGFsbGF0aW9uIHdpbGwgaGF2ZSBhIGRlZmF1bHQgd29ya2luZyBkaXJlY3RvcnkgZm9yIFIuIEJ1dCB5b3UgbWF5IHdhbnQgdG8gcG9pbnQgeW91ciBSIHNlc3Npb24gdG8gYSBwYXJ0aWN1bGFyIHdvcmtpbmcgZGlyZWN0b3J5IG9yIGZvbGRlciBzbyB0aGF0IGFsbCBzY3JpcHRzIGFuZCBvdXRwdXQgZ2V0cyBzYXZlZCBhdCBhIGNvbnZlbmllbnQgbG9jYXRpb24uIFlvdSBjYW4gaW4gdHdvIHdheXMuDQoNCllvdSBjYW4gZG8gaXQgdGhyb3VnaCB0aGUgR1VJIC0gU2Vzc2lvbiA+IFNldCB3b3JraW5nIGRpcmVjdG9yeSA+IENob29zZSBkaXJlY3RvcnkNCg0KVGhlIHdvcmtpbmcgZGlyZWN0b3J5IHdpbGwgZ2V0IHJlc2V0IGVhY2ggdGltZSB5b3Ugc3RhcnQgYSBuZXcgc2Vzc2lvbi4gSWYgeW91IHdhbnQgdGhhdCBhIHNjcmlwdCBzaG91bGQgcnVuIGluIGEgcGFydGljdWxhciBkaXJlY3RvcnkgeW91IGNhbiB3cml0ZSBhIGxpbmUgb2YgY29kZSB0byBwb2ludCB0byBhIHBhcnRpY3VsYXIgZGlyZWN0b3J5IG9uIHlvdXIgY29tcHV0ZXIuDQoNCmBgYHtyfQ0Kc2V0d2QoIkM6L1VzZXJzL0hQL0Rvd25sb2Fkcy9Sbm90ZWJvb2siKQ0KYGBgDQoNCk1ha2Ugc3VyZSB0aGF0IHlvdSBzZXQgdGhlIHVybCBvZiB5b3VyIGNob2ljZS4NCg0KTm93IHdlIGFyZSByZWFkeSB0byBzdGFydCBvdXIgZmlyc3QgUiBvcGVyYXRpb25zDQoNCiMgQmFzaWMgb3BlcmF0aW9ucw0KDQojIyBzaW1wbGUgYXJpdGhtZXRpYyBvcGVyYXRpb25zDQoNCmBgYHtyfQ0KMSsxDQpgYGANCg0KDQojIyBjb21tZW50aW5nDQoNCiMjIHByaW50IGZ1bmN0aW9uDQpgYGB7cn0NCnByaW50KDErMSkNCmBgYA0KDQoNCiMjIGludm9raW5nIGhlbHANCmBgYHtyfQ0KP3ByaW50DQpgYGANCg0KIyMgcHJpbnRpbmcgc3RyaW5ncw0KYGBge3J9DQpwcmludCgid29ya3Nob3AiKQ0KYGBgDQoNCg0KIyBWYXJpYWJsZXMNCg0KIyMgaW52b2tpbmcgYW5kIGFzc2lnbmluZyB2YXJpYWJsZSBhbmQgdmFsdWUNCg0KYGBge3J9DQphIDwtIDEwMDANCmBgYA0KDQoNCiMjcmVhc3NpZ25pbmcgdmFsdWUgdG8gYSB2YXJpYWJsZQ0KDQpgYGB7cn0NCmEgPC0gMjAwMA0KYGBgDQoNCg0KIyMgcHJpbnRpbmcgdmFyaWFibGVzDQoNCmBgYHtyfQ0KcHJpbnQoYSkNCmBgYA0KDQoNCiMjIGFzc2lnbmluZyBzdHJpbmdzIHRvIHZhcmlhYmxlcw0KDQpgYGB7cn0NCmIgPC0gIndvcmtzaG9wIg0KYGBgDQoNCg0KIyMgdmFyaWFibGVzIGNhbiBiZSBhbHBoYW51bWVyaWMNCg0KYGBge3J9DQpoaWppYmlqaTMwMCA8LSAid29ya3Nob3AiDQpwcmludChoaWppYmlqaTMwMCkNCmBgYA0KDQoNCiMjIHZhcmlhYmxlcyBuZWVkIHRvIGJlIGNvbnRpZ3VvdXMNCg0KYGBge3J9DQphbiBhcHBsZSA8LSAyMyAjcHJvZHVjZXMgZXJyb3JzDQpnZXRBcHBsZXMgPC0gMjMNCmBgYA0KDQoNCiMjIHVzZSBtZWFuaW5nZnVsIHZhcmlhYmxlcw0KDQpgYGB7cn0NCmdldEJhbmFuYXMgPC0gIm51dHMiDQoNCmBgYA0KDQoNCiMjIHN0dWR5IHN0cnVjdHVyZSBvZiBhIHZhbHVlDQoNCmBgYHtyfQ0Kc3RyKGdldEJhbmFuYXMpDQpgYGANCg0KDQo=</div>
 
 
 
