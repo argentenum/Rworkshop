@@ -164,4 +164,4 @@ str(getBananas)
 ```
 
 
-[Go to Lesson 2](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.html)
+[Go to Lesson 2](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.nb.html)
