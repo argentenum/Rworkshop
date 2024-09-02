@@ -7,11 +7,6 @@ output:
 
 [View this page in a browser](https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities01.nb.html)
 
-
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
-
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.
-
 R is a a very powerful programming language with a focus on statistical analysis (ie. structured data). It is also able to produce very neat and customisable charts. R is Open Source and this means it is free and 'free'. And that there are many developers who are constantly working voluntarily to improve the tools for R.
 
 A first installation of R comes with a set of standard packages and commands. However, beyond this R has almost 10,000 packages that can be used for various programming task. These packages are mostly hosted on CRAN and can be installed through RStudio. Given these packages R can perform a wide range of tasks that are relevant for humanities scholars (ie. unstructured data).
@@ -91,6 +86,9 @@ print(1+1)
 
 
 ## invoking help
+
+type "?" followed by the function in the Console. The Help topic will be displayed in the bottom right-hand box.
+
 ```{r}
 ?print
 ```
@@ -143,7 +141,11 @@ print(hijibiji300)
 
 ```{r}
 an apple <- 23 #produces errors
+```
+
+```{r}
 getApples <- 23
+getApples
 ```
 
 
@@ -162,3 +164,4 @@ str(getBananas)
 ```
 
 
+[Go to Lesson 2](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.html)

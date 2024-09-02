@@ -11,7 +11,7 @@
 
 
 
-<title>R for Humanities: Lesson 1</title>
+<title>R for Humanities: Lesson 2</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1746,274 +1746,626 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">R for Humanities: Lesson 1</h1>
+<h1 class="title toc-ignore">R for Humanities: Lesson 2</h1>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<p><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities01.nb.html">View
+<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.html">View
 this page in a browser</a></p>
-<p>R is a a very powerful programming language with a focus on
-statistical analysis (ie. structured data). It is also able to produce
-very neat and customisable charts. R is Open Source and this means it is
-free and ‘free’. And that there are many developers who are constantly
-working voluntarily to improve the tools for R.</p>
-<p>A first installation of R comes with a set of standard packages and
-commands. However, beyond this R has almost 10,000 packages that can be
-used for various programming task. These packages are mostly hosted on
-CRAN and can be installed through RStudio. Given these packages R can
-perform a wide range of tasks that are relevant for humanities scholars
-(ie. unstructured data).</p>
-<div id="getting-started-installation" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Getting started:
-Installation</h1>
-<p>For the purpose of this tutorial we will work on RStudio</p>
-<p>Depending on the system that you are working on you need to ensure
-that you have installed R as well as RStudio. If you are working on a
-Linux system, in all probability, your computer comes equipped with R.
-But you would still need to install RStudio.</p>
-<p>You can find a lot of help for installation of R and RStudio. Here is
-one <a href="https://techvidvan.com/tutorials/install-r/" class="uri">https://techvidvan.com/tutorials/install-r/</a></p>
-<p>Once installed, launch RStudio and study the interface.</p>
-</div>
-<div id="rstudio-interface" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> RStudio Interface</h1>
-<p><a href="https://hbctraining.github.io/Intro-to-R/img/Rstudio_interface.png" class="uri">https://hbctraining.github.io/Intro-to-R/img/Rstudio_interface.png</a></p>
-<p>The RStudio interface has four main panels:</p>
-<p><strong>Console</strong>: where you can type commands and see output.
-The console is all you would see if you ran R in the command line
-without RStudio.</p>
-<p><strong>Script editor</strong>: where you can type out commands and
-save to file. You can also submit the commands to run in the
-console.</p>
-<p><strong>Environment/History</strong>: environment shows all active
-objects and history keeps track of all commands run in console</p>
-<p><strong>Files/Plots/Packages/Help</strong></p>
-</div>
-<div id="working-directory" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Working directory</h1>
-<div id="viewing-your-working-directory" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Viewing your working
-directory</h2>
-<p>Before we organize our working directory, let’s check to see where
-our current working directory is located by typing into the console:</p>
+<p><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities01.nb.html">Go
+to Lesson 1</a></p>
+<div id="vectors" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Vectors</h1>
+<div id="numerical-vectors" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Numerical
+vectors</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0d2QoKVxuYGBgIn0= -->
-<pre class="r"><code>getwd()</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2ggPC0gYygxLDIsMyw0LDUsNiw3LDgpXG5zdHIobWFyY2gpXG5gYGAifQ== -->
+<pre class="r"><code>march &lt;- c(1,2,3,4,5,6,7,8)
+str(march)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQzovVXNlcnMvSFAvRG9jdW1lbnRzL0dpdEh1Yi9Sd29ya3Nob3Avbm90ZWJvb2tzXCJcbiJ9 -->
-<pre><code>[1] &quot;C:/Users/HP/Documents/GitHub/Rworkshop/notebooks&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiIG51bSBbMTo4XSAxIDIgMyA0IDUgNiA3IDhcbiJ9 -->
+<pre><code> num [1:8] 1 2 3 4 5 6 7 8</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQobWFyY2gpXG5gYGAifQ== -->
+<pre class="r"><code>print(march)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMiAzIDQgNSA2IDcgOFxuIn0= -->
+<pre><code>[1] 1 2 3 4 5 6 7 8</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="running-code-on-r" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Running code on
-R</h2>
-<p>To run a single line of code you can place the cursor in that line
-and click Ctrl+Enter To run a chuck of code, highlight that chunck (set
-of lines) and click Ctrl+Enter To run the entire code you can click the
-“Run” button in the Script editor.</p>
-</div>
-<div id="setting-working-directory" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Setting working
-directory</h2>
-<p>Your installation will have a default working directory for R. But
-you may want to point your R session to a particular working directory
-or folder so that all scripts and output gets saved at a convenient
-location. You can in two ways.</p>
-<p>You can do it through the GUI - Session &gt; Set working directory
-&gt; Choose directory</p>
-<p>The working directory will get reset each time you start a new
-session. If you want that a script should run in a particular directory
-you can write a line of code to point to a particular directory on your
-computer.</p>
+<div id="string-vectors" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> String vectors</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0d2QoXCJDOi9Vc2Vycy9IUC9Eb3dubG9hZHMvUm5vdGVib29rXCIpXG5gYGAifQ== -->
-<pre class="r"><code>setwd(&quot;C:/Users/HP/Downloads/Rnotebook&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2VlayA8LSBjKFwibW9uXCIsXCJ0dWVcIixcIndlZFwiLFwidGh1XCIsXCJmcmlcIixcInNhdFwiLFwic3VuXCIpXG5zdHIod2VlaylcbmBgYCJ9 -->
+<pre class="r"><code>week &lt;- c(&quot;mon&quot;,&quot;tue&quot;,&quot;wed&quot;,&quot;thu&quot;,&quot;fri&quot;,&quot;sat&quot;,&quot;sun&quot;)
+str(week)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Make sure that you set the url of your choice.</p>
-<p>Now we are ready to start our first R operations</p>
-</div>
-</div>
-<div id="basic-operations" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Basic operations</h1>
-<div id="simple-arithmetic-operations" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> simple arithmetic
-operations</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMSsxXG5gYGAifQ== -->
-<pre class="r"><code>1+1</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiIGNociBbMTo3XSBcIm1vblwiIFwidHVlXCIgXCJ3ZWRcIiBcInRodVwiIFwiZnJpXCIgXCJzYXRcIiBcInN1blwiXG4ifQ== -->
+<pre><code> chr [1:7] &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2Vla1xuYGBgIn0= -->
+<pre class="r"><code>week</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="commenting" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> commenting</h2>
-</div>
-<div id="print-function" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> print function</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoMSsxKVxuYGBgIn0= -->
-<pre class="r"><code>print(1+1)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDJcbiJ9 -->
-<pre><code>[1] 2</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibW9uXCIgXCJ0dWVcIiBcIndlZFwiIFwidGh1XCIgXCJmcmlcIiBcInNhdFwiIFwic3VuXCJcbiJ9 -->
+<pre><code>[1] &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="invoking-help" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> invoking help</h2>
-<p>type “?” followed by the function in the Console. The Help topic will
-be displayed in the bottom right-hand box.</p>
+<div id="vector-values-can-either-numeric-or-string" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Vector values can
+either numeric or string</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuP3ByaW50XG5gYGAifQ== -->
-<pre class="r"><code>?print</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWlzbWF0Y2ggPC0gYygxLFwib25lXCIpXG5wcmludChtaXNtYXRjaClcbmBgYCJ9 -->
+<pre class="r"><code>mismatch &lt;- c(1,&quot;one&quot;)
+print(mismatch)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMVwiICAgXCJvbmVcIlxuIn0= -->
+<pre><code>[1] &quot;1&quot;   &quot;one&quot;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="printing-strings" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> printing strings</h2>
+<div id="sort-function" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> sort function</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoXCJ3b3Jrc2hvcFwiKVxuYGBgIn0= -->
-<pre class="r"><code>print(&quot;workshop&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29ydCh3ZWVrKVxuYGBgIn0= -->
+<pre class="r"><code>sort(week)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwid29ya3Nob3BcIlxuIn0= -->
-<pre><code>[1] &quot;workshop&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZnJpXCIgXCJtb25cIiBcInNhdFwiIFwic3VuXCIgXCJ0aHVcIiBcInR1ZVwiIFwid2VkXCJcbiJ9 -->
+<pre><code>[1] &quot;fri&quot; &quot;mon&quot; &quot;sat&quot; &quot;sun&quot; &quot;thu&quot; &quot;tue&quot; &quot;wed&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="sort-in-descending-order" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> sort in descending
+order</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29ydCh3ZWVrLCBkZWNyZWFzaW5nID0gVFJVRSlcbmBgYCJ9 -->
+<pre class="r"><code>sort(week, decreasing = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwid2VkXCIgXCJ0dWVcIiBcInRodVwiIFwic3VuXCIgXCJzYXRcIiBcIm1vblwiIFwiZnJpXCJcbiJ9 -->
+<pre><code>[1] &quot;wed&quot; &quot;tue&quot; &quot;thu&quot; &quot;sun&quot; &quot;sat&quot; &quot;mon&quot; &quot;fri&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
 </div>
-<div id="variables" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Variables</h1>
-<div id="invoking-and-assigning-variable-and-value" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> invoking and
-assigning variable and value</h2>
+<div id="various-methods-of-creating-vectors" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Various methods of
+creating vectors</h1>
+<div id="specifying-the-vector-elements" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Specifying the vector
+elements</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYSA8LSAxMDAwXG5gYGAifQ== -->
-<pre class="r"><code>a &lt;- 1000</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBjKDEsMyw1KVxueFxuYGBgIn0= -->
+<pre class="r"><code>x &lt;- c(1,3,5)
+x</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>##reassigning value to a variable</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYSA8LSAyMDAwXG5gYGAifQ== -->
-<pre class="r"><code>a &lt;- 2000</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="printing-variables" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> printing
-variables</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoYSlcbmBgYCJ9 -->
-<pre class="r"><code>print(a)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIwMDBcbiJ9 -->
-<pre><code>[1] 2000</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMyA1XG4ifQ== -->
+<pre><code>[1] 1 3 5</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="assigning-strings-to-variables" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> assigning strings to
-variables</h2>
+<div id="specifying-a-range" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Specifying a
+range</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYiA8LSBcIndvcmtzaG9wXCJcbmBgYCJ9 -->
-<pre class="r"><code>b &lt;- &quot;workshop&quot;</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueTwtIGMoMTo1KVxueVxuYGBgIn0= -->
+<pre class="r"><code>y&lt;- c(1:5)
+y</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="variables-can-be-alphanumeric" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> variables can be
-alphanumeric</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGlqaWJpamkzMDAgPC0gXCJ3b3Jrc2hvcFwiXG5wcmludChoaWppYmlqaTMwMClcbmBgYCJ9 -->
-<pre class="r"><code>hijibiji300 &lt;- &quot;workshop&quot;
-print(hijibiji300)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwid29ya3Nob3BcIlxuIn0= -->
-<pre><code>[1] &quot;workshop&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMiAzIDQgNVxuIn0= -->
+<pre><code>[1] 1 2 3 4 5</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="variables-need-to-be-contiguous" class="section level2" number="5.5">
-<h2><span class="header-section-number">5.5</span> variables need to be
-contiguous</h2>
+<div id="adding-values-to-a-vector" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Adding values to a
+vector</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW4gYXBwbGUgPC0gMjMgI3Byb2R1Y2VzIGVycm9yc1xuYGBgIn0= -->
-<pre class="r"><code>an apple &lt;- 23 #produces errors</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBjKHgsNiw3KVxueFxuYGBgIn0= -->
+<pre class="r"><code>x &lt;- c(x,6,7)
+x</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IHVuZXhwZWN0ZWQgc3ltYm9sIGluIFwiYW4gYXBwbGVcIlxuIn0= -->
-<pre><code>Error: unexpected symbol in &quot;an apple&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0QXBwbGVzIDwtIDIzXG5nZXRBcHBsZXNcbmBgYCJ9 -->
-<pre class="r"><code>getApples &lt;- 23
-getApples</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIzXG4ifQ== -->
-<pre><code>[1] 23</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMyA1IDYgN1xuIn0= -->
+<pre><code>[1] 1 3 5 6 7</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="use-meaningful-variables" class="section level2" number="5.6">
-<h2><span class="header-section-number">5.6</span> use meaningful
-variables</h2>
+<div id="append-value-in-between-vector-values" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Append value in
+between vector values</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0QmFuYW5hcyA8LSBcIm51dHNcIlxuXG5gYGAifQ== -->
-<pre class="r"><code>getBananas &lt;- &quot;nuts&quot;
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBhcHBlbmQoeCw4LDIpXG54XG5gYGAifQ== -->
+<pre class="r"><code>x &lt;- append(x,8,2)
+x</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="study-structure-of-a-value" class="section level2" number="5.7">
-<h2><span class="header-section-number">5.7</span> study structure of a
-value</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGdldEJhbmFuYXMpXG5gYGAifQ== -->
-<pre class="r"><code>str(getBananas)</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMyA4IDUgNiA3XG4ifQ== -->
+<pre><code>[1] 1 3 8 5 6 7</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueiA8LSBhcHBlbmQoeCxjKDEwMCwyMDApLDUpXG56XG5gYGAifQ== -->
+<pre class="r"><code>z &lt;- append(x,c(100,200),5)
+z</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIGNociBcIm51dHNcIlxuIn0= -->
-<pre><code> chr &quot;nuts&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAgMSAgIDMgICA4ICAgNSAgIDYgMTAwIDIwMCAgIDdcbiJ9 -->
+<pre><code>[1]   1   3   8   5   6 100 200   7</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.html">Go
-to Lesson 2</a></p>
+</div>
+<div id="appending-character-value-to-numerical-vector" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Appending character
+value to numerical vector</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBhcHBlbmQoeCwgXCJiYWRcIilcbnhcbmBgYCJ9 -->
+<pre class="r"><code>x &lt;- append(x, &quot;bad&quot;)
+x</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMVwiICAgXCIzXCIgICBcIjhcIiAgIFwiNVwiICAgXCI2XCIgICBcIjdcIiAgIFwiYmFkXCJcbiJ9 -->
+<pre><code>[1] &quot;1&quot;   &quot;3&quot;   &quot;8&quot;   &quot;5&quot;   &quot;6&quot;   &quot;7&quot;   &quot;bad&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="creating-vector-through-sequence" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Creating vector
+through sequence</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueSA8LSBzZXEoMSwxMDAsIGJ5ID0gNSlcbnlcbmBgYCJ9 -->
+<pre class="r"><code>y &lt;- seq(1,100, by = 5)
+y</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgMSAgNiAxMSAxNiAyMSAyNiAzMSAzNiA0MSA0NiA1MSA1NiA2MSA2NiA3MSA3NiA4MSA4NiA5MSA5NlxuIn0= -->
+<pre><code> [1]  1  6 11 16 21 26 31 36 41 46 51 56 61 66 71 76 81 86 91 96</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueSA8LSBzZXEoMSwxMDAsIGJ5ID0gKDMqMykpXG55XG5gYGAifQ== -->
+<pre class="r"><code>y &lt;- seq(1,100, by = (3*3))
+y</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgIDEgIDEwICAxOSAgMjggIDM3ICA0NiAgNTUgIDY0ICA3MyAgODIgIDkxIDEwMFxuIn0= -->
+<pre><code> [1]   1  10  19  28  37  46  55  64  73  82  91 100</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="creating-vector-by-division" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Creating vector by
+division</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZiA8LSBzZXEoMSwxMDAsIGxlbmd0aD0gMjUpXG5mXG5gYGAifQ== -->
+<pre class="r"><code>f &lt;- seq(1,100, length= 25)
+f</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgIDEuMDAwICAgNS4xMjUgICA5LjI1MCAgMTMuMzc1ICAxNy41MDAgIDIxLjYyNSAgMjUuNzUwICAyOS44NzVcbiBbOV0gIDM0LjAwMCAgMzguMTI1ICA0Mi4yNTAgIDQ2LjM3NSAgNTAuNTAwICA1NC42MjUgIDU4Ljc1MCAgNjIuODc1XG5bMTddICA2Ny4wMDAgIDcxLjEyNSAgNzUuMjUwICA3OS4zNzUgIDgzLjUwMCAgODcuNjI1ICA5MS43NTAgIDk1Ljg3NVxuWzI1XSAxMDAuMDAwXG4ifQ== -->
+<pre><code> [1]   1.000   5.125   9.250  13.375  17.500  21.625  25.750  29.875
+ [9]  34.000  38.125  42.250  46.375  50.500  54.625  58.750  62.875
+[17]  67.000  71.125  75.250  79.375  83.500  87.625  91.750  95.875
+[25] 100.000</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZiA8LSBzZXEoMSw1MCwgbGVuZ3RoPTYpXG5mXG5gYGAifQ== -->
+<pre class="r"><code>f &lt;- seq(1,50, length=6)
+f</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAxLjAgMTAuOCAyMC42IDMwLjQgNDAuMiA1MC4wXG4ifQ== -->
+<pre><code>[1]  1.0 10.8 20.6 30.4 40.2 50.0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="vector-indices" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Vector indices</h1>
+<div id="fetching-values-by-index" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Fetching values by
+index</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueVxuYGBgIn0= -->
+<pre class="r"><code>y</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgIDEgIDEwICAxOSAgMjggIDM3ICA0NiAgNTUgIDY0ICA3MyAgODIgIDkxIDEwMFxuIn0= -->
+<pre><code> [1]   1  10  19  28  37  46  55  64  73  82  91 100</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueiA8LSBjKDEsMyw1KVxueVt6XVxuYGBgIn0= -->
+<pre class="r"><code>z &lt;- c(1,3,5)
+y[z]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAxIDE5IDM3XG4ifQ== -->
+<pre><code>[1]  1 19 37</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="fetching-inverse-indices" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Fetching inverse
+indices</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueVstMV1cbmBgYCJ9 -->
+<pre class="r"><code>y[-1]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgMTAgIDE5ICAyOCAgMzcgIDQ2ICA1NSAgNjQgIDczICA4MiAgOTEgMTAwXG4ifQ== -->
+<pre><code> [1]  10  19  28  37  46  55  64  73  82  91 100</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueVstel1cbmBgYCJ9 -->
+<pre class="r"><code>y[-z]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAxMCAgMjggIDQ2ICA1NSAgNjQgIDczICA4MiAgOTEgMTAwXG4ifQ== -->
+<pre><code>[1]  10  28  46  55  64  73  82  91 100</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="vector-arithmetic" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Vector arithmetic</h1>
+<div id="vector-arithmetic-with-vectors-of-equal-lengths" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Vector arithmetic
+with vectors of equal lengths</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudSA8LSBjKDIsNCw2KVxudVxuYGBgIn0= -->
+<pre class="r"><code>u &lt;- c(2,4,6)
+u</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIgNCA2XG4ifQ== -->
+<pre><code>[1] 2 4 6</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuelxuYGBgIn0= -->
+<pre class="r"><code>z</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMyA1XG4ifQ== -->
+<pre><code>[1] 1 3 5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueit1XG5gYGAifQ== -->
+<pre class="r"><code>z+u</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAzICA3IDExXG4ifQ== -->
+<pre><code>[1]  3  7 11</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudS16XG5gYGAifQ== -->
+<pre class="r"><code>u-z</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMSAxXG4ifQ== -->
+<pre><code>[1] 1 1 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudSp6XG5gYGAifQ== -->
+<pre class="r"><code>u*z</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAyIDEyIDMwXG4ifQ== -->
+<pre><code>[1]  2 12 30</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudS96XG5gYGAifQ== -->
+<pre class="r"><code>u/z</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIuMDAwMDAwIDEuMzMzMzMzIDEuMjAwMDAwXG4ifQ== -->
+<pre><code>[1] 2.000000 1.333333 1.200000</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="vector-arithmetic-with-vectors-of-unequal-lengths" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Vector arithmetic
+with vectors of unequal lengths</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudCA8LSBjKDEsMiwzLDQpXG50XG5gYGAifQ== -->
+<pre class="r"><code>t &lt;- c(1,2,3,4)
+t</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMiAzIDRcbiJ9 -->
+<pre><code>[1] 1 2 3 4</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudCt1XG5gYGAifQ== -->
+<pre class="r"><code>t+u</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiB0ICsgdSA6XG4gIGxvbmdlciBvYmplY3QgbGVuZ3RoIGlzIG5vdCBhIG11bHRpcGxlIG9mIHNob3J0ZXIgb2JqZWN0IGxlbmd0aFxuIn0= -->
+<pre><code>Warning in t + u :
+  longer object length is not a multiple of shorter object length</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMgNiA5IDZcbiJ9 -->
+<pre><code>[1] 3 6 9 6</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudS10XG5gYGAifQ== -->
+<pre class="r"><code>u-t</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiB1IC0gdCA6XG4gIGxvbmdlciBvYmplY3QgbGVuZ3RoIGlzIG5vdCBhIG11bHRpcGxlIG9mIHNob3J0ZXIgb2JqZWN0IGxlbmd0aFxuIn0= -->
+<pre><code>Warning in u - t :
+  longer object length is not a multiple of shorter object length</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAxICAyICAzIC0yXG4ifQ== -->
+<pre><code>[1]  1  2  3 -2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudSp0XG5gYGAifQ== -->
+<pre class="r"><code>u*t</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiB1ICogdCA6XG4gIGxvbmdlciBvYmplY3QgbGVuZ3RoIGlzIG5vdCBhIG11bHRpcGxlIG9mIHNob3J0ZXIgb2JqZWN0IGxlbmd0aFxuIn0= -->
+<pre><code>Warning in u * t :
+  longer object length is not a multiple of shorter object length</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAyICA4IDE4ICA4XG4ifQ== -->
+<pre><code>[1]  2  8 18  8</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudCp1XG5gYGAifQ== -->
+<pre class="r"><code>t*u</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiB0ICogdSA6XG4gIGxvbmdlciBvYmplY3QgbGVuZ3RoIGlzIG5vdCBhIG11bHRpcGxlIG9mIHNob3J0ZXIgb2JqZWN0IGxlbmd0aFxuIn0= -->
+<pre><code>Warning in t * u :
+  longer object length is not a multiple of shorter object length</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAyICA4IDE4ICA4XG4ifQ== -->
+<pre><code>[1]  2  8 18  8</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudS90XG5gYGAifQ== -->
+<pre class="r"><code>u/t</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiB1L3QgOlxuICBsb25nZXIgb2JqZWN0IGxlbmd0aCBpcyBub3QgYSBtdWx0aXBsZSBvZiBzaG9ydGVyIG9iamVjdCBsZW5ndGhcbiJ9 -->
+<pre><code>Warning in u/t :
+  longer object length is not a multiple of shorter object length</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIuMCAyLjAgMi4wIDAuNVxuIn0= -->
+<pre><code>[1] 2.0 2.0 2.0 0.5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="the-selection-function---which" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> The Selection Function
+- “which”</h1>
+<div id="logical-symbols" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Logical symbols</h2>
+<p>== equal to &gt; greater than &lt; less than &gt;= greater than or
+equal to &lt;= less than of equal to != not equal to</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU3ltYm9sIDwtIGMoXCI9PVwiLFwiPlwiLFwiPFwiLFwiPj1cIixcIjw9XCIsXCIhPVwiKVxuICBTdGF0ZW1lbnQgPC0gYyhcImVxdWFsIHRvXCIsXCJncmVhdGVyIHRoYW5cIixcImxlc3MgdGhhblwiLFwiZ3JlYXRlciB0aGFuIGVxdWFsIHRvXCIsXCJsZXNzIHRoYW4gZXF1YWwgdG9cIixcIm5vdCBlcXVhbCB0b1wiKVxua25pdHI6OmthYmxlKFxuICBkYXRhLmZyYW1lKFN5bWJvbCxTdGF0ZW1lbnQpLFxuICBjYXB0aW9uID0gJ0xvZ2ljYWwgc3ltYm9scyBpbiBSJ1xuKVxuYGBgIn0= -->
+<pre class="r"><code>Symbol &lt;- c(&quot;==&quot;,&quot;&gt;&quot;,&quot;&lt;&quot;,&quot;&gt;=&quot;,&quot;&lt;=&quot;,&quot;!=&quot;)
+  Statement &lt;- c(&quot;equal to&quot;,&quot;greater than&quot;,&quot;less than&quot;,&quot;greater than equal to&quot;,&quot;less than equal to&quot;,&quot;not equal to&quot;)
+knitr::kable(
+  data.frame(Symbol,Statement),
+  caption = &#39;Logical symbols in R&#39;
+)</code></pre>
+<!-- rnb-source-end -->
+
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<caption>Logical symbols in R</caption>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">==</td>
+<td align="left">equal to</td>
+</tr>
+<tr class="even">
+<td align="left">&gt;</td>
+<td align="left">greater than</td>
+</tr>
+<tr class="odd">
+<td align="left">&lt;</td>
+<td align="left">less than</td>
+</tr>
+<tr class="even">
+<td align="left">&gt;=</td>
+<td align="left">greater than equal to</td>
+</tr>
+<tr class="odd">
+<td align="left">&lt;=</td>
+<td align="left">less than equal to</td>
+</tr>
+<tr class="even">
+<td align="left">!=</td>
+<td align="left">not equal to</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="returning-vector-indices-on-condition" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Returning vector
+indices on condition</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueT41MFxuYGBgIn0= -->
+<pre class="r"><code>y&gt;50</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSAgVFJVRSAgVFJVRSAgVFJVRSAgVFJVRVxuWzExXSAgVFJVRSAgVFJVRVxuIn0= -->
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+[11]  TRUE  TRUE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="which-function---logical" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> ‘which’ function -
+logical</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2hpY2goeT41MClcbmBgYCJ9 -->
+<pre class="r"><code>which(y&gt;50)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICA3ICA4ICA5IDEwIDExIDEyXG4ifQ== -->
+<pre><code>[1]  7  8  9 10 11 12</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="returning-values-that-satisfy-condition" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> returning values that
+satisfy condition</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueVt3aGljaCh5PjUwKV1cbmBgYCJ9 -->
+<pre class="r"><code>y[which(y&gt;50)]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICA1NSAgNjQgIDczICA4MiAgOTEgMTAwXG4ifQ== -->
+<pre><code>[1]  55  64  73  82  91 100</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2Vla1xuYGBgIn0= -->
+<pre class="r"><code>week</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibW9uXCIgXCJ0dWVcIiBcIndlZFwiIFwidGh1XCIgXCJmcmlcIiBcInNhdFwiIFwic3VuXCJcbiJ9 -->
+<pre><code>[1] &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2hpY2god2VlayA9PSBcInRodVwiKVxuYGBgIn0= -->
+<pre class="r"><code>which(week == &quot;thu&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDRcbiJ9 -->
+<pre><code>[1] 4</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="test-for-divisibility" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Test for
+Divisibility</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueVxuYGBgIn0= -->
+<pre class="r"><code>y</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgIDEgIDEwICAxOSAgMjggIDM3ICA0NiAgNTUgIDY0ICA3MyAgODIgIDkxIDEwMFxuIn0= -->
+<pre><code> [1]   1  10  19  28  37  46  55  64  73  82  91 100</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueSUlMlxuYGBgIn0= -->
+<pre class="r"><code>y%%2</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAxIDAgMSAwIDEgMCAxIDAgMSAwIDEgMFxuIn0= -->
+<pre><code> [1] 1 0 1 0 1 0 1 0 1 0 1 0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="finding-even-values" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> finding even
+values</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2hpY2goeSUlMj09MClcbmBgYCJ9 -->
+<pre class="r"><code>which(y%%2==0)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAyICA0ICA2ICA4IDEwIDEyXG4ifQ== -->
+<pre><code>[1]  2  4  6  8 10 12</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueVt3aGljaCh5JSUyPT0wKV1cbmBgYCJ9 -->
+<pre class="r"><code>y[which(y%%2==0)]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAxMCAgMjggIDQ2ICA2NCAgODIgMTAwXG4ifQ== -->
+<pre><code>[1]  10  28  46  64  82 100</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="any-and-all" class="section level2" number="5.7">
+<h2><span class="header-section-number">5.7</span> any and all</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW55KHk+NTApXG5gYGAifQ== -->
+<pre class="r"><code>any(y&gt;50)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
+<pre><code>[1] TRUE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsKHk+NTApXG5gYGAifQ== -->
+<pre class="r"><code>all(y&gt;50)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIEZBTFNFXG4ifQ== -->
+<pre><code>[1] FALSE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="if-else" class="section level2" number="5.8">
+<h2><span class="header-section-number">5.8</span> if else</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaWZlbHNlKHkgPjUwLCBcInllc1wiLFwibm9cIilcbmBgYCJ9 -->
+<pre class="r"><code>ifelse(y &gt;50, &quot;yes&quot;,&quot;no&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIm5vXCIgIFwibm9cIiAgXCJub1wiICBcIm5vXCIgIFwibm9cIiAgXCJub1wiICBcInllc1wiIFwieWVzXCIgXCJ5ZXNcIiBcInllc1wiXG5bMTFdIFwieWVzXCIgXCJ5ZXNcIlxuIn0= -->
+<pre><code> [1] &quot;no&quot;  &quot;no&quot;  &quot;no&quot;  &quot;no&quot;  &quot;no&quot;  &quot;no&quot;  &quot;yes&quot; &quot;yes&quot; &quot;yes&quot; &quot;yes&quot;
+[11] &quot;yes&quot; &quot;yes&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiAxIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KW1ZpZXcgdGhpcyBwYWdlIGluIGEgYnJvd3Nlcl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDEubmIuaHRtbCkNCg0KUiBpcyBhIGEgdmVyeSBwb3dlcmZ1bCBwcm9ncmFtbWluZyBsYW5ndWFnZSB3aXRoIGEgZm9jdXMgb24gc3RhdGlzdGljYWwgYW5hbHlzaXMgKGllLiBzdHJ1Y3R1cmVkIGRhdGEpLiBJdCBpcyBhbHNvIGFibGUgdG8gcHJvZHVjZSB2ZXJ5IG5lYXQgYW5kIGN1c3RvbWlzYWJsZSBjaGFydHMuIFIgaXMgT3BlbiBTb3VyY2UgYW5kIHRoaXMgbWVhbnMgaXQgaXMgZnJlZSBhbmQgJ2ZyZWUnLiBBbmQgdGhhdCB0aGVyZSBhcmUgbWFueSBkZXZlbG9wZXJzIHdobyBhcmUgY29uc3RhbnRseSB3b3JraW5nIHZvbHVudGFyaWx5IHRvIGltcHJvdmUgdGhlIHRvb2xzIGZvciBSLg0KDQpBIGZpcnN0IGluc3RhbGxhdGlvbiBvZiBSIGNvbWVzIHdpdGggYSBzZXQgb2Ygc3RhbmRhcmQgcGFja2FnZXMgYW5kIGNvbW1hbmRzLiBIb3dldmVyLCBiZXlvbmQgdGhpcyBSIGhhcyBhbG1vc3QgMTAsMDAwIHBhY2thZ2VzIHRoYXQgY2FuIGJlIHVzZWQgZm9yIHZhcmlvdXMgcHJvZ3JhbW1pbmcgdGFzay4gVGhlc2UgcGFja2FnZXMgYXJlIG1vc3RseSBob3N0ZWQgb24gQ1JBTiBhbmQgY2FuIGJlIGluc3RhbGxlZCB0aHJvdWdoIFJTdHVkaW8uIEdpdmVuIHRoZXNlIHBhY2thZ2VzIFIgY2FuIHBlcmZvcm0gYSB3aWRlIHJhbmdlIG9mIHRhc2tzIHRoYXQgYXJlIHJlbGV2YW50IGZvciBodW1hbml0aWVzIHNjaG9sYXJzIChpZS4gdW5zdHJ1Y3R1cmVkIGRhdGEpLg0KDQojIEdldHRpbmcgc3RhcnRlZDogSW5zdGFsbGF0aW9uDQoNCkZvciB0aGUgcHVycG9zZSBvZiB0aGlzIHR1dG9yaWFsIHdlIHdpbGwgd29yayBvbiBSU3R1ZGlvDQoNCkRlcGVuZGluZyBvbiB0aGUgc3lzdGVtIHRoYXQgeW91IGFyZSB3b3JraW5nIG9uIHlvdSBuZWVkIHRvIGVuc3VyZSB0aGF0IHlvdSBoYXZlIGluc3RhbGxlZCBSIGFzIHdlbGwgYXMgUlN0dWRpby4gSWYgeW91IGFyZSB3b3JraW5nIG9uIGEgTGludXggc3lzdGVtLCBpbiBhbGwgcHJvYmFiaWxpdHksIHlvdXIgY29tcHV0ZXIgY29tZXMgZXF1aXBwZWQgd2l0aCBSLiBCdXQgeW91IHdvdWxkIHN0aWxsIG5lZWQgdG8gaW5zdGFsbCBSU3R1ZGlvLg0KDQpZb3UgY2FuIGZpbmQgYSBsb3Qgb2YgaGVscCBmb3IgaW5zdGFsbGF0aW9uIG9mIFIgYW5kIFJTdHVkaW8uIEhlcmUgaXMgb25lIGh0dHBzOi8vdGVjaHZpZHZhbi5jb20vdHV0b3JpYWxzL2luc3RhbGwtci8gDQoNCk9uY2UgaW5zdGFsbGVkLCBsYXVuY2ggUlN0dWRpbyBhbmQgc3R1ZHkgdGhlIGludGVyZmFjZS4NCg0KIyBSU3R1ZGlvIEludGVyZmFjZQ0KDQpodHRwczovL2hiY3RyYWluaW5nLmdpdGh1Yi5pby9JbnRyby10by1SL2ltZy9Sc3R1ZGlvX2ludGVyZmFjZS5wbmcNCg0KVGhlIFJTdHVkaW8gaW50ZXJmYWNlIGhhcyBmb3VyIG1haW4gcGFuZWxzOg0KDQoqKkNvbnNvbGUqKjogd2hlcmUgeW91IGNhbiB0eXBlIGNvbW1hbmRzIGFuZCBzZWUgb3V0cHV0LiBUaGUgY29uc29sZSBpcyBhbGwgeW91IHdvdWxkIHNlZSBpZiB5b3UgcmFuIFIgaW4gdGhlIGNvbW1hbmQgbGluZSB3aXRob3V0IFJTdHVkaW8uDQogICAgDQoqKlNjcmlwdCBlZGl0b3IqKjogd2hlcmUgeW91IGNhbiB0eXBlIG91dCBjb21tYW5kcyBhbmQgc2F2ZSB0byBmaWxlLiBZb3UgY2FuIGFsc28gc3VibWl0IHRoZSBjb21tYW5kcyB0byBydW4gaW4gdGhlIGNvbnNvbGUuDQogICAgDQoqKkVudmlyb25tZW50L0hpc3RvcnkqKjogZW52aXJvbm1lbnQgc2hvd3MgYWxsIGFjdGl2ZSBvYmplY3RzIGFuZCBoaXN0b3J5IGtlZXBzIHRyYWNrIG9mIGFsbCBjb21tYW5kcyBydW4gaW4gY29uc29sZQ0KICAgIA0KKipGaWxlcy9QbG90cy9QYWNrYWdlcy9IZWxwKioNCg0KDQojIFdvcmtpbmcgZGlyZWN0b3J5DQoNCiMjIFZpZXdpbmcgeW91ciB3b3JraW5nIGRpcmVjdG9yeQ0KDQpCZWZvcmUgd2Ugb3JnYW5pemUgb3VyIHdvcmtpbmcgZGlyZWN0b3J5LCBsZXTigJlzIGNoZWNrIHRvIHNlZSB3aGVyZSBvdXIgY3VycmVudCB3b3JraW5nIGRpcmVjdG9yeSBpcyBsb2NhdGVkIGJ5IHR5cGluZyBpbnRvIHRoZSBjb25zb2xlOg0KDQpgYGB7cn0NCmdldHdkKCkNCmBgYA0KDQojIyBSdW5uaW5nIGNvZGUgb24gUg0KDQpUbyBydW4gYSBzaW5nbGUgbGluZSBvZiBjb2RlIHlvdSBjYW4gcGxhY2UgdGhlIGN1cnNvciBpbiB0aGF0IGxpbmUgYW5kIGNsaWNrIEN0cmwrRW50ZXINClRvIHJ1biBhIGNodWNrIG9mIGNvZGUsIGhpZ2hsaWdodCB0aGF0IGNodW5jayAoc2V0IG9mIGxpbmVzKSBhbmQgY2xpY2sgQ3RybCtFbnRlcg0KVG8gcnVuIHRoZSBlbnRpcmUgY29kZSB5b3UgY2FuIGNsaWNrIHRoZSAiUnVuIiBidXR0b24gaW4gdGhlIFNjcmlwdCBlZGl0b3IuDQoNCg0KIyMgU2V0dGluZyB3b3JraW5nIGRpcmVjdG9yeQ0KWW91ciBpbnN0YWxsYXRpb24gd2lsbCBoYXZlIGEgZGVmYXVsdCB3b3JraW5nIGRpcmVjdG9yeSBmb3IgUi4gQnV0IHlvdSBtYXkgd2FudCB0byBwb2ludCB5b3VyIFIgc2Vzc2lvbiB0byBhIHBhcnRpY3VsYXIgd29ya2luZyBkaXJlY3Rvcnkgb3IgZm9sZGVyIHNvIHRoYXQgYWxsIHNjcmlwdHMgYW5kIG91dHB1dCBnZXRzIHNhdmVkIGF0IGEgY29udmVuaWVudCBsb2NhdGlvbi4gWW91IGNhbiBpbiB0d28gd2F5cy4NCg0KWW91IGNhbiBkbyBpdCB0aHJvdWdoIHRoZSBHVUkgLSBTZXNzaW9uID4gU2V0IHdvcmtpbmcgZGlyZWN0b3J5ID4gQ2hvb3NlIGRpcmVjdG9yeQ0KDQpUaGUgd29ya2luZyBkaXJlY3Rvcnkgd2lsbCBnZXQgcmVzZXQgZWFjaCB0aW1lIHlvdSBzdGFydCBhIG5ldyBzZXNzaW9uLiBJZiB5b3Ugd2FudCB0aGF0IGEgc2NyaXB0IHNob3VsZCBydW4gaW4gYSBwYXJ0aWN1bGFyIGRpcmVjdG9yeSB5b3UgY2FuIHdyaXRlIGEgbGluZSBvZiBjb2RlIHRvIHBvaW50IHRvIGEgcGFydGljdWxhciBkaXJlY3Rvcnkgb24geW91ciBjb21wdXRlci4NCg0KYGBge3J9DQpzZXR3ZCgiQzovVXNlcnMvSFAvRG93bmxvYWRzL1Jub3RlYm9vayIpDQpgYGANCg0KTWFrZSBzdXJlIHRoYXQgeW91IHNldCB0aGUgdXJsIG9mIHlvdXIgY2hvaWNlLg0KDQpOb3cgd2UgYXJlIHJlYWR5IHRvIHN0YXJ0IG91ciBmaXJzdCBSIG9wZXJhdGlvbnMNCg0KIyBCYXNpYyBvcGVyYXRpb25zDQoNCiMjIHNpbXBsZSBhcml0aG1ldGljIG9wZXJhdGlvbnMNCg0KYGBge3J9DQoxKzENCmBgYA0KDQoNCiMjIGNvbW1lbnRpbmcNCg0KIyMgcHJpbnQgZnVuY3Rpb24NCmBgYHtyfQ0KcHJpbnQoMSsxKQ0KYGBgDQoNCg0KIyMgaW52b2tpbmcgaGVscA0KDQp0eXBlICI/IiBmb2xsb3dlZCBieSB0aGUgZnVuY3Rpb24gaW4gdGhlIENvbnNvbGUuIFRoZSBIZWxwIHRvcGljIHdpbGwgYmUgZGlzcGxheWVkIGluIHRoZSBib3R0b20gcmlnaHQtaGFuZCBib3guDQoNCmBgYHtyfQ0KP3ByaW50DQpgYGANCg0KIyMgcHJpbnRpbmcgc3RyaW5ncw0KYGBge3J9DQpwcmludCgid29ya3Nob3AiKQ0KYGBgDQoNCg0KIyBWYXJpYWJsZXMNCg0KIyMgaW52b2tpbmcgYW5kIGFzc2lnbmluZyB2YXJpYWJsZSBhbmQgdmFsdWUNCg0KYGBge3J9DQphIDwtIDEwMDANCmBgYA0KDQoNCiMjcmVhc3NpZ25pbmcgdmFsdWUgdG8gYSB2YXJpYWJsZQ0KDQpgYGB7cn0NCmEgPC0gMjAwMA0KYGBgDQoNCg0KIyMgcHJpbnRpbmcgdmFyaWFibGVzDQoNCmBgYHtyfQ0KcHJpbnQoYSkNCmBgYA0KDQoNCiMjIGFzc2lnbmluZyBzdHJpbmdzIHRvIHZhcmlhYmxlcw0KDQpgYGB7cn0NCmIgPC0gIndvcmtzaG9wIg0KYGBgDQoNCg0KIyMgdmFyaWFibGVzIGNhbiBiZSBhbHBoYW51bWVyaWMNCg0KYGBge3J9DQpoaWppYmlqaTMwMCA8LSAid29ya3Nob3AiDQpwcmludChoaWppYmlqaTMwMCkNCmBgYA0KDQoNCiMjIHZhcmlhYmxlcyBuZWVkIHRvIGJlIGNvbnRpZ3VvdXMNCg0KYGBge3J9DQphbiBhcHBsZSA8LSAyMyAjcHJvZHVjZXMgZXJyb3JzDQpgYGANCg0KYGBge3J9DQpnZXRBcHBsZXMgPC0gMjMNCmdldEFwcGxlcw0KYGBgDQoNCg0KIyMgdXNlIG1lYW5pbmdmdWwgdmFyaWFibGVzDQoNCmBgYHtyfQ0KZ2V0QmFuYW5hcyA8LSAibnV0cyINCg0KYGBgDQoNCg0KIyMgc3R1ZHkgc3RydWN0dXJlIG9mIGEgdmFsdWUNCg0KYGBge3J9DQpzdHIoZ2V0QmFuYW5hcykNCmBgYA0KDQoNCltHbyB0byBMZXNzb24gMl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwMi5odG1sKQ0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiAyIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQoNCi0tLQ0KDQpbVmlldyB0aGlzIHBhZ2UgaW4gYSBicm93c2VyXShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczAyLmh0bWwpDQoNCltHbyB0byBMZXNzb24gMV0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDEubmIuaHRtbCkNCg0KIyBWZWN0b3JzDQoNCiMjIE51bWVyaWNhbCB2ZWN0b3JzDQpgYGB7cn0NCm1hcmNoIDwtIGMoMSwyLDMsNCw1LDYsNyw4KQ0Kc3RyKG1hcmNoKQ0KcHJpbnQobWFyY2gpDQpgYGANCg0KDQojIyBTdHJpbmcgdmVjdG9ycw0KDQpgYGB7cn0NCndlZWsgPC0gYygibW9uIiwidHVlIiwid2VkIiwidGh1IiwiZnJpIiwic2F0Iiwic3VuIikNCnN0cih3ZWVrKQ0Kd2Vlaw0KYGBgDQoNCg0KIyMgVmVjdG9yIHZhbHVlcyBjYW4gZWl0aGVyIG51bWVyaWMgb3Igc3RyaW5nDQoNCmBgYHtyfQ0KbWlzbWF0Y2ggPC0gYygxLCJvbmUiKQ0KcHJpbnQobWlzbWF0Y2gpDQpgYGANCg0KDQojIyBzb3J0IGZ1bmN0aW9uDQoNCmBgYHtyfQ0Kc29ydCh3ZWVrKQ0KYGBgDQoNCiMjIHNvcnQgaW4gZGVzY2VuZGluZyBvcmRlcg0KDQpgYGB7cn0NCnNvcnQod2VlaywgZGVjcmVhc2luZyA9IFRSVUUpDQpgYGANCg0KIyBWYXJpb3VzIG1ldGhvZHMgb2YgY3JlYXRpbmcgdmVjdG9ycw0KDQojIyBTcGVjaWZ5aW5nIHRoZSB2ZWN0b3IgZWxlbWVudHMNCmBgYHtyfQ0KeCA8LSBjKDEsMyw1KQ0KeA0KYGBgDQojIyBTcGVjaWZ5aW5nIGEgcmFuZ2UNCmBgYHtyfQ0KeTwtIGMoMTo1KQ0KeQ0KYGBgDQoNCiMjIEFkZGluZyB2YWx1ZXMgdG8gYSB2ZWN0b3INCg0KYGBge3J9DQp4IDwtIGMoeCw2LDcpDQp4DQpgYGANCg0KIyMgQXBwZW5kIHZhbHVlIGluIGJldHdlZW4gdmVjdG9yIHZhbHVlcw0KDQpgYGB7cn0NCnggPC0gYXBwZW5kKHgsOCwyKQ0KeA0KeiA8LSBhcHBlbmQoeCxjKDEwMCwyMDApLDUpDQp6DQpgYGANCg0KIyMgQXBwZW5kaW5nIGNoYXJhY3RlciB2YWx1ZSB0byBudW1lcmljYWwgdmVjdG9yDQoNCmBgYHtyfQ0KeCA8LSBhcHBlbmQoeCwgImJhZCIpDQp4DQpgYGANCg0KIyMgQ3JlYXRpbmcgdmVjdG9yIHRocm91Z2ggc2VxdWVuY2UNCg0KYGBge3J9DQp5IDwtIHNlcSgxLDEwMCwgYnkgPSA1KQ0KeQ0KYGBgDQpgYGB7cn0NCnkgPC0gc2VxKDEsMTAwLCBieSA9ICgzKjMpKQ0KeQ0KYGBgDQoNCg0KIyMgQ3JlYXRpbmcgdmVjdG9yIGJ5IGRpdmlzaW9uDQoNCmBgYHtyfQ0KZiA8LSBzZXEoMSwxMDAsIGxlbmd0aD0gMjUpDQpmDQpgYGANCmBgYHtyfQ0KZiA8LSBzZXEoMSw1MCwgbGVuZ3RoPTYpDQpmDQpgYGANCg0KIyBWZWN0b3IgaW5kaWNlcw0KDQojIyBGZXRjaGluZyB2YWx1ZXMgYnkgaW5kZXgNCg0KYGBge3J9DQp5DQp6IDwtIGMoMSwzLDUpDQp5W3pdDQpgYGANCiMjIEZldGNoaW5nIGludmVyc2UgaW5kaWNlcw0KDQpgYGB7cn0NCnlbLTFdDQp5Wy16XQ0KYGBgDQoNCiMgVmVjdG9yIGFyaXRobWV0aWMNCg0KIyMgVmVjdG9yIGFyaXRobWV0aWMgd2l0aCB2ZWN0b3JzIG9mIGVxdWFsIGxlbmd0aHMNCg0KYGBge3J9DQp1IDwtIGMoMiw0LDYpDQp1DQp6DQpgYGANCmBgYHtyfQ0Keit1DQpgYGANCmBgYHtyfQ0KdS16DQpgYGANCmBgYHtyfQ0KdSp6DQpgYGANCmBgYHtyfQ0KdS96DQpgYGANCiMjIFZlY3RvciBhcml0aG1ldGljIHdpdGggdmVjdG9ycyBvZiB1bmVxdWFsIGxlbmd0aHMNCg0KYGBge3J9DQp0IDwtIGMoMSwyLDMsNCkNCnQNCmBgYA0KYGBge3J9DQp0K3UNCmBgYA0KDQpgYGB7cn0NCnUtdA0KYGBgDQoNCmBgYHtyfQ0KdSp0DQpgYGANCg0KYGBge3J9DQp0KnUNCmBgYA0KDQpgYGB7cn0NCnUvdA0KYGBgDQoNCiMgVGhlIFNlbGVjdGlvbiBGdW5jdGlvbiAtICJ3aGljaCINCg0KIyMgTG9naWNhbCBzeW1ib2xzIA0KPT0gIGVxdWFsIHRvDQo+ICAgZ3JlYXRlciB0aGFuDQo8ICAgbGVzcyB0aGFuDQo+PSAgZ3JlYXRlciB0aGFuIG9yIGVxdWFsIHRvDQo8PSAgbGVzcyB0aGFuIG9mIGVxdWFsIHRvDQohPSAgbm90IGVxdWFsIHRvDQoNCmBgYHtyfQ0KU3ltYm9sIDwtIGMoIj09IiwiPiIsIjwiLCI+PSIsIjw9IiwiIT0iKQ0KICBTdGF0ZW1lbnQgPC0gYygiZXF1YWwgdG8iLCJncmVhdGVyIHRoYW4iLCJsZXNzIHRoYW4iLCJncmVhdGVyIHRoYW4gZXF1YWwgdG8iLCJsZXNzIHRoYW4gZXF1YWwgdG8iLCJub3QgZXF1YWwgdG8iKQ0Ka25pdHI6OmthYmxlKA0KICBkYXRhLmZyYW1lKFN5bWJvbCxTdGF0ZW1lbnQpLA0KICBjYXB0aW9uID0gJ0xvZ2ljYWwgc3ltYm9scyBpbiBSJw0KKQ0KYGBgDQoNCiMjIFJldHVybmluZyB2ZWN0b3IgaW5kaWNlcyBvbiBjb25kaXRpb24NCg0KYGBge3J9DQp5PjUwDQpgYGANCg0KIyMgJ3doaWNoJyBmdW5jdGlvbiAtIGxvZ2ljYWwNCg0KYGBge3J9DQp3aGljaCh5PjUwKQ0KYGBgDQoNCg0KIyMgcmV0dXJuaW5nIHZhbHVlcyB0aGF0IHNhdGlzZnkgY29uZGl0aW9uDQoNCmBgYHtyfQ0KeVt3aGljaCh5PjUwKV0NCmBgYA0KYGBge3J9DQp3ZWVrDQp3aGljaCh3ZWVrID09ICJ0aHUiKQ0KYGBgDQoNCg0KIyMgVGVzdCBmb3IgRGl2aXNpYmlsaXR5DQoNCmBgYHtyfQ0KeQ0KeSUlMg0KYGBgDQoNCg0KIyMgZmluZGluZyBldmVuIHZhbHVlcw0KDQpgYGB7cn0NCndoaWNoKHklJTI9PTApDQpgYGANCg0KYGBge3J9DQp5W3doaWNoKHklJTI9PTApXQ0KYGBgDQoNCg0KIyMgYW55IGFuZCBhbGwNCg0KYGBge3J9DQphbnkoeT41MCkNCmBgYA0KDQpgYGB7cn0NCmFsbCh5PjUwKQ0KYGBgDQoNCg0KIyMgaWYgZWxzZQ0KDQpgYGB7cn0NCmlmZWxzZSh5ID41MCwgInllcyIsIm5vIikNCmBgYA0KDQoNCg0K</div>
 
 
 
@@ -2060,7 +2412,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("RforHumanities01.Rmd");
+  window.initializeSourceEmbed("RforHumanities02.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
