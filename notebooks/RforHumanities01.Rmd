@@ -108,7 +108,7 @@ a <- 1000
 ```
 
 
-##reassigning value to a variable
+## reassigning value to a variable
 
 ```{r}
 a <- 2000
