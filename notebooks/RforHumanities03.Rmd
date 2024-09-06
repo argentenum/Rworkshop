@@ -5,6 +5,12 @@ output:
     number_sections: true
 ---
 
+[View this page in a browser](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities03.nb.html)
+
+[Go to Lesson 2](https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities02.nb.html)
+
+
+
 #creating list
 marchList <- list(march, week)
 #lists can have text and string vectors
