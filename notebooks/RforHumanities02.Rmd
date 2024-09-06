@@ -107,6 +107,12 @@ f
 f <- seq(1,50, length=6)
 f
 ```
+# vector length
+
+```{r}
+length(y)
+```
+
 
 # Vector indices
 

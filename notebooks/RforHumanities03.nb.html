@@ -1756,11 +1756,42 @@ display: none;
 this page in a browser</a></p>
 <p><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities02.nb.html">Go
 to Lesson 2</a></p>
-<p>#creating list marchList &lt;- list(march, week) #lists can have text
-and string vectors #lists can have vectors of unequal lengths
-str(marchList) #finding length of list gives the number of columns
-length(marchList) #use unlist function to merge columns into single
-vector unlist(marchList) #index a vector week[3] week[2:4] #index a list
+<div id="creating-list" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> creating list</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2ggPC0gYygxLDIsMyw0LDUsNiw3LDgpXG53ZWVrIDwtIGMoXCJtb25cIixcInR1ZVwiLFwid2VkXCIsXCJ0aHVcIixcImZyaVwiLFwic2F0XCIsXCJzdW5cIilcbm1hcmNoTGlzdCA8LSBsaXN0KG1hcmNoLCB3ZWVrKVxubWFyY2hMaXN0XG5gYGAifQ== -->
+<pre class="r"><code>march &lt;- c(1,2,3,4,5,6,7,8)
+week &lt;- c(&quot;mon&quot;,&quot;tue&quot;,&quot;wed&quot;,&quot;thu&quot;,&quot;fri&quot;,&quot;sat&quot;,&quot;sun&quot;)
+marchList &lt;- list(march, week)
+marchList</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSAxIDIgMyA0IDUgNiA3IDhcblxuW1syXV1cblsxXSBcIm1vblwiIFwidHVlXCIgXCJ3ZWRcIiBcInRodVwiIFwiZnJpXCIgXCJzYXRcIiBcInN1blwiXG4ifQ== -->
+<pre><code>[[1]]
+[1] 1 2 3 4 5 6 7 8
+
+[[2]]
+[1] &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>lists can have text and string vectors lists can have vectors of
+unequal lengths</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG1hcmNoTGlzdClcbmBgYCJ9 -->
+<pre class="r"><code>str(marchList)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAyXG4gJCA6IG51bSBbMTo4XSAxIDIgMyA0IDUgNiA3IDhcbiAkIDogY2hyIFsxOjddIFwibW9uXCIgXCJ0dWVcIiBcIndlZFwiIFwidGh1XCIgLi4uXG4ifQ== -->
+<pre><code>List of 2
+ $ : num [1:8] 1 2 3 4 5 6 7 8
+ $ : chr [1:7] &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>#finding length of list gives the number of columns length(marchList)
+#use unlist function to merge columns into single vector
+unlist(marchList) #index a vector week[3] week[2:4] #index a list
 marchList[1] length(marchList) length(marchList[1])
 length(unlist(marchList)) #creating dataframe marchFrame &lt;-
 data.frame(march,week) #vectors have to be of equal length marchFrame
@@ -1777,8 +1808,9 @@ the first column giving #the names of every month in a year and the
 second #column giving the corresponding number of days #in each
 month.</p>
 <!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiAzIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KW1ZpZXcgdGhpcyBwYWdlIGluIGEgYnJvd3Nlcl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwMy5uYi5odG1sKQ0KDQpbR28gdG8gTGVzc29uIDJdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczAyLm5iLmh0bWwpDQoNCg0KDQojY3JlYXRpbmcgbGlzdA0KbWFyY2hMaXN0IDwtIGxpc3QobWFyY2gsIHdlZWspDQojbGlzdHMgY2FuIGhhdmUgdGV4dCBhbmQgc3RyaW5nIHZlY3RvcnMNCiNsaXN0cyBjYW4gaGF2ZSB2ZWN0b3JzIG9mIHVuZXF1YWwgbGVuZ3Rocw0Kc3RyKG1hcmNoTGlzdCkNCiNmaW5kaW5nIGxlbmd0aCBvZiBsaXN0IGdpdmVzIHRoZSBudW1iZXIgb2YgY29sdW1ucw0KbGVuZ3RoKG1hcmNoTGlzdCkNCiN1c2UgdW5saXN0IGZ1bmN0aW9uIHRvIG1lcmdlIGNvbHVtbnMgaW50byBzaW5nbGUgdmVjdG9yDQp1bmxpc3QobWFyY2hMaXN0KQ0KI2luZGV4IGEgdmVjdG9yDQp3ZWVrWzNdDQp3ZWVrWzI6NF0NCiNpbmRleCBhIGxpc3QNCm1hcmNoTGlzdFsxXQ0KbGVuZ3RoKG1hcmNoTGlzdCkNCmxlbmd0aChtYXJjaExpc3RbMV0pDQpsZW5ndGgodW5saXN0KG1hcmNoTGlzdCkpDQojY3JlYXRpbmcgZGF0YWZyYW1lDQptYXJjaEZyYW1lIDwtIGRhdGEuZnJhbWUobWFyY2gsd2VlaykNCiN2ZWN0b3JzIGhhdmUgdG8gYmUgb2YgZXF1YWwgbGVuZ3RoDQptYXJjaEZyYW1lIDwtIGRhdGEuZnJhbWUobWFyY2hbMTo3XSx3ZWVrKQ0Kc3RyKG1hcmNoRnJhbWUpDQojaW5kZXhpbmcgZGF0YWZyYW1lDQptYXJjaEZyYW1lWzJdDQptYXJjaEZyYW1lJHdlZWsNCnN0cihtYXJjaEZyYW1lWzJdKQ0KbGVuZ3RoKG1hcmNoRnJhbWUpDQpsZW5ndGgobWFyY2hGcmFtZVsyXSkNCmxlbmd0aChtYXJjaEZyYW1lJHdlZWspDQptYXJjaEZyYW1lWzQsMl0NCm5hbWVzKG1hcmNoRnJhbWUpDQpuYW1lcyhtYXJjaEZyYW1lKSA8LSBjKCJPcmRlciIsIkRheXMgb2YgdGhlIFdlZWsiKQ0Kcm93bmFtZXMobWFyY2hGcmFtZSkNCnJvd25hbWVzKG1hcmNoRnJhbWUpIDwtIGMoInNvbSIsIm1hbiIsImJ1ZCIsImd1ciIsDQogICAgICAgICAgICAgICAgICAgICAgICAgICJzdWsiLCJzaGEiLCJyYXYiKQ0KI0NyZWF0ZSBhIGRhdGFmcmFtZSB3aXRoIHRoZSBmaXJzdCBjb2x1bW4gZ2l2aW5nIA0KI3RoZSBuYW1lcyBvZiBldmVyeSBtb250aCBpbiBhIHllYXIgYW5kIHRoZSBzZWNvbmQgDQojY29sdW1uIGdpdmluZyB0aGUgY29ycmVzcG9uZGluZyBudW1iZXIgb2YgZGF5cyANCiNpbiBlYWNoIG1vbnRoLg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiAzIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KW1ZpZXcgdGhpcyBwYWdlIGluIGEgYnJvd3Nlcl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwMy5uYi5odG1sKQ0KDQpbR28gdG8gTGVzc29uIDJdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczAyLm5iLmh0bWwpDQoNCg0KDQojIGNyZWF0aW5nIGxpc3QNCg0KYGBge3J9DQptYXJjaCA8LSBjKDEsMiwzLDQsNSw2LDcsOCkNCndlZWsgPC0gYygibW9uIiwidHVlIiwid2VkIiwidGh1IiwiZnJpIiwic2F0Iiwic3VuIikNCm1hcmNoTGlzdCA8LSBsaXN0KG1hcmNoLCB3ZWVrKQ0KbWFyY2hMaXN0DQpgYGANCg0KbGlzdHMgY2FuIGhhdmUgdGV4dCBhbmQgc3RyaW5nIHZlY3RvcnMNCmxpc3RzIGNhbiBoYXZlIHZlY3RvcnMgb2YgdW5lcXVhbCBsZW5ndGhzDQoNCmBgYHtyfQ0Kc3RyKG1hcmNoTGlzdCkNCmBgYA0KDQoNCiNmaW5kaW5nIGxlbmd0aCBvZiBsaXN0IGdpdmVzIHRoZSBudW1iZXIgb2YgY29sdW1ucw0KbGVuZ3RoKG1hcmNoTGlzdCkNCiN1c2UgdW5saXN0IGZ1bmN0aW9uIHRvIG1lcmdlIGNvbHVtbnMgaW50byBzaW5nbGUgdmVjdG9yDQp1bmxpc3QobWFyY2hMaXN0KQ0KI2luZGV4IGEgdmVjdG9yDQp3ZWVrWzNdDQp3ZWVrWzI6NF0NCiNpbmRleCBhIGxpc3QNCm1hcmNoTGlzdFsxXQ0KbGVuZ3RoKG1hcmNoTGlzdCkNCmxlbmd0aChtYXJjaExpc3RbMV0pDQpsZW5ndGgodW5saXN0KG1hcmNoTGlzdCkpDQojY3JlYXRpbmcgZGF0YWZyYW1lDQptYXJjaEZyYW1lIDwtIGRhdGEuZnJhbWUobWFyY2gsd2VlaykNCiN2ZWN0b3JzIGhhdmUgdG8gYmUgb2YgZXF1YWwgbGVuZ3RoDQptYXJjaEZyYW1lIDwtIGRhdGEuZnJhbWUobWFyY2hbMTo3XSx3ZWVrKQ0Kc3RyKG1hcmNoRnJhbWUpDQojaW5kZXhpbmcgZGF0YWZyYW1lDQptYXJjaEZyYW1lWzJdDQptYXJjaEZyYW1lJHdlZWsNCnN0cihtYXJjaEZyYW1lWzJdKQ0KbGVuZ3RoKG1hcmNoRnJhbWUpDQpsZW5ndGgobWFyY2hGcmFtZVsyXSkNCmxlbmd0aChtYXJjaEZyYW1lJHdlZWspDQptYXJjaEZyYW1lWzQsMl0NCm5hbWVzKG1hcmNoRnJhbWUpDQpuYW1lcyhtYXJjaEZyYW1lKSA8LSBjKCJPcmRlciIsIkRheXMgb2YgdGhlIFdlZWsiKQ0Kcm93bmFtZXMobWFyY2hGcmFtZSkNCnJvd25hbWVzKG1hcmNoRnJhbWUpIDwtIGMoInNvbSIsIm1hbiIsImJ1ZCIsImd1ciIsDQogICAgICAgICAgICAgICAgICAgICAgICAgICJzdWsiLCJzaGEiLCJyYXYiKQ0KI0NyZWF0ZSBhIGRhdGFmcmFtZSB3aXRoIHRoZSBmaXJzdCBjb2x1bW4gZ2l2aW5nIA0KI3RoZSBuYW1lcyBvZiBldmVyeSBtb250aCBpbiBhIHllYXIgYW5kIHRoZSBzZWNvbmQgDQojY29sdW1uIGdpdmluZyB0aGUgY29ycmVzcG9uZGluZyBudW1iZXIgb2YgZGF5cyANCiNpbiBlYWNoIG1vbnRoLg0KDQo=</div>
 
 
 

@@ -11,11 +11,23 @@ output:
 
 
 
-#creating list
+# creating list
+
+```{r}
+march <- c(1,2,3,4,5,6,7,8)
+week <- c("mon","tue","wed","thu","fri","sat","sun")
 marchList <- list(march, week)
-#lists can have text and string vectors
-#lists can have vectors of unequal lengths
+marchList
+```
+
+lists can have text and string vectors
+lists can have vectors of unequal lengths
+
+```{r}
 str(marchList)
+```
+
+
 #finding length of list gives the number of columns
 length(marchList)
 #use unlist function to merge columns into single vector
