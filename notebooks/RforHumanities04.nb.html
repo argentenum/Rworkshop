@@ -11,7 +11,7 @@
 
 
 
-<title>R for Humanities: Lesson 3</title>
+<title>R for Humanities: Lesson 4</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1746,384 +1746,34 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">R for Humanities: Lesson 3</h1>
+<h1 class="title toc-ignore">R for Humanities: Lesson 4</h1>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities03.nb.html">View
+<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities04.nb.html">View
 this page in a browser</a></p>
-<p><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities02.nb.html">Go
-to Lesson 2</a></p>
-<div id="creating-list" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> creating list</h1>
+<p><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities03.nb.html">Go
+to Lesson 3</a></p>
+<p>#rbind marchFrame &lt;- rbind(marchFrame,c(8,“holiday”)) #cbind
+marchFrame &lt;- cbind(marchFrame,c(11,12,13,14,15,16, 17,18))
+names(marchFrame)[3] &lt;- “attendance” #merge flowerPrice &lt;-
+data.frame(c(“marigold”,“petunia”,“jasmine”,“rose”),c(20,40,35,150))
+names(flowerPrice) &lt;- c(“flower”,“price”) flowerColour &lt;-
+data.frame(c(“daffodil”,“rose”,“marigold”),c(“pink”,“red”,“yellow”))
+names(flowerColour) &lt;- c(“flower”,“colour”) jointFlower &lt;-
+merge(flowerColour,flowerPrice, by = ‘flower’) #subset bigAttendance
+&lt;- subset(marchFrame,marchFrame$attendance&gt;15) #write.csv
+write.csv(jointFlower, file = “./output/jointFlower.csv”)
+paste(“this”,“is”,“a”,“vector”,sep = ” word “) Sys.Date() Sys.time()
+Sys.timezone() paste(”./output/jointFlower”,Sys.Date(),“.csv”, sep = ““)
+write.csv(jointFlower, file =
+paste(”./output/jointFlower”,Sys.Date(),“.csv”, sep = ““)) #ifelse if
+(r==4) { s &lt;-”yes” } else { s &lt;- “no” } print(s)</p>
 <!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2ggPC0gYygxLDIsMyw0LDUsNiw3LDgpXG53ZWVrIDwtIGMoXCJtb25cIixcInR1ZVwiLFwid2VkXCIsXCJ0aHVcIixcImZyaVwiLFwic2F0XCIsXCJzdW5cIilcbm1hcmNoTGlzdCA8LSBsaXN0KG1hcmNoLCB3ZWVrKVxubWFyY2hMaXN0XG5gYGAifQ== -->
-<pre class="r"><code>march &lt;- c(1,2,3,4,5,6,7,8)
-week &lt;- c(&quot;mon&quot;,&quot;tue&quot;,&quot;wed&quot;,&quot;thu&quot;,&quot;fri&quot;,&quot;sat&quot;,&quot;sun&quot;)
-marchList &lt;- list(march, week)
-marchList</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSAxIDIgMyA0IDUgNiA3IDhcblxuW1syXV1cblsxXSBcIm1vblwiIFwidHVlXCIgXCJ3ZWRcIiBcInRodVwiIFwiZnJpXCIgXCJzYXRcIiBcInN1blwiXG4ifQ== -->
-<pre><code>[[1]]
-[1] 1 2 3 4 5 6 7 8
 
-[[2]]
-[1] &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>lists can have text and string vectors lists can have vectors of
-unequal lengths</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG1hcmNoTGlzdClcbmBgYCJ9 -->
-<pre class="r"><code>str(marchList)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAyXG4gJCA6IG51bSBbMTo4XSAxIDIgMyA0IDUgNiA3IDhcbiAkIDogY2hyIFsxOjddIFwibW9uXCIgXCJ0dWVcIiBcIndlZFwiIFwidGh1XCIgLi4uXG4ifQ== -->
-<pre><code>List of 2
- $ : num [1:8] 1 2 3 4 5 6 7 8
- $ : chr [1:7] &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; ...</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="finding-length-of-list-gives-the-number-of-columns" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> finding length of
-list gives the number of columns</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKG1hcmNoTGlzdClcbmBgYCJ9 -->
-<pre class="r"><code>length(marchList)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDJcbiJ9 -->
-<pre><code>[1] 2</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="use-unlist-function-to-merge-columns-into-single-vector" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> use unlist function
-to merge columns into single vector</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW5saXN0KG1hcmNoTGlzdClcbmBgYCJ9 -->
-<pre class="r"><code>unlist(marchList)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIjFcIiAgIFwiMlwiICAgXCIzXCIgICBcIjRcIiAgIFwiNVwiICAgXCI2XCIgICBcIjdcIiAgIFwiOFwiICAgXCJtb25cIiBcInR1ZVwiIFwid2VkXCIgXCJ0aHVcIlxuWzEzXSBcImZyaVwiIFwic2F0XCIgXCJzdW5cIlxuIn0= -->
-<pre><code> [1] &quot;1&quot;   &quot;2&quot;   &quot;3&quot;   &quot;4&quot;   &quot;5&quot;   &quot;6&quot;   &quot;7&quot;   &quot;8&quot;   &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot;
-[13] &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="index-a-vector" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> index a vector</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2Vla1szXVxuYGBgIn0= -->
-<pre class="r"><code>week[3]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwid2VkXCJcbiJ9 -->
-<pre><code>[1] &quot;wed&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2Vla1syOjRdXG5gYGAifQ== -->
-<pre class="r"><code>week[2:4]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidHVlXCIgXCJ3ZWRcIiBcInRodVwiXG4ifQ== -->
-<pre><code>[1] &quot;tue&quot; &quot;wed&quot; &quot;thu&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>the result is also a vector</p>
-</div>
-<div id="index-a-list" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> index a list</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2hMaXN0WzFdXG5gYGAifQ== -->
-<pre class="r"><code>marchList[1]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSAxIDIgMyA0IDUgNiA3IDhcbiJ9 -->
-<pre><code>[[1]]
-[1] 1 2 3 4 5 6 7 8</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>the result is a list.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG1hcmNoTGlzdFsxXSlcbmBgYCJ9 -->
-<pre class="r"><code>str(marchList[1])</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAxXG4gJCA6IG51bSBbMTo4XSAxIDIgMyA0IDUgNiA3IDhcbiJ9 -->
-<pre><code>List of 1
- $ : num [1:8] 1 2 3 4 5 6 7 8</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKG1hcmNoTGlzdClcbmBgYCJ9 -->
-<pre class="r"><code>length(marchList)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDJcbiJ9 -->
-<pre><code>[1] 2</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKG1hcmNoTGlzdFsxXSlcbmBgYCJ9 -->
-<pre class="r"><code>length(marchList[1])</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDFcbiJ9 -->
-<pre><code>[1] 1</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHVubGlzdChtYXJjaExpc3QpKVxuYGBgIn0= -->
-<pre class="r"><code>length(unlist(marchList))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE1XG4ifQ== -->
-<pre><code>[1] 15</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="creating-dataframe" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> creating
-dataframe</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2hGcmFtZSA8LSBkYXRhLmZyYW1lKG1hcmNoLHdlZWspXG5gYGAifQ== -->
-<pre class="r"><code>marchFrame &lt;- data.frame(march,week)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gZGF0YS5mcmFtZShtYXJjaCwgd2VlaykgOiBcbiAgYXJndW1lbnRzIGltcGx5IGRpZmZlcmluZyBudW1iZXIgb2Ygcm93czogOCwgN1xuIn0= -->
-<pre><code>Error in data.frame(march, week) : 
-  arguments imply differing number of rows: 8, 7</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>vectors have to be of equal length to create a data frame</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2hGcmFtZSA8LSBkYXRhLmZyYW1lKG1hcmNoWzE6N10sd2VlaylcbmBgYCJ9 -->
-<pre class="r"><code>marchFrame &lt;- data.frame(march[1:7],week)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG1hcmNoRnJhbWUpXG5gYGAifQ== -->
-<pre class="r"><code>str(marchFrame)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0NyBvYnMuIG9mICAyIHZhcmlhYmxlczpcbiAkIG1hcmNoLjEuNy46IG51bSAgMSAyIDMgNCA1IDYgN1xuICQgd2VlayAgICAgIDogY2hyICBcIm1vblwiIFwidHVlXCIgXCJ3ZWRcIiBcInRodVwiIC4uLlxuIn0= -->
-<pre><code>&#39;data.frame&#39;:   7 obs. of  2 variables:
- $ march.1.7.: num  1 2 3 4 5 6 7
- $ week      : chr  &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; ...</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>The Vector variable/ name becomes the column header.</p>
-</div>
-<div id="indexing-dataframe-by-column-number" class="section level2" number="1.6">
-<h2><span class="header-section-number">1.6</span> indexing dataframe:
-by column number</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2hGcmFtZVsyXVxuYGBgIn0= -->
-<pre class="r"><code>marchFrame[2]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NywibmNvbCI6MSwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCbDFReTJyRE1CQmNTMzRRUVIvUTc3QWg1SklQS1AyQTBrS3VxcTBrSnM3SzJGTGRZNzg4N2RyUitpQ0IwR2gyWngvei9ucllxWU1DQUFtcEZDQXpncEI5ZnJ5VmU0QlUwQ2VCRkRieiswTkpMd3NCOEV5M0NBRjV0Y2pRZWNOd01zM0tuajNENDlBeUhMVmJvY2VvVzRiNmFzYlFpY2wwTXVZU0pXNEdPMVdjL0VCWC9NSnlpcmhpM2VreHJxZ2E3WFIxSEVoUHYxc2tLV3p2V29za0V2UGllU1JPaG9oNDhqaFAwcFQxMmVPbDNFWmgyZU5wN2hrOGhEQndjaDkyeGNsOUN2RVg1SG1RNXdaUExiSy9XYWUvVE1lVkcvTWQ0Q1A1c2RoUjlVT0w3TEFpZHF5Y2Rab2xxcllkTTh2bWNQc0hiQjA3eWcwQ0FBQT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["week"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"mon"},{"1":"tue"},{"1":"wed"},{"1":"thu"},{"1":"fri"},{"1":"sat"},{"1":"sun"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[7]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="indexing-dataframe-by-header-name" class="section level2" number="1.7">
-<h2><span class="header-section-number">1.7</span> indexing dataframe:
-by header name</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2hGcmFtZSR3ZWVrXG5gYGAifQ== -->
-<pre class="r"><code>marchFrame$week</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibW9uXCIgXCJ0dWVcIiBcIndlZFwiIFwidGh1XCIgXCJmcmlcIiBcInNhdFwiIFwic3VuXCJcbiJ9 -->
-<pre><code>[1] &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>When indexed by column number the result is a data frame. Basically,
-it is a subset of the existing data frame.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG1hcmNoRnJhbWVbMl0pXG5gYGAifQ== -->
-<pre class="r"><code>str(marchFrame[2])</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0NyBvYnMuIG9mICAxIHZhcmlhYmxlOlxuICQgd2VlazogY2hyICBcIm1vblwiIFwidHVlXCIgXCJ3ZWRcIiBcInRodVwiIC4uLlxuIn0= -->
-<pre><code>&#39;data.frame&#39;:   7 obs. of  1 variable:
- $ week: chr  &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; ...</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>When indexed by column header the result is a Vector.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG1hcmNoRnJhbWUkd2VlaylcbmBgYCJ9 -->
-<pre class="r"><code>str(marchFrame$week)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIGNociBbMTo3XSBcIm1vblwiIFwidHVlXCIgXCJ3ZWRcIiBcInRodVwiIFwiZnJpXCIgXCJzYXRcIiBcInN1blwiXG4ifQ== -->
-<pre><code> chr [1:7] &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="length-of-the-dataframe-gives-the-number-of-columns" class="section level2" number="1.8">
-<h2><span class="header-section-number">1.8</span> Length of the
-dataframe gives the number of columns</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKG1hcmNoRnJhbWUpXG5gYGAifQ== -->
-<pre class="r"><code>length(marchFrame)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDJcbiJ9 -->
-<pre><code>[1] 2</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKG1hcmNoRnJhbWVbMl0pXG5gYGAifQ== -->
-<pre class="r"><code>length(marchFrame[2])</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDFcbiJ9 -->
-<pre><code>[1] 1</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKG1hcmNoRnJhbWUkd2VlaylcbmBgYCJ9 -->
-<pre class="r"><code>length(marchFrame$week)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDdcbiJ9 -->
-<pre><code>[1] 7</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="indexing-a-particular-value-in-a-data-frame" class="section level2" number="1.9">
-<h2><span class="header-section-number">1.9</span> indexing a particular
-value in a data frame</h2>
-<p>index by row number and column number</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2hGcmFtZVs0LDJdXG5gYGAifQ== -->
-<pre class="r"><code>marchFrame[4,2]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidGh1XCJcbiJ9 -->
-<pre><code>[1] &quot;thu&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="getting-column-labels" class="section level2" number="1.10">
-<h2><span class="header-section-number">1.10</span> getting column
-labels</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFtZXMobWFyY2hGcmFtZSlcbmBgYCJ9 -->
-<pre class="r"><code>names(marchFrame)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiT3JkZXJcIiAgICAgICAgICAgIFwiRGF5cyBvZiB0aGUgV2Vla1wiXG4ifQ== -->
-<pre><code>[1] &quot;Order&quot;            &quot;Days of the Week&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>the result is a vector</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG5hbWVzKG1hcmNoRnJhbWUpKVxuYGBgIn0= -->
-<pre class="r"><code>str(names(marchFrame))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIGNociBbMToyXSBcIk9yZGVyXCIgXCJEYXlzIG9mIHRoZSBXZWVrXCJcbiJ9 -->
-<pre><code> chr [1:2] &quot;Order&quot; &quot;Days of the Week&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="renaming-column-labels" class="section level2" number="1.11">
-<h2><span class="header-section-number">1.11</span> renaming column
-labels</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFtZXMobWFyY2hGcmFtZSkgPC0gYyhcIk9yZGVyXCIsXCJEYXlzIG9mIHRoZSBXZWVrXCIpXG5tYXJjaEZyYW1lXG5gYGAifQ== -->
-<pre class="r"><code>names(marchFrame) &lt;- c(&quot;Order&quot;,&quot;Days of the Week&quot;)
-marchFrame</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NywibmNvbCI6Miwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCbDFRUFUvRE1CQzk1cE5HYXFrRUF3TkQva0N5ZEdHRG9XSkZRaUM2bXNScG9xWjI1RGdVTm40eXY2QmdKM2NWOGtuV2UvZnNkM2UrNTgxMm5Xd1RBUEFoOEQzd1EwTWhmSDE1ek80QUFzOGtNd2hnYnZIVFBMb3l4SXBMYytMN0h4ampBUkF2RUZlSTE0ZzNpTGRBWVYvRVdOZy9TRUZVRDV6b2taZG50UjZJVnFvaDJqTjlwb053cGcwRk8vQWVPM2trUHFtU0sweFdHL2JWcDdKS2RjM1ROODczVG9XNWtzZWNxaXhzbGU5cDl0aHRWYlNzcDFZa0ppWFRMSytVOFp2czVGaGkyZWxHQ21QeTdFWWp4enhUam5BNUNEdEptUlgxSVBiWjJybjJPN0d6UFVkcGlnWHkrQi8zcGltOFg3UkhhSSs0MkRXQ0ZoKzI3SjIzVkxua0gwaVhaaC9qT3ZKT05ZSldueGkxejdYVWpDeEpJVnRTeHAvRDZROXRNdC9oWmdJQUFBPT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["Order"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Days of the Week"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"mon"},{"1":"2","2":"tue"},{"1":"3","2":"wed"},{"1":"4","2":"thu"},{"1":"5","2":"fri"},{"1":"6","2":"sat"},{"1":"7","2":"sun"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[7]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="getting-and-naming-column-labels" class="section level2" number="1.12">
-<h2><span class="header-section-number">1.12</span> getting and naming
-column labels</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm93bmFtZXMobWFyY2hGcmFtZSlcbmBgYCJ9 -->
-<pre class="r"><code>rownames(marchFrame)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMVwiIFwiMlwiIFwiM1wiIFwiNFwiIFwiNVwiIFwiNlwiIFwiN1wiXG4ifQ== -->
-<pre><code>[1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot; &quot;7&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>By default they are just numbers as strings</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm93bmFtZXMobWFyY2hGcmFtZSkgPC0gYyhcInNvbVwiLFwibWFuXCIsXCJidWRcIixcImd1clwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICBcInN1a1wiLFwic2hhXCIsXCJyYXZcIilcbm1hcmNoRnJhbWVcbmBgYCJ9 -->
-<pre class="r"><code>rownames(marchFrame) &lt;- c(&quot;som&quot;,&quot;man&quot;,&quot;bud&quot;,&quot;gur&quot;,
-                          &quot;suk&quot;,&quot;sha&quot;,&quot;rav&quot;)
-marchFrame</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NywibmNvbCI6Miwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCbDFSeTA3RE1CRGNKazFESTFFcXdZRURoL3hBY2tGQzNPQlFjVVZDSUhwMUUrZWhwSGJsMkMzOE5WOVFzRk92cVd6Sm10bXhkM2ZzZlZ1dDc1TjFBZ0FoVE1NQXdraFRpRDdlWDdKSGdHbWdnd2xNWVc3d1MxKzYxc1NJQzczanB4OFkxek5ZdkxDNHRIaGo4ZGJpSGVBeU4ySmJPTnh5aGxRcWl2UkFTNmMyQ21rbFdxUURrWTRxNXJtTkdOblN3WFlLVUh3VkpSVTJXSzdJOTVEeUtwVU5UVDhwN2J3S2M4RVArWGtWNTNmZ1cyZWRPT3NiNWZ6V1N2dzc2eHh0Q0ZKQjlyN2ZvaWNEZGtJeEtZa2tlU1cwQ1IwZHZaU1k3MlRMbVU0S3pGaG1YdkpFZU1LVll1WTVaVlkwaW5YWmczY2M3bGh0ZW83U2FWOWFqTTk0Y0hJUi9OcjBtVTJmVVZhM0RLY1g5V1JEZTZ4YzByMmxDLzJwNDUvbU85RXluRitpMVNHWFhCSk1TUXJlb3pLK0hJNS82R1pNcWFzQ0FBQT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Order"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Days of the Week"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"mon","_rn_":"som"},{"1":"2","2":"tue","_rn_":"man"},{"1":"3","2":"wed","_rn_":"bud"},{"1":"4","2":"thu","_rn_":"gur"},{"1":"5","2":"fri","_rn_":"suk"},{"1":"6","2":"sat","_rn_":"sha"},{"1":"7","2":"sun","_rn_":"rav"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[7]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-</div>
-<div id="exercise" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Exercise</h1>
-<p>Create a dataframe with the first column giving the names of every
-month in a year and the second column giving the corresponding number of
-days in each month.</p>
-<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities04.nb.html">Go
-to Lesson 4</a></p>
-<!-- rnb-text-end -->
-</div>
-
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiAzIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KW1ZpZXcgdGhpcyBwYWdlIGluIGEgYnJvd3Nlcl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwMy5uYi5odG1sKQ0KDQpbR28gdG8gTGVzc29uIDJdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczAyLm5iLmh0bWwpDQoNCg0KDQojIGNyZWF0aW5nIGxpc3QNCg0KYGBge3J9DQptYXJjaCA8LSBjKDEsMiwzLDQsNSw2LDcsOCkNCndlZWsgPC0gYygibW9uIiwidHVlIiwid2VkIiwidGh1IiwiZnJpIiwic2F0Iiwic3VuIikNCm1hcmNoTGlzdCA8LSBsaXN0KG1hcmNoLCB3ZWVrKQ0KbWFyY2hMaXN0DQpgYGANCg0KbGlzdHMgY2FuIGhhdmUgdGV4dCBhbmQgc3RyaW5nIHZlY3RvcnMNCmxpc3RzIGNhbiBoYXZlIHZlY3RvcnMgb2YgdW5lcXVhbCBsZW5ndGhzDQoNCmBgYHtyfQ0Kc3RyKG1hcmNoTGlzdCkNCmBgYA0KDQoNCiMjIGZpbmRpbmcgbGVuZ3RoIG9mIGxpc3QgZ2l2ZXMgdGhlIG51bWJlciBvZiBjb2x1bW5zDQoNCmBgYHtyfQ0KbGVuZ3RoKG1hcmNoTGlzdCkNCmBgYA0KDQoNCiMjIHVzZSB1bmxpc3QgZnVuY3Rpb24gdG8gbWVyZ2UgY29sdW1ucyBpbnRvIHNpbmdsZSB2ZWN0b3INCg0KYGBge3J9DQp1bmxpc3QobWFyY2hMaXN0KQ0KYGBgDQoNCg0KIyMgaW5kZXggYSB2ZWN0b3INCg0KYGBge3J9DQp3ZWVrWzNdDQpgYGANCg0KYGBge3J9DQp3ZWVrWzI6NF0NCmBgYA0KdGhlIHJlc3VsdCBpcyBhbHNvIGEgdmVjdG9yDQoNCiMjIGluZGV4IGEgbGlzdA0KDQpgYGB7cn0NCm1hcmNoTGlzdFsxXQ0KYGBgDQp0aGUgcmVzdWx0IGlzIGEgbGlzdC4NCg0KYGBge3J9DQpzdHIobWFyY2hMaXN0WzFdKQ0KYGBgDQoNCg0KYGBge3J9DQpsZW5ndGgobWFyY2hMaXN0KQ0KYGBgDQoNCmBgYHtyfQ0KbGVuZ3RoKG1hcmNoTGlzdFsxXSkNCmBgYA0KDQpgYGB7cn0NCmxlbmd0aCh1bmxpc3QobWFyY2hMaXN0KSkNCmBgYA0KDQoNCiMjIGNyZWF0aW5nIGRhdGFmcmFtZQ0KDQpgYGB7cn0NCm1hcmNoRnJhbWUgPC0gZGF0YS5mcmFtZShtYXJjaCx3ZWVrKQ0KYGBgDQoNCnZlY3RvcnMgaGF2ZSB0byBiZSBvZiBlcXVhbCBsZW5ndGggdG8gY3JlYXRlIGEgZGF0YSBmcmFtZQ0KDQpgYGB7cn0NCm1hcmNoRnJhbWUgPC0gZGF0YS5mcmFtZShtYXJjaFsxOjddLHdlZWspDQpgYGANCg0KYGBge3J9DQpzdHIobWFyY2hGcmFtZSkNCmBgYA0KVGhlIFZlY3RvciB2YXJpYWJsZS8gbmFtZSBiZWNvbWVzIHRoZSBjb2x1bW4gaGVhZGVyLg0KDQojIyBpbmRleGluZyBkYXRhZnJhbWU6IGJ5IGNvbHVtbiBudW1iZXINCg0KYGBge3J9DQptYXJjaEZyYW1lWzJdDQpgYGANCg0KIyMgaW5kZXhpbmcgZGF0YWZyYW1lOiBieSBoZWFkZXIgbmFtZQ0KDQpgYGB7cn0NCm1hcmNoRnJhbWUkd2Vlaw0KYGBgDQpXaGVuIGluZGV4ZWQgYnkgY29sdW1uIG51bWJlciB0aGUgcmVzdWx0IGlzIGEgZGF0YSBmcmFtZS4gQmFzaWNhbGx5LCBpdCBpcyBhIHN1YnNldCBvZiB0aGUgZXhpc3RpbmcgZGF0YSBmcmFtZS4NCmBgYHtyfQ0Kc3RyKG1hcmNoRnJhbWVbMl0pDQpgYGANCldoZW4gaW5kZXhlZCBieSBjb2x1bW4gaGVhZGVyIHRoZSByZXN1bHQgaXMgYSBWZWN0b3IuDQoNCmBgYHtyfQ0Kc3RyKG1hcmNoRnJhbWUkd2VlaykNCmBgYA0KDQojIyBMZW5ndGggb2YgdGhlIGRhdGFmcmFtZSBnaXZlcyB0aGUgbnVtYmVyIG9mIGNvbHVtbnMNCg0KYGBge3J9DQpsZW5ndGgobWFyY2hGcmFtZSkNCmBgYA0KYGBge3J9DQpsZW5ndGgobWFyY2hGcmFtZVsyXSkNCmBgYA0KDQpgYGB7cn0NCmxlbmd0aChtYXJjaEZyYW1lJHdlZWspDQpgYGANCg0KIyMgaW5kZXhpbmcgYSBwYXJ0aWN1bGFyIHZhbHVlIGluIGEgZGF0YSBmcmFtZQ0KDQppbmRleCBieSByb3cgbnVtYmVyIGFuZCBjb2x1bW4gbnVtYmVyDQoNCmBgYHtyfQ0KbWFyY2hGcmFtZVs0LDJdDQpgYGANCg0KIyMgZ2V0dGluZyBjb2x1bW4gbGFiZWxzDQoNCmBgYHtyfQ0KbmFtZXMobWFyY2hGcmFtZSkNCmBgYA0KDQp0aGUgcmVzdWx0IGlzIGEgdmVjdG9yDQoNCmBgYHtyfQ0Kc3RyKG5hbWVzKG1hcmNoRnJhbWUpKQ0KYGBgDQojIyByZW5hbWluZyBjb2x1bW4gbGFiZWxzDQoNCmBgYHtyfQ0KbmFtZXMobWFyY2hGcmFtZSkgPC0gYygiT3JkZXIiLCJEYXlzIG9mIHRoZSBXZWVrIikNCm1hcmNoRnJhbWUNCmBgYA0KDQojIyBnZXR0aW5nIGFuZCBuYW1pbmcgY29sdW1uIGxhYmVscw0KDQpgYGB7cn0NCnJvd25hbWVzKG1hcmNoRnJhbWUpDQpgYGANCkJ5IGRlZmF1bHQgdGhleSBhcmUganVzdCBudW1iZXJzIGFzIHN0cmluZ3MNCg0KYGBge3J9DQpyb3duYW1lcyhtYXJjaEZyYW1lKSA8LSBjKCJzb20iLCJtYW4iLCJidWQiLCJndXIiLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAic3VrIiwic2hhIiwicmF2IikNCm1hcmNoRnJhbWUNCmBgYA0KDQoNCiMgRXhlcmNpc2UNCkNyZWF0ZSBhIGRhdGFmcmFtZSB3aXRoIHRoZSBmaXJzdCBjb2x1bW4gZ2l2aW5nIA0KdGhlIG5hbWVzIG9mIGV2ZXJ5IG1vbnRoIGluIGEgeWVhciBhbmQgdGhlIHNlY29uZCANCmNvbHVtbiBnaXZpbmcgdGhlIGNvcnJlc3BvbmRpbmcgbnVtYmVyIG9mIGRheXMgDQppbiBlYWNoIG1vbnRoLg0KDQoNCltHbyB0byBMZXNzb24gNF0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNC5uYi5odG1sKQ==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiA0Ig0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KW1ZpZXcgdGhpcyBwYWdlIGluIGEgYnJvd3Nlcl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNC5uYi5odG1sKQ0KDQpbR28gdG8gTGVzc29uIDNdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczAzLm5iLmh0bWwpDQoNCiNyYmluZA0KbWFyY2hGcmFtZSA8LSByYmluZChtYXJjaEZyYW1lLGMoOCwiaG9saWRheSIpKQ0KI2NiaW5kDQptYXJjaEZyYW1lIDwtIGNiaW5kKG1hcmNoRnJhbWUsYygxMSwxMiwxMywxNCwxNSwxNiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDE3LDE4KSkNCm5hbWVzKG1hcmNoRnJhbWUpWzNdIDwtICJhdHRlbmRhbmNlIg0KI21lcmdlDQpmbG93ZXJQcmljZSA8LSBkYXRhLmZyYW1lKGMoIm1hcmlnb2xkIiwicGV0dW5pYSIsImphc21pbmUiLCJyb3NlIiksYygyMCw0MCwzNSwxNTApKQ0KbmFtZXMoZmxvd2VyUHJpY2UpIDwtIGMoImZsb3dlciIsInByaWNlIikNCmZsb3dlckNvbG91ciA8LSBkYXRhLmZyYW1lKGMoImRhZmZvZGlsIiwicm9zZSIsIm1hcmlnb2xkIiksYygicGluayIsInJlZCIsInllbGxvdyIpKQ0KbmFtZXMoZmxvd2VyQ29sb3VyKSA8LSBjKCJmbG93ZXIiLCJjb2xvdXIiKQ0Kam9pbnRGbG93ZXIgPC0gbWVyZ2UoZmxvd2VyQ29sb3VyLGZsb3dlclByaWNlLCBieSA9ICdmbG93ZXInKQ0KI3N1YnNldA0KYmlnQXR0ZW5kYW5jZSA8LSBzdWJzZXQobWFyY2hGcmFtZSxtYXJjaEZyYW1lJGF0dGVuZGFuY2U+MTUpDQojd3JpdGUuY3N2DQp3cml0ZS5jc3Yoam9pbnRGbG93ZXIsIGZpbGUgPSAiLi9vdXRwdXQvam9pbnRGbG93ZXIuY3N2IikNCnBhc3RlKCJ0aGlzIiwiaXMiLCJhIiwidmVjdG9yIixzZXAgPSAiIHdvcmQgIikNClN5cy5EYXRlKCkNClN5cy50aW1lKCkNClN5cy50aW1lem9uZSgpDQpwYXN0ZSgiLi9vdXRwdXQvam9pbnRGbG93ZXIiLFN5cy5EYXRlKCksIi5jc3YiLCBzZXAgPSAiIikNCndyaXRlLmNzdihqb2ludEZsb3dlciwNCiAgICAgICAgICBmaWxlID0gcGFzdGUoIi4vb3V0cHV0L2pvaW50Rmxvd2VyIixTeXMuRGF0ZSgpLCIuY3N2Iiwgc2VwID0gIiIpKQ0KI2lmZWxzZQ0KaWYgKHI9PTQpIHsgDQogIHMgPC0gInllcyINCn0gZWxzZSB7DQogICAgcyA8LSAibm8iDQogICAgfQ0KcHJpbnQocykNCg0KDQo=</div>
 
 
 
@@ -2170,7 +1820,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("RforHumanities03.Rmd");
+  window.initializeSourceEmbed("RforHumanities04.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
