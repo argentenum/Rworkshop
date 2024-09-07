@@ -169,6 +169,15 @@ rownames(marchFrame) <- c("som","man","bud","gur",
 marchFrame
 ```
 
+# Count the number of rows and columns in a dataframe
+
+```{r}
+nrow(marchFrame)
+```
+```{r}
+ncol(marchFrame)
+```
+
 
 # Exercise
 Create a dataframe with the first column giving 
