@@ -9,35 +9,113 @@ output:
 
 [Go to Lesson 3](https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities03.nb.html)
 
-#rbind
+
+# Appending data to an existing Data Frame
+
+## Add rows
+
+```{r}
+marchFrame
+```
+
+
+```{r}
 marchFrame <- rbind(marchFrame,c(8,"holiday"))
-#cbind
+marchFrame
+```
+
+## Adding Columns
+
+```{r}
 marchFrame <- cbind(marchFrame,c(11,12,13,14,15,16,
                                  17,18))
 names(marchFrame)[3] <- "attendance"
-#merge
+marchFrame
+```
+
+# Merging two data frames
+
+Data in two data frames can be merged by a common column
+
+First let us create two data frames with a common data column.
+Though the data may have overlap their order may be different.
+There may be some mismatch between values of the matching columns. The values may also be present in different order.
+
+```{r}
 flowerPrice <- data.frame(c("marigold","petunia","jasmine","rose"),c(20,40,35,150))
 names(flowerPrice) <- c("flower","price")
+flowerPrice
+```
+
+```{r}
 flowerColour <- data.frame(c("daffodil","rose","marigold"),c("pink","red","yellow"))
 names(flowerColour) <- c("flower","colour")
+flowerColour
+```
+
+Now merging ...
+
+```{r}
 jointFlower <- merge(flowerColour,flowerPrice, by = 'flower')
-#subset
+jointFlower
+```
+
+# Subsetting data frames
+
+Subsetting on the basis of a criteria
+
+```{r}
 bigAttendance <- subset(marchFrame,marchFrame$attendance>15)
-#write.csv
+bigAttendance
+```
+
+# Exporting a data frame to a csv file.
+
+## More about Working Directory
+
+The working directory can be referenced as "./" in the file path. This allows the user to organise various files in a project in sub-directories such as "./data", "./script", "./output" etc.
+
+## write.csv
+
+```{r}
 write.csv(jointFlower, file = "./output/jointFlower.csv")
+```
+
+
+# Concatenating strings
+
+```{r}
 paste("this","is","a","vector",sep = " word ")
+```
+
+# Getting date and time
+
+```{r}
 Sys.Date()
+```
+
+```{r}
 Sys.time()
+```
+
+```{r}
 Sys.timezone()
+```
+
+# Creating dynamic file name
+
+## Concatenating the time and strings
+
+```{r}
 paste("./output/jointFlower",Sys.Date(),".csv", sep = "")
+```
+
+## saving csv to dynamic filepath
+
+```{r}
 write.csv(jointFlower,
           file = paste("./output/jointFlower",Sys.Date(),".csv", sep = ""))
-#ifelse
-if (r==4) { 
-  s <- "yes"
-} else {
-    s <- "no"
-    }
-print(s)
+```
 
 
+[Go to Lesson 5](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities05.nb.html)

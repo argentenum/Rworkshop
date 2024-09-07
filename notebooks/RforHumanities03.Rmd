@@ -9,9 +9,9 @@ output:
 
 [Go to Lesson 2](https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities02.nb.html)
 
+# Lists
 
-
-# creating list
+## creating list
 
 ```{r}
 march <- c(1,2,3,4,5,6,7,8)
@@ -77,6 +77,7 @@ length(marchList[1])
 length(unlist(marchList))
 ```
 
+# Dataframes
 
 ## creating dataframe
 
