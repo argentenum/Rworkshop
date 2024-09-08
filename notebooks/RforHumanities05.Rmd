@@ -192,24 +192,96 @@ pnpDF2$pnpWords[10] <- "woman"
 ```
 Thus factors are a distinct class of vectors, different from characters or numerics. If defined as factors they may not be able to function as characters or numerics respectively.
 
-#additional commands
-unique(pnpWords)
-#asnumeric
-as.numeric("12345")
-#ascharacter
-as.character(12345)
-#asdate
-as.Date("08-03-2022", "%d-%m-%y%y")
-as.Date(18329, origin = "1970-01-01")
-#check presence
-"truth" %in% pnpWords
-#deduplicate
-duplicated(pnpDF)
-which(duplicated(pnpDF))
-pnpDF[duplicated(pnpDF),]
-pnpDF[!duplicated(pnpDF),]
-#frequency
-table(pnpWords)
-sort(table(pnpWords))
-sort(table(pnpWords), decreasing = TRUE)
+# additional commands
 
+## generating a Vector of unique values in another vector
+
+```{r}
+unique(pnpWords)
+```
+
+## convert a string to numeric
+
+```{r}
+as.numeric("12345")
+```
+
+
+## convert a numeric value to a string
+
+```{r}
+as.character(12345)
+```
+
+## convert a string value to a date value
+
+```{r}
+as.Date("08-03-2022", "%d-%m-%y%y")
+```
+```{r}
+str(as.Date("08-03-2022", "%d-%m-%y%y"))
+```
+
+## Converting a numeric value to date
+
+Need to specify the date of origin for date calculations. If not specified the default value is 1 Jan 1970.
+
+```{r}
+as.Date(18329, origin = "1970-01-01")
+```
+
+
+## check presence of a substring in a string
+
+```{r}
+"truth" %in% pnpWords
+```
+
+
+## remove duplicate data rows from a dataframe
+
+This process is called "deduplication".
+
+At first we identify the duplicate rows and then get rid of them.
+
+```{r}
+duplicated(pnpDF)
+```
+
+```{r}
+which(duplicated(pnpDF))
+```
+
+Now to get rid of duplicate rows we subset the inverse of the duplicated indices.
+
+```{r}
+pnpDF[!duplicated(pnpDF),]
+```
+
+
+# Frequency counts
+
+## create a table with frequency counts of values in a vector
+
+```{r}
+table(pnpWords)
+```
+
+The result is of a class "table"
+
+```{r}
+str(table(pnpWords))
+```
+
+## sorting a table according to the count
+
+```{r}
+sort(table(pnpWords))
+```
+
+```{r}
+sort(table(pnpWords), decreasing = TRUE)
+```
+
+
+[Go to Lesson 6](https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities06.nb.html)
