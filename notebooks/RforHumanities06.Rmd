@@ -9,37 +9,226 @@ output:
 
 [Go to Lesson 5](https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities05.nb.html)
 
+# manipulating strings
 
-#regular expressions
+```{r}
 pnpWords[42]
-#substr
+```
+
+## obtaining a substring from a string
+
+```{r}
 substr(pnpWords[42],1,9)
-#strsplit
+```
+
+## splitting a string
+
+```{r}
 strsplit(pnpWords[42], split = "r")
+```
+
+## splitting words using white space
+
+```{r}
 strsplit("these are a few of my favourite things", split = " ")
+```
+The result is a list
+
+```{r}
 str(strsplit("these are a few of my favourite things", split = " "))
+```
+
+To get a Vector use unlist
+
+```{r}
 unlist(strsplit("these are a few of my favourite things", split = " "))
-#readlines
+```
+
+
+## Import a text file as a single string
+
+```{r}
 pnpText <- readLines("https://web.iitd.ac.in/~arjunghosh/RworkshopFiles/pnp.txt")
-#parse sentences
+```
+
+```{r}
+str(pnpText)
+```
+
+## parse sentences
+
+```{r}
 strsplit(pnpText, "\\.")
-#read sonnets
+```
+
+
+# Solved exercise
+
+Let us try to get a particular sonnet ("Shall I compare thee ....") from a file containing all of Shakespeare's sonnets.
+
+## importing the file
+
+```{r}
 sonnets <- readLines("https://www.gutenberg.org/files/1041/1041-0.txt")
-sonnets[328:341]
-#trim white space
-trimws(sonnets[328:341])
-sonnets <- trimws(sonnets)
-#grep
+```
+
+The error "incomplete final line found on ..." comes if the source file does not end with an End of Line character (eg. line ending or paragraph ending - "/n")
+
+
+Let us extract the lines containing the sonnet in question. For now we are indexing the lines based on a physical inspection of the file.
+
+```{r}
+sonnets[301:314]
+```
+## Trimming white space
+
+We see that the some of the lines have additional white space in them. These are there in the source file for visual formatting. But if we want to parse the file for word extraction it would help if we remove the addtional white spaces.
+
+```{r}
+sonnet18 <- trimws(sonnets[301:314])
+```
+
+# Regular expressions
+
+So far we have been examining the text file physically to discover the lines of a sonnet to be extracted. What if we want to work with a very large file? In that case the physical examination may not be sufficient or even feasible. Though it is not advisable to abandon physical examination altogether, it is important to supplement it with computaitonal examination. For that we need to take recourse to a set of text evaluation tools called Regular Expressions.
+
+We will engage with the full suite of Regular Expressions tools later. Right now let us learn a few preliminary funtions.
+
+## grep
+
+grep will give us the line or vector index where a particular substring pattern match is found.
+
+```{r}
 grep("Shall I compare", sonnets)
-#sprintf()
-i <- 8
-sprintf("the square of %d is %d",i,i^2)
-#regexpr ???
-regexpr("uat","Equator")
-#gregexpr
-gregexpr("iss", "Mississipi")
-#sub replace substring - only first instance
-sub("iss","ant","Mississipi")
-#gsub replace substrings - all instances
-gsub("iss","ant","Mississipi")
-#from sonnets identify sonnet lines and create a list with each sonnet as one column of the list
+```
+We have found the index of the first line of the our chosen sonnet.
+
+Now since we know that the sonnet in question consists of 14 lines we can easily extract the sonnet.
+
+```{r}
+sonnets[grep("Shall I compare", sonnets):(grep("Shall I compare", sonnets)+13)]
+```
+
+
+# Solved Exercise
+
+Let us try to compute the total number of sonnets in the file.
+
+Let us examine the file again.
+
+We see that in this file each sonnet is preceeded by a sonnet number in roman numerals. If we can identify the indices of the "sonnets" vector that give these sonnet numbers we should be able to extract each sonnet in a loop.
+
+Is there a way to identify these lines?
+
+```{r}
+nchar(sonnets)
+```
+
+The resulting vector is a very long file and it may be difficult to identify any useful pattern. It may be useful to resort to visual methods.
+
+Though we have not yet learnt how to prepare charts in R let us visualize our output as a barplot.
+
+```{r}
+barplot(nchar(sonnets))
+```
+
+We see that the line lengths are unequal but the density of the chart does not allow us to arrive at anything meaningful. Let us look a a subset of the Vector.
+
+
+```{r}
+barplot(nchar(sonnets[301:400]))
+```
+
+Now we get to see something more meaningful. We see that there is a pattern of the sonnets being divided by shorter strings consisting which have more than zero characters.
+
+If we can identify the indices of these lines we should be able to identify the lines with the sonnet numbers.
+
+We can do so by checking for strings that have greater than 0 but less than 10 characters.
+
+```{r}
+which(nchar(sonnets)>0 & nchar(sonnets)<10)
+```
+
+Let us check how many such strings have been found.
+
+```{r}
+length(which(nchar(sonnets)>0 & nchar(sonnets)<10))
+```
+Voila! That is the number of sonnets in the file!
+
+We can also write the indices for the strings with the line numbers to a Vector.
+
+```{r}
+sonnetNoLines <- which(nchar(sonnets)>0 & nchar(sonnets)<10)
+```
+
+This vector gives us the number of sonnets also.
+
+```{r}
+length(sonnetNoLines)
+```
+
+
+
+# Solved Exercise
+
+We have learnt how to extract a particular sonnet. Now let us try to extract all sonnets!
+
+Once we extract all the sonnets we will have to structure them as either a Dataframe or as a List.
+
+We know that for Dataframe all columns will have to be of equal length. But all of Shakespeare's Sonnets are not of equal number of lines.
+
+So we have to create a List
+
+Before we do that we have to remove the header and the footer lines from the file.
+
+```{r}
+sonnetTexts <- sonnets[13:length(sonnets)-1]
+```
+
+Extracting the sonnets one by one and appending them to a List. 
+It is a slightly complicated exercise. So one should outline an algorithm before writing the code.
+
+Here is roughly what we will do:
+- We have already removed the header and footer sections from the file. So we can now identify lines of the sonnets as lines with more than 10 characters in them.
+- As we saw in the barplot above, the sonnets appear as chuncks of text interspersed with shorter lines. 
+- We will run a loop through each string in "sonnetTexts"
+- We will identify the longer lines and write them to a Vector "newSonnet"
+- Using conditional ifelse statements we will identify the end of the sonnet as a string of less than 10 characters.
+- Once we reach the end of a chunk we append the Vector "newSonnet" to the list "sonnetList"
+- we then wipe clean "newSonnet" to start again
+- to do this we maintain a control count "p". The read and write loop works only as long as p == 0.
+- to append a Vector to a List we need to begin with a List. Hence we will create "sonnetList" with an empty column. We will remove this empty column once all 154 sonnets have been extracted.
+
+```{r}
+
+sonnetList <- list(c()) #an list with an empty column
+newSonnet <- NULL #a null vector to collect the lines of the sonnet
+t <- 1            #this will maintain a count of the sonnets
+for (n in 1:length(sonnetTexts)){
+  if(nchar(sonnetTexts[n])>10){
+    p <- 0  #this is a control to extract lines only while nchar is <10
+    newSonnet <- c(newSonnet,sonnetTexts[n]) #append a new string
+  } else {
+    if(p == 0){
+      t <- t+1 #one increment (first column is empty; so we start from two)
+      sonnetList[t] <- list(newSonnet) #appending sonnet to the List
+      # print(length(newSonnet))
+      p <- p+1 #adding the count of contiguous shorter lines
+      newSonnet <- NULL
+    }else{p <- p+1}
+  }
+  
+}
+sonnetList <- sonnetList[-1] #removing the first empty column
+```
+
+That would give us a List of all the sonnets. We can query particular sonnets by indexing.
+
+```{r}
+sonnetList[99]
+```
+
+
+[Go to Lesson 7](https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities07.nb.html)
+

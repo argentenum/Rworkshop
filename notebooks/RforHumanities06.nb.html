@@ -1756,25 +1756,424 @@ display: none;
 this page in a browser</a></p>
 <p><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities05.nb.html">Go
 to Lesson 5</a></p>
-<p>#regular expressions pnpWords[42] #substr substr(pnpWords[42],1,9)
-#strsplit strsplit(pnpWords[42], split = “r”) strsplit(“these are a few
-of my favourite things”, split = ” “) str(strsplit(”these are a few of
-my favourite things”, split = ” “)) unlist(strsplit(”these are a few of
-my favourite things”, split = ” “)) #readlines pnpText &lt;-
-readLines(”<a href="https://web.iitd.ac.in/~arjunghosh/RworkshopFiles/pnp.txt" class="uri">https://web.iitd.ac.in/~arjunghosh/RworkshopFiles/pnp.txt</a>“)
-#parse sentences strsplit(pnpText,”\.”) #read sonnets sonnets &lt;-
-readLines(“<a href="https://www.gutenberg.org/files/1041/1041-0.txt" class="uri">https://www.gutenberg.org/files/1041/1041-0.txt</a>”)
-sonnets[328:341] #trim white space trimws(sonnets[328:341]) sonnets
-&lt;- trimws(sonnets) #grep grep(“Shall I compare”, sonnets) #sprintf()
-i &lt;- 8 sprintf(“the square of %d is %d”,i,i^2) #regexpr ???
-regexpr(“uat”,“Equator”) #gregexpr gregexpr(“iss”, “Mississipi”) #sub
-replace substring - only first instance sub(“iss”,“ant”,“Mississipi”)
-#gsub replace substrings - all instances gsub(“iss”,“ant”,“Mississipi”)
-#from sonnets identify sonnet lines and create a list with each sonnet
-as one column of the list</p>
+<div id="manipulating-strings" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> manipulating
+strings</h1>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG5wV29yZHNbNDJdXG5gYGAifQ== -->
+<pre class="r"><code>pnpWords[42]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibmVpZ2hib3VyaG9vZCxcIlxuIn0= -->
+<pre><code>[1] &quot;neighbourhood,&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="obtaining-a-substring-from-a-string" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> obtaining a substring
+from a string</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Vic3RyKHBucFdvcmRzWzQyXSwxLDkpXG5gYGAifQ== -->
+<pre class="r"><code>substr(pnpWords[42],1,9)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibmVpZ2hib3VyXCJcbiJ9 -->
+<pre><code>[1] &quot;neighbour&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="splitting-a-string" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> splitting a
+string</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Ryc3BsaXQocG5wV29yZHNbNDJdLCBzcGxpdCA9IFwiclwiKVxuYGBgIn0= -->
+<pre class="r"><code>strsplit(pnpWords[42], split = &quot;r&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIm5laWdoYm91XCIgXCJob29kLFwiICAgXG4ifQ== -->
+<pre><code>[[1]]
+[1] &quot;neighbou&quot; &quot;hood,&quot;   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="splitting-words-using-white-space" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> splitting words using
+white space</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Ryc3BsaXQoXCJ0aGVzZSBhcmUgYSBmZXcgb2YgbXkgZmF2b3VyaXRlIHRoaW5nc1wiLCBzcGxpdCA9IFwiIFwiKVxuYGBgIn0= -->
+<pre class="r"><code>strsplit(&quot;these are a few of my favourite things&quot;, split = &quot; &quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcInRoZXNlXCIgICAgIFwiYXJlXCIgICAgICAgXCJhXCIgICAgICAgICBcImZld1wiICAgICAgIFwib2ZcIiAgICAgICAgXCJteVwiICAgICAgIFxuWzddIFwiZmF2b3VyaXRlXCIgXCJ0aGluZ3NcIiAgIFxuIn0= -->
+<pre><code>[[1]]
+[1] &quot;these&quot;     &quot;are&quot;       &quot;a&quot;         &quot;few&quot;       &quot;of&quot;        &quot;my&quot;       
+[7] &quot;favourite&quot; &quot;things&quot;   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The result is a list</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKHN0cnNwbGl0KFwidGhlc2UgYXJlIGEgZmV3IG9mIG15IGZhdm91cml0ZSB0aGluZ3NcIiwgc3BsaXQgPSBcIiBcIikpXG5gYGAifQ== -->
+<pre class="r"><code>str(strsplit(&quot;these are a few of my favourite things&quot;, split = &quot; &quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAxXG4gJCA6IGNociBbMTo4XSBcInRoZXNlXCIgXCJhcmVcIiBcImFcIiBcImZld1wiIC4uLlxuIn0= -->
+<pre><code>List of 1
+ $ : chr [1:8] &quot;these&quot; &quot;are&quot; &quot;a&quot; &quot;few&quot; ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>To get a Vector use unlist</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW5saXN0KHN0cnNwbGl0KFwidGhlc2UgYXJlIGEgZmV3IG9mIG15IGZhdm91cml0ZSB0aGluZ3NcIiwgc3BsaXQgPSBcIiBcIikpXG5gYGAifQ== -->
+<pre class="r"><code>unlist(strsplit(&quot;these are a few of my favourite things&quot;, split = &quot; &quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="import-a-text-file-as-a-single-string" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Import a text file as
+a single string</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG5wVGV4dCA8LSByZWFkTGluZXMoXCJodHRwczovL3dlYi5paXRkLmFjLmluL35hcmp1bmdob3NoL1J3b3Jrc2hvcEZpbGVzL3BucC50eHRcIilcbmBgYCJ9 -->
+<pre class="r"><code>pnpText &lt;- readLines(&quot;https://web.iitd.ac.in/~arjunghosh/RworkshopFiles/pnp.txt&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKHBucFRleHQpXG5gYGAifQ== -->
+<pre class="r"><code>str(pnpText)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIGNociBcIkl0IGlzIGEgdHJ1dGggdW5pdmVyc2FsbHkgYWNrbm93bGVkZ2VkLCB0aGF0IGEgc2luZ2xlIG1hbiBpbiBwb3NzZXNzaW9uIG9mIGEgZ29vZCBmb3J0dW5lLCBtdXN0IGJlIGluIHdhbnQgb2YgYVwifCBfX3RydW5jYXRlZF9fXG4ifQ== -->
+<pre><code> chr &quot;It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a&quot;| __truncated__</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="parse-sentences" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> parse sentences</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Ryc3BsaXQocG5wVGV4dCwgXCJcXFxcLlwiKVxuYGBgIn0= -->
+<pre class="r"><code>strsplit(pnpText, &quot;\\.&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIkl0IGlzIGEgdHJ1dGggdW5pdmVyc2FsbHkgYWNrbm93bGVkZ2VkLCB0aGF0IGEgc2luZ2xlIG1hbiBpbiBwb3NzZXNzaW9uIG9mIGEgZ29vZCBmb3J0dW5lLCBtdXN0IGJlIGluIHdhbnQgb2YgYSB3aWZlXCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcblsyXSBcIiBIb3dldmVyIGxpdHRsZSBrbm93biB0aGUgZmVlbGluZ3Mgb3Igdmlld3Mgb2Ygc3VjaCBhIG1hbiBtYXkgYmUgb24gaGlzIGZpcnN0IGVudGVyaW5nIGEgbmVpZ2hib3VyaG9vZCwgdGhpcyB0cnV0aCBpcyBzbyB3ZWxsIGZpeGVkIGluIHRoZSBtaW5kcyBvZiB0aGUgc3Vycm91bmRpbmcgZmFtaWxpZXMsIHRoYXQgaGUgaXMgY29uc2lkZXJlZCB0aGUgcmlnaHRmdWwgcHJvcGVydHkgb2Ygc29tZSBvbmUgb3Igb3RoZXIgb2YgdGhlaXIgZGF1Z2h0ZXJzXCJcbiJ9 -->
+<pre><code>[[1]]
+[1] &quot;It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife&quot;                                                                                                                                             
+[2] &quot; However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="solved-exercise" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Solved exercise</h1>
+<p>Let us try to get a particular sonnet (“Shall I compare thee ….”)
+from a file containing all of Shakespeare’s sonnets.</p>
+<div id="importing-the-file" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> importing the
+file</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29ubmV0cyA8LSByZWFkTGluZXMoXCJodHRwczovL3d3dy5ndXRlbmJlcmcub3JnL2ZpbGVzLzEwNDEvMTA0MS0wLnR4dFwiKVxuYGBgIn0= -->
+<pre class="r"><code>sonnets &lt;- readLines(&quot;https://www.gutenberg.org/files/1041/1041-0.txt&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiByZWFkTGluZXMoXCJodHRwczovL3d3dy5ndXRlbmJlcmcub3JnL2ZpbGVzLzEwNDEvMTA0MS0wLnR4dFwiKSA6XG4gIGluY29tcGxldGUgZmluYWwgbGluZSBmb3VuZCBvbiAnaHR0cHM6Ly93d3cuZ3V0ZW5iZXJnLm9yZy9maWxlcy8xMDQxLzEwNDEtMC50eHQnXG4ifQ== -->
+<pre><code>Warning in readLines(&quot;https://www.gutenberg.org/files/1041/1041-0.txt&quot;) :
+  incomplete final line found on &#39;https://www.gutenberg.org/files/1041/1041-0.txt&#39;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The error “incomplete final line found on …” comes if the source file
+does not end with an End of Line character (eg. line ending or paragraph
+ending - “/n”)</p>
+<p>Let us extract the lines containing the sonnet in question. For now
+we are indexing the lines based on a physical inspection of the
+file.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29ubmV0c1szMDE6MzE0XVxuYGBgIn0= -->
+<pre class="r"><code>sonnets[301:314]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIlNoYWxsIEkgY29tcGFyZSB0aGVlIHRvIGEgc3VtbWVy4oCZcyBkYXk/XCIgICAgICAgICAgICAgXG4gWzJdIFwiVGhvdSBhcnQgbW9yZSBsb3ZlbHkgYW5kIG1vcmUgdGVtcGVyYXRlOlwiICAgICAgICAgICAgXG4gWzNdIFwiUm91Z2ggd2luZHMgZG8gc2hha2UgdGhlIGRhcmxpbmcgYnVkcyBvZiBNYXksXCIgICAgICAgXG4gWzRdIFwiQW5kIHN1bW1lcuKAmXMgbGVhc2UgaGF0aCBhbGwgdG9vIHNob3J0IGEgZGF0ZTpcIiAgICAgICBcbiBbNV0gXCJTb21ldGltZSB0b28gaG90IHRoZSBleWUgb2YgaGVhdmVuIHNoaW5lcyxcIiAgICAgICAgICBcbiBbNl0gXCJBbmQgb2Z0ZW4gaXMgaGlzIGdvbGQgY29tcGxleGlvbiBkaW1t4oCZZCxcIiAgICAgICAgICAgIFxuIFs3XSBcIkFuZCBldmVyeSBmYWlyIGZyb20gZmFpciBzb21ldGltZSBkZWNsaW5lcyxcIiAgICAgICAgIFxuIFs4XSBcIkJ5IGNoYW5jZSwgb3IgbmF0dXJl4oCZcyBjaGFuZ2luZyBjb3Vyc2UgdW50cmltbeKAmWQ6XCIgICBcbiBbOV0gXCJCdXQgdGh5IGV0ZXJuYWwgc3VtbWVyIHNoYWxsIG5vdCBmYWRlLFwiICAgICAgICAgICAgICBcblsxMF0gXCJOb3IgbG9zZSBwb3NzZXNzaW9uIG9mIHRoYXQgZmFpciB0aG91IG934oCZc3QsXCIgICAgICAgIFxuWzExXSBcIk5vciBzaGFsbCBkZWF0aCBicmFnIHRob3Ugd2FuZGVy4oCZc3QgaW4gaGlzIHNoYWRlLFwiICAgXG5bMTJdIFwiV2hlbiBpbiBldGVybmFsIGxpbmVzIHRvIHRpbWUgdGhvdSBncm934oCZc3QsXCIgICAgICAgICBcblsxM10gXCIgICAgU28gbG9uZyBhcyBtZW4gY2FuIGJyZWF0aGUsIG9yIGV5ZXMgY2FuIHNlZSxcIiAgICBcblsxNF0gXCIgICAgU28gbG9uZyBsaXZlcyB0aGlzLCBhbmQgdGhpcyBnaXZlcyBsaWZlIHRvIHRoZWUuXCJcbiJ9 -->
+<pre><code> [1] &quot;Shall I compare thee to a summer’s day?&quot;             
+ [2] &quot;Thou art more lovely and more temperate:&quot;            
+ [3] &quot;Rough winds do shake the darling buds of May,&quot;       
+ [4] &quot;And summer’s lease hath all too short a date:&quot;       
+ [5] &quot;Sometime too hot the eye of heaven shines,&quot;          
+ [6] &quot;And often is his gold complexion dimm’d,&quot;            
+ [7] &quot;And every fair from fair sometime declines,&quot;         
+ [8] &quot;By chance, or nature’s changing course untrimm’d:&quot;   
+ [9] &quot;But thy eternal summer shall not fade,&quot;              
+[10] &quot;Nor lose possession of that fair thou ow’st,&quot;        
+[11] &quot;Nor shall death brag thou wander’st in his shade,&quot;   
+[12] &quot;When in eternal lines to time thou grow’st,&quot;         
+[13] &quot;    So long as men can breathe, or eyes can see,&quot;    
+[14] &quot;    So long lives this, and this gives life to thee.&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="trimming-white-space" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Trimming white
+space</h2>
+<p>We see that the some of the lines have additional white space in
+them. These are there in the source file for visual formatting. But if
+we want to parse the file for word extraction it would help if we remove
+the addtional white spaces.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29ubmV0MTggPC0gdHJpbXdzKHNvbm5ldHNbMzAxOjMxNF0pXG5gYGAifQ== -->
+<pre class="r"><code>sonnet18 &lt;- trimws(sonnets[301:314])</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="regular-expressions" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Regular
+expressions</h1>
+<p>So far we have been examining the text file physically to discover
+the lines of a sonnet to be extracted. What if we want to work with a
+very large file? In that case the physical examination may not be
+sufficient or even feasible. Though it is not advisable to abandon
+physical examination altogether, it is important to supplement it with
+computaitonal examination. For that we need to take recourse to a set of
+text evaluation tools called Regular Expressions.</p>
+<p>We will engage with the full suite of Regular Expressions tools
+later. Right now let us learn a few preliminary funtions.</p>
+<div id="grep" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> grep</h2>
+<p>grep will give us the line or vector index where a particular
+substring pattern match is found.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JlcChcIlNoYWxsIEkgY29tcGFyZVwiLCBzb25uZXRzKVxuYGBgIn0= -->
+<pre class="r"><code>grep(&quot;Shall I compare&quot;, sonnets)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMwMVxuIn0= -->
+<pre><code>[1] 301</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We have found the index of the first line of the our chosen
+sonnet.</p>
+<p>Now since we know that the sonnet in question consists of 14 lines we
+can easily extract the sonnet.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29ubmV0c1tncmVwKFwiU2hhbGwgSSBjb21wYXJlXCIsIHNvbm5ldHMpOihncmVwKFwiU2hhbGwgSSBjb21wYXJlXCIsIHNvbm5ldHMpKzEzKV1cbmBgYCJ9 -->
+<pre class="r"><code>sonnets[grep(&quot;Shall I compare&quot;, sonnets):(grep(&quot;Shall I compare&quot;, sonnets)+13)]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="solved-exercise-1" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Solved Exercise</h1>
+<p>Let us try to compute the total number of sonnets in the file.</p>
+<p>Let us examine the file again.</p>
+<p>We see that in this file each sonnet is preceeded by a sonnet number
+in roman numerals. If we can identify the indices of the “sonnets”
+vector that give these sonnet numbers we should be able to extract each
+sonnet in a loop.</p>
+<p>Is there a way to identify these lines?</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmNoYXIoc29ubmV0cylcbmBgYCJ9 -->
+<pre class="r"><code>nchar(sonnets)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The resulting vector is a very long file and it may be difficult to
+identify any useful pattern. It may be useful to resort to visual
+methods.</p>
+<p>Though we have not yet learnt how to prepare charts in R let us
+visualize our output as a barplot.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFycGxvdChuY2hhcihzb25uZXRzKSlcbmBgYCJ9 -->
+<pre class="r"><code>barplot(nchar(sonnets))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-plot-begin eyJoZWlnaHQiOjM5OC42NDAzLCJ3aWR0aCI6NjQ1LCJzaXplX2JlaGF2aW9yIjowLCJjb25kaXRpb25zIjpbXX0= -->
+<p><img src="data:image/png;base64,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" /></p>
+<!-- rnb-plot-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We see that the line lengths are unequal but the density of the chart
+does not allow us to arrive at anything meaningful. Let us look a a
+subset of the Vector.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFycGxvdChuY2hhcihzb25uZXRzWzMwMTo0MDBdKSlcbmBgYCJ9 -->
+<pre class="r"><code>barplot(nchar(sonnets[301:400]))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-plot-begin eyJoZWlnaHQiOjM5OC42NDAzLCJ3aWR0aCI6NjQ1LCJzaXplX2JlaGF2aW9yIjowLCJjb25kaXRpb25zIjpbXX0= -->
+<p><img src="data:image/png;base64,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" /></p>
+<!-- rnb-plot-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now we get to see something more meaningful. We see that there is a
+pattern of the sonnets being divided by shorter strings consisting which
+have more than zero characters.</p>
+<p>If we can identify the indices of these lines we should be able to
+identify the lines with the sonnet numbers.</p>
+<p>We can do so by checking for strings that have greater than 0 but
+less than 10 characters.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2hpY2gobmNoYXIoc29ubmV0cyk+MCAmIG5jaGFyKHNvbm5ldHMpPDEwKVxuYGBgIn0= -->
+<pre class="r"><code>which(nchar(sonnets)&gt;0 &amp; nchar(sonnets)&lt;10)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBbMV0gICAgOSAgIDI2ICAgNDMgICA2MCAgIDc3ICAgOTUgIDExMiAgMTI5ICAxNDYgIDE2MyAgMTgwICAxOTcgIDIxNCAgMjMxXG4gWzE1XSAgMjQ4ICAyNjUgIDI4MiAgMjk5ICAzMTYgIDMzMyAgMzUwICAzNjcgIDM4NCAgNDAxICA0MTggIDQzNSAgNDUyICA0NjlcbiBbMjldICA0ODYgIDUwMyAgNTIwICA1MzcgIDU1NCAgNTcxICA1ODggIDYwNSAgNjIyICA2MzkgIDY1NiAgNjczICA2OTAgIDcwN1xuIFs0M10gIDcyNCAgNzQxICA3NTggIDc3NSAgNzkyICA4MDkgIDgyNiAgODQzICA4NjAgIDg3NyAgODk0ICA5MTEgIDkyOCAgOTQ1XG4gWzU3XSAgOTYyICA5NzkgIDk5NiAxMDEzIDEwMzAgMTA0NyAxMDY0IDEwODEgMTA5OCAxMTE1IDExMzIgMTE0OSAxMTY2IDExODNcbiBbNzFdIDEyMDAgMTIxNyAxMjM0IDEyNTEgMTI2OCAxMjg1IDEzMDIgMTMxOSAxMzM2IDEzNTMgMTM3MCAxMzg3IDE0MDQgMTQyMVxuIFs4NV0gMTQzOCAxNDU1IDE0NzIgMTQ4OSAxNTA2IDE1MjMgMTU0MCAxNTU3IDE1NzQgMTU5MSAxNjA4IDE2MjUgMTY0MiAxNjU5XG4gWzk5XSAxNjc2IDE2OTQgMTcxMSAxNzI4IDE3NDUgMTc2MiAxNzc5IDE3OTYgMTgxMyAxODMwIDE4NDcgMTg2NCAxODgxIDE4OThcblsxMTNdIDE5MTUgMTkzMiAxOTQ5IDE5NjYgMTk4MyAyMDAwIDIwMTcgMjAzNCAyMDUxIDIwNjggMjA4NSAyMTAyIDIxMTkgMjEzNlxuWzEyN10gMjE1MSAyMTY4IDIxODUgMjIwMiAyMjE5IDIyMzYgMjI1MyAyMjcwIDIyODcgMjMwNCAyMzIxIDIzMzggMjM1NSAyMzczXG5bMTQxXSAyMzkwIDI0MDcgMjQyNCAyNDQxIDI0NTggMjQ3NSAyNDkyIDI1MDkgMjUyNiAyNTQzIDI1NjAgMjU3NyAyNTk0IDI2MTFcbiJ9 -->
+<pre><code>  [1]    9   26   43   60   77   95  112  129  146  163  180  197  214  231
+ [15]  248  265  282  299  316  333  350  367  384  401  418  435  452  469
+ [29]  486  503  520  537  554  571  588  605  622  639  656  673  690  707
+ [43]  724  741  758  775  792  809  826  843  860  877  894  911  928  945
+ [57]  962  979  996 1013 1030 1047 1064 1081 1098 1115 1132 1149 1166 1183
+ [71] 1200 1217 1234 1251 1268 1285 1302 1319 1336 1353 1370 1387 1404 1421
+ [85] 1438 1455 1472 1489 1506 1523 1540 1557 1574 1591 1608 1625 1642 1659
+ [99] 1676 1694 1711 1728 1745 1762 1779 1796 1813 1830 1847 1864 1881 1898
+[113] 1915 1932 1949 1966 1983 2000 2017 2034 2051 2068 2085 2102 2119 2136
+[127] 2151 2168 2185 2202 2219 2236 2253 2270 2287 2304 2321 2338 2355 2373
+[141] 2390 2407 2424 2441 2458 2475 2492 2509 2526 2543 2560 2577 2594 2611</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Let us check how many such strings have been found.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHdoaWNoKG5jaGFyKHNvbm5ldHMpPjAgJiBuY2hhcihzb25uZXRzKTwxMCkpXG5gYGAifQ== -->
+<pre class="r"><code>length(which(nchar(sonnets)&gt;0 &amp; nchar(sonnets)&lt;10))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE1NFxuIn0= -->
+<pre><code>[1] 154</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Voila! That is the number of sonnets in the file!</p>
+<p>We can also write the indices for the strings with the line numbers
+to a Vector.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29ubmV0Tm9MaW5lcyA8LSB3aGljaChuY2hhcihzb25uZXRzKT4wICYgbmNoYXIoc29ubmV0cyk8MTApXG5gYGAifQ== -->
+<pre class="r"><code>sonnetNoLines &lt;- which(nchar(sonnets)&gt;0 &amp; nchar(sonnets)&lt;10)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>This vector gives us the number of sonnets also.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHNvbm5ldE5vTGluZXMpXG5gYGAifQ== -->
+<pre class="r"><code>length(sonnetNoLines)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE1NFxuIn0= -->
+<pre><code>[1] 154</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="solved-exercise-2" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Solved Exercise</h1>
+<p>We have learnt how to extract a particular sonnet. Now let us try to
+extract all sonnets!</p>
+<p>Once we extract all the sonnets we will have to structure them as
+either a Dataframe or as a List.</p>
+<p>We know that for Dataframe all columns will have to be of equal
+length. But all of Shakespeare’s Sonnets are not of equal number of
+lines.</p>
+<p>So we have to create a List</p>
+<p>Before we do that we have to remove the header and the footer lines
+from the file.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29ubmV0VGV4dHMgPC0gc29ubmV0c1sxMzpsZW5ndGgoc29ubmV0cyktMV1cbmBgYCJ9 -->
+<pre class="r"><code>sonnetTexts &lt;- sonnets[13:length(sonnets)-1]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Extracting the sonnets one by one and appending them to a List. It is
+a slightly complicated exercise. So one should outline an algorithm
+before writing the code.</p>
+<p>Here is roughly what we will do: - We have already removed the header
+and footer sections from the file. So we can now identify lines of the
+sonnets as lines with more than 10 characters in them. - As we saw in
+the barplot above, the sonnets appear as chuncks of text interspersed
+with shorter lines. - We will run a loop through each string in
+“sonnetTexts” - We will identify the longer lines and write them to a
+Vector “newSonnet” - Using conditional ifelse statements we will
+identify the end of the sonnet as a string of less than 10 characters. -
+Once we reach the end of a chunk we append the Vector “newSonnet” to the
+list “sonnetList” - we then wipe clean “newSonnet” to start again - to
+do this we maintain a control count “p”. The read and write loop works
+only as long as p == 0. - to append a Vector to a List we need to begin
+with a List. Hence we will create “sonnetList” with an empty column. We
+will remove this empty column once all 154 sonnets have been
+extracted.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5zb25uZXRMaXN0IDwtIGxpc3QoYygpKSAjYW4gbGlzdCB3aXRoIGFuIGVtcHR5IGNvbHVtblxubmV3U29ubmV0IDwtIE5VTEwgI2EgbnVsbCB2ZWN0b3IgdG8gY29sbGVjdCB0aGUgbGluZXMgb2YgdGhlIHNvbm5ldFxudCA8LSAxICAgICAgICAgICAgI3RoaXMgd2lsbCBtYWludGFpbiBhIGNvdW50IG9mIHRoZSBzb25uZXRzXG5mb3IgKG4gaW4gMTpsZW5ndGgoc29ubmV0VGV4dHMpKXtcbiAgaWYobmNoYXIoc29ubmV0VGV4dHNbbl0pPjEwKXtcbiAgICBwIDwtIDAgICN0aGlzIGlzIGEgY29udHJvbCB0byBleHRyYWN0IGxpbmVzIG9ubHkgd2hpbGUgbmNoYXIgaXMgPDEwXG4gICAgbmV3U29ubmV0IDwtIGMobmV3U29ubmV0LHNvbm5ldFRleHRzW25dKSAjYXBwZW5kIGEgbmV3IHN0cmluZ1xuICB9IGVsc2Uge1xuICAgIGlmKHAgPT0gMCl7XG4gICAgICB0IDwtIHQrMSAjb25lIGluY3JlbWVudCAoZmlyc3QgY29sdW1uIGlzIGVtcHR5OyBzbyB3ZSBzdGFydCBmcm9tIHR3bylcbiAgICAgIHNvbm5ldExpc3RbdF0gPC0gbGlzdChuZXdTb25uZXQpICNhcHBlbmRpbmcgc29ubmV0IHRvIHRoZSBMaXN0XG4gICAgICAjIHByaW50KGxlbmd0aChuZXdTb25uZXQpKVxuICAgICAgcCA8LSBwKzEgI2FkZGluZyB0aGUgY291bnQgb2YgY29udGlndW91cyBzaG9ydGVyIGxpbmVzXG4gICAgICBuZXdTb25uZXQgPC0gTlVMTFxuICAgIH1lbHNle3AgPC0gcCsxfVxuICB9XG4gIFxufVxuc29ubmV0TGlzdCA8LSBzb25uZXRMaXN0Wy0xXSAjcmVtb3ZpbmcgdGhlIGZpcnN0IGVtcHR5IGNvbHVtblxuYGBgIn0= -->
+<pre class="r"><code>
+sonnetList &lt;- list(c()) #an list with an empty column
+newSonnet &lt;- NULL #a null vector to collect the lines of the sonnet
+t &lt;- 1            #this will maintain a count of the sonnets
+for (n in 1:length(sonnetTexts)){
+  if(nchar(sonnetTexts[n])&gt;10){
+    p &lt;- 0  #this is a control to extract lines only while nchar is &lt;10
+    newSonnet &lt;- c(newSonnet,sonnetTexts[n]) #append a new string
+  } else {
+    if(p == 0){
+      t &lt;- t+1 #one increment (first column is empty; so we start from two)
+      sonnetList[t] &lt;- list(newSonnet) #appending sonnet to the List
+      # print(length(newSonnet))
+      p &lt;- p+1 #adding the count of contiguous shorter lines
+      newSonnet &lt;- NULL
+    }else{p &lt;- p+1}
+  }
+  
+}
+sonnetList &lt;- sonnetList[-1] #removing the first empty column</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>That would give us a List of all the sonnets. We can query particular
+sonnets by indexing.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29ubmV0TGlzdFs5OV1cbmBgYCJ9 -->
+<pre class="r"><code>sonnetList[99]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiBbMV0gXCJUaGUgZm9yd2FyZCB2aW9sZXQgdGh1cyBkaWQgSSBjaGlkZTpcIiAgICAgICAgICAgICAgICAgICAgICAgXG4gWzJdIFwiU3dlZXQgdGhpZWYsIHdoZW5jZSBkaWRzdCB0aG91IHN0ZWFsIHRoeSBzd2VldCB0aGF0IHNtZWxscyxcIlxuIFszXSBcIklmIG5vdCBmcm9tIG15IGxvdmXigJlzIGJyZWF0aD8gVGhlIHB1cnBsZSBwcmlkZVwiICAgICAgICAgICAgIFxuIFs0XSBcIldoaWNoIG9uIHRoeSBzb2Z0IGNoZWVrIGZvciBjb21wbGV4aW9uIGR3ZWxsc1wiICAgICAgICAgICAgICBcbiBbNV0gXCJJbiBteSBsb3Zl4oCZcyB2ZWlucyB0aG91IGhhc3QgdG9vIGdyb3NzbHkgZHnigJlkLlwiICAgICAgICAgICAgIFxuIFs2XSBcIlRoZSBsaWx5IEkgY29uZGVtbmVkIGZvciB0aHkgaGFuZCxcIiAgICAgICAgICAgICAgICAgICAgICAgICBcbiBbN10gXCJBbmQgYnVkcyBvZiBtYXJqb3JhbSBoYWQgc3RvbOKAmW4gdGh5IGhhaXI7XCIgICAgICAgICAgICAgICAgICBcbiBbOF0gXCJUaGUgcm9zZXMgZmVhcmZ1bGx5IG9uIHRob3JucyBkaWQgc3RhbmQsXCIgICAgICAgICAgICAgICAgICAgXG4gWzldIFwiT25lIGJsdXNoaW5nIHNoYW1lLCBhbm90aGVyIHdoaXRlIGRlc3BhaXI7XCIgICAgICAgICAgICAgICAgIFxuWzEwXSBcIkEgdGhpcmQsIG5vciByZWQgbm9yIHdoaXRlLCBoYWQgc3RvbOKAmW4gb2YgYm90aCxcIiAgICAgICAgICAgIFxuWzExXSBcIkFuZCB0byBoaXMgcm9iYmVyeSBoYWQgYW5uZXjigJlkIHRoeSBicmVhdGg7XCIgICAgICAgICAgICAgICAgIFxuWzEyXSBcIkJ1dCwgZm9yIGhpcyB0aGVmdCwgaW4gcHJpZGUgb2YgYWxsIGhpcyBncm93dGhcIiAgICAgICAgICAgICBcblsxM10gXCJBIHZlbmdlZnVsIGNhbmtlciBlYXQgaGltIHVwIHRvIGRlYXRoLlwiICAgICAgICAgICAgICAgICAgICAgXG5bMTRdIFwiICAgIE1vcmUgZmxvd2VycyBJIG5vdGVkLCB5ZXQgSSBub25lIGNvdWxkIHNlZSxcIiAgICAgICAgICAgIFxuWzE1XSBcIiAgICBCdXQgc3dlZXQsIG9yIGNvbG91ciBpdCBoYWQgc3RvbOKAmW4gZnJvbSB0aGVlLlwiICAgICAgICAgIFxuIn0= -->
+<pre><code>[[1]]
+ [1] &quot;The forward violet thus did I chide:&quot;                       
+ [2] &quot;Sweet thief, whence didst thou steal thy sweet that smells,&quot;
+ [3] &quot;If not from my love’s breath? The purple pride&quot;             
+ [4] &quot;Which on thy soft cheek for complexion dwells&quot;              
+ [5] &quot;In my love’s veins thou hast too grossly dy’d.&quot;             
+ [6] &quot;The lily I condemned for thy hand,&quot;                         
+ [7] &quot;And buds of marjoram had stol’n thy hair;&quot;                  
+ [8] &quot;The roses fearfully on thorns did stand,&quot;                   
+ [9] &quot;One blushing shame, another white despair;&quot;                 
+[10] &quot;A third, nor red nor white, had stol’n of both,&quot;            
+[11] &quot;And to his robbery had annex’d thy breath;&quot;                 
+[12] &quot;But, for his theft, in pride of all his growth&quot;             
+[13] &quot;A vengeful canker eat him up to death.&quot;                     
+[14] &quot;    More flowers I noted, yet I none could see,&quot;            
+[15] &quot;    But sweet, or colour it had stol’n from thee.&quot;          </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities07.nb.html">Go
+to Lesson 7</a></p>
+<!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiA2Ig0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KW1ZpZXcgdGhpcyBwYWdlIGluIGEgYnJvd3Nlcl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNi5uYi5odG1sKQ0KDQpbR28gdG8gTGVzc29uIDVdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczA1Lm5iLmh0bWwpDQoNCg0KI3JlZ3VsYXIgZXhwcmVzc2lvbnMNCnBucFdvcmRzWzQyXQ0KI3N1YnN0cg0Kc3Vic3RyKHBucFdvcmRzWzQyXSwxLDkpDQojc3Ryc3BsaXQNCnN0cnNwbGl0KHBucFdvcmRzWzQyXSwgc3BsaXQgPSAiciIpDQpzdHJzcGxpdCgidGhlc2UgYXJlIGEgZmV3IG9mIG15IGZhdm91cml0ZSB0aGluZ3MiLCBzcGxpdCA9ICIgIikNCnN0cihzdHJzcGxpdCgidGhlc2UgYXJlIGEgZmV3IG9mIG15IGZhdm91cml0ZSB0aGluZ3MiLCBzcGxpdCA9ICIgIikpDQp1bmxpc3Qoc3Ryc3BsaXQoInRoZXNlIGFyZSBhIGZldyBvZiBteSBmYXZvdXJpdGUgdGhpbmdzIiwgc3BsaXQgPSAiICIpKQ0KI3JlYWRsaW5lcw0KcG5wVGV4dCA8LSByZWFkTGluZXMoImh0dHBzOi8vd2ViLmlpdGQuYWMuaW4vfmFyanVuZ2hvc2gvUndvcmtzaG9wRmlsZXMvcG5wLnR4dCIpDQojcGFyc2Ugc2VudGVuY2VzDQpzdHJzcGxpdChwbnBUZXh0LCAiXFwuIikNCiNyZWFkIHNvbm5ldHMNCnNvbm5ldHMgPC0gcmVhZExpbmVzKCJodHRwczovL3d3dy5ndXRlbmJlcmcub3JnL2ZpbGVzLzEwNDEvMTA0MS0wLnR4dCIpDQpzb25uZXRzWzMyODozNDFdDQojdHJpbSB3aGl0ZSBzcGFjZQ0KdHJpbXdzKHNvbm5ldHNbMzI4OjM0MV0pDQpzb25uZXRzIDwtIHRyaW13cyhzb25uZXRzKQ0KI2dyZXANCmdyZXAoIlNoYWxsIEkgY29tcGFyZSIsIHNvbm5ldHMpDQojc3ByaW50ZigpDQppIDwtIDgNCnNwcmludGYoInRoZSBzcXVhcmUgb2YgJWQgaXMgJWQiLGksaV4yKQ0KI3JlZ2V4cHIgPz8/DQpyZWdleHByKCJ1YXQiLCJFcXVhdG9yIikNCiNncmVnZXhwcg0KZ3JlZ2V4cHIoImlzcyIsICJNaXNzaXNzaXBpIikNCiNzdWIgcmVwbGFjZSBzdWJzdHJpbmcgLSBvbmx5IGZpcnN0IGluc3RhbmNlDQpzdWIoImlzcyIsImFudCIsIk1pc3Npc3NpcGkiKQ0KI2dzdWIgcmVwbGFjZSBzdWJzdHJpbmdzIC0gYWxsIGluc3RhbmNlcw0KZ3N1YigiaXNzIiwiYW50IiwiTWlzc2lzc2lwaSIpDQojZnJvbSBzb25uZXRzIGlkZW50aWZ5IHNvbm5ldCBsaW5lcyBhbmQgY3JlYXRlIGEgbGlzdCB3aXRoIGVhY2ggc29ubmV0IGFzIG9uZSBjb2x1bW4gb2YgdGhlIGxpc3QNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiA2Ig0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KW1ZpZXcgdGhpcyBwYWdlIGluIGEgYnJvd3Nlcl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNi5uYi5odG1sKQ0KDQpbR28gdG8gTGVzc29uIDVdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczA1Lm5iLmh0bWwpDQoNCiMgbWFuaXB1bGF0aW5nIHN0cmluZ3MNCg0KYGBge3J9DQpwbnBXb3Jkc1s0Ml0NCmBgYA0KDQojIyBvYnRhaW5pbmcgYSBzdWJzdHJpbmcgZnJvbSBhIHN0cmluZw0KDQpgYGB7cn0NCnN1YnN0cihwbnBXb3Jkc1s0Ml0sMSw5KQ0KYGBgDQoNCiMjIHNwbGl0dGluZyBhIHN0cmluZw0KDQpgYGB7cn0NCnN0cnNwbGl0KHBucFdvcmRzWzQyXSwgc3BsaXQgPSAiciIpDQpgYGANCg0KIyMgc3BsaXR0aW5nIHdvcmRzIHVzaW5nIHdoaXRlIHNwYWNlDQoNCmBgYHtyfQ0Kc3Ryc3BsaXQoInRoZXNlIGFyZSBhIGZldyBvZiBteSBmYXZvdXJpdGUgdGhpbmdzIiwgc3BsaXQgPSAiICIpDQpgYGANClRoZSByZXN1bHQgaXMgYSBsaXN0DQoNCmBgYHtyfQ0Kc3RyKHN0cnNwbGl0KCJ0aGVzZSBhcmUgYSBmZXcgb2YgbXkgZmF2b3VyaXRlIHRoaW5ncyIsIHNwbGl0ID0gIiAiKSkNCmBgYA0KDQpUbyBnZXQgYSBWZWN0b3IgdXNlIHVubGlzdA0KDQpgYGB7cn0NCnVubGlzdChzdHJzcGxpdCgidGhlc2UgYXJlIGEgZmV3IG9mIG15IGZhdm91cml0ZSB0aGluZ3MiLCBzcGxpdCA9ICIgIikpDQpgYGANCg0KDQojIyBJbXBvcnQgYSB0ZXh0IGZpbGUgYXMgYSBzaW5nbGUgc3RyaW5nDQoNCmBgYHtyfQ0KcG5wVGV4dCA8LSByZWFkTGluZXMoImh0dHBzOi8vd2ViLmlpdGQuYWMuaW4vfmFyanVuZ2hvc2gvUndvcmtzaG9wRmlsZXMvcG5wLnR4dCIpDQpgYGANCg0KYGBge3J9DQpzdHIocG5wVGV4dCkNCmBgYA0KDQojIyBwYXJzZSBzZW50ZW5jZXMNCg0KYGBge3J9DQpzdHJzcGxpdChwbnBUZXh0LCAiXFwuIikNCmBgYA0KDQoNCiMgU29sdmVkIGV4ZXJjaXNlDQoNCkxldCB1cyB0cnkgdG8gZ2V0IGEgcGFydGljdWxhciBzb25uZXQgKCJTaGFsbCBJIGNvbXBhcmUgdGhlZSAuLi4uIikgZnJvbSBhIGZpbGUgY29udGFpbmluZyBhbGwgb2YgU2hha2VzcGVhcmUncyBzb25uZXRzLg0KDQojIyBpbXBvcnRpbmcgdGhlIGZpbGUNCg0KYGBge3J9DQpzb25uZXRzIDwtIHJlYWRMaW5lcygiaHR0cHM6Ly93d3cuZ3V0ZW5iZXJnLm9yZy9maWxlcy8xMDQxLzEwNDEtMC50eHQiKQ0KYGBgDQoNClRoZSBlcnJvciAiaW5jb21wbGV0ZSBmaW5hbCBsaW5lIGZvdW5kIG9uIC4uLiIgY29tZXMgaWYgdGhlIHNvdXJjZSBmaWxlIGRvZXMgbm90IGVuZCB3aXRoIGFuIEVuZCBvZiBMaW5lIGNoYXJhY3RlciAoZWcuIGxpbmUgZW5kaW5nIG9yIHBhcmFncmFwaCBlbmRpbmcgLSAiL24iKQ0KDQoNCkxldCB1cyBleHRyYWN0IHRoZSBsaW5lcyBjb250YWluaW5nIHRoZSBzb25uZXQgaW4gcXVlc3Rpb24uIEZvciBub3cgd2UgYXJlIGluZGV4aW5nIHRoZSBsaW5lcyBiYXNlZCBvbiBhIHBoeXNpY2FsIGluc3BlY3Rpb24gb2YgdGhlIGZpbGUuDQoNCmBgYHtyfQ0Kc29ubmV0c1szMDE6MzE0XQ0KYGBgDQojIyBUcmltbWluZyB3aGl0ZSBzcGFjZQ0KDQpXZSBzZWUgdGhhdCB0aGUgc29tZSBvZiB0aGUgbGluZXMgaGF2ZSBhZGRpdGlvbmFsIHdoaXRlIHNwYWNlIGluIHRoZW0uIFRoZXNlIGFyZSB0aGVyZSBpbiB0aGUgc291cmNlIGZpbGUgZm9yIHZpc3VhbCBmb3JtYXR0aW5nLiBCdXQgaWYgd2Ugd2FudCB0byBwYXJzZSB0aGUgZmlsZSBmb3Igd29yZCBleHRyYWN0aW9uIGl0IHdvdWxkIGhlbHAgaWYgd2UgcmVtb3ZlIHRoZSBhZGR0aW9uYWwgd2hpdGUgc3BhY2VzLg0KDQpgYGB7cn0NCnNvbm5ldDE4IDwtIHRyaW13cyhzb25uZXRzWzMwMTozMTRdKQ0KYGBgDQoNCiMgUmVndWxhciBleHByZXNzaW9ucw0KDQpTbyBmYXIgd2UgaGF2ZSBiZWVuIGV4YW1pbmluZyB0aGUgdGV4dCBmaWxlIHBoeXNpY2FsbHkgdG8gZGlzY292ZXIgdGhlIGxpbmVzIG9mIGEgc29ubmV0IHRvIGJlIGV4dHJhY3RlZC4gV2hhdCBpZiB3ZSB3YW50IHRvIHdvcmsgd2l0aCBhIHZlcnkgbGFyZ2UgZmlsZT8gSW4gdGhhdCBjYXNlIHRoZSBwaHlzaWNhbCBleGFtaW5hdGlvbiBtYXkgbm90IGJlIHN1ZmZpY2llbnQgb3IgZXZlbiBmZWFzaWJsZS4gVGhvdWdoIGl0IGlzIG5vdCBhZHZpc2FibGUgdG8gYWJhbmRvbiBwaHlzaWNhbCBleGFtaW5hdGlvbiBhbHRvZ2V0aGVyLCBpdCBpcyBpbXBvcnRhbnQgdG8gc3VwcGxlbWVudCBpdCB3aXRoIGNvbXB1dGFpdG9uYWwgZXhhbWluYXRpb24uIEZvciB0aGF0IHdlIG5lZWQgdG8gdGFrZSByZWNvdXJzZSB0byBhIHNldCBvZiB0ZXh0IGV2YWx1YXRpb24gdG9vbHMgY2FsbGVkIFJlZ3VsYXIgRXhwcmVzc2lvbnMuDQoNCldlIHdpbGwgZW5nYWdlIHdpdGggdGhlIGZ1bGwgc3VpdGUgb2YgUmVndWxhciBFeHByZXNzaW9ucyB0b29scyBsYXRlci4gUmlnaHQgbm93IGxldCB1cyBsZWFybiBhIGZldyBwcmVsaW1pbmFyeSBmdW50aW9ucy4NCg0KIyMgZ3JlcA0KDQpncmVwIHdpbGwgZ2l2ZSB1cyB0aGUgbGluZSBvciB2ZWN0b3IgaW5kZXggd2hlcmUgYSBwYXJ0aWN1bGFyIHN1YnN0cmluZyBwYXR0ZXJuIG1hdGNoIGlzIGZvdW5kLg0KDQpgYGB7cn0NCmdyZXAoIlNoYWxsIEkgY29tcGFyZSIsIHNvbm5ldHMpDQpgYGANCldlIGhhdmUgZm91bmQgdGhlIGluZGV4IG9mIHRoZSBmaXJzdCBsaW5lIG9mIHRoZSBvdXIgY2hvc2VuIHNvbm5ldC4NCg0KTm93IHNpbmNlIHdlIGtub3cgdGhhdCB0aGUgc29ubmV0IGluIHF1ZXN0aW9uIGNvbnNpc3RzIG9mIDE0IGxpbmVzIHdlIGNhbiBlYXNpbHkgZXh0cmFjdCB0aGUgc29ubmV0Lg0KDQpgYGB7cn0NCnNvbm5ldHNbZ3JlcCgiU2hhbGwgSSBjb21wYXJlIiwgc29ubmV0cyk6KGdyZXAoIlNoYWxsIEkgY29tcGFyZSIsIHNvbm5ldHMpKzEzKV0NCmBgYA0KDQoNCiMgU29sdmVkIEV4ZXJjaXNlDQoNCkxldCB1cyB0cnkgdG8gY29tcHV0ZSB0aGUgdG90YWwgbnVtYmVyIG9mIHNvbm5ldHMgaW4gdGhlIGZpbGUuDQoNCkxldCB1cyBleGFtaW5lIHRoZSBmaWxlIGFnYWluLg0KDQpXZSBzZWUgdGhhdCBpbiB0aGlzIGZpbGUgZWFjaCBzb25uZXQgaXMgcHJlY2VlZGVkIGJ5IGEgc29ubmV0IG51bWJlciBpbiByb21hbiBudW1lcmFscy4gSWYgd2UgY2FuIGlkZW50aWZ5IHRoZSBpbmRpY2VzIG9mIHRoZSAic29ubmV0cyIgdmVjdG9yIHRoYXQgZ2l2ZSB0aGVzZSBzb25uZXQgbnVtYmVycyB3ZSBzaG91bGQgYmUgYWJsZSB0byBleHRyYWN0IGVhY2ggc29ubmV0IGluIGEgbG9vcC4NCg0KSXMgdGhlcmUgYSB3YXkgdG8gaWRlbnRpZnkgdGhlc2UgbGluZXM/DQoNCmBgYHtyfQ0KbmNoYXIoc29ubmV0cykNCmBgYA0KDQpUaGUgcmVzdWx0aW5nIHZlY3RvciBpcyBhIHZlcnkgbG9uZyBmaWxlIGFuZCBpdCBtYXkgYmUgZGlmZmljdWx0IHRvIGlkZW50aWZ5IGFueSB1c2VmdWwgcGF0dGVybi4gSXQgbWF5IGJlIHVzZWZ1bCB0byByZXNvcnQgdG8gdmlzdWFsIG1ldGhvZHMuDQoNClRob3VnaCB3ZSBoYXZlIG5vdCB5ZXQgbGVhcm50IGhvdyB0byBwcmVwYXJlIGNoYXJ0cyBpbiBSIGxldCB1cyB2aXN1YWxpemUgb3VyIG91dHB1dCBhcyBhIGJhcnBsb3QuDQoNCmBgYHtyfQ0KYmFycGxvdChuY2hhcihzb25uZXRzKSkNCmBgYA0KDQpXZSBzZWUgdGhhdCB0aGUgbGluZSBsZW5ndGhzIGFyZSB1bmVxdWFsIGJ1dCB0aGUgZGVuc2l0eSBvZiB0aGUgY2hhcnQgZG9lcyBub3QgYWxsb3cgdXMgdG8gYXJyaXZlIGF0IGFueXRoaW5nIG1lYW5pbmdmdWwuIExldCB1cyBsb29rIGEgYSBzdWJzZXQgb2YgdGhlIFZlY3Rvci4NCg0KDQpgYGB7cn0NCmJhcnBsb3QobmNoYXIoc29ubmV0c1szMDE6NDAwXSkpDQpgYGANCg0KTm93IHdlIGdldCB0byBzZWUgc29tZXRoaW5nIG1vcmUgbWVhbmluZ2Z1bC4gV2Ugc2VlIHRoYXQgdGhlcmUgaXMgYSBwYXR0ZXJuIG9mIHRoZSBzb25uZXRzIGJlaW5nIGRpdmlkZWQgYnkgc2hvcnRlciBzdHJpbmdzIGNvbnNpc3Rpbmcgd2hpY2ggaGF2ZSBtb3JlIHRoYW4gemVybyBjaGFyYWN0ZXJzLg0KDQpJZiB3ZSBjYW4gaWRlbnRpZnkgdGhlIGluZGljZXMgb2YgdGhlc2UgbGluZXMgd2Ugc2hvdWxkIGJlIGFibGUgdG8gaWRlbnRpZnkgdGhlIGxpbmVzIHdpdGggdGhlIHNvbm5ldCBudW1iZXJzLg0KDQpXZSBjYW4gZG8gc28gYnkgY2hlY2tpbmcgZm9yIHN0cmluZ3MgdGhhdCBoYXZlIGdyZWF0ZXIgdGhhbiAwIGJ1dCBsZXNzIHRoYW4gMTAgY2hhcmFjdGVycy4NCg0KYGBge3J9DQp3aGljaChuY2hhcihzb25uZXRzKT4wICYgbmNoYXIoc29ubmV0cyk8MTApDQpgYGANCg0KTGV0IHVzIGNoZWNrIGhvdyBtYW55IHN1Y2ggc3RyaW5ncyBoYXZlIGJlZW4gZm91bmQuDQoNCmBgYHtyfQ0KbGVuZ3RoKHdoaWNoKG5jaGFyKHNvbm5ldHMpPjAgJiBuY2hhcihzb25uZXRzKTwxMCkpDQpgYGANClZvaWxhISBUaGF0IGlzIHRoZSBudW1iZXIgb2Ygc29ubmV0cyBpbiB0aGUgZmlsZSENCg0KV2UgY2FuIGFsc28gd3JpdGUgdGhlIGluZGljZXMgZm9yIHRoZSBzdHJpbmdzIHdpdGggdGhlIGxpbmUgbnVtYmVycyB0byBhIFZlY3Rvci4NCg0KYGBge3J9DQpzb25uZXROb0xpbmVzIDwtIHdoaWNoKG5jaGFyKHNvbm5ldHMpPjAgJiBuY2hhcihzb25uZXRzKTwxMCkNCmBgYA0KDQpUaGlzIHZlY3RvciBnaXZlcyB1cyB0aGUgbnVtYmVyIG9mIHNvbm5ldHMgYWxzby4NCg0KYGBge3J9DQpsZW5ndGgoc29ubmV0Tm9MaW5lcykNCmBgYA0KDQoNCg0KIyBTb2x2ZWQgRXhlcmNpc2UNCg0KV2UgaGF2ZSBsZWFybnQgaG93IHRvIGV4dHJhY3QgYSBwYXJ0aWN1bGFyIHNvbm5ldC4gTm93IGxldCB1cyB0cnkgdG8gZXh0cmFjdCBhbGwgc29ubmV0cyENCg0KT25jZSB3ZSBleHRyYWN0IGFsbCB0aGUgc29ubmV0cyB3ZSB3aWxsIGhhdmUgdG8gc3RydWN0dXJlIHRoZW0gYXMgZWl0aGVyIGEgRGF0YWZyYW1lIG9yIGFzIGEgTGlzdC4NCg0KV2Uga25vdyB0aGF0IGZvciBEYXRhZnJhbWUgYWxsIGNvbHVtbnMgd2lsbCBoYXZlIHRvIGJlIG9mIGVxdWFsIGxlbmd0aC4gQnV0IGFsbCBvZiBTaGFrZXNwZWFyZSdzIFNvbm5ldHMgYXJlIG5vdCBvZiBlcXVhbCBudW1iZXIgb2YgbGluZXMuDQoNClNvIHdlIGhhdmUgdG8gY3JlYXRlIGEgTGlzdA0KDQpCZWZvcmUgd2UgZG8gdGhhdCB3ZSBoYXZlIHRvIHJlbW92ZSB0aGUgaGVhZGVyIGFuZCB0aGUgZm9vdGVyIGxpbmVzIGZyb20gdGhlIGZpbGUuDQoNCmBgYHtyfQ0Kc29ubmV0VGV4dHMgPC0gc29ubmV0c1sxMzpsZW5ndGgoc29ubmV0cyktMV0NCmBgYA0KDQpFeHRyYWN0aW5nIHRoZSBzb25uZXRzIG9uZSBieSBvbmUgYW5kIGFwcGVuZGluZyB0aGVtIHRvIGEgTGlzdC4gDQpJdCBpcyBhIHNsaWdodGx5IGNvbXBsaWNhdGVkIGV4ZXJjaXNlLiBTbyBvbmUgc2hvdWxkIG91dGxpbmUgYW4gYWxnb3JpdGhtIGJlZm9yZSB3cml0aW5nIHRoZSBjb2RlLg0KDQpIZXJlIGlzIHJvdWdobHkgd2hhdCB3ZSB3aWxsIGRvOg0KLSBXZSBoYXZlIGFscmVhZHkgcmVtb3ZlZCB0aGUgaGVhZGVyIGFuZCBmb290ZXIgc2VjdGlvbnMgZnJvbSB0aGUgZmlsZS4gU28gd2UgY2FuIG5vdyBpZGVudGlmeSBsaW5lcyBvZiB0aGUgc29ubmV0cyBhcyBsaW5lcyB3aXRoIG1vcmUgdGhhbiAxMCBjaGFyYWN0ZXJzIGluIHRoZW0uDQotIEFzIHdlIHNhdyBpbiB0aGUgYmFycGxvdCBhYm92ZSwgdGhlIHNvbm5ldHMgYXBwZWFyIGFzIGNodW5ja3Mgb2YgdGV4dCBpbnRlcnNwZXJzZWQgd2l0aCBzaG9ydGVyIGxpbmVzLiANCi0gV2Ugd2lsbCBydW4gYSBsb29wIHRocm91Z2ggZWFjaCBzdHJpbmcgaW4gInNvbm5ldFRleHRzIg0KLSBXZSB3aWxsIGlkZW50aWZ5IHRoZSBsb25nZXIgbGluZXMgYW5kIHdyaXRlIHRoZW0gdG8gYSBWZWN0b3IgIm5ld1Nvbm5ldCINCi0gVXNpbmcgY29uZGl0aW9uYWwgaWZlbHNlIHN0YXRlbWVudHMgd2Ugd2lsbCBpZGVudGlmeSB0aGUgZW5kIG9mIHRoZSBzb25uZXQgYXMgYSBzdHJpbmcgb2YgbGVzcyB0aGFuIDEwIGNoYXJhY3RlcnMuDQotIE9uY2Ugd2UgcmVhY2ggdGhlIGVuZCBvZiBhIGNodW5rIHdlIGFwcGVuZCB0aGUgVmVjdG9yICJuZXdTb25uZXQiIHRvIHRoZSBsaXN0ICJzb25uZXRMaXN0Ig0KLSB3ZSB0aGVuIHdpcGUgY2xlYW4gIm5ld1Nvbm5ldCIgdG8gc3RhcnQgYWdhaW4NCi0gdG8gZG8gdGhpcyB3ZSBtYWludGFpbiBhIGNvbnRyb2wgY291bnQgInAiLiBUaGUgcmVhZCBhbmQgd3JpdGUgbG9vcCB3b3JrcyBvbmx5IGFzIGxvbmcgYXMgcCA9PSAwLg0KLSB0byBhcHBlbmQgYSBWZWN0b3IgdG8gYSBMaXN0IHdlIG5lZWQgdG8gYmVnaW4gd2l0aCBhIExpc3QuIEhlbmNlIHdlIHdpbGwgY3JlYXRlICJzb25uZXRMaXN0IiB3aXRoIGFuIGVtcHR5IGNvbHVtbi4gV2Ugd2lsbCByZW1vdmUgdGhpcyBlbXB0eSBjb2x1bW4gb25jZSBhbGwgMTU0IHNvbm5ldHMgaGF2ZSBiZWVuIGV4dHJhY3RlZC4NCg0KYGBge3J9DQoNCnNvbm5ldExpc3QgPC0gbGlzdChjKCkpICNhbiBsaXN0IHdpdGggYW4gZW1wdHkgY29sdW1uDQpuZXdTb25uZXQgPC0gTlVMTCAjYSBudWxsIHZlY3RvciB0byBjb2xsZWN0IHRoZSBsaW5lcyBvZiB0aGUgc29ubmV0DQp0IDwtIDEgICAgICAgICAgICAjdGhpcyB3aWxsIG1haW50YWluIGEgY291bnQgb2YgdGhlIHNvbm5ldHMNCmZvciAobiBpbiAxOmxlbmd0aChzb25uZXRUZXh0cykpew0KICBpZihuY2hhcihzb25uZXRUZXh0c1tuXSk+MTApew0KICAgIHAgPC0gMCAgI3RoaXMgaXMgYSBjb250cm9sIHRvIGV4dHJhY3QgbGluZXMgb25seSB3aGlsZSBuY2hhciBpcyA8MTANCiAgICBuZXdTb25uZXQgPC0gYyhuZXdTb25uZXQsc29ubmV0VGV4dHNbbl0pICNhcHBlbmQgYSBuZXcgc3RyaW5nDQogIH0gZWxzZSB7DQogICAgaWYocCA9PSAwKXsNCiAgICAgIHQgPC0gdCsxICNvbmUgaW5jcmVtZW50IChmaXJzdCBjb2x1bW4gaXMgZW1wdHk7IHNvIHdlIHN0YXJ0IGZyb20gdHdvKQ0KICAgICAgc29ubmV0TGlzdFt0XSA8LSBsaXN0KG5ld1Nvbm5ldCkgI2FwcGVuZGluZyBzb25uZXQgdG8gdGhlIExpc3QNCiAgICAgICMgcHJpbnQobGVuZ3RoKG5ld1Nvbm5ldCkpDQogICAgICBwIDwtIHArMSAjYWRkaW5nIHRoZSBjb3VudCBvZiBjb250aWd1b3VzIHNob3J0ZXIgbGluZXMNCiAgICAgIG5ld1Nvbm5ldCA8LSBOVUxMDQogICAgfWVsc2V7cCA8LSBwKzF9DQogIH0NCiAgDQp9DQpzb25uZXRMaXN0IDwtIHNvbm5ldExpc3RbLTFdICNyZW1vdmluZyB0aGUgZmlyc3QgZW1wdHkgY29sdW1uDQpgYGANCg0KVGhhdCB3b3VsZCBnaXZlIHVzIGEgTGlzdCBvZiBhbGwgdGhlIHNvbm5ldHMuIFdlIGNhbiBxdWVyeSBwYXJ0aWN1bGFyIHNvbm5ldHMgYnkgaW5kZXhpbmcuDQoNCmBgYHtyfQ0Kc29ubmV0TGlzdFs5OV0NCmBgYA0KDQoNCltHbyB0byBMZXNzb24gN10oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDcubmIuaHRtbCkNCg0K</div>
 
 
 

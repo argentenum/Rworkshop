@@ -231,7 +231,7 @@ as.Date(18329, origin = "1970-01-01")
 ```
 
 
-## check presence of a substring in a string
+## check presence of a value in a vector
 
 ```{r}
 "truth" %in% pnpWords
