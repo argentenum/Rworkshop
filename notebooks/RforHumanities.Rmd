@@ -5,26 +5,18 @@ output:
     number_sections: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+[Lesson 1](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities01.nb.html)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+[Lesson 2](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.nb.html)
 
-```{r cars}
-summary(cars)
-```
+[Lesson 3](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities03.nb.html)
 
-## Including Plots
+[Lesson 4](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities04.nb.html)
 
-You can also embed plots, for example:
+[Lesson 5](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities05.nb.html)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+[Lesson 6](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities06.nb.html)
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+[Lesson 7](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities07.nb.html)
