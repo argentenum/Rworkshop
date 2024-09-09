@@ -11,7 +11,7 @@
 
 
 
-<title>R for Humanities: Lesson 4</title>
+<title>RforHumanities</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1746,268 +1746,45 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">R for Humanities: Lesson 4</h1>
+<h1 class="title toc-ignore">RforHumanities</h1>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities04.nb.html">View
-this page in a browser</a></p>
-<p><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities03.nb.html">Go
-to Lesson 3</a></p>
-<div id="appending-data-to-an-existing-data-frame" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Appending data to an
-existing Data Frame</h1>
-<div id="add-rows" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Add rows</h2>
 <!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2hGcmFtZVxuYGBgIn0= -->
-<pre class="r"><code>marchFrame</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NywibmNvbCI6Miwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCbDFSeTA3RE1CRGNKazFESTFFcXdZRURoL3hBY2tGSTNPQlFjVVZDSUhwMUUrZWhwSGJsMkMzOE5WOVFzRk92cVd6Sm10bXhkM2ZzZlZ1dDc1TjFBZ0FoVE1NQXdraFRpRDdlWDdKSGdHbWdnd2xNWVc3d1MxKzYxc1NJQzczanB4OFkxek5ZdkxDNHRIaGo4ZGJpSGVBeU4ySmJPTnh5aGxRcWl2UkFTNmMyQ21rbFdxUURrWTRxNXJtTkdOblN3WFlLVUh3VkpSVTJXSzdJOTVEeUtwVU5UVDhwN2J3S2M4RVArWGtWNTNmZ1cyZWRPT3NiNWZ6V1N2dzc2eHh0Q0ZKQjlyN2ZvaWNEZGtJeEtZa2tlU1cwQ1IwZHZaU1k3MlRMbVU0S3pGaG1YdkpFZU1LVll1WTVaVlkwaW5YWmczY2M3bGh0ZW83U2FWOWFqTTk0Y0hJUi9OcjBtVTJmVVZhM0RLY1g5V1JEZTZ4YzByMmxDLzJwNDUvbU85RXluRitpMVNHWFhCSk1TUXJlb3pLK0hJNS9EN1pnUjZzQ0FBQT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Order"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Days of the Week"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"mon","_rn_":"som"},{"1":"2","2":"tue","_rn_":"man"},{"1":"3","2":"wed","_rn_":"bud"},{"1":"4","2":"thu","_rn_":"gur"},{"1":"5","2":"fri","_rn_":"suk"},{"1":"6","2":"sat","_rn_":"sha"},{"1":"7","2":"sun","_rn_":"rav"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[7]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<div id="r-markdown" class="section level2" number="0.1">
+<h2><span class="header-section-number">0.1</span> R Markdown</h2>
+<p>This is an R Markdown document. Markdown is a simple formatting
+syntax for authoring HTML, PDF, and MS Word documents. For more details
+on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Knit</strong> button a document will be
+generated that includes both content as well as the output of any
+embedded R code chunks within the document. You can embed an R code
+chunk like this:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2hGcmFtZSA8LSByYmluZChtYXJjaEZyYW1lLGMoOCxcImhvbGlkYXlcIikpXG5tYXJjaEZyYW1lXG5gYGAifQ== -->
-<pre class="r"><code>marchFrame &lt;- rbind(marchFrame,c(8,&quot;holiday&quot;))
-marchFrame</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6OCwibmNvbCI6Miwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCbDJSV1U3RE1CQ0czV3h0SXdHVnVFQXVrRWhRS0QxQXhTc1NLcUt2YnVJc1NtSkhYaWk5Zk1GSk15YjR3ZkkzdnozNysrNndEZzhoUXNoRm51c2cxOWVJL0kvOWE3eEZ5SE8wTVVNZVd2YjN0LzUwcjZFWFYvb3M0T0VCNEJGZ0RmQUU4QXl3QVhnQjJGcngzSlpSUUtrSTRJbGtSaTBWWU00clFJR2xRUVVSNWlWcnFneWZyV1o4aWxzaXhzUU9pRzg4STN3MFZqdDhGaEhMSTFtUzZKT1Eyb3F3NU95VVRLT1k4Z1ZyVFNmWWRISlVwdnhDOGI5Q2E0TWxCdVQ0YXpLYy80V25EUmFRRXNRd3d4SW5PZGZWYU90aXVjeFpKeXRHdFpQVHJ5K3duR2ZjRXU0VTdmdks0clJVdEk0MzFyUGIwYUxQT1VqWGN6UGVpd2s3MXlxY245RTlHTjBEUW91S3dsYjlCaDlKQTVFekFuM2Y2dWtPdzAwNlhsSFlhNmhWa1VnbU1iaUVLV3RBR1RwSGwxOUp5NmJtMHdJQUFBPT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Order"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Days of the Week"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"mon","_rn_":"som"},{"1":"2","2":"tue","_rn_":"man"},{"1":"3","2":"wed","_rn_":"bud"},{"1":"4","2":"thu","_rn_":"gur"},{"1":"5","2":"fri","_rn_":"suk"},{"1":"6","2":"sat","_rn_":"sha"},{"1":"7","2":"sun","_rn_":"rav"},{"1":"8","2":"holiday","_rn_":"8"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[8]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="adding-columns" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Adding Columns</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyY2hGcmFtZSA8LSBjYmluZChtYXJjaEZyYW1lLGMoMTEsMTIsMTMsMTQsMTUsMTYsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxNywxOCkpXG5uYW1lcyhtYXJjaEZyYW1lKVszXSA8LSBcImF0dGVuZGFuY2VcIlxubWFyY2hGcmFtZVxuYGBgIn0= -->
-<pre class="r"><code>marchFrame &lt;- cbind(marchFrame,c(11,12,13,14,15,16,
-                                 17,18))
-names(marchFrame)[3] &lt;- &quot;attendance&quot;
-marchFrame</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6OCwibmNvbCI6Mywic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCbDJTWFUvQ01CU0dEeHZqWTRsSTRoL1lsVEZHRmdFVkxya2czcG9ZamR5V3RiQ0YwWkt1RmZuemFEZDZLcXhKYzU2KzdUbnRlZFAzK1dJY0xrSUE4S0hwZStBSEJpSDQvSGdkVEFHYW5sazBvQW5kTXY2WVF6ZlZTWUMrbVIzY0dDS01FTVlJVHdqUENDOElFNFJwclo2L0ZSeFJhWWE0WjlTcHFVWmN5UXl4SU1xaHhncnRWT1FaSlFlRHZmS08yUzFVWTNabjQ3Mk5EemJHTmo3YU9MUnhCSFpjbUJKd3NtV0ZiY0JIOFUxU0p1MmlQeWVISWhLclNLVXMrbUpzWS9XUUtNVTRKVHhodFpwZEtmYnhlVjFuVENHMnppUGlQRnBxWjh4YXkzOExOZzVUZ2lqSjk1bnRsNjBrT1Nud1NoUkRTaFNKVjlLOHhxeU90WlMyMktsTWNKUGtsUitqVlV0dXlKcHdyWG5aRngwa3FlYWJ3YVMyN2UvNHVyeXprazd6eXNiT0dmdW5WM2kvTnIxbDAxdU1yek9PL3lYSXlaTGxXSmt5N0x0bjNLM01qWGN5NC9oalFxTVdzUktLWUVxWWlCeVZxbk00L2dFMTN2N05MUU1BQUE9PSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Order"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Days of the Week"],"name":[2],"type":["chr"],"align":["left"]},{"label":["attendance"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"mon","3":"11","_rn_":"som"},{"1":"2","2":"tue","3":"12","_rn_":"man"},{"1":"3","2":"wed","3":"13","_rn_":"bud"},{"1":"4","2":"thu","3":"14","_rn_":"gur"},{"1":"5","2":"fri","3":"15","_rn_":"suk"},{"1":"6","2":"sat","3":"16","_rn_":"sha"},{"1":"7","2":"sun","3":"17","_rn_":"rav"},{"1":"8","2":"holiday","3":"18","_rn_":"8"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[8]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-</div>
-<div id="merging-two-data-frames" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Merging two data
-frames</h1>
-<p>Data in two data frames can be merged by a common column</p>
-<p>First let us create two data frames with a common data column. Though
-the data may have overlap their order may be different. There may be
-some mismatch between values of the matching columns. The values may
-also be present in different order.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmxvd2VyUHJpY2UgPC0gZGF0YS5mcmFtZShjKFwibWFyaWdvbGRcIixcInBldHVuaWFcIixcImphc21pbmVcIixcInJvc2VcIiksYygyMCw0MCwzNSwxNTApKVxubmFtZXMoZmxvd2VyUHJpY2UpIDwtIGMoXCJmbG93ZXJcIixcInByaWNlXCIpXG5mbG93ZXJQcmljZVxuYGBgIn0= -->
-<pre class="r"><code>flowerPrice &lt;- data.frame(c(&quot;marigold&quot;,&quot;petunia&quot;,&quot;jasmine&quot;,&quot;rose&quot;),c(20,40,35,150))
-names(flowerPrice) &lt;- c(&quot;flower&quot;,&quot;price&quot;)
-flowerPrice</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NCwibmNvbCI6Miwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCbDFRMFU3RElCUzlvN1RibW15YStCMXRZdlRCeDVrc2ZvRFJaSytzWlpWSm9hSFUrYmhQODh1bWx4YWlRa0x1T1FjTzkzS2V0N3U3ZkpjRFFBSTBJWkNrQ0NGOWZYa3FIZ0FvUVRJRENrdFhQL0hTRFFJblh1T20vbURSTWlNYUxXdlA1eDIzZ3hJczBDUHJXNkc0cDlUb25tTmRPN3k1aDNGdHRyNCtucWU2LzVxRS95T2tpclc4OSsySkY3T0QxQ2R1d3BYT2lJcEh2cVhScHpKNFY4NTc5cS9IRFNySit0QWdpSG5OTENzUEJ2M0lMcEZscmpzcnRFSVRjZUZra1hsbUl1RnFVRzZTdXFqZUJ2VmUzRWJIU2FjYTEzT1Vwclh5bVA3QlpKcUNmSHQ3RnNMZ3F2bk5PcFZzejJWNHVlWWZIcTR4anpHT0V0TlNOdndUMWI2MDJySmd5U3N0Z3pMK0hDNC93bmhUMHpFQ0FBQT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["flower"],"name":[1],"type":["chr"],"align":["left"]},{"label":["price"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"marigold","2":"20"},{"1":"petunia","2":"40"},{"1":"jasmine","2":"35"},{"1":"rose","2":"150"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmxvd2VyQ29sb3VyIDwtIGRhdGEuZnJhbWUoYyhcImRhZmZvZGlsXCIsXCJyb3NlXCIsXCJtYXJpZ29sZFwiKSxjKFwicGlua1wiLFwicmVkXCIsXCJ5ZWxsb3dcIikpXG5uYW1lcyhmbG93ZXJDb2xvdXIpIDwtIGMoXCJmbG93ZXJcIixcImNvbG91clwiKVxuZmxvd2VyQ29sb3VyXG5gYGAifQ== -->
-<pre class="r"><code>flowerColour &lt;- data.frame(c(&quot;daffodil&quot;,&quot;rose&quot;,&quot;marigold&quot;),c(&quot;pink&quot;,&quot;red&quot;,&quot;yellow&quot;))
-names(flowerColour) &lt;- c(&quot;flower&quot;,&quot;colour&quot;)
-flowerColour</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Miwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCbDJSd1U3RE1BeUd2U1F0ck5JQWFjL1JIdURDQXlBZUFJRzBhMmpTRWkxTHFyUmxjT1BKQjA0YlN5aTU5UGR2ZjNIc3Zqd2RIcXBEQlFBY0JHZkFDNVJRdkwwKzE0OEFnbUd3QVFIYitQM0NvajJLYU42dHhKSzRWckxydkRJMnhTTDRVVlB1SklQcHZWVVpJd2Jqamtuem9GV1M1YmUyMXArenpvV1RKejJtR3hpVmRsaW9BMFd0dDM0T0diZ04vdHdRdkl2d0R5eUg1eDFhSzBmcVFHYWw1Q1NiTGlDUDBTVkRydnd3R2U4UVluRXBaUVp2UW1iY3ppNitSTlh0eCt5TzlYMlc1b1ByWTgvRldzOHVhZjVQcy9VVjdEZmhKYzJ2WFc4Y2JiMnc4bDNUNytCS2Z5WjVnL3RZMXRFTXdiaUo1a1IzYkNZL1NVSXEzQ1k1eStSdytRT1crSXVhS1FJQUFBPT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["flower"],"name":[1],"type":["chr"],"align":["left"]},{"label":["colour"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"daffodil","2":"pink"},{"1":"rose","2":"red"},{"1":"marigold","2":"yellow"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Now merging …</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuam9pbnRGbG93ZXIgPC0gbWVyZ2UoZmxvd2VyQ29sb3VyLGZsb3dlclByaWNlLCBieSA9ICdmbG93ZXInKVxuam9pbnRGbG93ZXJcbmBgYCJ9 -->
-<pre class="r"><code>jointFlower &lt;- merge(flowerColour,flowerPrice, by = &#39;flower&#39;)
-jointFlower</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MiwibmNvbCI6Mywic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCbDFRd1U3RE1BejFrcmF3U2d3a3ZxTzlqQVBISFJBZmdFRGFOV3V5VXBFbFZab3krRHUrYk9Ca01kSlNxWXFmN2Zkc3Y1ZW43YnJlMWdEQW9lQU1lSWtobEcrdno4MGpRTUVRTEtDQVpYaS9zT2srZGdMYzRjOVM0Zm9nM05CYkxSTXVuSjFVMWxOOUs2M3RNU0h1bE1SbkZSbzJEeEMvemU3bkhGeE9MWTA0cUNtcGNWTGJvNVp5aERxcjdVeW9ITjNRcVV4bDZleXhKYVdidUZjb3h2ZHlYS2ZGUk9Nb1dVdmhSYnQzeUVkMHlpaFhkdlNETlVoaXdaMHFJeTljbHJpZFRkaEVOdDM3YkQ2YWRWYm1vK25EekxRZ3BJWFRzdjh4UDIvQmZoTzlJak9VNlFlajZCd3Rka3FUc2xTZktWeWhIOUdPRnQweW51N0U3TlI2NndWUmFyU1dNdkZ5T1AwQnllTG9aRElDQUFBPSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["flower"],"name":[1],"type":["chr"],"align":["left"]},{"label":["colour"],"name":[2],"type":["chr"],"align":["left"]},{"label":["price"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"marigold","2":"yellow","3":"20"},{"1":"rose","2":"red","3":"150"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="subsetting-data-frames" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Subsetting data
-frames</h1>
-<p>Subsetting on the basis of a criteria</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmlnQXR0ZW5kYW5jZSA8LSBzdWJzZXQobWFyY2hGcmFtZSxtYXJjaEZyYW1lJGF0dGVuZGFuY2U+MTUpXG5iaWdBdHRlbmRhbmNlXG5gYGAifQ== -->
-<pre class="r"><code>bigAttendance &lt;- subset(marchFrame,marchFrame$attendance&gt;15)
-bigAttendance</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Mywic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCbTFSd1U3RE1BejFtbmJUSWpFbThRUDlnVllNSk5oeGg0a3JFZ0t4cTJteXRWcEpxalFGOXZPRHBFMFFqWWdVK2ZuWno3R2RwKzN1bHU0b0FCQ0lTUVFrTVJDU2wrZUhiQTBRUjhhWlFBeHphNzlNMGxXZkNiQWNGRVBnem9ON0Q5WkJDbWxSLzhKT09EZ3JaVjB4UEJtNHNKSE5OZlJuczNMMkJ0d1pOWklJZk9kdDhFTHlxQmhYemxsdThkU21jcC9xa3Fldm5COGRUMUZyTGhpS2dnYzE1MHArNXYvVkpXMkpIaXI4K0RQZ3VLZWl4dFpyUFVrWmFzejN5cFExM2ptUXpHU2pLeW1NS0xKYm5RYmlpUXFJeTA3WUJsbFdsSjA0WnFzZ1RCcHhzRy8yMUhBdm5DVmpiTHVJdnAxODZ1UlRMZzZWNEg2Y0d0OTQ3U3N6N3VkZW1EWDFXOG9iVlFuL3BkU3diYTZsUmkraGhhdzkwMDhPNXgrR3JHbjFhZ0lBQUE9PSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Order"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Days of the Week"],"name":[2],"type":["chr"],"align":["left"]},{"label":["attendance"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"6","2":"sat","3":"16","_rn_":"sha"},{"1":"7","2":"sun","3":"17","_rn_":"rav"},{"1":"8","2":"holiday","3":"18","_rn_":"8"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="exporting-a-data-frame-to-a-csv-file." class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Exporting a data frame
-to a csv file.</h1>
-<div id="more-about-working-directory" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> More about Working
-Directory</h2>
-<p>The working directory can be referenced as “./” in the file path.
-This allows the user to organise various files in a project in
-sub-directories such as “./data”, “./script”, “./output” etc.</p>
-</div>
-<div id="write.csv" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> write.csv</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGUuY3N2KGpvaW50Rmxvd2VyLCBmaWxlID0gXCIuL291dHB1dC9qb2ludEZsb3dlci5jc3ZcIilcbmBgYCJ9 -->
-<pre class="r"><code>write.csv(jointFlower, file = &quot;./output/jointFlower.csv&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShjYXJzKVxuYGBgIn0= -->
+<pre class="r"><code>summary(cars)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-</div>
-<div id="concatenating-strings" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Concatenating
-strings</h1>
+<div id="including-plots" class="section level2" number="0.2">
+<h2><span class="header-section-number">0.2</span> Including Plots</h2>
+<p>You can also embed plots, for example:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFzdGUoXCJ0aGlzXCIsXCJpc1wiLFwiYVwiLFwidmVjdG9yXCIsc2VwID0gXCIgd29yZCBcIilcbmBgYCJ9 -->
-<pre class="r"><code>paste(&quot;this&quot;,&quot;is&quot;,&quot;a&quot;,&quot;vector&quot;,sep = &quot; word &quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidGhpcyB3b3JkIGlzIHdvcmQgYSB3b3JkIHZlY3RvclwiXG4ifQ== -->
-<pre><code>[1] &quot;this word is word a word vector&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
-<div id="getting-date-and-time" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Getting date and
-time</h1>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the
+code chunk to prevent printing of the R code that generated the
+plot.</p>
 <!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU3lzLkRhdGUoKVxuYGBgIn0= -->
-<pre class="r"><code>Sys.Date()</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMjAyNC0wOS0wN1wiXG4ifQ== -->
-<pre><code>[1] &quot;2024-09-07&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU3lzLnRpbWUoKVxuYGBgIn0= -->
-<pre class="r"><code>Sys.time()</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMjAyNC0wOS0wNyAyMjowNTo1OCBJU1RcIlxuIn0= -->
-<pre><code>[1] &quot;2024-09-07 22:05:58 IST&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuU3lzLnRpbWV6b25lKClcbmBgYCJ9 -->
-<pre class="r"><code>Sys.timezone()</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQXNpYS9DYWxjdXR0YVwiXG4ifQ== -->
-<pre><code>[1] &quot;Asia/Calcutta&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="creating-dynamic-file-name" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Creating dynamic file
-name</h1>
-<div id="concatenating-the-time-and-strings" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Concatenating the
-time and strings</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFzdGUoXCIuL291dHB1dC9qb2ludEZsb3dlclwiLFN5cy5EYXRlKCksXCIuY3N2XCIsIHNlcCA9IFwiXCIpXG5gYGAifQ== -->
-<pre class="r"><code>paste(&quot;./output/jointFlower&quot;,Sys.Date(),&quot;.csv&quot;, sep = &quot;&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiLi9vdXRwdXQvam9pbnRGbG93ZXIyMDI0LTA5LTA3LmNzdlwiXG4ifQ== -->
-<pre><code>[1] &quot;./output/jointFlower2024-09-07.csv&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="saving-csv-to-dynamic-filepath" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> saving csv to dynamic
-filepath</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGUuY3N2KGpvaW50Rmxvd2VyLFxuICAgICAgICAgIGZpbGUgPSBwYXN0ZShcIi4vb3V0cHV0L2pvaW50Rmxvd2VyXCIsU3lzLkRhdGUoKSxcIi5jc3ZcIiwgc2VwID0gXCJcIikpXG5gYGAifQ== -->
-<pre class="r"><code>write.csv(jointFlower,
-          file = paste(&quot;./output/jointFlower&quot;,Sys.Date(),&quot;.csv&quot;, sep = &quot;&quot;))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="generating-a-string-by-calculation-of-dynamic-values" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> generating a string
-by calculation of dynamic values</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaSA8LSA4XG5zcHJpbnRmKFwidGhlIHNxdWFyZSBvZiAlZCBpcyAlZFwiLGksaV4yKVxuYGBgIn0= -->
-<pre class="r"><code>i &lt;- 8
-sprintf(&quot;the square of %d is %d&quot;,i,i^2)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidGhlIHNxdWFyZSBvZiA4IGlzIDY0XCJcbiJ9 -->
-<pre><code>[1] &quot;the square of 8 is 64&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities05.nb.html">Go
-to Lesson 5</a></p>
-<!-- rnb-text-end -->
-</div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiA0Ig0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KW1ZpZXcgdGhpcyBwYWdlIGluIGEgYnJvd3Nlcl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNC5uYi5odG1sKQ0KDQpbR28gdG8gTGVzc29uIDNdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczAzLm5iLmh0bWwpDQoNCg0KIyBBcHBlbmRpbmcgZGF0YSB0byBhbiBleGlzdGluZyBEYXRhIEZyYW1lDQoNCiMjIEFkZCByb3dzDQoNCmBgYHtyfQ0KbWFyY2hGcmFtZQ0KYGBgDQoNCg0KYGBge3J9DQptYXJjaEZyYW1lIDwtIHJiaW5kKG1hcmNoRnJhbWUsYyg4LCJob2xpZGF5IikpDQptYXJjaEZyYW1lDQpgYGANCg0KIyMgQWRkaW5nIENvbHVtbnMNCg0KYGBge3J9DQptYXJjaEZyYW1lIDwtIGNiaW5kKG1hcmNoRnJhbWUsYygxMSwxMiwxMywxNCwxNSwxNiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDE3LDE4KSkNCm5hbWVzKG1hcmNoRnJhbWUpWzNdIDwtICJhdHRlbmRhbmNlIg0KbWFyY2hGcmFtZQ0KYGBgDQoNCiMgTWVyZ2luZyB0d28gZGF0YSBmcmFtZXMNCg0KRGF0YSBpbiB0d28gZGF0YSBmcmFtZXMgY2FuIGJlIG1lcmdlZCBieSBhIGNvbW1vbiBjb2x1bW4NCg0KRmlyc3QgbGV0IHVzIGNyZWF0ZSB0d28gZGF0YSBmcmFtZXMgd2l0aCBhIGNvbW1vbiBkYXRhIGNvbHVtbi4NClRob3VnaCB0aGUgZGF0YSBtYXkgaGF2ZSBvdmVybGFwIHRoZWlyIG9yZGVyIG1heSBiZSBkaWZmZXJlbnQuDQpUaGVyZSBtYXkgYmUgc29tZSBtaXNtYXRjaCBiZXR3ZWVuIHZhbHVlcyBvZiB0aGUgbWF0Y2hpbmcgY29sdW1ucy4gVGhlIHZhbHVlcyBtYXkgYWxzbyBiZSBwcmVzZW50IGluIGRpZmZlcmVudCBvcmRlci4NCg0KYGBge3J9DQpmbG93ZXJQcmljZSA8LSBkYXRhLmZyYW1lKGMoIm1hcmlnb2xkIiwicGV0dW5pYSIsImphc21pbmUiLCJyb3NlIiksYygyMCw0MCwzNSwxNTApKQ0KbmFtZXMoZmxvd2VyUHJpY2UpIDwtIGMoImZsb3dlciIsInByaWNlIikNCmZsb3dlclByaWNlDQpgYGANCg0KYGBge3J9DQpmbG93ZXJDb2xvdXIgPC0gZGF0YS5mcmFtZShjKCJkYWZmb2RpbCIsInJvc2UiLCJtYXJpZ29sZCIpLGMoInBpbmsiLCJyZWQiLCJ5ZWxsb3ciKSkNCm5hbWVzKGZsb3dlckNvbG91cikgPC0gYygiZmxvd2VyIiwiY29sb3VyIikNCmZsb3dlckNvbG91cg0KYGBgDQoNCk5vdyBtZXJnaW5nIC4uLg0KDQpgYGB7cn0NCmpvaW50Rmxvd2VyIDwtIG1lcmdlKGZsb3dlckNvbG91cixmbG93ZXJQcmljZSwgYnkgPSAnZmxvd2VyJykNCmpvaW50Rmxvd2VyDQpgYGANCg0KIyBTdWJzZXR0aW5nIGRhdGEgZnJhbWVzDQoNClN1YnNldHRpbmcgb24gdGhlIGJhc2lzIG9mIGEgY3JpdGVyaWENCg0KYGBge3J9DQpiaWdBdHRlbmRhbmNlIDwtIHN1YnNldChtYXJjaEZyYW1lLG1hcmNoRnJhbWUkYXR0ZW5kYW5jZT4xNSkNCmJpZ0F0dGVuZGFuY2UNCmBgYA0KDQojIEV4cG9ydGluZyBhIGRhdGEgZnJhbWUgdG8gYSBjc3YgZmlsZS4NCg0KIyMgTW9yZSBhYm91dCBXb3JraW5nIERpcmVjdG9yeQ0KDQpUaGUgd29ya2luZyBkaXJlY3RvcnkgY2FuIGJlIHJlZmVyZW5jZWQgYXMgIi4vIiBpbiB0aGUgZmlsZSBwYXRoLiBUaGlzIGFsbG93cyB0aGUgdXNlciB0byBvcmdhbmlzZSB2YXJpb3VzIGZpbGVzIGluIGEgcHJvamVjdCBpbiBzdWItZGlyZWN0b3JpZXMgc3VjaCBhcyAiLi9kYXRhIiwgIi4vc2NyaXB0IiwgIi4vb3V0cHV0IiBldGMuDQoNCiMjIHdyaXRlLmNzdg0KDQpgYGB7cn0NCndyaXRlLmNzdihqb2ludEZsb3dlciwgZmlsZSA9ICIuL291dHB1dC9qb2ludEZsb3dlci5jc3YiKQ0KYGBgDQoNCg0KIyBDb25jYXRlbmF0aW5nIHN0cmluZ3MNCg0KYGBge3J9DQpwYXN0ZSgidGhpcyIsImlzIiwiYSIsInZlY3RvciIsc2VwID0gIiB3b3JkICIpDQpgYGANCg0KIyBHZXR0aW5nIGRhdGUgYW5kIHRpbWUNCg0KYGBge3J9DQpTeXMuRGF0ZSgpDQpgYGANCg0KYGBge3J9DQpTeXMudGltZSgpDQpgYGANCg0KYGBge3J9DQpTeXMudGltZXpvbmUoKQ0KYGBgDQoNCiMgQ3JlYXRpbmcgZHluYW1pYyBmaWxlIG5hbWUNCg0KIyMgQ29uY2F0ZW5hdGluZyB0aGUgdGltZSBhbmQgc3RyaW5ncw0KDQpgYGB7cn0NCnBhc3RlKCIuL291dHB1dC9qb2ludEZsb3dlciIsU3lzLkRhdGUoKSwiLmNzdiIsIHNlcCA9ICIiKQ0KYGBgDQoNCiMjIHNhdmluZyBjc3YgdG8gZHluYW1pYyBmaWxlcGF0aA0KDQpgYGB7cn0NCndyaXRlLmNzdihqb2ludEZsb3dlciwNCiAgICAgICAgICBmaWxlID0gcGFzdGUoIi4vb3V0cHV0L2pvaW50Rmxvd2VyIixTeXMuRGF0ZSgpLCIuY3N2Iiwgc2VwID0gIiIpKQ0KYGBgDQoNCg0KIyMgZ2VuZXJhdGluZyBhIHN0cmluZyBieSBjYWxjdWxhdGlvbiBvZiBkeW5hbWljIHZhbHVlcw0KDQpgYGB7cn0NCmkgPC0gOA0Kc3ByaW50ZigidGhlIHNxdWFyZSBvZiAlZCBpcyAlZCIsaSxpXjIpDQpgYGANCg0KDQpbR28gdG8gTGVzc29uIDVdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDUubmIuaHRtbCk=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJmb3JIdW1hbml0aWVzIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KIyMgUiBNYXJrZG93bg0KDQpUaGlzIGlzIGFuIFIgTWFya2Rvd24gZG9jdW1lbnQuIE1hcmtkb3duIGlzIGEgc2ltcGxlIGZvcm1hdHRpbmcgc3ludGF4IGZvciBhdXRob3JpbmcgSFRNTCwgUERGLCBhbmQgTVMgV29yZCBkb2N1bWVudHMuIEZvciBtb3JlIGRldGFpbHMgb24gdXNpbmcgUiBNYXJrZG93biBzZWUgPGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20+Lg0KDQpXaGVuIHlvdSBjbGljayB0aGUgKipLbml0KiogYnV0dG9uIGEgZG9jdW1lbnQgd2lsbCBiZSBnZW5lcmF0ZWQgdGhhdCBpbmNsdWRlcyBib3RoIGNvbnRlbnQgYXMgd2VsbCBhcyB0aGUgb3V0cHV0IG9mIGFueSBlbWJlZGRlZCBSIGNvZGUgY2h1bmtzIHdpdGhpbiB0aGUgZG9jdW1lbnQuIFlvdSBjYW4gZW1iZWQgYW4gUiBjb2RlIGNodW5rIGxpa2UgdGhpczoNCg0KYGBge3IgY2Fyc30NCnN1bW1hcnkoY2FycykNCmBgYA0KDQojIyBJbmNsdWRpbmcgUGxvdHMNCg0KWW91IGNhbiBhbHNvIGVtYmVkIHBsb3RzLCBmb3IgZXhhbXBsZToNCg0KYGBge3IgcHJlc3N1cmUsIGVjaG89RkFMU0V9DQpwbG90KHByZXNzdXJlKQ0KYGBgDQoNCk5vdGUgdGhhdCB0aGUgYGVjaG8gPSBGQUxTRWAgcGFyYW1ldGVyIHdhcyBhZGRlZCB0byB0aGUgY29kZSBjaHVuayB0byBwcmV2ZW50IHByaW50aW5nIG9mIHRoZSBSIGNvZGUgdGhhdCBnZW5lcmF0ZWQgdGhlIHBsb3QuDQo=</div>
 
 
 
@@ -2054,7 +1831,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("RforHumanities04.Rmd");
+  window.initializeSourceEmbed("RforHumanities.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

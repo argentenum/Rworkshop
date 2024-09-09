@@ -90,7 +90,7 @@ sonnet18 <- trimws(sonnets[301:314])
 
 # Regular expressions
 
-So far we have been examining the text file physically to discover the lines of a sonnet to be extracted. What if we want to work with a very large file? In that case the physical examination may not be sufficient or even feasible. Though it is not advisable to abandon physical examination altogether, it is important to supplement it with computaitonal examination. For that we need to take recourse to a set of text evaluation tools called Regular Expressions.
+So far we have been examining the text file physically to discover the lines of a sonnet to be extracted. What if we want to work with a very large file? In that case the physical examination may not be sufficient or even feasible. Though it is not advisable to abandon physical examination altogether, it is important to supplement it with computational examination. For that we need to take recourse to a set of text evaluation tools called Regular Expressions.
 
 We will engage with the full suite of Regular Expressions tools later. Right now let us learn a few preliminary funtions.
 

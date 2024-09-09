@@ -21,12 +21,22 @@ grep gives us the line or vector index where a particular substring pattern matc
 grep("Shall I compare", sonnets)
 ```
 
-#sprintf()
-i <- 8
-sprintf("the square of %d is %d",i,i^2)
+The result is a vector
 
-#regular expressions
-#regexpr ???
+```{r}
+week
+grep("e",week)
+```
+It gives all the indices where the pattern has found a match.
+
+We can also return the values instead of the indices.
+
+```{r}
+grep("e",week, value = TRUE)
+```
+
+## regexpr
+
 regexpr("uat","Equator")
 #gregexpr
 gregexpr("iss", "Mississipi")
