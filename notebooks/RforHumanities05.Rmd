@@ -5,9 +5,7 @@ output:
     number_sections: true
 ---
 
-[View this page in a browser](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities05.nb.html)
-
-[Go to Lesson 4](https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities04.nb.html)
+[Main Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
 
 # Logical operations
 
@@ -284,4 +282,4 @@ sort(table(pnpWords), decreasing = TRUE)
 ```
 
 
-[Go to Lesson 6](https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities06.nb.html)
+[Main Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)

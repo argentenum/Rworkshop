@@ -5,7 +5,7 @@ output:
     number_sections: true
 ---
 
-[View this page in a browser](https://htmlpreview.github.io/?https://raw.githubusercontent.com/argentenum/Rworkshop/master/notebooks/RforHumanities01.nb.html)
+[Main Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
 
 R is a a very powerful programming language with a focus on statistical analysis (ie. structured data). It is also able to produce very neat and customisable charts. R is Open Source and this means it is free and 'free'. And that there are many developers who are constantly working voluntarily to improve the tools for R.
 
@@ -170,4 +170,4 @@ nchar(getBananas)
 
 
 
-[Go to Lesson 2](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.nb.html)
+[Main Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
