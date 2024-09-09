@@ -178,12 +178,12 @@ u/t
 # The Selection Function - "which"
 
 ## Logical symbols 
-==  equal to
->   greater than
-<   less than
->=  greater than or equal to
-<=  less than of equal to
-!=  not equal to
+* ==  equal to
+* >   greater than
+* <   less than
+* >=  greater than or equal to
+* <=  less than of equal to
+* !=  not equal to
 
 ```{r}
 Symbol <- c("==",">","<",">=","<=","!=")
