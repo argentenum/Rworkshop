@@ -30,9 +30,19 @@ When the condition is not satisfied, the loop breaks.
 
 ```{r}
 i <- 1
-while(i <= 10) i <- i+4
-#while loop 2
-while(TRUE) {
+while(i <= 10) {
+  i <- i+4
+  print(i)
+}
+
+```
+
+## while loop with break
+
+```{r}
+i <- 1
+while(i <= 20) {
+  print(i)
   i <- i + 4
   if (i > 10) break
 }
@@ -104,9 +114,10 @@ head(BioDF)
 
 # Exercise
 
-From BioDF print names of all personalities who were born in an even number year
-add a column giving age at death
-scan and exercise
++ From BioDF 
+  + print names of all personalities who were born in an even number year
+  + add a column giving age at death
+
 
 
 # Importing a text file
