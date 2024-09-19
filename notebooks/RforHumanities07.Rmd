@@ -1,5 +1,5 @@
 ---
-title: "R for Humanities: Lesson 6"
+title: "R for Humanities: Lesson 7"
 output: 
   html_notebook: 
     number_sections: true
@@ -42,11 +42,40 @@ grep("e",week, value = TRUE)
 
 ## regexpr
 
-regexpr("uat","Equator") #gregexpr gregexpr("iss", "Mississipi") #sub
-replace substring - only first instance sub("iss","ant","Mississipi")
-#gsub replace substrings - all instances gsub("iss","ant","Mississipi")
+This tells us if a serach string is present in a given string and also gives us the starting position of the search string within the given string.
 
-\#<https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432>
+```{r}
+regexpr("uat","Equator")
+```
+Here it tells us that the search string match was found from the 3rd character of the given string, the search string was 4 characters in length. This only finds the firs instance of a match.
+
+## gregexpr 
+
+This functions in a way similar to that of regexpr, but it traces all instances of matches between the search string and the given string.
+
+```{r}
+gregexpr("iss", "Mississipi")
+```
+## Replacing substrings
+
+### sub
+
+replace substring - only first instance 
+
+```{r}
+sub("iss","ant","Mississipi")
+```
+
+### gsub 
+replace substrings - all instances 
+
+```{r}
+gsub("iss","ant","Mississipi")
+```
+For some more on regular expressions [visit this website](https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432)
+
+
+
 library(stringr) basicString \<- "Drew has 3 watermelons, Alex has 4
 hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels"
 #pulling out every instance of one person's name from a string

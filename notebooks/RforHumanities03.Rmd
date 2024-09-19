@@ -154,7 +154,7 @@ names(marchFrame) <- c("Order","Days of the Week")
 marchFrame
 ```
 
-## getting and naming column labels
+## getting and naming row labels
 
 ```{r}
 rownames(marchFrame)

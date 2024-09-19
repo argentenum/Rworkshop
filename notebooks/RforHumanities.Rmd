@@ -6,14 +6,16 @@ output:
 ---
 
 
+In the following set of lessons we shall be closely following the instructions given at
+[The Art of R Programming by Norman Matloff](https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf)
 
 # [Lesson 1](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities01.nb.html)
 
-1. Installation and getting started
++ Installation and getting started
   + sub-item
   + sub-item
-2. Basic operations
-3. Variables
++ Basic operations
++ Variables
 
 Functions: print, str, nchar
 
@@ -21,14 +23,81 @@ Functions: print, str, nchar
 
 # [Lesson 2](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.nb.html)
 
++ Vectors
+  + Numerical Vectors
+  + String Vectors
+  + sort
+  + Creating vectors
+  + Adding values to vectors
+  + Vector length
++ Vector indices
++ Vector arithmetic
++ Logical operations
+  + Logical operations
+  + which
+  + any and all
+  + ifelse
+
 # [Lesson 3](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities03.nb.html)
+
++ Lists
+  + Creating a List
+  + length of a List
+  + unlist
+  + Index a List
++ Dataframes
+  + Creating a dataframe
+  + Indexing a dataframe
+  + length of a dataframe
+  + Column labels
+  + nrow and ncol
++ Exercise
 
 # [Lesson 4](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities04.nb.html)
 
++ Appending data to dataframe
+  +rbind
+  +cbind
++ Merging dataframes
++ Subsetting dataframes
++ Exporting dataframe
++ Concatenating strings
++ Getting date and time
++ Creating dynamic file name
 
 
 # [Lesson 5](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities05.nb.html)
 
++ Logical operations
+  + ifelse
++ Loops
+  + while
+  + for
++ Importing data from csv file
++ Exercise
++ Importing a text file
++ Using loops
++ Additional functions
+  + unique
+  + as.numeric
+  + as.character
+  + as.Date
+  + Check presence of a value in a Vector
+  + Deduplication
+  + Frequency counts
+  + sorting a table
+
 # [Lesson 6](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities06.nb.html)
+
++ String manipulation
+  + substr
+  + strsplit
+    + parse sentences
++ Solved Exercise
++ Trimming white space
++ Regular expressions
+  + grep
++ Solved Exercise
+
 
 # [Lesson 7](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities07.nb.html)
