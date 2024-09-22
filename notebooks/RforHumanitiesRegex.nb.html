@@ -11,7 +11,7 @@
 
 
 
-<title>RforHumanities</title>
+<title>R for Humanities: Regular Expressions</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1746,173 +1746,158 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">RforHumanities</h1>
+<h1 class="title toc-ignore">R for Humanities: Regular Expressions</h1>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<p>In the following set of lessons we shall be closely following the
-instructions given at <a href="https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf">The
-Art of R Programming by Norman Matloff</a></p>
-<div id="lesson-1" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities01.nb.html">Lesson
-1</a></h1>
-<ul>
-<li>Installation and getting started
-<ul>
-<li>sub-item</li>
-<li>sub-item</li>
-</ul></li>
-<li>Basic operations</li>
-<li>Variables</li>
-</ul>
-<p>Functions: print, str, nchar</p>
+<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
+Menu</a></p>
+<div id="regular-expressions" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Regular
+Expressions</h1>
+<p>In the previous lesson we looked at one instance of a regular
+expressions function. But let us now look at it at greater detail.</p>
+<div id="grep" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> grep</h2>
+<p>grep gives us the line or vector index where a particular substring
+pattern match is found.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JlcChcIlNoYWxsIEkgY29tcGFyZVwiLCBzb25uZXRzKVxuYGBgIn0= -->
+<pre class="r"><code>grep(&quot;Shall I compare&quot;, sonnets)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The result is a vector</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2Vla1xuZ3JlcChcImVcIix3ZWVrKVxuYGBgIn0= -->
+<pre class="r"><code>week
+grep(&quot;e&quot;,week)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>It gives all the indices where the pattern has found a match.</p>
+<p>We can also return the values instead of the indices.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JlcChcImVcIix3ZWVrLCB2YWx1ZSA9IFRSVUUpXG5gYGAifQ== -->
+<pre class="r"><code>grep(&quot;e&quot;,week, value = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
-<div id="lesson-2" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.nb.html">Lesson
-2</a></h1>
-<ul>
-<li>Vectors
-<ul>
-<li>Numerical Vectors</li>
-<li>String Vectors</li>
-<li>sort</li>
-<li>Creating vectors</li>
-<li>Adding values to vectors</li>
-<li>Vector length</li>
-</ul></li>
-<li>Vector indices</li>
-<li>Vector arithmetic</li>
-<li>Logical operations
-<ul>
-<li>Logical operations</li>
-<li>which</li>
-<li>any and all</li>
-<li>ifelse</li>
-</ul></li>
-</ul>
+<div id="regexpr" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> regexpr</h2>
+<p>This tells us if a serach string is present in a given string and
+also gives us the starting position of the search string within the
+given string.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVnZXhwcihcInVhdFwiLFwiRXF1YXRvclwiKVxuYGBgIn0= -->
+<pre class="r"><code>regexpr(&quot;uat&quot;,&quot;Equator&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Here it tells us that the search string match was found from the 3rd
+character of the given string, the search string was 4 characters in
+length. This only finds the firs instance of a match.</p>
 </div>
-<div id="lesson-3" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities03.nb.html">Lesson
-3</a></h1>
-<ul>
-<li>Lists
-<ul>
-<li>Creating a List</li>
-<li>length of a List</li>
-<li>unlist</li>
-<li>Index a List</li>
-</ul></li>
-<li>Dataframes
-<ul>
-<li>Creating a dataframe</li>
-<li>Indexing a dataframe</li>
-<li>length of a dataframe</li>
-<li>Column labels</li>
-<li>nrow and ncol</li>
-</ul></li>
-<li>Exercise</li>
-</ul>
+<div id="gregexpr" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> gregexpr</h2>
+<p>This functions in a way similar to that of regexpr, but it traces all
+instances of matches between the search string and the given string.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JlZ2V4cHIoXCJpc3NcIiwgXCJNaXNzaXNzaXBpXCIpXG5gYGAifQ== -->
+<pre class="r"><code>gregexpr(&quot;iss&quot;, &quot;Mississipi&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
-<div id="lesson-4" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities04.nb.html">Lesson
-4</a></h1>
-<ul>
-<li>Appending data to dataframe +rbind +cbind</li>
-<li>Merging dataframes</li>
-<li>Subsetting dataframes</li>
-<li>Exporting dataframe</li>
-<li>Concatenating strings</li>
-<li>Getting date and time</li>
-<li>Creating dynamic file name</li>
-</ul>
+<div id="replacing-substrings" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Replacing
+substrings</h2>
+<div id="sub" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> sub</h3>
+<p>replace substring - only first instance</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViKFwiaXNzXCIsXCJhbnRcIixcIk1pc3Npc3NpcGlcIilcbmBgYCJ9 -->
+<pre class="r"><code>sub(&quot;iss&quot;,&quot;ant&quot;,&quot;Mississipi&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
-<div id="lesson-5" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities05.nb.html">Lesson
-5</a></h1>
-<ul>
-<li>Logical operations
-<ul>
-<li>ifelse</li>
-</ul></li>
-<li>Loops
-<ul>
-<li>while</li>
-<li>for</li>
-</ul></li>
-<li>Importing data from csv file</li>
-<li>Exercise</li>
-<li>Importing a text file</li>
-<li>Using loops</li>
-<li>Additional functions
-<ul>
-<li>unique</li>
-<li>as.numeric</li>
-<li>as.character</li>
-<li>as.Date</li>
-<li>Check presence of a value in a Vector</li>
-<li>Deduplication</li>
-<li>Frequency counts</li>
-<li>sorting a table</li>
-</ul></li>
-</ul>
-</div>
-<div id="lesson-6" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities06.nb.html">Lesson
-6</a></h1>
-<ul>
-<li>String manipulation
-<ul>
-<li>substr</li>
-<li>strsplit
-<ul>
-<li>parse sentences</li>
-</ul></li>
-</ul></li>
-<li>Solved Exercise</li>
-<li>Trimming white space</li>
-<li>Regular expressions
-<ul>
-<li>grep</li>
-</ul></li>
-<li>Solved Exercise</li>
-</ul>
-</div>
-<div id="lesson-7" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities07.nb.html">Lesson
-7</a></h1>
-<ul>
-<li>Installing Packages
-<ul>
-<li>GUI Installation</li>
-<li>Console Installation</li>
-</ul></li>
-<li>Pipes
-<ul>
-<li>Multiline Approach</li>
-<li>Nested Approach</li>
-<li>Linear Operations using Pipes</li>
-<li>Transforming Dataframes</li>
-</ul></li>
-</ul>
-</div>
-<div id="plotting" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesPlotting.nb.html">Plotting</a></h1>
-<ul>
-<li>Plotting points in on a chart</li>
-<li>Add Axis Labels</li>
-<li>Plotting Lines</li>
-<li>Frequency Counts</li>
-<li>piechart</li>
-<li>Histogram</li>
-<li>Bar Plot</li>
-<li>ggplot2</li>
-</ul>
+<div id="gsub" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> gsub</h3>
+<p>replace substrings - all instances</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3N1YihcImlzc1wiLFwiYW50XCIsXCJNaXNzaXNzaXBpXCIpXG5gYGAifQ== -->
+<pre class="r"><code>gsub(&quot;iss&quot;,&quot;ant&quot;,&quot;Mississipi&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>For some more on regular expressions <a href="https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432">visit
+this website</a></p>
+<p>library(stringr) basicString &lt;- “Drew has 3 watermelons, Alex has
+4 hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels”
+#pulling out every instance of one person’s name from a string
+basicExtractAll &lt;- str_extract_all(basicString, “Drew”) #replacing
+pattern with a replacement string basicReplaceAll &lt;-
+str_replace_all(basicString, “Alex”, “Shawn”) #matching character set
+#here matching vowels charSets01 &lt;- str_extract_all(basicString,
+“[aeiou]”) #matching character range - are case sensitive charSets02
+&lt;- str_extract_all(basicString, “[A-Z]”) #matching number range
+charSets03 &lt;- str_extract_all(basicString, “[0-9]”) #matching mix of
+charter types charset04 &lt;- str_extract_all(basicString,
+“[A-Ct-z1-6]”) #Metacharacters #matching spaces space &lt;-
+str_extract_all(basicString, “\s”) #matching alphanumeric characters
+alpha &lt;- str_extract_all(basicString, “\w”) #matching digits digits
+&lt;- str_extract_all(basicString, “\d”) #Quantifiers - specifying how
+many characters are expected quantExample &lt;- “B.BB.BBB.BBBB”
+quantPlus &lt;- str_extract_all(quantExample, “B+”) #matches Bs till end
+of the group of Bs quantExact = str_extract_all(quantExample, “B{2}”)
+#matches exactly two Bs till the end of the group of Bs quantRange &lt;-
+str_extract_all(quantExample, “B{2,4}”) #matches any number from 2 to 4
+quantUpperBound &lt;- str_extract_all(quantExample, “B{2,}”) #picking up
+words using quantifier combine1 &lt;- str_extract_all(basicString,
+“[A-Za-z]+”) #find numbers combine2 &lt;- str_extract_all(basicString,
+“\d{1,2}”) #find quantity of each food item #each number directly
+followed by name of the food item separated by space combine3 &lt;-
+str_extract_all(basicString, “\d{1,2}\s\w+\s<em>\w</em>”) #Capture
+groups captureGroup1 &lt;- str_match_all(basicString,
+“[A-Z][a-z]+\s\w+\s\d{1,2}\s\w+\s<em>\w</em>”) #leaving out ‘has’ and
+preparing data in columns #it is basically the same formula as
+captureGroup1, just brackets around those strings which are collected as
+list captureGroup2 &lt;- str_match_all(basicString,
+“([A-Z][a-z]+)\s\w+\s(\d{1,2})\s(\w+\s<em>\w</em>)”) #converting to
+dataframe picnic &lt;- data.frame(captureGroup2[[1]][,-1])
+colnames(picnic) &lt;- c(“Name”, “Quantity”, “Item”) #Stringr cheatsheet
+<a href="https://github.com/rstudio/cheatsheets/blob/main/strings.pdf" class="uri">https://github.com/rstudio/cheatsheets/blob/main/strings.pdf</a>
+#cheatsheet <a href="https://regenerativetoday.com/a-complete-beginners-guide-to-regular-expressions-in-r/" class="uri">https://regenerativetoday.com/a-complete-beginners-guide-to-regular-expressions-in-r/</a>
+urls &lt;- “Here are urls ONE www.jnu.ac.in, TWO <a href="https://arjunghosh.in" class="uri">https://arjunghosh.in</a>,
+THREE <a href="http://dharti.wordpress.com" class="uri">http://dharti.wordpress.com</a>” str_extract_all(urls,
+“(https?)?(://)?(www\.)?\w+\.[a-zA_Z0-9-.]+”) #extract all capitalized
+words fewNames &lt;- “My name is Anthony Gonsalves and I am not Amar
+Akbar Anthony” str_extract_all(fewNames, “([A-Z][a-z]+)”)[[1]] #two
+names together str_extract_all(fewNames, “([A-Z][a-z]+)\s([A-Z][a-z]+)”)
+#multiple names together str_extract_all(fewNames,
+“(([A-Z][a-z]+)\s?){1,}”) #need to strip extra spaces
+trimws(str_extract_all(fewNames, “(([A-Z][a-z]+)\s?){1,}”)[[1]]) king
+&lt;- “The king of England is Charles Phillip Arthur George, also known
+as Charles III” str_extract_all(king, “((([A-Z][a-z]+)\s*)+){2,}”)</p>
+<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
+Menu</a></p>
 <!-- rnb-text-end -->
 </div>
+</div>
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJmb3JIdW1hbml0aWVzIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KDQpJbiB0aGUgZm9sbG93aW5nIHNldCBvZiBsZXNzb25zIHdlIHNoYWxsIGJlIGNsb3NlbHkgZm9sbG93aW5nIHRoZSBpbnN0cnVjdGlvbnMgZ2l2ZW4gYXQNCltUaGUgQXJ0IG9mIFIgUHJvZ3JhbW1pbmcgYnkgTm9ybWFuIE1hdGxvZmZdKGh0dHBzOi8vZGl5dHJhbnNjcmlwdG9taWNzLmNvbS9SZWFkaW5nL2ZpbGVzL1RoZSUyMEFydCUyMG9mJTIwUiUyMFByb2dyYW1taW5nLnBkZikNCg0KIyBbTGVzc29uIDFdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDEubmIuaHRtbCkNCg0KKyBJbnN0YWxsYXRpb24gYW5kIGdldHRpbmcgc3RhcnRlZA0KICArIHN1Yi1pdGVtDQogICsgc3ViLWl0ZW0NCisgQmFzaWMgb3BlcmF0aW9ucw0KKyBWYXJpYWJsZXMNCg0KRnVuY3Rpb25zOiBwcmludCwgc3RyLCBuY2hhcg0KDQoNCg0KIyBbTGVzc29uIDJdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDIubmIuaHRtbCkNCg0KKyBWZWN0b3JzDQogICsgTnVtZXJpY2FsIFZlY3RvcnMNCiAgKyBTdHJpbmcgVmVjdG9ycw0KICArIHNvcnQNCiAgKyBDcmVhdGluZyB2ZWN0b3JzDQogICsgQWRkaW5nIHZhbHVlcyB0byB2ZWN0b3JzDQogICsgVmVjdG9yIGxlbmd0aA0KKyBWZWN0b3IgaW5kaWNlcw0KKyBWZWN0b3IgYXJpdGhtZXRpYw0KKyBMb2dpY2FsIG9wZXJhdGlvbnMNCiAgKyBMb2dpY2FsIG9wZXJhdGlvbnMNCiAgKyB3aGljaA0KICArIGFueSBhbmQgYWxsDQogICsgaWZlbHNlDQoNCiMgW0xlc3NvbiAzXShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczAzLm5iLmh0bWwpDQoNCisgTGlzdHMNCiAgKyBDcmVhdGluZyBhIExpc3QNCiAgKyBsZW5ndGggb2YgYSBMaXN0DQogICsgdW5saXN0DQogICsgSW5kZXggYSBMaXN0DQorIERhdGFmcmFtZXMNCiAgKyBDcmVhdGluZyBhIGRhdGFmcmFtZQ0KICArIEluZGV4aW5nIGEgZGF0YWZyYW1lDQogICsgbGVuZ3RoIG9mIGEgZGF0YWZyYW1lDQogICsgQ29sdW1uIGxhYmVscw0KICArIG5yb3cgYW5kIG5jb2wNCisgRXhlcmNpc2UNCg0KIyBbTGVzc29uIDRdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDQubmIuaHRtbCkNCg0KKyBBcHBlbmRpbmcgZGF0YSB0byBkYXRhZnJhbWUNCiAgK3JiaW5kDQogICtjYmluZA0KKyBNZXJnaW5nIGRhdGFmcmFtZXMNCisgU3Vic2V0dGluZyBkYXRhZnJhbWVzDQorIEV4cG9ydGluZyBkYXRhZnJhbWUNCisgQ29uY2F0ZW5hdGluZyBzdHJpbmdzDQorIEdldHRpbmcgZGF0ZSBhbmQgdGltZQ0KKyBDcmVhdGluZyBkeW5hbWljIGZpbGUgbmFtZQ0KDQoNCiMgW0xlc3NvbiA1XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczA1Lm5iLmh0bWwpDQoNCisgTG9naWNhbCBvcGVyYXRpb25zDQogICsgaWZlbHNlDQorIExvb3BzDQogICsgd2hpbGUNCiAgKyBmb3INCisgSW1wb3J0aW5nIGRhdGEgZnJvbSBjc3YgZmlsZQ0KKyBFeGVyY2lzZQ0KKyBJbXBvcnRpbmcgYSB0ZXh0IGZpbGUNCisgVXNpbmcgbG9vcHMNCisgQWRkaXRpb25hbCBmdW5jdGlvbnMNCiAgKyB1bmlxdWUNCiAgKyBhcy5udW1lcmljDQogICsgYXMuY2hhcmFjdGVyDQogICsgYXMuRGF0ZQ0KICArIENoZWNrIHByZXNlbmNlIG9mIGEgdmFsdWUgaW4gYSBWZWN0b3INCiAgKyBEZWR1cGxpY2F0aW9uDQogICsgRnJlcXVlbmN5IGNvdW50cw0KICArIHNvcnRpbmcgYSB0YWJsZQ0KDQojIFtMZXNzb24gNl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNi5uYi5odG1sKQ0KDQorIFN0cmluZyBtYW5pcHVsYXRpb24NCiAgKyBzdWJzdHINCiAgKyBzdHJzcGxpdA0KICAgICsgcGFyc2Ugc2VudGVuY2VzDQorIFNvbHZlZCBFeGVyY2lzZQ0KKyBUcmltbWluZyB3aGl0ZSBzcGFjZQ0KKyBSZWd1bGFyIGV4cHJlc3Npb25zDQogICsgZ3JlcA0KKyBTb2x2ZWQgRXhlcmNpc2UNCg0KDQojIFtMZXNzb24gN10oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNy5uYi5odG1sKQ0KDQorIEluc3RhbGxpbmcgUGFja2FnZXMNCiAgKyBHVUkgSW5zdGFsbGF0aW9uDQogICsgQ29uc29sZSBJbnN0YWxsYXRpb24NCisgUGlwZXMNCiAgKyBNdWx0aWxpbmUgQXBwcm9hY2gNCiAgKyBOZXN0ZWQgQXBwcm9hY2gNCiAgKyBMaW5lYXIgT3BlcmF0aW9ucyB1c2luZyBQaXBlcw0KICArIFRyYW5zZm9ybWluZyBEYXRhZnJhbWVzDQogIA0KIyBbUGxvdHRpbmddKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzUGxvdHRpbmcubmIuaHRtbCkNCg0KKyBQbG90dGluZyBwb2ludHMgaW4gb24gYSBjaGFydA0KKyBBZGQgQXhpcyBMYWJlbHMNCisgUGxvdHRpbmcgTGluZXMNCisgRnJlcXVlbmN5IENvdW50cw0KKyBwaWVjaGFydA0KKyBIaXN0b2dyYW0NCisgQmFyIFBsb3QNCisgZ2dwbG90Mg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IFJlZ3VsYXIgRXhwcmVzc2lvbnMiDQpvdXRwdXQ6IA0KICBodG1sX25vdGVib29rOiANCiAgICBudW1iZXJfc2VjdGlvbnM6IHRydWUNCmVkaXRvcl9vcHRpb25zOiANCiAgbWFya2Rvd246IA0KICAgIHdyYXA6IDcyDQotLS0NCg0KW01haW4NCk1lbnVdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzLm5iLmh0bWwpDQoNCiMgUmVndWxhciBFeHByZXNzaW9ucw0KDQpJbiB0aGUgcHJldmlvdXMgbGVzc29uIHdlIGxvb2tlZCBhdCBvbmUgaW5zdGFuY2Ugb2YgYSByZWd1bGFyDQpleHByZXNzaW9ucyBmdW5jdGlvbi4gQnV0IGxldCB1cyBub3cgbG9vayBhdCBpdCBhdCBncmVhdGVyIGRldGFpbC4NCg0KIyMgZ3JlcA0KDQpncmVwIGdpdmVzIHVzIHRoZSBsaW5lIG9yIHZlY3RvciBpbmRleCB3aGVyZSBhIHBhcnRpY3VsYXIgc3Vic3RyaW5nDQpwYXR0ZXJuIG1hdGNoIGlzIGZvdW5kLg0KDQpgYGB7cn0NCmdyZXAoIlNoYWxsIEkgY29tcGFyZSIsIHNvbm5ldHMpDQpgYGANCg0KVGhlIHJlc3VsdCBpcyBhIHZlY3Rvcg0KDQpgYGB7cn0NCndlZWsNCmdyZXAoImUiLHdlZWspDQpgYGANCg0KSXQgZ2l2ZXMgYWxsIHRoZSBpbmRpY2VzIHdoZXJlIHRoZSBwYXR0ZXJuIGhhcyBmb3VuZCBhIG1hdGNoLg0KDQpXZSBjYW4gYWxzbyByZXR1cm4gdGhlIHZhbHVlcyBpbnN0ZWFkIG9mIHRoZSBpbmRpY2VzLg0KDQpgYGB7cn0NCmdyZXAoImUiLHdlZWssIHZhbHVlID0gVFJVRSkNCmBgYA0KDQojIyByZWdleHByDQoNClRoaXMgdGVsbHMgdXMgaWYgYSBzZXJhY2ggc3RyaW5nIGlzIHByZXNlbnQgaW4gYSBnaXZlbiBzdHJpbmcgYW5kIGFsc28gZ2l2ZXMgdXMgdGhlIHN0YXJ0aW5nIHBvc2l0aW9uIG9mIHRoZSBzZWFyY2ggc3RyaW5nIHdpdGhpbiB0aGUgZ2l2ZW4gc3RyaW5nLg0KDQpgYGB7cn0NCnJlZ2V4cHIoInVhdCIsIkVxdWF0b3IiKQ0KYGBgDQpIZXJlIGl0IHRlbGxzIHVzIHRoYXQgdGhlIHNlYXJjaCBzdHJpbmcgbWF0Y2ggd2FzIGZvdW5kIGZyb20gdGhlIDNyZCBjaGFyYWN0ZXIgb2YgdGhlIGdpdmVuIHN0cmluZywgdGhlIHNlYXJjaCBzdHJpbmcgd2FzIDQgY2hhcmFjdGVycyBpbiBsZW5ndGguIFRoaXMgb25seSBmaW5kcyB0aGUgZmlycyBpbnN0YW5jZSBvZiBhIG1hdGNoLg0KDQojIyBncmVnZXhwciANCg0KVGhpcyBmdW5jdGlvbnMgaW4gYSB3YXkgc2ltaWxhciB0byB0aGF0IG9mIHJlZ2V4cHIsIGJ1dCBpdCB0cmFjZXMgYWxsIGluc3RhbmNlcyBvZiBtYXRjaGVzIGJldHdlZW4gdGhlIHNlYXJjaCBzdHJpbmcgYW5kIHRoZSBnaXZlbiBzdHJpbmcuDQoNCmBgYHtyfQ0KZ3JlZ2V4cHIoImlzcyIsICJNaXNzaXNzaXBpIikNCmBgYA0KIyMgUmVwbGFjaW5nIHN1YnN0cmluZ3MNCg0KIyMjIHN1Yg0KDQpyZXBsYWNlIHN1YnN0cmluZyAtIG9ubHkgZmlyc3QgaW5zdGFuY2UgDQoNCmBgYHtyfQ0Kc3ViKCJpc3MiLCJhbnQiLCJNaXNzaXNzaXBpIikNCmBgYA0KDQojIyMgZ3N1YiANCnJlcGxhY2Ugc3Vic3RyaW5ncyAtIGFsbCBpbnN0YW5jZXMgDQoNCmBgYHtyfQ0KZ3N1YigiaXNzIiwiYW50IiwiTWlzc2lzc2lwaSIpDQpgYGANCkZvciBzb21lIG1vcmUgb24gcmVndWxhciBleHByZXNzaW9ucyBbdmlzaXQgdGhpcyB3ZWJzaXRlXShodHRwczovL3Rvd2FyZHNkYXRhc2NpZW5jZS5jb20vYS1nZW50bGUtaW50cm9kdWN0aW9uLXRvLXJlZ3VsYXItZXhwcmVzc2lvbnMtd2l0aC1yLWRmNWU4OTdjYTQzMikNCg0KDQoNCmxpYnJhcnkoc3RyaW5ncikgYmFzaWNTdHJpbmcgXDwtICJEcmV3IGhhcyAzIHdhdGVybWVsb25zLCBBbGV4IGhhcyA0DQpoYW1idXJnZXJzLCBLYXJpbmEgaGFzIDEyIHRhbWFsZXMsIGFuZCBBbm5hIGhhcyA2IHNvZnQgcHJldHplbHMiDQojcHVsbGluZyBvdXQgZXZlcnkgaW5zdGFuY2Ugb2Ygb25lIHBlcnNvbidzIG5hbWUgZnJvbSBhIHN0cmluZw0KYmFzaWNFeHRyYWN0QWxsIFw8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsICJEcmV3IikgI3JlcGxhY2luZw0KcGF0dGVybiB3aXRoIGEgcmVwbGFjZW1lbnQgc3RyaW5nIGJhc2ljUmVwbGFjZUFsbCBcPC0NCnN0cl9yZXBsYWNlX2FsbChiYXNpY1N0cmluZywgIkFsZXgiLCAiU2hhd24iKSAjbWF0Y2hpbmcgY2hhcmFjdGVyIHNldA0KI2hlcmUgbWF0Y2hpbmcgdm93ZWxzIGNoYXJTZXRzMDEgXDwtIHN0cl9leHRyYWN0X2FsbChiYXNpY1N0cmluZywNCiJbYWVpb3VdIikgI21hdGNoaW5nIGNoYXJhY3RlciByYW5nZSAtIGFyZSBjYXNlIHNlbnNpdGl2ZSBjaGFyU2V0czAyIFw8LQ0Kc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCAiW0EtWl0iKSAjbWF0Y2hpbmcgbnVtYmVyIHJhbmdlIGNoYXJTZXRzMDMNClw8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsICJbMC05XSIpICNtYXRjaGluZyBtaXggb2YgY2hhcnRlciB0eXBlcw0KY2hhcnNldDA0IFw8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsICJbQS1DdC16MS02XSIpDQojTWV0YWNoYXJhY3RlcnMgI21hdGNoaW5nIHNwYWNlcyBzcGFjZSBcPC0gc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLA0KIlxccyIpICNtYXRjaGluZyBhbHBoYW51bWVyaWMgY2hhcmFjdGVycyBhbHBoYSBcPC0NCnN0cl9leHRyYWN0X2FsbChiYXNpY1N0cmluZywgIlxcdyIpICNtYXRjaGluZyBkaWdpdHMgZGlnaXRzIFw8LQ0Kc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCAiXFxkIikgI1F1YW50aWZpZXJzIC0gc3BlY2lmeWluZyBob3cgbWFueQ0KY2hhcmFjdGVycyBhcmUgZXhwZWN0ZWQgcXVhbnRFeGFtcGxlIFw8LSAiQi5CQi5CQkIuQkJCQiIgcXVhbnRQbHVzIFw8LQ0Kc3RyX2V4dHJhY3RfYWxsKHF1YW50RXhhbXBsZSwgIkIrIikgI21hdGNoZXMgQnMgdGlsbCBlbmQgb2YgdGhlIGdyb3VwIG9mDQpCcyBxdWFudEV4YWN0ID0gc3RyX2V4dHJhY3RfYWxsKHF1YW50RXhhbXBsZSwgIkJ7Mn0iKSAjbWF0Y2hlcyBleGFjdGx5DQp0d28gQnMgdGlsbCB0aGUgZW5kIG9mIHRoZSBncm91cCBvZiBCcyBxdWFudFJhbmdlIFw8LQ0Kc3RyX2V4dHJhY3RfYWxsKHF1YW50RXhhbXBsZSwgIkJ7Miw0fSIpICNtYXRjaGVzIGFueSBudW1iZXIgZnJvbSAyIHRvIDQNCnF1YW50VXBwZXJCb3VuZCBcPC0gc3RyX2V4dHJhY3RfYWxsKHF1YW50RXhhbXBsZSwgIkJ7Mix9IikgI3BpY2tpbmcgdXANCndvcmRzIHVzaW5nIHF1YW50aWZpZXIgY29tYmluZTEgXDwtIHN0cl9leHRyYWN0X2FsbChiYXNpY1N0cmluZywNCiJbQS1aYS16XSsiKSAjZmluZCBudW1iZXJzIGNvbWJpbmUyIFw8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsDQoiXFxkezEsMn0iKSAjZmluZCBxdWFudGl0eSBvZiBlYWNoIGZvb2QgaXRlbSAjZWFjaCBudW1iZXIgZGlyZWN0bHkNCmZvbGxvd2VkIGJ5IG5hbWUgb2YgdGhlIGZvb2QgaXRlbSBzZXBhcmF0ZWQgYnkgc3BhY2UgY29tYmluZTMgXDwtDQpzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsICJcXGR7MSwyfVxcc1xcdytcXHMqXFx3KiIpICNDYXB0dXJlIGdyb3Vwcw0KY2FwdHVyZUdyb3VwMSBcPC0gc3RyX21hdGNoX2FsbChiYXNpY1N0cmluZywNCiJbQS1aXVthLXpdK1xcc1xcdytcXHNcXGR7MSwyfVxcc1xcdytcXHMqXFx3KiIpICNsZWF2aW5nIG91dCAnaGFzJyBhbmQNCnByZXBhcmluZyBkYXRhIGluIGNvbHVtbnMgI2l0IGlzIGJhc2ljYWxseSB0aGUgc2FtZSBmb3JtdWxhIGFzDQpjYXB0dXJlR3JvdXAxLCBqdXN0IGJyYWNrZXRzIGFyb3VuZCB0aG9zZSBzdHJpbmdzIHdoaWNoIGFyZSBjb2xsZWN0ZWQgYXMNCmxpc3QgY2FwdHVyZUdyb3VwMiBcPC0gc3RyX21hdGNoX2FsbChiYXNpY1N0cmluZywNCiIoW0EtWl1bYS16XSspXFxzXFx3K1xccyhcXGR7MSwyfSlcXHMoXFx3K1xccypcXHcqKSIpICNjb252ZXJ0aW5nIHRvDQpkYXRhZnJhbWUgcGljbmljIFw8LSBkYXRhLmZyYW1lKGNhcHR1cmVHcm91cDJbWzFdXVssLTFdKQ0KY29sbmFtZXMocGljbmljKSBcPC0gYygiTmFtZSIsICJRdWFudGl0eSIsICJJdGVtIikgI1N0cmluZ3IgY2hlYXRzaGVldA0KPGh0dHBzOi8vZ2l0aHViLmNvbS9yc3R1ZGlvL2NoZWF0c2hlZXRzL2Jsb2IvbWFpbi9zdHJpbmdzLnBkZj4NCiNjaGVhdHNoZWV0DQo8aHR0cHM6Ly9yZWdlbmVyYXRpdmV0b2RheS5jb20vYS1jb21wbGV0ZS1iZWdpbm5lcnMtZ3VpZGUtdG8tcmVndWxhci1leHByZXNzaW9ucy1pbi1yLz4NCnVybHMgXDwtICJIZXJlIGFyZSB1cmxzIE9ORSB3d3cuam51LmFjLmluLCBUV08gPGh0dHBzOi8vYXJqdW5naG9zaC5pbj4sDQpUSFJFRSA8aHR0cDovL2RoYXJ0aS53b3JkcHJlc3MuY29tPiIgc3RyX2V4dHJhY3RfYWxsKHVybHMsDQoiKGh0dHBzPyk/KDovLyk/KHd3d1xcLik/XFx3K1xcLlthLXpBX1owLTktLl0rIikgI2V4dHJhY3QgYWxsDQpjYXBpdGFsaXplZCB3b3JkcyBmZXdOYW1lcyBcPC0gIk15IG5hbWUgaXMgQW50aG9ueSBHb25zYWx2ZXMgYW5kIEkgYW0NCm5vdCBBbWFyIEFrYmFyIEFudGhvbnkiIHN0cl9leHRyYWN0X2FsbChmZXdOYW1lcywgIihbQS1aXVthLXpdKykiKVtbMV1dDQojdHdvIG5hbWVzIHRvZ2V0aGVyIHN0cl9leHRyYWN0X2FsbChmZXdOYW1lcywNCiIoW0EtWl1bYS16XSspXFxzKFtBLVpdW2Etel0rKSIpICNtdWx0aXBsZSBuYW1lcyB0b2dldGhlcg0Kc3RyX2V4dHJhY3RfYWxsKGZld05hbWVzLCAiKChbQS1aXVthLXpdKylcXHM/KXsxLH0iKSAjbmVlZCB0byBzdHJpcA0KZXh0cmEgc3BhY2VzIHRyaW13cyhzdHJfZXh0cmFjdF9hbGwoZmV3TmFtZXMsDQoiKChbQS1aXVthLXpdKylcXHM/KXsxLH0iKVtbMV1dKSBraW5nIFw8LSAiVGhlIGtpbmcgb2YgRW5nbGFuZCBpcw0KQ2hhcmxlcyBQaGlsbGlwIEFydGh1ciBHZW9yZ2UsIGFsc28ga25vd24gYXMgQ2hhcmxlcyBJSUkiDQpzdHJfZXh0cmFjdF9hbGwoa2luZywgIigoKFtBLVpdW2Etel0rKVxcc1wqKSspezIsfSIpDQoNCltNYWluDQpNZW51XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllcy5uYi5odG1sKQ0K</div>
 
 
 
@@ -1959,7 +1944,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("RforHumanities.Rmd");
+  window.initializeSourceEmbed("RforHumanitiesRegex.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

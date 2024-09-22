@@ -1,0 +1,192 @@
+---
+title: "R for Humanities: Plotting"
+output: 
+  html_notebook: 
+    number_sections: true
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+[Main
+Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
+
+This lesson will discuss the basics of plotting charts and visualizing data. In this lesson we will learn some basic concepts. You may find more detailed tutorials at [A ggplot2 tutorial for beginners](https://www.sharpsightlabs.com/blog/ggplot2-tutorial/). 
+This tutorial works with the 'ggplot2' package. However, before starting on 'ggplot2' we should get started with R's in-built plot functions.
+
+```{r}
+knitr::opts_chunk$set(fig.width=6, fig.height=4) 
+```
+
+
+# Plotting points in on a chart
+
+To start let us try to put a point on a chart. - we have to specify the (x,y) coordinates.
+
+```{r}
+plot(1,2)
+```
+
+Using the 'plot' function we can also plot a series of points by specifying equal sized vectors for x-axis and y-axis.
+
+```{r}
+plot(c(1,2,3), c(1,2,4))
+```
+
+# Add Axis Labels
+
+We can also change the axis labels.
+
+```{r}
+plot(c(1,2,3), c(1,2,4), xlab="x", ylab="y")
+```
+
+# Plotting Lines
+
+In this way we can customize the chart by specifying more attribute values:
+
+"l" for lines (the default is "p" for points)
+
+```{r}
+plot(c(1,2,3), c(1,2,4), xlab="x", ylab="y","l")
+```
+
+"b" for both lines and points
+
+```{r}
+plot(c(1,2,3), c(1,2,4), xlab="x", ylab="y","b")
+```
+
+You can examine the full list of attributes by examining ?plot
+
+# Frequency Counts
+
+Let us try our hand at plotting some meaningful data. For this we shall import an in-built R dataset
+
+```{r}
+titanicDF <- data.frame(Titanic)
+plot(titanicDF$Freq,titanicDF$Class, xlab = "Frequency", ylab = "Class")
+```
+
+What we got a scatterplot. Nice, but this is not that meaningful is it?
+Let us switch the axes.
+
+```{r}
+plot(titanicDF$Class,titanicDF$Freq, xlab = "Class", ylab = "Frequency")
+```
+What we get is a Boxplot. [What is a Boxplot?](https://www.geeksforgeeks.org/box-plot/#what-is-a-box-plot)
+
+So you can see that the power of R as a statistical programming tool is beginning to unfold. R recognizes the shape of the data and automatically pushes it to an appropriate chart.
+
+
+# piechart
+
+We shall now try our hand at piecharts. First let us create some data.
+
+```{r}
+x <- c(21, 62, 10, 53)
+labels <- c("London", "New York", "Singapore", "Mumbai")
+```
+
+Now we can call the 'pie' function.
+
+```{r}
+pie(x,labels)
+```
+
+We can add some character and colour to the pie.
+
+```{r}
+pie(x, labels, main = "City pie chart", col = rainbow(length(x)))
+```
+
+Here "rainbow" is one of the [standard colour palettes of R](https://r-charts.com/color-palettes/). 
+"col = rainbow(length(x)" calls the use of the "rainbow" palette and defines its length (ie. number of colours to be used from the origin of the palette) as the length of the Vector "x".
+
+# Histogram
+
+Let us call one of R's native datasets.
+
+```{r}
+data(iris)
+head(iris)
+```
+Let us plot a histogram of the Length of the Petals.
+
+```{r}
+hist(iris$Petal.Length, col = "turquoise", main = "Histogram of Petal Lengths", xlab = "Petal Length")
+```
+
+You can further customize the attributed of the 'hist' command.
+
+```{r}
+?hist
+```
+
+# Bar Plot
+
+For generating a Bar Plot let use R's native dataset 'diamonds'.
+
+```{r}
+head(diamonds)
+```
+
+We will compute the count for each type of 'cut' and thereafter generate a Bar Plot.
+
+```{r}
+cut_counts <- diamonds %>% count(cut) %>% as.data.frame()
+barplot(
+  cut_counts$n,         # Counts of the cuts
+  names.arg = cut_counts$cut,    # Labels for the cuts
+  col = "steelblue",             # Set the color of the bars
+  main = "Barplot of Diamond Cuts", # Title of the plot
+  xlab = "Cut Type",             # Label for the x-axis
+  ylab = "Count of Diamonds"     # Label for the y-axis
+)
+```
+
+
+# ggplot2
+
+Ggplot 2 is a package th
+
+
+```{r}
+library(ggplot2)
+```
+
+Given the need to call a package before using any of its functions. This can be done by including the 'library' function for each of the packages called as part of a script.
+
+
+
+
+
+
+library(ggplot2)
+ggplot(diamonds)
+ggplot(diamonds, aes(x=carat))
+ggplot(diamonds, aes(x=carat, y=price))
+ggplot(diamonds, aes(x=carat, color=cut))
+ggplot(diamonds, aes(x=carat), color="steelblue")
+ggplot(diamonds, aes(x=carat, y=price, color=cut)) + geom_point() + geom_smooth()
+gg <- ggplot(diamonds, aes(x=carat, y=price, color=cut)) + 
+  geom_point() + 
+  labs(title="Scatterplot", x="Carat", y="Price")
+print(gg)
+plot1 <- ggplot(mtcars, aes(x=cyl)) + geom_bar() + labs(title="Frequency bar chart")
+print(plot1)
+df <- data.frame(var=c("a", "b", "c"), nums=c(1:3))
+plot2 <- ggplot(df, aes(x=var, y=nums))+ geom_bar(stat = "identity")
+print(plot2)
+NileDF <- data.frame(c(1871:1970),Nile)
+names(NileDF) <- c("Year", "Flow")
+ggplot(data = NileDF, aes(x = Year, y = Flow)) +
+  geom_line()
+ggplot(data = NileDF, aes(x = Year, y = Flow)) +
+  geom_point()
+ggplot(data = NileDF, aes(x = Year, y = Flow)) + geom_bar(stat = 'identity', color = "red", fill = "blue")
+ggplot(data =NileDF, aes(x=Flow)) + geom_histogram(bins = 10)  
+
+
+[Main
+Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)

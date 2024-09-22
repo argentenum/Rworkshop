@@ -1754,170 +1754,521 @@ display: none;
 <!-- rnb-text-begin -->
 <p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
 Menu</a></p>
-<div id="regular-expressions" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Regular
-Expressions</h1>
-<p>In the previous lesson we looked at one instance of a regular
-expressions function. But let us now look at it at greater detail.</p>
-<div id="grep" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> grep</h2>
-<p>grep gives us the line or vector index where a particular substring
-pattern match is found.</p>
+<div id="installing-packages" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Installing
+packages</h1>
+<p>Now, let us go beyond R’s native functions. As mentioned earlier in R
+has a wide array of specialized packages to perform specific tasks.
+Tasks big and small. This helps customize R to a specific task at
+hand.</p>
+<p>These packages are usually written by volunteer coders. R is an Open
+Source tool. Which means it’s source code (the machine language) is
+available for everyone to modify and improve. This enables community
+monitoring and community development.</p>
+<p>To use a particular package we first need to install the package in
+our R Studio installation.</p>
+<p>This is a one time task for every installation of RStudio. There are
+two ways in which a package can be installed in R.</p>
+<p>To begin with we shall install the package ‘dplyr’. ‘dplyr’ is a
+package that is equipped to perform sophisticated data transformation,
+filtering, summarizing.</p>
+<div id="gui-installation" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> GUI installation</h2>
+<ul>
+<li>In the Viewing box at the Bottom Righthand corner of RStudio clicked
+the “Packages” tab</li>
+<li>Go to “Packages&gt;Install”</li>
+<li>In the ’Packages’column search for the package that you want to
+install. In this case it is “dplyr”.</li>
+<li>Keep all default options including “Install dependencies”</li>
+<li>Click install.</li>
+</ul>
+<p>R will install the package.</p>
+</div>
+<div id="console-installation" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Console
+installation</h2>
+<p>Look closely at your Console. The GUI action has resulted in a
+command.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JlcChcIlNoYWxsIEkgY29tcGFyZVwiLCBzb25uZXRzKVxuYGBgIn0= -->
-<pre class="r"><code>grep(&quot;Shall I compare&quot;, sonnets)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5zdGFsbC5wYWNrYWdlcyhcImRwbHlyXCIpXG5gYGAifQ== -->
+<pre class="r"><code>install.packages(&quot;dplyr&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>The result is a vector</p>
+<p>We can also use this command to install packages.</p>
+<p>Usually, since, installation of a package is expected to be a one
+time process for each RStudio installation. But on R it is not enough to
+install a package. In each session of R we need to call the package to
+be able to use its listed functions. This can be done with the ‘library’
+function.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2Vla1xuZ3JlcChcImVcIix3ZWVrKVxuYGBgIn0= -->
-<pre class="r"><code>week
-grep(&quot;e&quot;,week)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmBgYCJ9 -->
+<pre class="r"><code>library(dplyr)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>It gives all the indices where the pattern has found a match.</p>
-<p>We can also return the values instead of the indices.</p>
+<p>Given the need to call a package before using any of its functions.
+This can be done by including the ‘library’ function for each of the
+packages called as part of a script.</p>
+<p>We are now going to turn our attention to the Pipes operation in R.
+Pipes can be typically supported through two packages ‘dplyr’ and
+‘magrittr’. ‘dplyr’ is tailored to work better with dataframes or tidy
+datasets (neat rectangular datasets). ‘magrittr’ works better with
+arithmetic operations. In this lesson I would like to introduce the
+working of Pipes using simple arithmetic operations before we move to
+dataframes.</p>
+<p>So let us install and call ‘magrittr’</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JlcChcImVcIix3ZWVrLCB2YWx1ZSA9IFRSVUUpXG5gYGAifQ== -->
-<pre class="r"><code>grep(&quot;e&quot;,week, value = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5zdGFsbC5wYWNrYWdlcyhcIm1hZ3JpdHRyXCIpXG5saWJyYXJ5KG1hZ3JpdHRyKVxuYGBgIn0= -->
+<pre class="r"><code>install.packages(&quot;magrittr&quot;)
+library(magrittr)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidHVlXCIgXCJ3ZWRcIlxuIn0= -->
-<pre><code>[1] &quot;tue&quot; &quot;wed&quot;</code></pre>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="pipes" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Pipes</h1>
+<p>The mechanism of programming that we have learnt thus far is usually
+works in a non-linear fashion. Let me explain.</p>
+<div id="multiline-approach" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Multiline
+approach</h2>
+<p>Study the following code where we carry out some basic arithmetic
+operations:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG54IDwtIDEwICMgU3RhcnQgd2l0aCBhIG51bWJlclxueCA8LSB4ICogMiAjIE11bHRpcGx5IGJ5IDJcbnggPC0geCAtIDUgIyBTdWJ0cmFjdCA1XG54IDwtIHheMiAjIFJhaXNlIHRoZSByZXN1bHQgdG8gdGhlIHBvd2VyIG9mIDJcbnggPC0geCAvIDMgIyBEaXZpZGUgYnkgM1xucHJpbnQoeCkgIyBQcmludCB0aGUgcmVzdWx0XG5gYGAifQ== -->
+<pre class="r"><code>
+x &lt;- 10 # Start with a number
+x &lt;- x * 2 # Multiply by 2
+x &lt;- x - 5 # Subtract 5
+x &lt;- x^2 # Raise the result to the power of 2
+x &lt;- x / 3 # Divide by 3
+print(x) # Print the result</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDc1XG4ifQ== -->
+<pre><code>[1] 75</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="regexpr" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> regexpr</h2>
-<p>This tells us if a serach string is present in a given string and
-also gives us the starting position of the search string within the
-given string.</p>
+<div id="nested-approach" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Nested approach</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVnZXhwcihcInVhdFwiLFwiRXF1YXRvclwiKVxuYGBgIn0= -->
-<pre class="r"><code>regexpr(&quot;uat&quot;,&quot;Equator&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSAxMFxueCA8LSAoKCh4KjIpLTUpXjIpLzNcbnByaW50KHgpXG5gYGAifQ== -->
+<pre class="r"><code>x &lt;- 10
+x &lt;- (((x*2)-5)^2)/3
+print(x)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDNcbmF0dHIoLFwibWF0Y2gubGVuZ3RoXCIpXG5bMV0gM1xuYXR0cigsXCJpbmRleC50eXBlXCIpXG5bMV0gXCJjaGFyc1wiXG5hdHRyKCxcInVzZUJ5dGVzXCIpXG5bMV0gVFJVRVxuIn0= -->
-<pre><code>[1] 3
-attr(,&quot;match.length&quot;)
-[1] 3
-attr(,&quot;index.type&quot;)
-[1] &quot;chars&quot;
-attr(,&quot;useBytes&quot;)
-[1] TRUE</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDc1XG4ifQ== -->
+<pre><code>[1] 75</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Here it tells us that the search string match was found from the 3rd
-character of the given string, the search string was 4 characters in
-length. This only finds the firs instance of a match.</p>
+<p>Both produce the result. But the first approach repeatedly rewrites
+the value of x in intermediate lines. In very complex operations this is
+definitely non-optimal. The Nested approach is probably more difficult
+for the human eye to follow.</p>
 </div>
-<div id="gregexpr" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> gregexpr</h2>
-<p>This functions in a way similar to that of regexpr, but it traces all
-instances of matches between the search string and the given string.</p>
+<div id="linear-operations-using-pipes" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Linear operations
+using Pipes</h2>
+<p>With Pipes the operations take a linear shape with the output of one
+operation directly pushed to the next operation without any intermediate
+variable being created.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JlZ2V4cHIoXCJpc3NcIiwgXCJNaXNzaXNzaXBpXCIpXG5gYGAifQ== -->
-<pre class="r"><code>gregexpr(&quot;iss&quot;, &quot;Mississipi&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSAxMCAlPiVcbiAgbXVsdGlwbHlfYnkoMikgJT4lXG4gIHN1YnRyYWN0KDUpICU+JVxuICByYWlzZV90b19wb3dlcigyKSAlPiVcbiAgZGl2aWRlX2J5KDMpXG5cbnByaW50KHgpICMgUHJpbnQgdGhlIHJlc3VsdFxuYGBgIn0= -->
+<pre class="r"><code>x &lt;- 10 %&gt;%
+  multiply_by(2) %&gt;%
+  subtract(5) %&gt;%
+  raise_to_power(2) %&gt;%
+  divide_by(3)
+
+print(x) # Print the result</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSAyIDVcbmF0dHIoLFwibWF0Y2gubGVuZ3RoXCIpXG5bMV0gMyAzXG5hdHRyKCxcImluZGV4LnR5cGVcIilcblsxXSBcImNoYXJzXCJcbmF0dHIoLFwidXNlQnl0ZXNcIilcblsxXSBUUlVFXG4ifQ== -->
-<pre><code>[[1]]
-[1] 2 5
-attr(,&quot;match.length&quot;)
-[1] 3 3
-attr(,&quot;index.type&quot;)
-[1] &quot;chars&quot;
-attr(,&quot;useBytes&quot;)
-[1] TRUE</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDc1XG4ifQ== -->
+<pre><code>[1] 75</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>In the above code the value of ‘x’ is pushed through (pipes!) a
+number of arithmetic operations and ultimately the resulting value is
+assigned to the original variable - ‘x’.</p>
+<p>These set of operations have a linear structure. Though - in the
+above example - each operation is written in separate lines visually,
+operationally they make a single line of code and the entire chain of
+operations run as part of a single command.</p>
+</div>
+<div id="transforming-dataframes" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Transforming
+dataframes</h2>
+<p>Pipes - using the ‘dplyr’ package are very effective in subsetting
+and manipulating data in dataframes</p>
+<p>Let us work with a built-in R dataset ‘iris’</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChtdGNhcnMpXG5gYGAifQ== -->
+<pre class="r"><code>head(mtcars)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MTEsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOlsiZGYgWzYgw5cgMTFdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQm5WU1BYRFRNQmhWL1pmR3ZxYmwyZ0VXemlOTGNtMmNRaGV1R25MQXdrRDVhWTUyVVd3MzlkV1JYZGxPU3ljV1ptWTROcGk3c0hSbWhwa1ZaaFlXR0F1eXBjOFhpL0xkS2U5OVQzcngwMmZ2REVlZVBiSVJRam95ZEEzcEpxZklmUHJrWG5jTElVUGp6UUl5VUx2RVUzNW9sUk9Icnc1ZkZ0NUVWZFY0KzNOWlgvRG1RVlc0LzlFckMvZHZ2T0gxdHZaZGwrY0JWNVRlYmZhMUw1QTY0SjdFVkJqdzdLWEEyRzM2OXFRT3VJdWJmZmhONEhQYzlDMTdJajlnUjk1djhmMVgrMjc2QWJlbGJxMmRmYjkvdmxiN2pGK2ZYdS9mK28xYk1wL0dPeTdoOXNXakg2OXVYbUNILzNDR25mUEtXUHZXQytIYk1NVisvMTFwMjhkZVdqN3d1TllIVzlYL2dBOHB0ZjJ6aWFvT1B2V2NldjZLRWpsWDVMMVVYTHdhLytkVG40di95ZG40QUUxS3BtSEdTV2wzcEtoUDB3bFEvMFVzcVJGRVdTcTVkcGpXS2lNNXFDZkFqT01zOUVHZFpjRElGUFluSVdIQWZjTEdTcXcyUzA1Njg5RXMySGhJemdMaTdvd0dVbGlxQlhlWFFHcDdTUEtzb082ZGpYV3BkQjRraklhNU8zQ0hMSnFGVXIwbTFjZHB3bkl5VGdySTMzcEc0b2pRWEoyV0g1TU1Jb0ZvQnlRbnZRUEcwL0x1VXJHMGtqU1BFc3BOMmlvUzM5VzhlWUVwd25KQnkzc0hYZit3b0VkZFQ5bldVem9wbjFsSllpMUp0T2E0STFKb2Y1VHhXU0dkUkJTdWI4WmtITUxyMVlOd0JzUGkwNitHMzB0WlJHRW1ObGV6WHA3a0JDeTJuOFNnVkRkSGwzOEJsR1o5VGZ3RUFBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="filtering-rows-with-filter" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Filtering Rows with
+<code>filter()</code></h3>
+<p>This operation filters rows based on conditions.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGaWx0ZXIgY2FycyB3aXRoIDYgY3lsaW5kZXJzIGFuZCBtcGcgZ3JlYXRlciB0aGFuIDIwXG5maWx0ZXJlZF9kYXRhIDwtIG10Y2FycyAlPiVcbiAgZmlsdGVyKGN5bCA9PSA2LCBtcGcgPiAyMClcblxucHJpbnQoZmlsdGVyZWRfZGF0YSlcbmBgYCJ9 -->
+<pre class="r"><code># Filter cars with 6 cylinders and mpg greater than 20
+filtered_data &lt;- mtcars %&gt;%
+  filter(cyl == 6, mpg &gt; 20)
+
+print(filtered_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6MTEsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOlsiZGYgWzMgw5cgMTFdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQm4xU3YwL0NRQlErMnZLckJEQnhjU0lkWFNBU01IRXhNaERqNGlEUlNLTEwwUjZsRWE3SHRZQTZ1VGo3UitnZndldy80Ui9oNHFJamVpMzNDcjNCbDF5Kzc3N3YzcnQzcisxMSt5MnpieUtFZEdUb0d0S3pncUxzMWVWcC9RZ2hReE9iRERKUU1jSjdjV2hYa0pKWWxTaWpjNGppMk9Bd2pzVGZrN3FDaWU5SUhaQlphZi9tYWEwcm1QalZWaHdKRmw0L3pHUDJsdmpHOS92TDdmNVBKeS9yRjVjWG44KzFaZUlmek5aK00xdUxuRTZMUlFXbTRDTWxUcjdTL2NOK1MwLzN0eVB2QlN6ODcyL3FwQWFmcFhoQ0FrR2lZeVVwNmhQbUFyVWZ4cElhamhjd3liVVJTMVNPUTFBWHdJeHBRR3hRNXdFd1BBSGZKWmdEdHpFZktHMFZ1YjlvYkxlbWczR09IeDFzOWZwdEtaUVR3YnJHMEhYbHpPZVVoRmJiNm5KdlR0UTMyMk1jUUdFUVRRZUh1REhrNGs2eFd5a3BlWitGbms5RmtoYjlwVGtsT2NNVm9UcWpVZmRPM1I3TjZGMjlxZGc2bzI1MFp5eXRWMW1pdnNWTDZ5NjBYNW1laytrNVFsMlBFbmpPR0E4SWZDVGRJWE1ZZ3BoaFBNSUc0eDZGTDJNS05XaUVmb2doeGJUOU1Tanh5OUhxRDdvTWtydTZBd0FBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"21.4","2":"6","3":"258","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="replacing-substrings" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Replacing
-substrings</h2>
-<div id="sub" class="section level3" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> sub</h3>
-<p>replace substring - only first instance</p>
+<div id="selecting-columns-with-select" class="section level3" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Selecting Columns
+with <code>select()</code></h3>
+<p>This allows you to select specific columns from a data frame.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViKFwiaXNzXCIsXCJhbnRcIixcIk1pc3Npc3NpcGlcIilcbmBgYCJ9 -->
-<pre class="r"><code>sub(&quot;iss&quot;,&quot;ant&quot;,&quot;Mississipi&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBTZWxlY3Qgb25seSAnbXBnJywgJ2N5bCcsIGFuZCAnaHAnIGNvbHVtbnNcbnNlbGVjdGVkX2NvbHVtbnMgPC0gbXRjYXJzICU+JVxuICBzZWxlY3QobXBnLCBjeWwsIGhwKVxuXG5wcmludChzZWxlY3RlZF9jb2x1bW5zKVxuYGBgIn0= -->
+<pre class="r"><code># Select only &#39;mpg&#39;, &#39;cyl&#39;, and &#39;hp&#39; columns
+selected_columns &lt;- mtcars %&gt;%
+  select(mpg, cyl, hp)
+
+print(selected_columns)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTWFudGlzc2lwaVwiXG4ifQ== -->
-<pre><code>[1] &quot;Mantissipi&quot;</code></pre>
-<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MzIsIm5jb2wiOjMsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOlsiZGYgWzMyIMOXIDNdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQnAxVjNVNFRRUlJlV240cllKRWJ2WnNMcjR3dC9jV2lpVmx0YVpDVTJBQkNnOFprdWp1MG85dVp6ZXkwaUZlOEJsNzVEcjRBRDZEdjRDT1llSS9PN3A3VHdxclJPTW5tbS9PZC85TXo2VzZqVTg1ME1wWmxwYTNwZE1wS3o1aXJOZk5pdjVtcldkWjB5Z2hUMXJTMUVPSTdZN1FhV1ZyV3N2bUlYYldpTThiMXorSDVZbGVQbzJPWFBwWERZNWZ1bkp2endiNS9IbU1OOUdoZmpvOWRCTGtBK21Jcmx2TWczd1U5WWc1NENHQS9Sdmw3TEZmUDRycldvRDZNY3cvcXdMeVBJTTlEc01NNGEyZ0hmZVN4MzFnL25zTnQ0Qkd6Q1puOFFjNyt3VDVwOTYrWWpKZkUvL1gvUy8wV3p1SGxXY3dqSHRyWFpmWTF4aVBneGNjWW4wTzh3NHNZWHlmdytPejN5TUgvRGNUMXdMNE4rbTJJMjRaOEhjRHV4WFhFT3JBKzlEOEEvU3Z3OHhOOTZHL1FYNnhQUEpnWlFRY3NNSmVzRlQydmlFd1AvQjVlblZNUHJxbStuM0JlVVBJa2Z6VUFRY1VPZmU5U3N0dXBBTEUwSnNnaHhkaVpCdFhCVUpBSHhRSXd5MXRTQ2FaSmhUUVVIekZnVjREZDg2WFN0Q3VIR2hSekI5VGpWT2h4dkdHZ21TTGw5Y0s0RHFZY1Vxb1VHa0RNeDBTNWNGMnVKUnhxaFRyR2pJaEt0YkMzK1F2VEF1YkdoRUczVzNYcWNzK2pEbWw2ak9rVEtWM1FyTGE0Y0tRblNGMEt6UVVUbXVLQVYrcDlkUnA0cG9ObkE1OHBQbGJNTnpuVnBGaXFZY0l0S2N3MDYzekVIWnpjdmp5VjJuQlNTWk1YeDM2RkZVaG1HOUx0TVZMdlU4OWpvc2NVUm4yeVV5ZmJkTVE4THJEWE9oMVFKY25ST0hXMkhaWWQ5c1VWNjNLRmJTMUVKWGFLdVExTTNaWXFjUHFNYkJRcnVSS1FpeTJwaHdIWkhDcnBZem5MVGFsYzBqWS9JMU9VNEV3WG0wd3BxamhwY0NFblN4UVlHODNKVTZuUVBYTWd2WkVreFVwcE03bmFqa2NEM0V3a015N1ZOSCtzek5JYTZUTGhNaWQ5emFVd1RxbndUMlEyNFR5bEVzVE5vUWpYMzgwNS9hRjRteXNtMUdsZjlNS2NFUlYvUzREa3lqMGRWNUg2QWU2ejRENXJmaDJ6SWRpT1I3c01OeUx0c2hIT3p6ekM2QTNtZmNVbmI4R3dRVjdMeVhabHpOWWhFM1Z1WGY0RWtpeWpXRmtIQUFBPSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"110","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"110","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"93","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"110","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"175","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"105","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"245","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"62","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"95","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"123","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"123","_rn_":"Merc 280C"},{"1":"16.4","2":"8","3":"180","_rn_":"Merc 450SE"},{"1":"17.3","2":"8","3":"180","_rn_":"Merc 450SL"},{"1":"15.2","2":"8","3":"180","_rn_":"Merc 450SLC"},{"1":"10.4","2":"8","3":"205","_rn_":"Cadillac Fleetwood"},{"1":"10.4","2":"8","3":"215","_rn_":"Lincoln Continental"},{"1":"14.7","2":"8","3":"230","_rn_":"Chrysler Imperial"},{"1":"32.4","2":"4","3":"66","_rn_":"Fiat 128"},{"1":"30.4","2":"4","3":"52","_rn_":"Honda Civic"},{"1":"33.9","2":"4","3":"65","_rn_":"Toyota Corolla"},{"1":"21.5","2":"4","3":"97","_rn_":"Toyota Corona"},{"1":"15.5","2":"8","3":"150","_rn_":"Dodge Challenger"},{"1":"15.2","2":"8","3":"150","_rn_":"AMC Javelin"},{"1":"13.3","2":"8","3":"245","_rn_":"Camaro Z28"},{"1":"19.2","2":"8","3":"175","_rn_":"Pontiac Firebird"},{"1":"27.3","2":"4","3":"66","_rn_":"Fiat X1-9"},{"1":"26.0","2":"4","3":"91","_rn_":"Porsche 914-2"},{"1":"30.4","2":"4","3":"113","_rn_":"Lotus Europa"},{"1":"15.8","2":"8","3":"264","_rn_":"Ford Pantera L"},{"1":"19.7","2":"6","3":"175","_rn_":"Ferrari Dino"},{"1":"15.0","2":"8","3":"335","_rn_":"Maserati Bora"},{"1":"21.4","2":"4","3":"109","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[32]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="gsub" class="section level3" number="1.4.2">
-<h3><span class="header-section-number">1.4.2</span> gsub</h3>
-<p>replace substrings - all instances</p>
+<div id="arranging-rows-with-arrange" class="section level3" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Arranging Rows with
+<code>arrange()</code></h3>
+<p>Sort rows by specific column values.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3N1YihcImlzc1wiLFwiYW50XCIsXCJNaXNzaXNzaXBpXCIpXG5gYGAifQ== -->
-<pre class="r"><code>gsub(&quot;iss&quot;,&quot;ant&quot;,&quot;Mississipi&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBBcnJhbmdlIGRhdGEgYnkgbXBnIGluIGRlc2NlbmRpbmcgb3JkZXJcbmFycmFuZ2VkX2RhdGEgPC0gbXRjYXJzICU+JVxuICBhcnJhbmdlKGRlc2MobXBnKSlcblxucHJpbnQoYXJyYW5nZWRfZGF0YSlcbmBgYCJ9 -->
+<pre class="r"><code># Arrange data by mpg in descending order
+arranged_data &lt;- mtcars %&gt;%
+  arrange(desc(mpg))
+
+print(arranged_data)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTWFudGFudGlwaVwiXG4ifQ== -->
-<pre><code>[1] &quot;Mantantipi&quot;</code></pre>
-<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MzIsIm5jb2wiOjExLCJzdW1tYXJ5Ijp7IkRlc2NyaXB0aW9uIjpbImRmIFszMiDDlyAxMV0iXX19LCJyZGYiOiJINHNJQUFBQUFBQUFCcTFYVFd3YlJSVGUySTRULzhSeFNDTFJDOHlCUTBIWThhNmRrQUlsQzNaRHFGS1JKaVdKbWlqUzJONGtTemM3bTltMTA3UkZ5b1Z6eGJHSUExSTVvaDdnMG1NRUVxZFdnbE52aUY2NFVLUktxQWlRQ0l4MzN0dkVpMXlIS2lNNTM3enYvY3liYjJidHpYeGx1WmhjVGlxS0VsVmkwWWdTN1JWVHBmZURTOU81U1VXSlJZVFJvOFNVUkF1dmlxQmhNVW1KVDBaOGlLNy9WbXdOWFM5S2ZHdmRId0crTVh0UGpQdjY2NG8vOUVuZ0orNUpIbkY4VC9ySHdSOGc1Q0VXdjVickZJdnRxQUd2bmJvbHhxZTZDblZWV0w4QTljWnVTZjhZMU1zREh5RHdPYkJmaGZoWEFGK0N1b0NCRGxuSU95bDh2b1BkQ1VrSXUvbFBHQlhVNGVKM1VyZUZMNlZPODQ4a0xpRy9ML1BXaHVWNVZSY2x2d0wxS09pOEZwZThReUJlbDFoWDJyRUsvanJjdzEzZ20zc1NyWkIvKzAzWkQyTGpzZlM3UDBsRTNvVTYvSHVKMS9mYTZ6WWcvaU93Yit5MzZ6QUgvYzZCL3p6VVd3M3hpNkRIKytCZkF2OFM4TXRncjBEOFN0Z0dOS0NmdGYxMkcvR3kzdTVmMzJ0SEI3QWE4cVB0UFpab2dXMS8zbzRtNElkeVBTVjRMaDYrZTJmazJrTTllL0dYajErNE82OFAzL1VuZXViMGsyOXVycjRjOEVQQUQ0Zy9ZcVpuNERrYlhQVUQ5UUc0Ri8yM0h5VFBPbC9vV2FjMTJkWUg0ZmxIVExlaVQvOGU1R0Y4QXZ4eDBZem82TkIvMDU4RWlQMWlIUEtZbjRaK0U2Mnl0eC9vaVR0K29ENEFkaC8wMWErMDZURDFONnpYSS9jeDlhZU1uL3BqZk9yR3I1OXNUaDFBM3ozKzlsL1VFNkJESkxSK0ZIUktBTWJQK2d2cU1janZnM3NVQjMxVHFHZkwvZVRid0U1QjMyaGovMWwvK3pONkF2cE5RNTBNckpQeVpibXVwNkd2VVNyMVFqc0RmWTFDSDZOZjVUS0xzVlBCZlNqK0xKL3I0bFVacDhINkJlQTF3QUo4bjVlZ2p2YVo3R2NDL0tXSTNFOFI5TmJnZmhRYVVnZTFWOWJGNzNrTmZnZlVOQ0Q0UzVQUUI5UlZvWTRLMy84NXlDLzhLTTlGQXh0L1YzSndMdXFWMWtZZTZXT2dhLzRIZVUvVXY2UmVxclNEK3lBZko2VWI0amh1ZkRndlBEcjVqNXQvZ3VOLzZkQkpqMDdqV2ZYcE5wNVYzNmVNcDc4L2pIU3h3OWdmd3VQV0RlZUY4OFA4U0plOGJ2NFFLaDN1ZzY2MDQzSDVqbld5SVF5L1ozV3FpLzVPK2lnaEhtM1NZZDBPR0hyaDdyWHBsdEY2RldtNVUwQkd0NXdObk5aMkxaakc2cWJyd0R5eTZRUXNweDZ5T3ppTGJidEdEZG1taXpPNmhmNE5nM0tjMXlpdmh0cEtjTGFUUDlvYUFVZm1FdHRsSGlWbHhwbGxVV0Q3cDAzcUVWV2JCRHMxdyt5NkNES2JKbmFSbm1WZXd5WG5HcHc1bUpidzA1YlYzQmtnQnVZWWQydWJCam1qbG5JYVJsMHdlSTFvcFVJRmlHU0ZlbTdESnErcEJWeGZoaFRSSGpqU3BZMnJaV1lZdHcyUGxFaUZtMDBEaXkweXE4bUlXdExPQmV2UmE2TDUrZVVTVmdzSXNrVHhZTkxUQnVlVW02UmkycXk5alVsc0l6dkhiTStrTlRKdGNxTnE4anJ3UTlESmdzTzRSNnVzZ2NmV3QwZ3RrOXBlKzg0bkMyVnMxaWRLNDRXRjJmOHcySDVtbXZFNm1STlZERTRKeG1VcnJMNWhrUEltdFN6RDNqRHc4Rk9IRlhHUjFOc1h5dVE4YlJxV2FSOHE0SXBxbmtuZVlSejFIQ3B2OGwzWE1qaDViOHN4dUVtdDRId2FybGljRkNkUWlHU1pibEhPeU9YZ2hqeFhwblZUWENDaGpXVVkzZzVqS003d3JHblhtR1dMd3hQaTJZYnRpY0toaDZabVVSZHZKcExKT3ZWb2ZwMkxTeXVzZzFCS0gzTThrOWtpS2RMNjl6WWVTdTdoSVdLd1liZXVmejFYMjJ6WVYzSmF5QjExN0kzV21qNGxQd09BNU1nOEpidUkvQVBwY1VpUGl5TVFXOFB0V0xScW9IalJ1dEhFa3hRUG9mOE01aDF1QnBjaUtWZzM3ekh2VUc4aEZ6TCt6cFdEZndFRjdXVUM4dzhBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"33.9","2":"4","3":"71.1","4":"65","5":"4.22","6":"1.835","7":"19.90","8":"1","9":"1","10":"4","11":"1","_rn_":"Toyota Corolla"},{"1":"32.4","2":"4","3":"78.7","4":"66","5":"4.08","6":"2.200","7":"19.47","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat 128"},{"1":"30.4","2":"4","3":"75.7","4":"52","5":"4.93","6":"1.615","7":"18.52","8":"1","9":"1","10":"4","11":"2","_rn_":"Honda Civic"},{"1":"30.4","2":"4","3":"95.1","4":"113","5":"3.77","6":"1.513","7":"16.90","8":"1","9":"1","10":"5","11":"2","_rn_":"Lotus Europa"},{"1":"27.3","2":"4","3":"79.0","4":"66","5":"4.08","6":"1.935","7":"18.90","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat X1-9"},{"1":"26.0","2":"4","3":"120.3","4":"91","5":"4.43","6":"2.140","7":"16.70","8":"0","9":"1","10":"5","11":"2","_rn_":"Porsche 914-2"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.190","7":"20.00","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.150","7":"22.90","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"21.5","2":"4","3":"120.1","4":"97","5":"3.70","6":"2.465","7":"20.01","8":"1","9":"0","10":"3","11":"1","_rn_":"Toyota Corona"},{"1":"21.4","2":"6","3":"258.0","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"21.4","2":"4","3":"121.0","4":"109","5":"4.11","6":"2.780","7":"18.60","8":"1","9":"1","10":"4","11":"2","_rn_":"Volvo 142E"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"19.7","2":"6","3":"145.0","4":"175","5":"3.62","6":"2.770","7":"15.50","8":"0","9":"1","10":"5","11":"6","_rn_":"Ferrari Dino"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.30","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"},{"1":"19.2","2":"8","3":"400.0","4":"175","5":"3.08","6":"3.845","7":"17.05","8":"0","9":"0","10":"3","11":"2","_rn_":"Pontiac Firebird"},{"1":"18.7","2":"8","3":"360.0","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"17.8","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.90","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280C"},{"1":"17.3","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.730","7":"17.60","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SL"},{"1":"16.4","2":"8","3":"275.8","4":"180","5":"3.07","6":"4.070","7":"17.40","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SE"},{"1":"15.8","2":"8","3":"351.0","4":"264","5":"4.22","6":"3.170","7":"14.50","8":"0","9":"1","10":"5","11":"4","_rn_":"Ford Pantera L"},{"1":"15.5","2":"8","3":"318.0","4":"150","5":"2.76","6":"3.520","7":"16.87","8":"0","9":"0","10":"3","11":"2","_rn_":"Dodge Challenger"},{"1":"15.2","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.780","7":"18.00","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SLC"},{"1":"15.2","2":"8","3":"304.0","4":"150","5":"3.15","6":"3.435","7":"17.30","8":"0","9":"0","10":"3","11":"2","_rn_":"AMC Javelin"},{"1":"15.0","2":"8","3":"301.0","4":"335","5":"3.54","6":"3.570","7":"14.60","8":"0","9":"1","10":"5","11":"8","_rn_":"Maserati Bora"},{"1":"14.7","2":"8","3":"440.0","4":"230","5":"3.23","6":"5.345","7":"17.42","8":"0","9":"0","10":"3","11":"4","_rn_":"Chrysler Imperial"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.570","7":"15.84","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"13.3","2":"8","3":"350.0","4":"245","5":"3.73","6":"3.840","7":"15.41","8":"0","9":"0","10":"3","11":"4","_rn_":"Camaro Z28"},{"1":"10.4","2":"8","3":"472.0","4":"205","5":"2.93","6":"5.250","7":"17.98","8":"0","9":"0","10":"3","11":"4","_rn_":"Cadillac Fleetwood"},{"1":"10.4","2":"8","3":"460.0","4":"215","5":"3.00","6":"5.424","7":"17.82","8":"0","9":"0","10":"3","11":"4","_rn_":"Lincoln Continental"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[32]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>For some more on regular expressions <a href="https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432">visit
-this website</a></p>
-<p>library(stringr) basicString &lt;- “Drew has 3 watermelons, Alex has
-4 hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels”
-#pulling out every instance of one person’s name from a string
-basicExtractAll &lt;- str_extract_all(basicString, “Drew”) #replacing
-pattern with a replacement string basicReplaceAll &lt;-
-str_replace_all(basicString, “Alex”, “Shawn”) #matching character set
-#here matching vowels charSets01 &lt;- str_extract_all(basicString,
-“[aeiou]”) #matching character range - are case sensitive charSets02
-&lt;- str_extract_all(basicString, “[A-Z]”) #matching number range
-charSets03 &lt;- str_extract_all(basicString, “[0-9]”) #matching mix of
-charter types charset04 &lt;- str_extract_all(basicString,
-“[A-Ct-z1-6]”) #Metacharacters #matching spaces space &lt;-
-str_extract_all(basicString, “\s”) #matching alphanumeric characters
-alpha &lt;- str_extract_all(basicString, “\w”) #matching digits digits
-&lt;- str_extract_all(basicString, “\d”) #Quantifiers - specifying how
-many characters are expected quantExample &lt;- “B.BB.BBB.BBBB”
-quantPlus &lt;- str_extract_all(quantExample, “B+”) #matches Bs till end
-of the group of Bs quantExact = str_extract_all(quantExample, “B{2}”)
-#matches exactly two Bs till the end of the group of Bs quantRange &lt;-
-str_extract_all(quantExample, “B{2,4}”) #matches any number from 2 to 4
-quantUpperBound &lt;- str_extract_all(quantExample, “B{2,}”) #picking up
-words using quantifier combine1 &lt;- str_extract_all(basicString,
-“[A-Za-z]+”) #find numbers combine2 &lt;- str_extract_all(basicString,
-“\d{1,2}”) #find quantity of each food item #each number directly
-followed by name of the food item separated by space combine3 &lt;-
-str_extract_all(basicString, “\d{1,2}\s\w+\s<em>\w</em>”) #Capture
-groups captureGroup1 &lt;- str_match_all(basicString,
-“[A-Z][a-z]+\s\w+\s\d{1,2}\s\w+\s<em>\w</em>”) #leaving out ‘has’ and
-preparing data in columns #it is basically the same formula as
-captureGroup1, just brackets around those strings which are collected as
-list captureGroup2 &lt;- str_match_all(basicString,
-“([A-Z][a-z]+)\s\w+\s(\d{1,2})\s(\w+\s<em>\w</em>)”) #converting to
-dataframe picnic &lt;- data.frame(captureGroup2[[1]][,-1])
-colnames(picnic) &lt;- c(“Name”, “Quantity”, “Item”) #Stringr cheatsheet
-<a href="https://github.com/rstudio/cheatsheets/blob/main/strings.pdf" class="uri">https://github.com/rstudio/cheatsheets/blob/main/strings.pdf</a>
-#cheatsheet <a href="https://regenerativetoday.com/a-complete-beginners-guide-to-regular-expressions-in-r/" class="uri">https://regenerativetoday.com/a-complete-beginners-guide-to-regular-expressions-in-r/</a>
-urls &lt;- “Here are urls ONE www.jnu.ac.in, TWO <a href="https://arjunghosh.in" class="uri">https://arjunghosh.in</a>,
-THREE <a href="http://dharti.wordpress.com" class="uri">http://dharti.wordpress.com</a>” str_extract_all(urls,
-“(https?)?(://)?(www\.)?\w+\.[a-zA_Z0-9-.]+”) #extract all capitalized
-words fewNames &lt;- “My name is Anthony Gonsalves and I am not Amar
-Akbar Anthony” str_extract_all(fewNames, “([A-Z][a-z]+)”)[[1]] #two
-names together str_extract_all(fewNames, “([A-Z][a-z]+)\s([A-Z][a-z]+)”)
-#multiple names together str_extract_all(fewNames,
-“(([A-Z][a-z]+)\s?){1,}”) #need to strip extra spaces
-trimws(str_extract_all(fewNames, “(([A-Z][a-z]+)\s?){1,}”)[[1]]) king
-&lt;- “The king of England is Charles Phillip Arthur George, also known
-as Charles III” str_extract_all(king, “((([A-Z][a-z]+)\s*)+){2,}”)</p>
+</div>
+<div id="adding-new-columns-with-mutate" class="section level3" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Adding New Columns
+with <code>mutate()</code></h3>
+<p>Create new columns based on existing ones.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSBuZXcgY29sdW1uICd3ZWlnaHRfcGVyX2hwJyB3aGljaCBpcyB3ZWlnaHQgKHd0KSBkaXZpZGVkIGJ5IGhvcnNlcG93ZXIgKGhwKVxubXV0YXRlZF9kYXRhIDwtIG10Y2FycyAlPiVcbiAgbXV0YXRlKHdlaWdodF9wZXJfaHAgPSB3dCAvIGhwKVxuXG5wcmludChtdXRhdGVkX2RhdGEpXG5gYGAifQ== -->
+<pre class="r"><code># Create a new column &#39;weight_per_hp&#39; which is weight (wt) divided by horsepower (hp)
+mutated_data &lt;- mtcars %&gt;%
+  mutate(weight_per_hp = wt / hp)
+
+print(mutated_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MzIsIm5jb2wiOjEyLCJzdW1tYXJ5Ijp7IkRlc2NyaXB0aW9uIjpbImRmIFszMiDDlyAxMl0iXX19LCJyZGYiOiJINHNJQUFBQUFBQUFCcTFYYTJ3VVZSU2V2cmJkZHJ2ZDBoS0JLQXlHQkNSdU8vc29iRVc4bzl2V0NpV1dGdHNDQlRMZEhib2owNW50ek95VzhsQ0lRbFJpUUNQMGthbzFCWDhRSkZHSXFZa2FzTWFFVnlJeGlpSHlTbnhHTUNTSzBhckZtYm5uVHRtcHBWVzh5ZWJjODUzWGQ4NjlzN05iVjlFVXlHM0twU2dxZzhyTVNLY3lzdlF0bGZYRWlpcHZpS0l5MDNVbGpjcWtuSWJjcURzVjZSdVgvbkhySDVvdG84eGx5UVdualhXR0xWdHZMdFovSkdBczFqKzlSMSs5N1AwOVdJYkFUdndEZUxFKzBCbXcrMnF3WGdMNkhMQVQ2UVVjRXJBUEVmMW5ySmR0dzd4S2dSL0pNeDk0a0xxTG9NNEQ0RWZ5bEJJLzZLT0U5SXZ0MWh5bUFVNmt4NmJUNCtpZWNmenRmcE9WOW54MitWL2pKK0JQa1RsRUFTZHlOY2c0RG1DVDI3QVViWHBMQTU0M0IvT093dmtSMmY0Z1BoKzczQXJ4VzQ1aHVSbjAra1BZWG5jVnkrV2Y0UHhySFZpcWw3R2ZDdndTb0hlQ1hnLzUxaGJoK28wUW43Z09mSUcvOGluNHNhbHpXQTA4aUd4a1UzVWU2cTBDWE9ySDhuR28zMGpxMitUNmJmOHNCWWgvRXZLSzRGOEw5aVdRdHhicU5ZRnNPWllxQ1EvQ2o4UTNnTDBaNHVLMlByVHIwQisyVTJRT0JmQjhFZW1HNXpabjRGenU0dmgrMWdtNG8zalRsVWNQRjdQT3crYUd6ZDh4YzNENWp6dllndVo1Tno3YTNUeEc1dXcyTjJOa2R0eEkzTTdtUUw5T284ekFPZGFqSjVzNVdNY1dEWm9iMW1OVTIzU0Z6WWY3WnRVSFB2a1FSM2lTK0VLSWQ1czA3clB5dUF4MTNxK3NDL3c4bUljMWgweXdad092ZE9EcmhIeDUwRzhlOU84aWRzQUpMOHNQcE1jc1gyM3hkUzgyQzdOVG9jN1VkN3p1aHN6cDdGUU84MHpEL2FMZnNULzZDK2FaQVR4YzBGZWVPWTdOckp2MGE5Qy9NWVJHb0k4MHMvd3M5RnNaMm5MdHBSanJoRHdPaUNmOEhaaVBOUWNtZ2VOOVdaaS92dy9IQmVEY0NCNE00YnFsTUk4ZzlMUGdXM2l2d1BlMUgzUWZlVi9BZWZyQjN6ZU0rL0NkeGVmaTIyQU03aW9iMklqeisyR09BY2dUTkE5bWlHVXVtdjJOdm45SXZDdTFMZ1B2QlFaMEw5UWw3eHN2bkpzZjh5SnpvR3dMWFUrVmRudzh2L0hpSnJ2dU5OOUVmRy9qYjg3aC8rcmpUdGVkOHBob2pyZkpqNThMRDFiR3lKd0o1SGh4azQyZmJMNS9HMTg4U1FuKzFEaHpzTStMcFd5Nkp4VzM1R1Q1Mi8xc2RlMzE3UGlZZW5aKzQvblpmMGRSMXNMUFJYZmsxS3d2bG5haDNxR3RoeGFlSDBJOXU3WjNEMDdmaFY2OWRueEtRY1VLOU1wc2F1ZloyVXRSLzZWNzIzS21NZWpGYy8zTzVnK1BvNE9ORnc1c1BkK0Urb2VuMU4xTVpxTytnZTBuUTNjUFdMSnI3cHJoa1ZnNTJoc0tuaHorZUM3YXU5MHg1MExwRE5SYjNqN1FOYU1jOVh6ZTVEMnc4eURxT25Wei85a1Q5ZWlOUW5PaDE4L3NVNmtUYjZLKzczZWVYem4vYmRTYmRXVDErMTlScUR2N1FPT3pMLytBdXRScGY5WlczNFgydUk2Kzk4RzdETnIzOUZ0OSsxODRqVjdMMm50NTVWb0g2aTQrK3RUbUdkK2dYUnUrWHZSTHlYZm91YTYyNTVOZmRxRTlaV3VVWjVnbzJ2RVpFLzVqVVNYcXZlZlN4WitrZzdZL0hsa1MxOFliUDlXTThia0F6R2lMdDVKdHBGT0ViV1pVVU9Pd1Q0L0ZMVlRoTklKMmtGMW11OHBIQ0pwVXlZNXJJL1pXbmxQSVBzSXBMYkRQNytDRjFwaTJMczRyNi9RU3FWeWRpdHhSY2l0Zm1oaVdjWnVpSEYzWEZDUnBMSUJ1NUVncnVSV2NwaVlrZXFHUEFjUmRMU3NTcjlGQnVrSVJranlnaFlEV3gyVkY0MXJrQkdrcXU0RVRCVTdTckh3SlZlTVZPckNBc1hqd1NvVDJCNWtLQUhJd0VHQlM5WkF0SU1TRVNVNFRDSll4OVpWamtCcEE4a1lSRWpZbHpFVUZVZVFpZEpYSTgxcUhMRWZCVWxRalNCRlpsT2l3TEdtQ3hFc2FSODZ6TUJ4VE9sVlI3K0N4Tm4zZWdtWElxUkk0amZiNVE2Umd0U3pwMHd3TFNZR2NxWHVGM0Nsck9pWXJzbDZYalAwV1ZDS2dwMEtPdHZKME9NYUpJaSsxOHVUWTh4NWVGcWFYY0VsZUZDVFNhNWhyNHhTWlhtV1Y5dFFhdEkyK0JJVnZFUlRTbHRPazJPVHpscFBTdGJLaVJtSThYZTRMZXYwQXVtcGtMYUhTbFFsRmpoTTY3aXBaaWRLMStqSHlDa2VUbWJxcWVFWGhGSUd1RUNSNTlCS3B1bzhtMEkvSUNnblBiWkRGcEV6N2d2NUsrNU1VRVRtVjNFd0M1a1k1alN0WnIraVhWdGRHYkNIWmNsd1RaRWtQU2pmKyt6dHN3V21LRFNoSVNNYjFqM29qc1lTMHdSdXdtVFBpVXF0UjA0VHdKeDhrZmN2ZWhWbWszNFJ3QjRRNzlOUFJid2hwUitSYWVISWpNcUo4a3N4UGZ3ak5aN0Frcmdpano0S09xaVdhUEhxN2N2VmJSeEN6YzJya2J3bm9GbllRRVFBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["weight_per_hp"],"name":[12],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","12":"0.02381818","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","12":"0.02613636","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","12":"0.02494624","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258.0","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","12":"0.02922727","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360.0","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","12":"0.01965714","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","12":"0.03295238","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.570","7":"15.84","8":"0","9":"0","10":"3","11":"4","12":"0.01457143","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.190","7":"20.00","8":"1","9":"0","10":"4","11":"2","12":"0.05145161","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.150","7":"22.90","8":"1","9":"0","10":"4","11":"2","12":"0.03315789","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.30","8":"1","9":"0","10":"4","11":"4","12":"0.02796748","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.90","8":"1","9":"0","10":"4","11":"4","12":"0.02796748","_rn_":"Merc 280C"},{"1":"16.4","2":"8","3":"275.8","4":"180","5":"3.07","6":"4.070","7":"17.40","8":"0","9":"0","10":"3","11":"3","12":"0.02261111","_rn_":"Merc 450SE"},{"1":"17.3","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.730","7":"17.60","8":"0","9":"0","10":"3","11":"3","12":"0.02072222","_rn_":"Merc 450SL"},{"1":"15.2","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.780","7":"18.00","8":"0","9":"0","10":"3","11":"3","12":"0.02100000","_rn_":"Merc 450SLC"},{"1":"10.4","2":"8","3":"472.0","4":"205","5":"2.93","6":"5.250","7":"17.98","8":"0","9":"0","10":"3","11":"4","12":"0.02560976","_rn_":"Cadillac Fleetwood"},{"1":"10.4","2":"8","3":"460.0","4":"215","5":"3.00","6":"5.424","7":"17.82","8":"0","9":"0","10":"3","11":"4","12":"0.02522791","_rn_":"Lincoln Continental"},{"1":"14.7","2":"8","3":"440.0","4":"230","5":"3.23","6":"5.345","7":"17.42","8":"0","9":"0","10":"3","11":"4","12":"0.02323913","_rn_":"Chrysler Imperial"},{"1":"32.4","2":"4","3":"78.7","4":"66","5":"4.08","6":"2.200","7":"19.47","8":"1","9":"1","10":"4","11":"1","12":"0.03333333","_rn_":"Fiat 128"},{"1":"30.4","2":"4","3":"75.7","4":"52","5":"4.93","6":"1.615","7":"18.52","8":"1","9":"1","10":"4","11":"2","12":"0.03105769","_rn_":"Honda Civic"},{"1":"33.9","2":"4","3":"71.1","4":"65","5":"4.22","6":"1.835","7":"19.90","8":"1","9":"1","10":"4","11":"1","12":"0.02823077","_rn_":"Toyota Corolla"},{"1":"21.5","2":"4","3":"120.1","4":"97","5":"3.70","6":"2.465","7":"20.01","8":"1","9":"0","10":"3","11":"1","12":"0.02541237","_rn_":"Toyota Corona"},{"1":"15.5","2":"8","3":"318.0","4":"150","5":"2.76","6":"3.520","7":"16.87","8":"0","9":"0","10":"3","11":"2","12":"0.02346667","_rn_":"Dodge Challenger"},{"1":"15.2","2":"8","3":"304.0","4":"150","5":"3.15","6":"3.435","7":"17.30","8":"0","9":"0","10":"3","11":"2","12":"0.02290000","_rn_":"AMC Javelin"},{"1":"13.3","2":"8","3":"350.0","4":"245","5":"3.73","6":"3.840","7":"15.41","8":"0","9":"0","10":"3","11":"4","12":"0.01567347","_rn_":"Camaro Z28"},{"1":"19.2","2":"8","3":"400.0","4":"175","5":"3.08","6":"3.845","7":"17.05","8":"0","9":"0","10":"3","11":"2","12":"0.02197143","_rn_":"Pontiac Firebird"},{"1":"27.3","2":"4","3":"79.0","4":"66","5":"4.08","6":"1.935","7":"18.90","8":"1","9":"1","10":"4","11":"1","12":"0.02931818","_rn_":"Fiat X1-9"},{"1":"26.0","2":"4","3":"120.3","4":"91","5":"4.43","6":"2.140","7":"16.70","8":"0","9":"1","10":"5","11":"2","12":"0.02351648","_rn_":"Porsche 914-2"},{"1":"30.4","2":"4","3":"95.1","4":"113","5":"3.77","6":"1.513","7":"16.90","8":"1","9":"1","10":"5","11":"2","12":"0.01338938","_rn_":"Lotus Europa"},{"1":"15.8","2":"8","3":"351.0","4":"264","5":"4.22","6":"3.170","7":"14.50","8":"0","9":"1","10":"5","11":"4","12":"0.01200758","_rn_":"Ford Pantera L"},{"1":"19.7","2":"6","3":"145.0","4":"175","5":"3.62","6":"2.770","7":"15.50","8":"0","9":"1","10":"5","11":"6","12":"0.01582857","_rn_":"Ferrari Dino"},{"1":"15.0","2":"8","3":"301.0","4":"335","5":"3.54","6":"3.570","7":"14.60","8":"0","9":"1","10":"5","11":"8","12":"0.01065672","_rn_":"Maserati Bora"},{"1":"21.4","2":"4","3":"121.0","4":"109","5":"4.11","6":"2.780","7":"18.60","8":"1","9":"1","10":"4","11":"2","12":"0.02550459","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10],"total":[12]},"rows":{"min":[10],"max":[10],"total":[32]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="summarizing-data-with-summarize" class="section level3" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> Summarizing Data
+with <code>summarize()</code></h3>
+<p>Summarize data with aggregation functions such as
+<code>mean()</code>, <code>sum()</code>, etc.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDYWxjdWxhdGUgdGhlIGF2ZXJhZ2UgbXBnIGZvciB0aGUgZGF0YXNldFxuc3VtbWFyeV9kYXRhIDwtIG10Y2FycyAlPiVcbiAgc3VtbWFyaXplKG1lYW5fbXBnID0gbWVhbihtcGcpKVxuXG5wcmludChzdW1tYXJ5X2RhdGEpXG5gYGAifQ== -->
+<pre class="r"><code># Calculate the average mpg for the dataset
+summary_data &lt;- mtcars %&gt;%
+  summarize(mean_mpg = mean(mpg))
+
+print(summary_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MSwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbMSDDlyAxXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMlF6MnJETUF6R2xiOXJBKzBLTyt3cEVoamRvY2NleGg1Z2JOQmI4UkkzRFhYa2tEanJuajZiSEd4bzVZdWt6L3JKbi96eGR0aG1od3dBSW9pakVLS0VVa2krUHQvekhVQWNVaEZBREVzYmY2bnBhUllBMWpidVg1KzM5ckRHQkVVckIwbzJOK0tpbFFLUGJWZXo1bVd2cjRVSFZtNTZ3Q2VXU2d4OFlsWUpJNHBUVHl4VkUwTWVkR2NhalFTRjFuUEs0S0Jud3VPSTFrV1ZsK2NSTC9rTHU0NDZyTzJiemlEY20rWEd3eitIcHc1UEpkWU5TcitPRXQ5UytjbVYvSEhwbXY1aS9vcWk2eHMwZms5U2g4Sm9JenlTbFZwNVpkNGNwbjk3dm53a3lBRUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["mean_mpg"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"20.09062"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="grouping-data-with-group_by-and-summarize" class="section level3" number="2.4.6">
+<h3><span class="header-section-number">2.4.6</span> Grouping Data with
+<code>group_by()</code> and <code>summarize()</code></h3>
+<p>Group data by a categorical variable and calculate summary statistics
+for each group.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHcm91cCBieSAnY3lsJyBhbmQgY2FsY3VsYXRlIHRoZSBhdmVyYWdlIG1wZyBmb3IgZWFjaCBncm91cFxuZ3JvdXBlZF9zdW1tYXJ5IDwtIG10Y2FycyAlPiVcbiAgZ3JvdXBfYnkoY3lsKSAlPiVcbiAgc3VtbWFyaXplKG1lYW5fbXBnID0gbWVhbihtcGcpKVxuXG5wcmludChncm91cGVkX3N1bW1hcnkpXG5gYGAifQ== -->
+<pre class="r"><code># Group by &#39;cyl&#39; and calculate the average mpg for each group
+grouped_summary &lt;- mtcars %&gt;%
+  group_by(cyl) %&gt;%
+  summarize(mean_mpg = mean(mpg))
+
+print(grouped_summary)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIzIMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFCbDJRdjA3RE1CREdyM1lTYUtTV0NoWkdacXA0SUF0aUNoTGlBU3FRdWlHVG1CQ1JPRkdTOG1malNkaDVpVDRNOEJvMG5CMWJRcjdCL3Z6WnZ6dmZyYTdXY2JnT0FZQ0NSd2xRSHlYNHR6ZlgwVG1BUi9Bd0FRK21hbi9GUjBjb2xEbFhSTElBSGNteDJVL0F4bmgvOGZseitIRjVtc1RiNWRkMitaMndXSWVUMkplOEVoMktoVTQrbWpSOUs0M2Nyd1NYZDFXVE85eTByVitZWldlS2ZjZGxHSVpmdDBCYThzNFdzR2FZOFo2emh4WjVQTzBjWks5dStxS1dDQkhWY3VEQWs5WXhEalpTL1NTTDBzZU5mSXJPbkd2YXlGelYxTllZTTZQcFAwM0dYNURCNElIQkF5SHpRZ3JiVHNudmhSME96Y1N6a1hPY2h4NEhhOXBDOXJaUGREdlcxejIzU0pqV3BYVjA1N0Q3QTIrdVhKVUhBZ0FBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["cyl"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["mean_mpg"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"26.66364"},{"1":"6","2":"19.74286"},{"1":"8","2":"15.10000"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="chaining-multiple-operations" class="section level3" number="2.4.7">
+<h3><span class="header-section-number">2.4.7</span> Chaining Multiple
+Operations</h3>
+<p>You can chain multiple <code>dplyr</code> operations together to
+perform more complex transformations.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGaWx0ZXIgZm9yIGNhcnMgd2l0aCBtcGcgZ3JlYXRlciB0aGFuIDIwLCBzZWxlY3QgY2VydGFpbiBjb2x1bW5zLCBhbmQgYXJyYW5nZSBieSBob3JzZXBvd2VyXG5jaGFpbmVkX29wZXJhdGlvbnMgPC0gbXRjYXJzICU+JVxuICBmaWx0ZXIobXBnID4gMjApICU+JVxuICBzZWxlY3QobXBnLCBjeWwsIGhwKSAlPiVcbiAgYXJyYW5nZShkZXNjKGhwKSlcblxucHJpbnQoY2hhaW5lZF9vcGVyYXRpb25zKVxuYGBgIn0= -->
+<pre class="r"><code># Filter for cars with mpg greater than 20, select certain columns, and arrange by horsepower
+chained_operations &lt;- mtcars %&gt;%
+  filter(mpg &gt; 20) %&gt;%
+  select(mpg, cyl, hp) %&gt;%
+  arrange(desc(hp))
+
+print(chained_operations)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MTQsIm5jb2wiOjMsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOlsiZGYgWzE0IMOXIDNdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQnExVFhVL2JNQlExU1Z0R3RoWWtYbmowSDBoRjJnQ0ZTVk1rQ2tJVENJUVlSTnBlVEJyYWlHQkhqbE0rbnZyVDlnTzJYOE03ekhIdUxTVVNiN3VTZGU0OTlzbXhyNTN6WWRoM1FvY1FZcE9HYlJHN3FWUFMvSEZ4NkE0SWFWaTZXQ0lOc2xMaWcxNjBibFlTMGlsSDhPM0dSTEJGVEx3aDhvaXppdC8rVThiZk9lN0IrcUJ2SXZoNlhQSEJjMVVQUUE4K2M5ODEwRzE4Z0d2L0YrZSt2NEtLL3puN0FHRStCTHo2RFFqMUpkUm5zeHJDL0NuNGZrZmJkeGZRNU93dXpuVlNic3NHMHI3THhwaEdqeW1rMWlTcmlWZWt1Tzh1ZnFBREUxK09oU3B5ZWxCSWtURmNmTUtlUm95ZWh6NFE3VGxCcnhqNmRZNkU1TEdpUGgzS1pCb0Q2MXlLZENxbzUvY09VSHdoSG9WaWRGOUl3ZEhpMDBrc0k5cnJiNkpzeUZSZWNMcmpJZE0rRXpLUEpqSGQ5WHkzaDdMRGhDbnE5UWE0VTFPSG5ydUxtMW93UzlPM0F4azNmM01JeE9jandmV0I5cE5wRXRYYkhLVXN4eTRoNll5WVl0MGJxUnVvcTVlYVpGbGtLaEZjaTZ6eUIyblZ4RXV5UnF3V3ZMeUtrUnROQ243cjltdlRkc2JIcGFlaHF0RUc3Q3prZHJVTDZ4WGtMWkMzWWo1T09ONUhNMlhYTWI0TGV4UlBzVkg2UVpqMzBNMWt3aFdlVTdONVYra09vc1NKUklxTU9UbDUrUWZTQkMyRU5RUUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"30.4","2":"4","3":"113","_rn_":"Lotus Europa"},{"1":"21.0","2":"6","3":"110","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"110","_rn_":"Mazda RX4 Wag"},{"1":"21.4","2":"6","3":"110","_rn_":"Hornet 4 Drive"},{"1":"21.4","2":"4","3":"109","_rn_":"Volvo 142E"},{"1":"21.5","2":"4","3":"97","_rn_":"Toyota Corona"},{"1":"22.8","2":"4","3":"95","_rn_":"Merc 230"},{"1":"22.8","2":"4","3":"93","_rn_":"Datsun 710"},{"1":"26.0","2":"4","3":"91","_rn_":"Porsche 914-2"},{"1":"32.4","2":"4","3":"66","_rn_":"Fiat 128"},{"1":"27.3","2":"4","3":"66","_rn_":"Fiat X1-9"},{"1":"33.9","2":"4","3":"65","_rn_":"Toyota Corolla"},{"1":"24.4","2":"4","3":"62","_rn_":"Merc 240D"},{"1":"30.4","2":"4","3":"52","_rn_":"Honda Civic"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[14]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="using-mutate-with-ifelse-for-conditional-calculations" class="section level3" number="2.4.8">
+<h3><span class="header-section-number">2.4.8</span> Using
+<code>mutate()</code> with <code>ifelse()</code> for Conditional
+Calculations</h3>
+<p>You can create conditional columns with <code>ifelse()</code> inside
+<code>mutate()</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBBZGQgYSBuZXcgY29sdW1uICdlZmZpY2llbmN5JyBiYXNlZCBvbiBtcGcgdmFsdWVzIChoaWdoIGlmIG1wZyA+IDI1LCBvdGhlcndpc2UgbG93KVxuY29uZGl0aW9uYWxfY29sdW1uIDwtIG10Y2FycyAlPiVcbiAgbXV0YXRlKGVmZmljaWVuY3kgPSBpZmVsc2UobXBnID4gMjUsIFwiaGlnaFwiLCBcImxvd1wiKSlcblxucHJpbnQoY29uZGl0aW9uYWxfY29sdW1uKVxuYGBgIn0= -->
+<pre class="r"><code># Add a new column &#39;efficiency&#39; based on mpg values (high if mpg &gt; 25, otherwise low)
+conditional_column &lt;- mtcars %&gt;%
+  mutate(efficiency = ifelse(mpg &gt; 25, &quot;high&quot;, &quot;low&quot;))
+
+print(conditional_column)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MzIsIm5jb2wiOjEyLCJzdW1tYXJ5Ijp7IkRlc2NyaXB0aW9uIjpbImRmIFszMiDDlyAxMl0iXX19LCJyZGYiOiJINHNJQUFBQUFBQUFCdFZZVFd3YlJSVGUySTVqTzQ3amtFU2lsN0lIRGdYaHhIOHBMbEF5NENTRUtoVnBVcEtvalNxTjdZMjlkTE96bVYwN1RWcWtYSHF1T0JaeFFDcEgxQU5jY3F5b3hJbEtjT29OMFFzWGloUUpGUUVTZ2QyZDl6YnhCRGVCSUNGR3N0NTczN3lmNzcyWjlUcVptMWdxSkpZU2lxS0VsVWc0cElTN1hWWHBmdmZpVktha0tKR1FhM1FwRVNYdXlXdXUwNkNySk4xUHl2Mm9aRXp4VnlCUGYrV3RCMlJzeFY4ay8zbkJXeVIvNHJhN1BpUXYzUmF5QlB2b1h4Q0w1TURPd241dVJ0Z2pZRDhQK3lnemdFTUM4anJhUHdsN2JFdndHZ1YrbU9kRjRJRjFYNFU2cjRBZjVobEZQK2hqQlBzVis4RWNuZ1VjWlZxeTFRNTJ1b08vN0hkVUtlZVQ1VCtOUDRTL2duT29BWTd5TWtoTEJKRFdscENHWkZjV3hMd3B6THNHNTRkeTdUVnhQcko4SCtKdjNCUHlPdGp6bjRyOXVjZENYdmhTNUw4U0ZkTCtUdmpad0s4SjlnYlk4NUR2eXFDb3Z3anh6UjNnQy96NTErQkgydWR3R1hpZ1hDVHR0Z2IxTGdGdWZpemtPMUIvRWV0TGNtWHJyNlVPOGU5QlhnUDhaMkgvSE9TZGhYcExJQ3YzMmlYeVFINFl2d0Q3eXhCblNYMDRPOUNmMkZkd0R2M3dmS0ZNd1hNYnUvTXdjZGI2aE1RQmp3NXRQbnJyN2hDSjMvVVYwbmZ6NVBhRkgyNlMvdVZUVDc2NHRYeEF4bTc1eWdIWlkzbUoxMGdNK28xN1plNDhKR2szMmNudE9USzQ3U3NrN1ZYYmZFVDY0TDRGOVlGUEg4UWhUNHdmZ1BpVVQrT0ZJRS9TTTAvOVRKTGdseFk4Z2psRVlMOEhlSVdBYnh6eTlVSy92ZEIvRXZjQlIxNkJIOGkwWDM0NjRKczY2eGNtdzFCbitMTk1haUZ5Z2d4VHdiTkw5RHYrcS9BZi94M21HUVllU2VpcjF4L0hkWkxDZmozNlQrNlA3MElmWFg3NTU4Wi9HUnUvOGVNSERSS0hQRkdJUi81UndTZVlRN1lwNG5QZGduLytJeEZYZ0hORHZGZ1NkVWRoSGtYbzUvVDM4RjZCNytzODJEbDhYOEI1NXNFLzk1dm9JL2VOT0pmY1ZXOXdqMG5obXNpZmh6a1dJRS9SUDVqN0pQdXQzOS9lK3dmamsrMTFzL0JleUlLZGdicjR2c25BdWVVRkw1eURJcTN4blhZcDQ1MzhPc1VkZFIwMzMyRjhuK0x2eitIZjZ1TzQ2N2c4RHB2alUvS0w1eUl0akFNeWRvanNGSGZVK0tQbSs3dnhRMGVVNEs5MG1JTThMNkpJZHJvZEQrUlIrY3QrVWwyNW5vd2ZxQ2Z6NitRbi80NVNndVY1cVBDRE8yeXc5ZitwR21ubzljWWgrbitldXYzUG0yNlRybW8ySEVFUy9WYXRPcXJWRFFOTDFYVGJBajNVc0FLVVV3ZlJkZFFpYTdaV1JiUmxvMFpYY2IrdVVZNTZsZklLNkFsdFpVV3Y2cHBaM1pDSXhqbGJIOWxQRnU5TC9EemRyRkYxYnFrSVFGOEFxSXNVKzBoTVVNZHVtdXJMdVN3Z3FXbkdUYzFSaStvRTExc2FvQU9Bemx1TU83VENtdGhSendJMWRHbzZRYjZtN1doY0xaek9CancwWGxYenhld0VBREVCRkxMdGRra0tLR1hMbU5NSGltUForY2tEeUF3Z3ZYc0loajFUcGpYZE1HaFZuVEkwelZsbnJBWTdnek82V1dXR3FaYVo2ZWltWmpvVUQzT2czT0FidHVGMjhQYXFwWEU5MkloTjZkUlJjL2tTRnB4bXBqdk5zdDdTOFVCVEY5a0djMXlNY2ViV3hiSHZRMDBFMHhPc1Z0ZlVjb01haG1iV05UenozamZPbDlWenRLVVp1b205bHVrcTVVeTlGSlJPejNxMHZiNTBybFYwam0zRmZZcEx1Y3daTEQzTHVGMXRhT3FaWERHVEJ6QTV3NXltclU0Mk9iT1FUbXFLOFpvNjZ4Nmp4cW1LTTAxT2FaeFRycXNUdXNuMkxwSHQramk2K2liakdKNVlZRWFMcWJsaWZsSitqS29HdGZGbUlwaW9VWWVPckhEMzBycldyaFRTd3l4SFo2WWJGUEwrdlJDVmdydTRCUFEzVGUvNjF6TFZSdE84bWlsSzIySExySHMxZlVoOCtrQ3ErL1NrWUJINkE4S2pFQjUxVDhlOUlkaU9RU3NhM29od1RXdmgvTnlIMEg4R1J5eXU3ejBMTG1xUE9HenZkaVhjVzRlSTM3bXkreWNyRXpkYWN4RUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["efficiency"],"name":[12],"type":["chr"],"align":["left"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","12":"low","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","12":"low","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","12":"low","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258.0","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","12":"low","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360.0","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","12":"low","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","12":"low","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.570","7":"15.84","8":"0","9":"0","10":"3","11":"4","12":"low","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.190","7":"20.00","8":"1","9":"0","10":"4","11":"2","12":"low","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.150","7":"22.90","8":"1","9":"0","10":"4","11":"2","12":"low","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.30","8":"1","9":"0","10":"4","11":"4","12":"low","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.90","8":"1","9":"0","10":"4","11":"4","12":"low","_rn_":"Merc 280C"},{"1":"16.4","2":"8","3":"275.8","4":"180","5":"3.07","6":"4.070","7":"17.40","8":"0","9":"0","10":"3","11":"3","12":"low","_rn_":"Merc 450SE"},{"1":"17.3","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.730","7":"17.60","8":"0","9":"0","10":"3","11":"3","12":"low","_rn_":"Merc 450SL"},{"1":"15.2","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.780","7":"18.00","8":"0","9":"0","10":"3","11":"3","12":"low","_rn_":"Merc 450SLC"},{"1":"10.4","2":"8","3":"472.0","4":"205","5":"2.93","6":"5.250","7":"17.98","8":"0","9":"0","10":"3","11":"4","12":"low","_rn_":"Cadillac Fleetwood"},{"1":"10.4","2":"8","3":"460.0","4":"215","5":"3.00","6":"5.424","7":"17.82","8":"0","9":"0","10":"3","11":"4","12":"low","_rn_":"Lincoln Continental"},{"1":"14.7","2":"8","3":"440.0","4":"230","5":"3.23","6":"5.345","7":"17.42","8":"0","9":"0","10":"3","11":"4","12":"low","_rn_":"Chrysler Imperial"},{"1":"32.4","2":"4","3":"78.7","4":"66","5":"4.08","6":"2.200","7":"19.47","8":"1","9":"1","10":"4","11":"1","12":"high","_rn_":"Fiat 128"},{"1":"30.4","2":"4","3":"75.7","4":"52","5":"4.93","6":"1.615","7":"18.52","8":"1","9":"1","10":"4","11":"2","12":"high","_rn_":"Honda Civic"},{"1":"33.9","2":"4","3":"71.1","4":"65","5":"4.22","6":"1.835","7":"19.90","8":"1","9":"1","10":"4","11":"1","12":"high","_rn_":"Toyota Corolla"},{"1":"21.5","2":"4","3":"120.1","4":"97","5":"3.70","6":"2.465","7":"20.01","8":"1","9":"0","10":"3","11":"1","12":"low","_rn_":"Toyota Corona"},{"1":"15.5","2":"8","3":"318.0","4":"150","5":"2.76","6":"3.520","7":"16.87","8":"0","9":"0","10":"3","11":"2","12":"low","_rn_":"Dodge Challenger"},{"1":"15.2","2":"8","3":"304.0","4":"150","5":"3.15","6":"3.435","7":"17.30","8":"0","9":"0","10":"3","11":"2","12":"low","_rn_":"AMC Javelin"},{"1":"13.3","2":"8","3":"350.0","4":"245","5":"3.73","6":"3.840","7":"15.41","8":"0","9":"0","10":"3","11":"4","12":"low","_rn_":"Camaro Z28"},{"1":"19.2","2":"8","3":"400.0","4":"175","5":"3.08","6":"3.845","7":"17.05","8":"0","9":"0","10":"3","11":"2","12":"low","_rn_":"Pontiac Firebird"},{"1":"27.3","2":"4","3":"79.0","4":"66","5":"4.08","6":"1.935","7":"18.90","8":"1","9":"1","10":"4","11":"1","12":"high","_rn_":"Fiat X1-9"},{"1":"26.0","2":"4","3":"120.3","4":"91","5":"4.43","6":"2.140","7":"16.70","8":"0","9":"1","10":"5","11":"2","12":"high","_rn_":"Porsche 914-2"},{"1":"30.4","2":"4","3":"95.1","4":"113","5":"3.77","6":"1.513","7":"16.90","8":"1","9":"1","10":"5","11":"2","12":"high","_rn_":"Lotus Europa"},{"1":"15.8","2":"8","3":"351.0","4":"264","5":"4.22","6":"3.170","7":"14.50","8":"0","9":"1","10":"5","11":"4","12":"low","_rn_":"Ford Pantera L"},{"1":"19.7","2":"6","3":"145.0","4":"175","5":"3.62","6":"2.770","7":"15.50","8":"0","9":"1","10":"5","11":"6","12":"low","_rn_":"Ferrari Dino"},{"1":"15.0","2":"8","3":"301.0","4":"335","5":"3.54","6":"3.570","7":"14.60","8":"0","9":"1","10":"5","11":"8","12":"low","_rn_":"Maserati Bora"},{"1":"21.4","2":"4","3":"121.0","4":"109","5":"4.11","6":"2.780","7":"18.60","8":"1","9":"1","10":"4","11":"2","12":"low","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10],"total":[12]},"rows":{"min":[10],"max":[10],"total":[32]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="summarizing-multiple-metrics" class="section level3" number="2.4.9">
+<h3><span class="header-section-number">2.4.9</span> Summarizing
+Multiple Metrics</h3>
+<p>You can summarize multiple metrics at the same time.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDYWxjdWxhdGUgYm90aCBhdmVyYWdlIG1wZyBhbmQgaG9yc2Vwb3dlclxubXVsdGlfc3VtbWFyeSA8LSBtdGNhcnMgJT4lXG4gIHN1bW1hcml6ZShtZWFuX21wZyA9IG1lYW4obXBnKSwgbWVhbl9ocCA9IG1lYW4oaHApKVxuXG5wcmludChtdWx0aV9zdW1tYXJ5KVxuYGBgIn0= -->
+<pre class="r"><code># Calculate both average mpg and horsepower
+multi_summary &lt;- mtcars %&gt;%
+  summarize(mean_mpg = mean(mpg), mean_hp = mean(hp))
+
+print(multi_summary)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6Miwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbMSDDlyAyXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMlFUVTdETUJDRnA4NVAyMGdVSkJhY0l0a1VwQzY3UUQwQUF0UWRjaE9UUmszR1Z1SkNUMThZTzNhbDJKTGw5NTd6WldiODlycGZaL3NNQUNLSUl3WlJRaEtTai9kZHZnR0lHWmtaeExBMDU0VStlaVJod3BVSnRzOVBhN051L3ZBSjQ1cUFDZkpPRENRZUxEeUdpMDV3L09wVTdmemMrcU1LMkdVdmZ3dlAzOWtMdTZjRnlwWVB2b0FQczRwclhuejN4Sks3QnNoY0t0MUlKSWlaa2RJQW52VkJjSDlHMDBXVmw4Y3pudktYNERwU1dKdWFya0dZTm52VGJPeUMvVGs4ZFhncXNHNVErSEZhZmhDdC8zTWxmcHhjMFZ2WXB5aFUzNkQyYzFJNkZGcHE3cEdzbEsxUDdPUncvUWVRRElJSDV3RUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["mean_mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["mean_hp"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"20.09062","2":"146.6875"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="sampling-rows-with-sample_n-or-sample_frac" class="section level3" number="2.4.10">
+<h3><span class="header-section-number">2.4.10</span> Sampling Rows with
+<code>sample_n()</code> or <code>sample_frac()</code></h3>
+<p>You can randomly sample a fixed number of rows or a fraction of the
+data.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBTYW1wbGUgNSByYW5kb20gcm93cyBmcm9tIHRoZSBkYXRhc2V0XG5zYW1wbGVkX2RhdGEgPC0gbXRjYXJzICU+JVxuICBzYW1wbGVfbig1KVxuXG5wcmludChzYW1wbGVkX2RhdGEpXG5gYGAifQ== -->
+<pre class="r"><code># Sample 5 random rows from the dataset
+sampled_data &lt;- mtcars %&gt;%
+  sample_n(5)
+
+print(sampled_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6MTEsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOlsiZGYgWzUgw5cgMTFdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQm9WVFBXelVNQmgxODNNMENkZUNLQklUeXNqQWhWNnZWRjBRUmxkUmdlZ0FLdElOVlNWZjR0NUZ6VG5CeVYwNXVyQXdkNFlKaWIxenh3cFdtRHV6c01DQWhGZ0xkdnlqMXFyZ2s1TDMvUHcrKy9QbjVObGFyK1AzZkFDQURSemJBcmJMS0hDZmJ6NXNyUUxnV0d3d0F4emdjWHpKVE5jWUNkZ3p4MTN3N212dUJyRDltY2NYMk5xcEE5NSt5K01kak1SWSs2OEE0YjhoTWJ3WXRYKzdJZFpMZm5WNHdIMjUzMFJpYWZoN1VPamJ4d0l6aWVTOXdQN3hlWDlUMWptL2RldjN4NE10NkozNDk0b1BKOUE3WEhqMWRmMFFldlcySGUyM2o1NStmM1B6Q0Fic3hSaThqdGE1RTE0K3FCZUFBYzlhMk5mK1pZdFBmSUpMMzhRNTJyczg4UWU4STlkdlA2bjdwdnozZjRyaUZQNGphdjkvWFlZZnpvcUJ2b2ZaaTlHc1IvdE4xUFp6SDRwTDBBanpxK0cyUUlyMnFCZ29Hazh6U1owa0xRdkpyV0doVllvcXBlNHA1cndvY2F6VVNha1lHcW41QVVaVThSalJ2bEdXUi9POTZHeHBycHhvYnViVHZFSmhONmM1UWNxOWdXa2NMcTB1ZHFWd3RUdWswekxETkh3MEtqQk5rVHFEdnpZdUt5WjNWaGFsRWp6WTZJYVAwUVJuS1RGN0UyZW9WQVVvMFU5UWhhSWR5bXBqbzFNajVWSmVWR2xPV0pMRi83NkdrVHhERFdGK1RQZ3BrMVk4SEpQZDFvb3hiUmRrd1Blc0pmRTBKYnBuZUNDcXNQN0k5SVpNYjJBeVNBbFd4OGxRSDZ0RzJBbWVTRHJIZWwyM09pcG9TdFFOK2t3dG80cjFXdmN1empPbDFDY0hwMzhCNWU0bTlwSUVBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.5","2":"4","3":"120.1","4":"97","5":"3.70","6":"2.465","7":"20.01","8":"1","9":"0","10":"3","11":"1","_rn_":"Toyota Corona"},{"1":"17.8","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.90","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280C"},{"1":"14.7","2":"8","3":"440.0","4":"230","5":"3.23","6":"5.345","7":"17.42","8":"0","9":"0","10":"3","11":"4","_rn_":"Chrysler Imperial"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.570","7":"15.84","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"15.2","2":"8","3":"304.0","4":"150","5":"3.15","6":"3.435","7":"17.30","8":"0","9":"0","10":"3","11":"2","_rn_":"AMC Javelin"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="counting-rows-with-count" class="section level3" number="2.4.11">
+<h3><span class="header-section-number">2.4.11</span> Counting Rows with
+<code>count()</code></h3>
+<p>Easily count the number of occurrences of a certain group.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDb3VudCB0aGUgbnVtYmVyIG9mIGNhcnMgZm9yIGVhY2ggdmFsdWUgb2YgJ2N5bCdcbmN5bGluZGVyX2NvdW50cyA8LSBtdGNhcnMgJT4lXG4gIGNvdW50KGN5bClcblxucHJpbnQoY3lsaW5kZXJfY291bnRzKVxuYGBgIn0= -->
+<pre class="r"><code># Count the number of cars for each value of &#39;cyl&#39;
+cylinder_counts &lt;- mtcars %&gt;%
+  count(cyl)
+
+print(cylinder_counts)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Miwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbMyDDlyAyXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMlFUVTdETUJDRkozYVNxcWtvbGRpdzdBVVNDYkhwc2d2RUFSQkkzWnJFdEJGaEhDVXVQenRPWGpwMlBLcXdwY2pQTC83ZWVPYnBZWGRmN0FvQWtKQktBVElqQ2RuTDgyTzVBVWdGSFJKSVllNzJiN3AwUThLWlMwZHNWK0RYOWpic2ErQjE1Uk1CRnZUTnB2di93akpVSDNva3NmS0JreW5ybjQ2TFlRVE1CL05WTWVUU3hlOVVTY2JKZGFkR1RtYXphSlJWMWR0QVBKMU9FVEl6dlcwTkVpUmNmM2tFSjBOa1hCL1J2YVFwNjhNUjM4dTc2TGZzY2U5cWV1c3lqaVNNaExXWVhpSCtBcDRIUE5lNGIxRnpPNTE2MVR3VjJlalBJSmMwRHorT3FoOWF0TndudVdObGpWV01GTFhwMlBHZHcra01Ca213cWZRQkFBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["cyl"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"4","2":"11"},{"1":"6","2":"7"},{"1":"8","2":"14"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="removing-missing-values-with-drop_na-from-tidyr" class="section level3" number="2.4.12">
+<h3><span class="header-section-number">2.4.12</span> Removing Missing
+Values with <code>drop_na()</code> (from <code>tidyr</code>)</h3>
+<p>This operation drops rows with missing values in a specified
+column.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5cilcblxuIyBBc3N1bWluZyB0aGVyZSBhcmUgTkEgdmFsdWVzIGluIHRoZSBkYXRhc2V0IChmb3IgZGVtb25zdHJhdGlvbiBwdXJwb3NlcylcbiMgRHJvcCByb3dzIHdpdGggbWlzc2luZyAnbXBnJyB2YWx1ZXNcbmNsZWFuZWRfZGF0YSA8LSBtdGNhcnMgJT4lXG4gIGRyb3BfbmEobXBnKVxuXG5wcmludChjbGVhbmVkX2RhdGEpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyr)
+
+# Assuming there are NA values in the dataset (for demonstration purposes)
+# Drop rows with missing &#39;mpg&#39; values
+cleaned_data &lt;- mtcars %&gt;%
+  drop_na(mpg)
+
+print(cleaned_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MzIsIm5jb2wiOjExLCJzdW1tYXJ5Ijp7IkRlc2NyaXB0aW9uIjpbImRmIFszMiDDlyAxMV0iXX19LCJyZGYiOiJINHNJQUFBQUFBQUFCcTFYVDB3Y1ZSZ2YyR1ZoLzdBc0FvbTkxRGw0cU1hRm5kMEZ0MnJsNlM2SURZMFVLcENXTkhuc0R1ellZZDd3Wm5ZcHRDWmNlbTQ4MW5nd3FVZlRnMTQ0TmpieFpCTTk5V2JzeFlzMUlURTFhaUk2TSsvN0J2YmhGaFJmc3ZuZTkvdisvYjd2dldHRzJjcGlJYkdZVUJRbG9rUWpuVXFreTlzcVhlOWZtc3lXRkNYYTZTa2RTbFNKKy9LNjV6VGdiWkxlTCszOVZES3FCQ3VVWTkvNDZ5RVpYUWtXeVg5WjhCZkpuN3JqclkvSkszZUVMSUVkL1F0aUVRMzBITmkxYWFFUGcvNGkyRkZtQVljRTVFM1VmeEg2NkxiZ05RTDhNTS9Md0FQcnZnNTFYZ00vekRPQ2Z0REhNUFlyN09FY25nY2NaVWJTMVRaNnBvMi83SGRjS2VlVDVYK05QNEsvZ25Pb0FZN3lDa2hiQkpEbXRwQ21wQy9QaTNsVG1IY056Zy9sK2h2aWZHVDVJY1RmdkMva0RkRG5QaGYyMlNkQ1h2eGE1TDhhRTlMNVFmZzV3SzhCK2lib2M1RHY2b0NvdndEeGpWM2dDL3o1dCtCSFd1ZHdCWGlnWENDdHVnNzFMZ051ZlNya2UxQi9BZXRMY21YN242VUI4UjlBWGhQOFo4QitIdkxPUUwxRmtNdjNXeVh5UUg0WVB3LzJKWWl6cFQ3Y1hlaFAyQldjUXg4OFh5alQ4TnoyM0gyVU9HZC9SdUtBeHdhM0hyOXpiNURFN3dVYjBudnI5TTdGbjI2UnZxVXpUNys2dlhSSTl0d09Ob2RrdCswblhpYzkwRy9jTDNQM0VjbDR5VTd2ekpLQm5XQkRNbjYxcmNla0YrNWJXQi80OUVJYzhzVDRmb2hQQnpSZUN2T2tmUFhNcnlRRmZobkJJNXhERk96ZHdLc1QrTVloWHhMNlRVTC9LYlFEanJ4Q1A1Q1pvUHhVeURkOUxpaE1ocURPMEJmWjlIejBGQm1pZ21lSDZIZjhkK0UvL2lmTU13SThVdEJYTWhqSERaTEdmbjM2VHgrTTcwRWZIVUg1RjhaL0d4Mi8rZk5IZFJLSFBER0lSLzR4d1NlY1E2NGg0clV1d1QvL2lZZ3J3TGtoWGl5SnVpTXdqeUwwTS9ZanZGZmc3M1VlZEEzZkYzQ2VlZkRYL2hCOWFOK0pjOUd1K1lON1FnclhSZjQ4ekxFQWVZckJ3VHdndWUrRC92YmZQeGlmYXEyYmcvZENEdlFzMU1YM1RSYk9MUzk0NFJ3VWFZM3Z0a29aYitmWEx1NjQ2NlQ1anVMN0RQOWdEdjlYSHlkZEorVngxQnlma1Y4OEZ4bWhISkk5UjhoMmNjZU5QMjYrZnhzL2VFd0ova3FiT2NqeklvcWtaMXJ4VUI2WHYrd24xWlhyeWZpaGVqSy9kbjd5ZDVTQ3ErV0R1OHVpYTdyL2llS0hKUUdNck5tcnVLMXVtckNOMWd6SGhuMW4zUTVSVGwxRU4zQVhYWGYwS3FKTkIzZDBEZTJyT3VXNHIxSytMTkdLYzdZeGZKQ2Fpb1lMZEt0RzFkbkZJZ0M5SWFBdVVHU2RxRkRYYVZqcXExb09rUFFVNDVidXFrVzF3bzJtRG1nL29ITTI0eTVkWmczazN6MVBUWU5hYnBpdjRiZzZWd3RqdVpDSHpxdHF2cGlyQU5BamdFS3VWUzlKQWFWY0dYTUdRSEUwTnpkeENKa0dKTG1QWU5oelpWb3pUSk5XMVVsVDE5ME54bXBnR1pnMnJDb3pMYlhNTE5ld2RNdWxlSFQ5NVRyZmRFeXZnM2ZYYkowYm9hRm4wcUN1cXVWTFdIQ0tXZDQweTBiVHdPTkxYMktielBVd3hwbFhGOGQrQUxVUXpGUlliVlZYeTNWcW1ycTFxdU1KSjkrNlVGYlAwNlp1R2hiMldxWnJsRFAxY2xnNk0rUFQ5dnN5dUw1c2NHd3JIbEJjMUxKbnNmUU00MDYxcnF0bnRXSTJEMkJxbXJrTlI1MW9jR1lqbmZRazR6VjF4anRHblZNVlo1cWExRG1uM0ZBcmhzWDJMNUhqK2JpRytqYmpHSjZZWjJhVHFWb3hQeUUvTkZXVE9uZ3pFVXpVcUV1SFY3aDNhVDF0VHdycFpyWnJNTXNMNnZUL3ZZMUp3UjFjQXZvYWxuLzlhOWxxdldGZHkycVNPV0picTM3TkFCSy9YcERxZ1gxU3NPajhDOEpqRUI3elRzZTdJZGlPU1pkMXZCR1JtdDdFK1hrUFlmQU1EdHZjMkg4V1BOUVpkdG4rN1VwNHR3NlJvSE5sNzI4MUFGSGE4dzhBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258.0","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360.0","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.570","7":"15.84","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.190","7":"20.00","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.150","7":"22.90","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.30","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.90","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280C"},{"1":"16.4","2":"8","3":"275.8","4":"180","5":"3.07","6":"4.070","7":"17.40","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SE"},{"1":"17.3","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.730","7":"17.60","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SL"},{"1":"15.2","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.780","7":"18.00","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SLC"},{"1":"10.4","2":"8","3":"472.0","4":"205","5":"2.93","6":"5.250","7":"17.98","8":"0","9":"0","10":"3","11":"4","_rn_":"Cadillac Fleetwood"},{"1":"10.4","2":"8","3":"460.0","4":"215","5":"3.00","6":"5.424","7":"17.82","8":"0","9":"0","10":"3","11":"4","_rn_":"Lincoln Continental"},{"1":"14.7","2":"8","3":"440.0","4":"230","5":"3.23","6":"5.345","7":"17.42","8":"0","9":"0","10":"3","11":"4","_rn_":"Chrysler Imperial"},{"1":"32.4","2":"4","3":"78.7","4":"66","5":"4.08","6":"2.200","7":"19.47","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat 128"},{"1":"30.4","2":"4","3":"75.7","4":"52","5":"4.93","6":"1.615","7":"18.52","8":"1","9":"1","10":"4","11":"2","_rn_":"Honda Civic"},{"1":"33.9","2":"4","3":"71.1","4":"65","5":"4.22","6":"1.835","7":"19.90","8":"1","9":"1","10":"4","11":"1","_rn_":"Toyota Corolla"},{"1":"21.5","2":"4","3":"120.1","4":"97","5":"3.70","6":"2.465","7":"20.01","8":"1","9":"0","10":"3","11":"1","_rn_":"Toyota Corona"},{"1":"15.5","2":"8","3":"318.0","4":"150","5":"2.76","6":"3.520","7":"16.87","8":"0","9":"0","10":"3","11":"2","_rn_":"Dodge Challenger"},{"1":"15.2","2":"8","3":"304.0","4":"150","5":"3.15","6":"3.435","7":"17.30","8":"0","9":"0","10":"3","11":"2","_rn_":"AMC Javelin"},{"1":"13.3","2":"8","3":"350.0","4":"245","5":"3.73","6":"3.840","7":"15.41","8":"0","9":"0","10":"3","11":"4","_rn_":"Camaro Z28"},{"1":"19.2","2":"8","3":"400.0","4":"175","5":"3.08","6":"3.845","7":"17.05","8":"0","9":"0","10":"3","11":"2","_rn_":"Pontiac Firebird"},{"1":"27.3","2":"4","3":"79.0","4":"66","5":"4.08","6":"1.935","7":"18.90","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat X1-9"},{"1":"26.0","2":"4","3":"120.3","4":"91","5":"4.43","6":"2.140","7":"16.70","8":"0","9":"1","10":"5","11":"2","_rn_":"Porsche 914-2"},{"1":"30.4","2":"4","3":"95.1","4":"113","5":"3.77","6":"1.513","7":"16.90","8":"1","9":"1","10":"5","11":"2","_rn_":"Lotus Europa"},{"1":"15.8","2":"8","3":"351.0","4":"264","5":"4.22","6":"3.170","7":"14.50","8":"0","9":"1","10":"5","11":"4","_rn_":"Ford Pantera L"},{"1":"19.7","2":"6","3":"145.0","4":"175","5":"3.62","6":"2.770","7":"15.50","8":"0","9":"1","10":"5","11":"6","_rn_":"Ferrari Dino"},{"1":"15.0","2":"8","3":"301.0","4":"335","5":"3.54","6":"3.570","7":"14.60","8":"0","9":"1","10":"5","11":"8","_rn_":"Maserati Bora"},{"1":"21.4","2":"4","3":"121.0","4":"109","5":"4.11","6":"2.780","7":"18.60","8":"1","9":"1","10":"4","11":"2","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[32]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="pivoting-data-with-pivot_longer-and-pivot_wider" class="section level3" number="2.4.13">
+<h3><span class="header-section-number">2.4.13</span> Pivoting Data with
+<code>pivot_longer()</code> and <code>pivot_wider()</code></h3>
+<p>You can reshape data from wide to long format or vice versa. For
+example:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQaXZvdCBkYXRhIHRvIGxvbmdlciBmb3JtYXRcbmxvbmdlcl9kYXRhIDwtIG10Y2FycyAlPiVcbiAgcGl2b3RfbG9uZ2VyKGNvbHMgPSBjKG1wZywgaHAsIHd0KSwgbmFtZXNfdG8gPSBcInZhcmlhYmxlXCIsIHZhbHVlc190byA9IFwidmFsdWVcIilcblxucHJpbnQobG9uZ2VyX2RhdGEpXG5gYGAifQ== -->
+<pre class="r"><code># Pivot data to longer format
+longer_data &lt;- mtcars %&gt;%
+  pivot_longer(cols = c(mpg, hp, wt), names_to = &quot;variable&quot;, values_to = &quot;value&quot;)
+
+print(longer_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6OTYsIm5jb2wiOjEwLCJzdW1tYXJ5Ijp7IkEgdGliYmxlIjpbIjk2IMOXIDEwIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQnUyYVRXZ2JSeFRIUngrV0xkbVdGV3hEYzNGOTZDRXRsV3hKZGpCcFUrbFEybElLVFp6V01ZMHhYbjNZVmlOTGEzMGxjVkx3SmVmUVkwc1BnZlJZY21ndlBwb1Vla3FoUGVWV25Fc3ZTY0ZRR3RKQzdlN3MvRWZFYjNiQVcyOVFSRHhnZnJQejhlWS9iK2JKNHExbTM1MVBSK1lqakxFQUN3YjhMTkJqVlZuUHA1KzhGNTloTE9pM0hud3N5TUtjVjYxQncxYUZqNDVhZjB2WlY1aGREczJZaHJyeDR4cTZIYTliMTYwZXQrdDJpblEvWHJOYjlPdnNlM1IvbUl5REF0b1B5MHNhbXVQT2JHMDZzenp1VE4zNDNOd3lMd3FOcjNqNVdtSGh6elF2aCtiNjIvZXQ4dk9SK1FYMFV0N1lkdWIxVFdkZStFN1lvNXg5N016elB3bC9VQzZHbkZuZkVlc29aTTVzN2pqekduUG1oVzFuTGc0TGYxTmVoRjdLNWk3V0k4eU5PN1AyaXpNWHM0NWtNZzZHMGtMSFlSbTlML3hPMlhmblFlU3MrYTNDTU9aUmhrWTJIcjUvZDBSaCtLNWRVVGg0YzJ6ci9LT2JDb2NXVHYxMTc5YkNrZGwzeTY0Y21iMG0zL2k2d2o3Y0Q4b3dkOU9kQndwajF1Ykd0bVlWRG0vWkZZVXg3cjJOaHdvSDhibEFxZlcvNXJ3R29ZdFNkKzQ2L1NlZ2x6SnFIOFByQ25YN0d1RGRwNTZveERxVU1ad0RZVHNPSnB0aVBtV3lSOXd6eXRRMzR0NVFwbUdmVW1kbmFrYnNuM0lDOTU1eUN2ZUc4dlR2NG5PRE12V1JpRStGc3A4d3Vhd2g3ZzFsQ3V0VEp2L2hCM1ZkNWEvaVBCUmU1Z0g5V0dINnF2QUhaUXJ4VDVuR1BpaW4vRHhBZjFRNCtSdWY5cXJDSlB4RW1ZQmV5dVFBeGhIcS9EejVnNGdyaGJLZk1BNi9VazVvR0VmY1VxYmt1UjJrakFQbXNtUjIzZEd0SGEvVzlVcG5wMHEzNy9kNTN3Y1A5ZGh4MEMxK2ZkbEt0NS9MODQ1akQvMGp2aGZGeE1PUnFmdis2eFc5MHRrcC9aM2E3NHVtZjZSRDFPaGgvek1PM01aYmxqbFRPMTYzdnNhT2xqbzdPcjVnOTljcmY3cTFvNlZPcjBzOW5xM3JObStxc1c4VmJuRUpMeFlDYStZS3F2NVZVOWF1Tkk2N2o3dVB1N3U1Vy82L20wYjhYOW9VRENLL1J0dDc4WHdhZWVDTFdmSHNSejUwR3Zrak9UNk1mRjhLK1k3aWptanZsM21ja3lJdjhSbnM5Q1B2OVNieUZaWGJvbjBBOW1kZy8yUG9DTU5PVzg4MjJwSC9TSU9MMndmWFRXSThiWitFL1dYb2o5bnB4dy9hK1NEWkx2T2hDVEkrZXRaT0FHWmZnLzBTOUk5Q3Iyei9ISDRZL1Q0ZW5RdWV6TVpocHd3OW80YkllMklEMlhPdzc0TmYzc0g0RDRYZHpOL1FrOFY3bm5QQ241bC9rZStleHZ4NStEbUFjNUg1b3h6V0hVQWVWdTVMdHZkdmlIemVHK1Jjb3JBai9TelBOM3BQNU52ZWd0K2dQN09IZTNVRzY4N0J2bTlNNU9Ia3ZoYWcvK2wwNXNZZlg2NW1KN0N1S2U4VjlwVW05eW9rOWNOK1kvZmcvV25mVC9naEpNNkx2RWp2cVJoclJmNUtLTWI0eTNURVVQNWFHZFZnb1ZRMzIvV2FJY01zdUY0djVtVjB0ZXF5WnF6Si9wV2lVWlAxdkZITG9kN1hNbW9sSTFjdXl2VmJScmxaSktMQ3RlcVZoQlEyeU8xeVgrenY3OSttNnZObG95N1Z5OFpJd1dnWWllV2FOZDk2MmlOVGVxdG1vMVN0V0pQOC9QY0RJVExaVnlNTlE4MEtWMUtJNTFlYmxjdnhKT2tPbUpVVkpuNkc0Qk1IWVF2bTlhVm42aEdod3IrUDZTRk1EeFVySzZWSzJ4bGxJMWVVbmc4VWlpMVVvNVkvYkhja3pGcXBJbzhnWXJYV0U0MXF3NUJUSXZscVdiYllPMmQ3L3dIVTN1ZVJWQ0VBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["cyl"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["variable"],"name":[9],"type":["chr"],"align":["left"]},{"label":["value"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"6","2":"160.0","3":"3.90","4":"16.46","5":"0","6":"1","7":"4","8":"4","9":"mpg","10":"21.000"},{"1":"6","2":"160.0","3":"3.90","4":"16.46","5":"0","6":"1","7":"4","8":"4","9":"hp","10":"110.000"},{"1":"6","2":"160.0","3":"3.90","4":"16.46","5":"0","6":"1","7":"4","8":"4","9":"wt","10":"2.620"},{"1":"6","2":"160.0","3":"3.90","4":"17.02","5":"0","6":"1","7":"4","8":"4","9":"mpg","10":"21.000"},{"1":"6","2":"160.0","3":"3.90","4":"17.02","5":"0","6":"1","7":"4","8":"4","9":"hp","10":"110.000"},{"1":"6","2":"160.0","3":"3.90","4":"17.02","5":"0","6":"1","7":"4","8":"4","9":"wt","10":"2.875"},{"1":"4","2":"108.0","3":"3.85","4":"18.61","5":"1","6":"1","7":"4","8":"1","9":"mpg","10":"22.800"},{"1":"4","2":"108.0","3":"3.85","4":"18.61","5":"1","6":"1","7":"4","8":"1","9":"hp","10":"93.000"},{"1":"4","2":"108.0","3":"3.85","4":"18.61","5":"1","6":"1","7":"4","8":"1","9":"wt","10":"2.320"},{"1":"6","2":"258.0","3":"3.08","4":"19.44","5":"1","6":"0","7":"3","8":"1","9":"mpg","10":"21.400"},{"1":"6","2":"258.0","3":"3.08","4":"19.44","5":"1","6":"0","7":"3","8":"1","9":"hp","10":"110.000"},{"1":"6","2":"258.0","3":"3.08","4":"19.44","5":"1","6":"0","7":"3","8":"1","9":"wt","10":"3.215"},{"1":"8","2":"360.0","3":"3.15","4":"17.02","5":"0","6":"0","7":"3","8":"2","9":"mpg","10":"18.700"},{"1":"8","2":"360.0","3":"3.15","4":"17.02","5":"0","6":"0","7":"3","8":"2","9":"hp","10":"175.000"},{"1":"8","2":"360.0","3":"3.15","4":"17.02","5":"0","6":"0","7":"3","8":"2","9":"wt","10":"3.440"},{"1":"6","2":"225.0","3":"2.76","4":"20.22","5":"1","6":"0","7":"3","8":"1","9":"mpg","10":"18.100"},{"1":"6","2":"225.0","3":"2.76","4":"20.22","5":"1","6":"0","7":"3","8":"1","9":"hp","10":"105.000"},{"1":"6","2":"225.0","3":"2.76","4":"20.22","5":"1","6":"0","7":"3","8":"1","9":"wt","10":"3.460"},{"1":"8","2":"360.0","3":"3.21","4":"15.84","5":"0","6":"0","7":"3","8":"4","9":"mpg","10":"14.300"},{"1":"8","2":"360.0","3":"3.21","4":"15.84","5":"0","6":"0","7":"3","8":"4","9":"hp","10":"245.000"},{"1":"8","2":"360.0","3":"3.21","4":"15.84","5":"0","6":"0","7":"3","8":"4","9":"wt","10":"3.570"},{"1":"4","2":"146.7","3":"3.69","4":"20.00","5":"1","6":"0","7":"4","8":"2","9":"mpg","10":"24.400"},{"1":"4","2":"146.7","3":"3.69","4":"20.00","5":"1","6":"0","7":"4","8":"2","9":"hp","10":"62.000"},{"1":"4","2":"146.7","3":"3.69","4":"20.00","5":"1","6":"0","7":"4","8":"2","9":"wt","10":"3.190"},{"1":"4","2":"140.8","3":"3.92","4":"22.90","5":"1","6":"0","7":"4","8":"2","9":"mpg","10":"22.800"},{"1":"4","2":"140.8","3":"3.92","4":"22.90","5":"1","6":"0","7":"4","8":"2","9":"hp","10":"95.000"},{"1":"4","2":"140.8","3":"3.92","4":"22.90","5":"1","6":"0","7":"4","8":"2","9":"wt","10":"3.150"},{"1":"6","2":"167.6","3":"3.92","4":"18.30","5":"1","6":"0","7":"4","8":"4","9":"mpg","10":"19.200"},{"1":"6","2":"167.6","3":"3.92","4":"18.30","5":"1","6":"0","7":"4","8":"4","9":"hp","10":"123.000"},{"1":"6","2":"167.6","3":"3.92","4":"18.30","5":"1","6":"0","7":"4","8":"4","9":"wt","10":"3.440"},{"1":"6","2":"167.6","3":"3.92","4":"18.90","5":"1","6":"0","7":"4","8":"4","9":"mpg","10":"17.800"},{"1":"6","2":"167.6","3":"3.92","4":"18.90","5":"1","6":"0","7":"4","8":"4","9":"hp","10":"123.000"},{"1":"6","2":"167.6","3":"3.92","4":"18.90","5":"1","6":"0","7":"4","8":"4","9":"wt","10":"3.440"},{"1":"8","2":"275.8","3":"3.07","4":"17.40","5":"0","6":"0","7":"3","8":"3","9":"mpg","10":"16.400"},{"1":"8","2":"275.8","3":"3.07","4":"17.40","5":"0","6":"0","7":"3","8":"3","9":"hp","10":"180.000"},{"1":"8","2":"275.8","3":"3.07","4":"17.40","5":"0","6":"0","7":"3","8":"3","9":"wt","10":"4.070"},{"1":"8","2":"275.8","3":"3.07","4":"17.60","5":"0","6":"0","7":"3","8":"3","9":"mpg","10":"17.300"},{"1":"8","2":"275.8","3":"3.07","4":"17.60","5":"0","6":"0","7":"3","8":"3","9":"hp","10":"180.000"},{"1":"8","2":"275.8","3":"3.07","4":"17.60","5":"0","6":"0","7":"3","8":"3","9":"wt","10":"3.730"},{"1":"8","2":"275.8","3":"3.07","4":"18.00","5":"0","6":"0","7":"3","8":"3","9":"mpg","10":"15.200"},{"1":"8","2":"275.8","3":"3.07","4":"18.00","5":"0","6":"0","7":"3","8":"3","9":"hp","10":"180.000"},{"1":"8","2":"275.8","3":"3.07","4":"18.00","5":"0","6":"0","7":"3","8":"3","9":"wt","10":"3.780"},{"1":"8","2":"472.0","3":"2.93","4":"17.98","5":"0","6":"0","7":"3","8":"4","9":"mpg","10":"10.400"},{"1":"8","2":"472.0","3":"2.93","4":"17.98","5":"0","6":"0","7":"3","8":"4","9":"hp","10":"205.000"},{"1":"8","2":"472.0","3":"2.93","4":"17.98","5":"0","6":"0","7":"3","8":"4","9":"wt","10":"5.250"},{"1":"8","2":"460.0","3":"3.00","4":"17.82","5":"0","6":"0","7":"3","8":"4","9":"mpg","10":"10.400"},{"1":"8","2":"460.0","3":"3.00","4":"17.82","5":"0","6":"0","7":"3","8":"4","9":"hp","10":"215.000"},{"1":"8","2":"460.0","3":"3.00","4":"17.82","5":"0","6":"0","7":"3","8":"4","9":"wt","10":"5.424"},{"1":"8","2":"440.0","3":"3.23","4":"17.42","5":"0","6":"0","7":"3","8":"4","9":"mpg","10":"14.700"},{"1":"8","2":"440.0","3":"3.23","4":"17.42","5":"0","6":"0","7":"3","8":"4","9":"hp","10":"230.000"},{"1":"8","2":"440.0","3":"3.23","4":"17.42","5":"0","6":"0","7":"3","8":"4","9":"wt","10":"5.345"},{"1":"4","2":"78.7","3":"4.08","4":"19.47","5":"1","6":"1","7":"4","8":"1","9":"mpg","10":"32.400"},{"1":"4","2":"78.7","3":"4.08","4":"19.47","5":"1","6":"1","7":"4","8":"1","9":"hp","10":"66.000"},{"1":"4","2":"78.7","3":"4.08","4":"19.47","5":"1","6":"1","7":"4","8":"1","9":"wt","10":"2.200"},{"1":"4","2":"75.7","3":"4.93","4":"18.52","5":"1","6":"1","7":"4","8":"2","9":"mpg","10":"30.400"},{"1":"4","2":"75.7","3":"4.93","4":"18.52","5":"1","6":"1","7":"4","8":"2","9":"hp","10":"52.000"},{"1":"4","2":"75.7","3":"4.93","4":"18.52","5":"1","6":"1","7":"4","8":"2","9":"wt","10":"1.615"},{"1":"4","2":"71.1","3":"4.22","4":"19.90","5":"1","6":"1","7":"4","8":"1","9":"mpg","10":"33.900"},{"1":"4","2":"71.1","3":"4.22","4":"19.90","5":"1","6":"1","7":"4","8":"1","9":"hp","10":"65.000"},{"1":"4","2":"71.1","3":"4.22","4":"19.90","5":"1","6":"1","7":"4","8":"1","9":"wt","10":"1.835"},{"1":"4","2":"120.1","3":"3.70","4":"20.01","5":"1","6":"0","7":"3","8":"1","9":"mpg","10":"21.500"},{"1":"4","2":"120.1","3":"3.70","4":"20.01","5":"1","6":"0","7":"3","8":"1","9":"hp","10":"97.000"},{"1":"4","2":"120.1","3":"3.70","4":"20.01","5":"1","6":"0","7":"3","8":"1","9":"wt","10":"2.465"},{"1":"8","2":"318.0","3":"2.76","4":"16.87","5":"0","6":"0","7":"3","8":"2","9":"mpg","10":"15.500"},{"1":"8","2":"318.0","3":"2.76","4":"16.87","5":"0","6":"0","7":"3","8":"2","9":"hp","10":"150.000"},{"1":"8","2":"318.0","3":"2.76","4":"16.87","5":"0","6":"0","7":"3","8":"2","9":"wt","10":"3.520"},{"1":"8","2":"304.0","3":"3.15","4":"17.30","5":"0","6":"0","7":"3","8":"2","9":"mpg","10":"15.200"},{"1":"8","2":"304.0","3":"3.15","4":"17.30","5":"0","6":"0","7":"3","8":"2","9":"hp","10":"150.000"},{"1":"8","2":"304.0","3":"3.15","4":"17.30","5":"0","6":"0","7":"3","8":"2","9":"wt","10":"3.435"},{"1":"8","2":"350.0","3":"3.73","4":"15.41","5":"0","6":"0","7":"3","8":"4","9":"mpg","10":"13.300"},{"1":"8","2":"350.0","3":"3.73","4":"15.41","5":"0","6":"0","7":"3","8":"4","9":"hp","10":"245.000"},{"1":"8","2":"350.0","3":"3.73","4":"15.41","5":"0","6":"0","7":"3","8":"4","9":"wt","10":"3.840"},{"1":"8","2":"400.0","3":"3.08","4":"17.05","5":"0","6":"0","7":"3","8":"2","9":"mpg","10":"19.200"},{"1":"8","2":"400.0","3":"3.08","4":"17.05","5":"0","6":"0","7":"3","8":"2","9":"hp","10":"175.000"},{"1":"8","2":"400.0","3":"3.08","4":"17.05","5":"0","6":"0","7":"3","8":"2","9":"wt","10":"3.845"},{"1":"4","2":"79.0","3":"4.08","4":"18.90","5":"1","6":"1","7":"4","8":"1","9":"mpg","10":"27.300"},{"1":"4","2":"79.0","3":"4.08","4":"18.90","5":"1","6":"1","7":"4","8":"1","9":"hp","10":"66.000"},{"1":"4","2":"79.0","3":"4.08","4":"18.90","5":"1","6":"1","7":"4","8":"1","9":"wt","10":"1.935"},{"1":"4","2":"120.3","3":"4.43","4":"16.70","5":"0","6":"1","7":"5","8":"2","9":"mpg","10":"26.000"},{"1":"4","2":"120.3","3":"4.43","4":"16.70","5":"0","6":"1","7":"5","8":"2","9":"hp","10":"91.000"},{"1":"4","2":"120.3","3":"4.43","4":"16.70","5":"0","6":"1","7":"5","8":"2","9":"wt","10":"2.140"},{"1":"4","2":"95.1","3":"3.77","4":"16.90","5":"1","6":"1","7":"5","8":"2","9":"mpg","10":"30.400"},{"1":"4","2":"95.1","3":"3.77","4":"16.90","5":"1","6":"1","7":"5","8":"2","9":"hp","10":"113.000"},{"1":"4","2":"95.1","3":"3.77","4":"16.90","5":"1","6":"1","7":"5","8":"2","9":"wt","10":"1.513"},{"1":"8","2":"351.0","3":"4.22","4":"14.50","5":"0","6":"1","7":"5","8":"4","9":"mpg","10":"15.800"},{"1":"8","2":"351.0","3":"4.22","4":"14.50","5":"0","6":"1","7":"5","8":"4","9":"hp","10":"264.000"},{"1":"8","2":"351.0","3":"4.22","4":"14.50","5":"0","6":"1","7":"5","8":"4","9":"wt","10":"3.170"},{"1":"6","2":"145.0","3":"3.62","4":"15.50","5":"0","6":"1","7":"5","8":"6","9":"mpg","10":"19.700"},{"1":"6","2":"145.0","3":"3.62","4":"15.50","5":"0","6":"1","7":"5","8":"6","9":"hp","10":"175.000"},{"1":"6","2":"145.0","3":"3.62","4":"15.50","5":"0","6":"1","7":"5","8":"6","9":"wt","10":"2.770"},{"1":"8","2":"301.0","3":"3.54","4":"14.60","5":"0","6":"1","7":"5","8":"8","9":"mpg","10":"15.000"},{"1":"8","2":"301.0","3":"3.54","4":"14.60","5":"0","6":"1","7":"5","8":"8","9":"hp","10":"335.000"},{"1":"8","2":"301.0","3":"3.54","4":"14.60","5":"0","6":"1","7":"5","8":"8","9":"wt","10":"3.570"},{"1":"4","2":"121.0","3":"4.11","4":"18.60","5":"1","6":"1","7":"4","8":"2","9":"mpg","10":"21.400"},{"1":"4","2":"121.0","3":"4.11","4":"18.60","5":"1","6":"1","7":"4","8":"2","9":"hp","10":"109.000"},{"1":"4","2":"121.0","3":"4.11","4":"18.60","5":"1","6":"1","7":"4","8":"2","9":"wt","10":"2.780"}],"options":{"columns":{"min":{},"max":[10],"total":[10]},"rows":{"min":[10],"max":[10],"total":[96]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="joining-data-frames-with-left_join" class="section level3" number="2.4.14">
+<h3><span class="header-section-number">2.4.14</span> Joining Data
+Frames with <code>left_join()</code></h3>
+<p>You can join two datasets together based on a common column.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgdHdvIHNhbXBsZSBkYXRhIGZyYW1lc1xuZGYxIDwtIGRhdGEuZnJhbWUoSUQgPSAxOjUsIE5hbWUgPSBjKFwiQWxpY2VcIiwgXCJCb2JcIiwgXCJDaGFybGllXCIsIFwiRGF2aWRcIiwgXCJFdmFcIikpXG5kZjIgPC0gZGF0YS5mcmFtZShJRCA9IDM6NywgU2NvcmUgPSBjKDg5LCA5NSwgNzYsIDg4LCA5MikpXG5cbiMgUGVyZm9ybSBhIGxlZnQgam9pbiBvbiB0aGUgJ0lEJyBjb2x1bW5cbmpvaW5lZF9kYXRhIDwtIGRmMSAlPiVcbiAgbGVmdF9qb2luKGRmMiwgYnkgPSBcIklEXCIpXG5cbnByaW50KGpvaW5lZF9kYXRhKVxuYGBgIn0= -->
+<pre class="r"><code># Create two sample data frames
+df1 &lt;- data.frame(ID = 1:5, Name = c(&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;David&quot;, &quot;Eva&quot;))
+df2 &lt;- data.frame(ID = 3:7, Score = c(89, 95, 76, 88, 92))
+
+# Perform a left join on the &#39;ID&#39; column
+joined_data &lt;- df1 %&gt;%
+  left_join(df2, by = &quot;ID&quot;)
+
+print(joined_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6Mywic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbNSDDlyAzXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVJTMDdETUJDZDJQbW9rU2hJbkNPUkVCdVdBUUlTR3hhMFFMZHVFdHFJWUVkT0d0akJXVGdKUitJRUJUdVpRY0xlelBPYmVaNDM0N3Q4ZFJxdllnRGc0SE1HUERBUWd2dmxkWElHNEROejhjQ0htWTF2cHVoNHJBUTRzRlZqRW9BaDV5TjNOTVpKRkp3M2RWSGhoVitvTmNMb2NpdDBVMU1teU1WUWwxUjJOUWdUNXBaLy83WitvaytLMlVObUFXU1BYMU5jQUo1L1hnTXBYcW9PdlhBazJVMk95TDgxYVNwZEZFcFhqbjZtMVd0S2I5aFoyY2ZVSlhBYkZZM29xQkdSY1NsNmtUNXAyd1JnNzBnaTFmYTFra2JFN0RaRFIreHBoempjU2V1a1RJcnRUajRuSjA2YXQzSmplK0puQUJyMjhETUk4OGtGKzBGNWlQS3drcHRhL2kyakVldXFvWmZMYWtBNE4vc1kxNUcydXBZOXpXbllMdTFWTDBnU0Y2b2hacHdjOXI5VDhnelRZZ0lBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Score"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Alice","3":"NA"},{"1":"2","2":"Bob","3":"NA"},{"1":"3","2":"Charlie","3":"89"},{"1":"4","2":"David","3":"95"},{"1":"5","2":"Eva","3":"76"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>These are just some of the many powerful data manipulation functions
+that <code>dplyr</code> provides. By using pipes (<code>%&gt;%</code>),
+you can chain these operations together to build complex transformations
+in a very readable and efficient way.</p>
 <p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
 Menu</a></p>
 <!-- rnb-text-end -->
@@ -1925,7 +2276,7 @@ Menu</a></p>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiA3Ig0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQplZGl0b3Jfb3B0aW9uczogDQogIG1hcmtkb3duOiANCiAgICB3cmFwOiA3Mg0KLS0tDQoNCltNYWluDQpNZW51XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllcy5uYi5odG1sKQ0KDQojIFJlZ3VsYXIgRXhwcmVzc2lvbnMNCg0KSW4gdGhlIHByZXZpb3VzIGxlc3NvbiB3ZSBsb29rZWQgYXQgb25lIGluc3RhbmNlIG9mIGEgcmVndWxhcg0KZXhwcmVzc2lvbnMgZnVuY3Rpb24uIEJ1dCBsZXQgdXMgbm93IGxvb2sgYXQgaXQgYXQgZ3JlYXRlciBkZXRhaWwuDQoNCiMjIGdyZXANCg0KZ3JlcCBnaXZlcyB1cyB0aGUgbGluZSBvciB2ZWN0b3IgaW5kZXggd2hlcmUgYSBwYXJ0aWN1bGFyIHN1YnN0cmluZw0KcGF0dGVybiBtYXRjaCBpcyBmb3VuZC4NCg0KYGBge3J9DQpncmVwKCJTaGFsbCBJIGNvbXBhcmUiLCBzb25uZXRzKQ0KYGBgDQoNClRoZSByZXN1bHQgaXMgYSB2ZWN0b3INCg0KYGBge3J9DQp3ZWVrDQpncmVwKCJlIix3ZWVrKQ0KYGBgDQoNCkl0IGdpdmVzIGFsbCB0aGUgaW5kaWNlcyB3aGVyZSB0aGUgcGF0dGVybiBoYXMgZm91bmQgYSBtYXRjaC4NCg0KV2UgY2FuIGFsc28gcmV0dXJuIHRoZSB2YWx1ZXMgaW5zdGVhZCBvZiB0aGUgaW5kaWNlcy4NCg0KYGBge3J9DQpncmVwKCJlIix3ZWVrLCB2YWx1ZSA9IFRSVUUpDQpgYGANCg0KIyMgcmVnZXhwcg0KDQpUaGlzIHRlbGxzIHVzIGlmIGEgc2VyYWNoIHN0cmluZyBpcyBwcmVzZW50IGluIGEgZ2l2ZW4gc3RyaW5nIGFuZCBhbHNvIGdpdmVzIHVzIHRoZSBzdGFydGluZyBwb3NpdGlvbiBvZiB0aGUgc2VhcmNoIHN0cmluZyB3aXRoaW4gdGhlIGdpdmVuIHN0cmluZy4NCg0KYGBge3J9DQpyZWdleHByKCJ1YXQiLCJFcXVhdG9yIikNCmBgYA0KSGVyZSBpdCB0ZWxscyB1cyB0aGF0IHRoZSBzZWFyY2ggc3RyaW5nIG1hdGNoIHdhcyBmb3VuZCBmcm9tIHRoZSAzcmQgY2hhcmFjdGVyIG9mIHRoZSBnaXZlbiBzdHJpbmcsIHRoZSBzZWFyY2ggc3RyaW5nIHdhcyA0IGNoYXJhY3RlcnMgaW4gbGVuZ3RoLiBUaGlzIG9ubHkgZmluZHMgdGhlIGZpcnMgaW5zdGFuY2Ugb2YgYSBtYXRjaC4NCg0KIyMgZ3JlZ2V4cHIgDQoNClRoaXMgZnVuY3Rpb25zIGluIGEgd2F5IHNpbWlsYXIgdG8gdGhhdCBvZiByZWdleHByLCBidXQgaXQgdHJhY2VzIGFsbCBpbnN0YW5jZXMgb2YgbWF0Y2hlcyBiZXR3ZWVuIHRoZSBzZWFyY2ggc3RyaW5nIGFuZCB0aGUgZ2l2ZW4gc3RyaW5nLg0KDQpgYGB7cn0NCmdyZWdleHByKCJpc3MiLCAiTWlzc2lzc2lwaSIpDQpgYGANCiMjIFJlcGxhY2luZyBzdWJzdHJpbmdzDQoNCiMjIyBzdWINCg0KcmVwbGFjZSBzdWJzdHJpbmcgLSBvbmx5IGZpcnN0IGluc3RhbmNlIA0KDQpgYGB7cn0NCnN1YigiaXNzIiwiYW50IiwiTWlzc2lzc2lwaSIpDQpgYGANCg0KIyMjIGdzdWIgDQpyZXBsYWNlIHN1YnN0cmluZ3MgLSBhbGwgaW5zdGFuY2VzIA0KDQpgYGB7cn0NCmdzdWIoImlzcyIsImFudCIsIk1pc3Npc3NpcGkiKQ0KYGBgDQpGb3Igc29tZSBtb3JlIG9uIHJlZ3VsYXIgZXhwcmVzc2lvbnMgW3Zpc2l0IHRoaXMgd2Vic2l0ZV0oaHR0cHM6Ly90b3dhcmRzZGF0YXNjaWVuY2UuY29tL2EtZ2VudGxlLWludHJvZHVjdGlvbi10by1yZWd1bGFyLWV4cHJlc3Npb25zLXdpdGgtci1kZjVlODk3Y2E0MzIpDQoNCg0KDQpsaWJyYXJ5KHN0cmluZ3IpIGJhc2ljU3RyaW5nIFw8LSAiRHJldyBoYXMgMyB3YXRlcm1lbG9ucywgQWxleCBoYXMgNA0KaGFtYnVyZ2VycywgS2FyaW5hIGhhcyAxMiB0YW1hbGVzLCBhbmQgQW5uYSBoYXMgNiBzb2Z0IHByZXR6ZWxzIg0KI3B1bGxpbmcgb3V0IGV2ZXJ5IGluc3RhbmNlIG9mIG9uZSBwZXJzb24ncyBuYW1lIGZyb20gYSBzdHJpbmcNCmJhc2ljRXh0cmFjdEFsbCBcPC0gc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCAiRHJldyIpICNyZXBsYWNpbmcNCnBhdHRlcm4gd2l0aCBhIHJlcGxhY2VtZW50IHN0cmluZyBiYXNpY1JlcGxhY2VBbGwgXDwtDQpzdHJfcmVwbGFjZV9hbGwoYmFzaWNTdHJpbmcsICJBbGV4IiwgIlNoYXduIikgI21hdGNoaW5nIGNoYXJhY3RlciBzZXQNCiNoZXJlIG1hdGNoaW5nIHZvd2VscyBjaGFyU2V0czAxIFw8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsDQoiW2FlaW91XSIpICNtYXRjaGluZyBjaGFyYWN0ZXIgcmFuZ2UgLSBhcmUgY2FzZSBzZW5zaXRpdmUgY2hhclNldHMwMiBcPC0NCnN0cl9leHRyYWN0X2FsbChiYXNpY1N0cmluZywgIltBLVpdIikgI21hdGNoaW5nIG51bWJlciByYW5nZSBjaGFyU2V0czAzDQpcPC0gc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCAiWzAtOV0iKSAjbWF0Y2hpbmcgbWl4IG9mIGNoYXJ0ZXIgdHlwZXMNCmNoYXJzZXQwNCBcPC0gc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCAiW0EtQ3QtejEtNl0iKQ0KI01ldGFjaGFyYWN0ZXJzICNtYXRjaGluZyBzcGFjZXMgc3BhY2UgXDwtIHN0cl9leHRyYWN0X2FsbChiYXNpY1N0cmluZywNCiJcXHMiKSAjbWF0Y2hpbmcgYWxwaGFudW1lcmljIGNoYXJhY3RlcnMgYWxwaGEgXDwtDQpzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsICJcXHciKSAjbWF0Y2hpbmcgZGlnaXRzIGRpZ2l0cyBcPC0NCnN0cl9leHRyYWN0X2FsbChiYXNpY1N0cmluZywgIlxcZCIpICNRdWFudGlmaWVycyAtIHNwZWNpZnlpbmcgaG93IG1hbnkNCmNoYXJhY3RlcnMgYXJlIGV4cGVjdGVkIHF1YW50RXhhbXBsZSBcPC0gIkIuQkIuQkJCLkJCQkIiIHF1YW50UGx1cyBcPC0NCnN0cl9leHRyYWN0X2FsbChxdWFudEV4YW1wbGUsICJCKyIpICNtYXRjaGVzIEJzIHRpbGwgZW5kIG9mIHRoZSBncm91cCBvZg0KQnMgcXVhbnRFeGFjdCA9IHN0cl9leHRyYWN0X2FsbChxdWFudEV4YW1wbGUsICJCezJ9IikgI21hdGNoZXMgZXhhY3RseQ0KdHdvIEJzIHRpbGwgdGhlIGVuZCBvZiB0aGUgZ3JvdXAgb2YgQnMgcXVhbnRSYW5nZSBcPC0NCnN0cl9leHRyYWN0X2FsbChxdWFudEV4YW1wbGUsICJCezIsNH0iKSAjbWF0Y2hlcyBhbnkgbnVtYmVyIGZyb20gMiB0byA0DQpxdWFudFVwcGVyQm91bmQgXDwtIHN0cl9leHRyYWN0X2FsbChxdWFudEV4YW1wbGUsICJCezIsfSIpICNwaWNraW5nIHVwDQp3b3JkcyB1c2luZyBxdWFudGlmaWVyIGNvbWJpbmUxIFw8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsDQoiW0EtWmEtel0rIikgI2ZpbmQgbnVtYmVycyBjb21iaW5lMiBcPC0gc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLA0KIlxcZHsxLDJ9IikgI2ZpbmQgcXVhbnRpdHkgb2YgZWFjaCBmb29kIGl0ZW0gI2VhY2ggbnVtYmVyIGRpcmVjdGx5DQpmb2xsb3dlZCBieSBuYW1lIG9mIHRoZSBmb29kIGl0ZW0gc2VwYXJhdGVkIGJ5IHNwYWNlIGNvbWJpbmUzIFw8LQ0Kc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCAiXFxkezEsMn1cXHNcXHcrXFxzKlxcdyoiKSAjQ2FwdHVyZSBncm91cHMNCmNhcHR1cmVHcm91cDEgXDwtIHN0cl9tYXRjaF9hbGwoYmFzaWNTdHJpbmcsDQoiW0EtWl1bYS16XStcXHNcXHcrXFxzXFxkezEsMn1cXHNcXHcrXFxzKlxcdyoiKSAjbGVhdmluZyBvdXQgJ2hhcycgYW5kDQpwcmVwYXJpbmcgZGF0YSBpbiBjb2x1bW5zICNpdCBpcyBiYXNpY2FsbHkgdGhlIHNhbWUgZm9ybXVsYSBhcw0KY2FwdHVyZUdyb3VwMSwganVzdCBicmFja2V0cyBhcm91bmQgdGhvc2Ugc3RyaW5ncyB3aGljaCBhcmUgY29sbGVjdGVkIGFzDQpsaXN0IGNhcHR1cmVHcm91cDIgXDwtIHN0cl9tYXRjaF9hbGwoYmFzaWNTdHJpbmcsDQoiKFtBLVpdW2Etel0rKVxcc1xcdytcXHMoXFxkezEsMn0pXFxzKFxcdytcXHMqXFx3KikiKSAjY29udmVydGluZyB0bw0KZGF0YWZyYW1lIHBpY25pYyBcPC0gZGF0YS5mcmFtZShjYXB0dXJlR3JvdXAyW1sxXV1bLC0xXSkNCmNvbG5hbWVzKHBpY25pYykgXDwtIGMoIk5hbWUiLCAiUXVhbnRpdHkiLCAiSXRlbSIpICNTdHJpbmdyIGNoZWF0c2hlZXQNCjxodHRwczovL2dpdGh1Yi5jb20vcnN0dWRpby9jaGVhdHNoZWV0cy9ibG9iL21haW4vc3RyaW5ncy5wZGY+DQojY2hlYXRzaGVldA0KPGh0dHBzOi8vcmVnZW5lcmF0aXZldG9kYXkuY29tL2EtY29tcGxldGUtYmVnaW5uZXJzLWd1aWRlLXRvLXJlZ3VsYXItZXhwcmVzc2lvbnMtaW4tci8+DQp1cmxzIFw8LSAiSGVyZSBhcmUgdXJscyBPTkUgd3d3LmpudS5hYy5pbiwgVFdPIDxodHRwczovL2FyanVuZ2hvc2guaW4+LA0KVEhSRUUgPGh0dHA6Ly9kaGFydGkud29yZHByZXNzLmNvbT4iIHN0cl9leHRyYWN0X2FsbCh1cmxzLA0KIihodHRwcz8pPyg6Ly8pPyh3d3dcXC4pP1xcdytcXC5bYS16QV9aMC05LS5dKyIpICNleHRyYWN0IGFsbA0KY2FwaXRhbGl6ZWQgd29yZHMgZmV3TmFtZXMgXDwtICJNeSBuYW1lIGlzIEFudGhvbnkgR29uc2FsdmVzIGFuZCBJIGFtDQpub3QgQW1hciBBa2JhciBBbnRob255IiBzdHJfZXh0cmFjdF9hbGwoZmV3TmFtZXMsICIoW0EtWl1bYS16XSspIilbWzFdXQ0KI3R3byBuYW1lcyB0b2dldGhlciBzdHJfZXh0cmFjdF9hbGwoZmV3TmFtZXMsDQoiKFtBLVpdW2Etel0rKVxccyhbQS1aXVthLXpdKykiKSAjbXVsdGlwbGUgbmFtZXMgdG9nZXRoZXINCnN0cl9leHRyYWN0X2FsbChmZXdOYW1lcywgIigoW0EtWl1bYS16XSspXFxzPyl7MSx9IikgI25lZWQgdG8gc3RyaXANCmV4dHJhIHNwYWNlcyB0cmltd3Moc3RyX2V4dHJhY3RfYWxsKGZld05hbWVzLA0KIigoW0EtWl1bYS16XSspXFxzPyl7MSx9IilbWzFdXSkga2luZyBcPC0gIlRoZSBraW5nIG9mIEVuZ2xhbmQgaXMNCkNoYXJsZXMgUGhpbGxpcCBBcnRodXIgR2VvcmdlLCBhbHNvIGtub3duIGFzIENoYXJsZXMgSUlJIg0Kc3RyX2V4dHJhY3RfYWxsKGtpbmcsICIoKChbQS1aXVthLXpdKylcXHNcKikrKXsyLH0iKQ0KDQpbTWFpbg0KTWVudV0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMubmIuaHRtbCkNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IExlc3NvbiA3Ig0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQplZGl0b3Jfb3B0aW9uczogDQogIG1hcmtkb3duOiANCiAgICB3cmFwOiA3Mg0KLS0tDQoNCltNYWluDQpNZW51XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllcy5uYi5odG1sKQ0KDQojIEluc3RhbGxpbmcgcGFja2FnZXMNCg0KTm93LCBsZXQgdXMgZ28gYmV5b25kIFIncyBuYXRpdmUgZnVuY3Rpb25zLiBBcyBtZW50aW9uZWQgZWFybGllciBpbiBSIGhhcyBhIHdpZGUgYXJyYXkgb2Ygc3BlY2lhbGl6ZWQgcGFja2FnZXMgdG8gcGVyZm9ybSBzcGVjaWZpYyB0YXNrcy4gVGFza3MgYmlnIGFuZCBzbWFsbC4gVGhpcyBoZWxwcyBjdXN0b21pemUgUiB0byBhIHNwZWNpZmljIHRhc2sgYXQgaGFuZC4NCg0KVGhlc2UgcGFja2FnZXMgYXJlIHVzdWFsbHkgd3JpdHRlbiBieSB2b2x1bnRlZXIgY29kZXJzLiBSIGlzIGFuIE9wZW4gU291cmNlIHRvb2wuIFdoaWNoIG1lYW5zIGl0J3Mgc291cmNlIGNvZGUgKHRoZSBtYWNoaW5lIGxhbmd1YWdlKSBpcyBhdmFpbGFibGUgZm9yIGV2ZXJ5b25lIHRvIG1vZGlmeSBhbmQgaW1wcm92ZS4gVGhpcyBlbmFibGVzIGNvbW11bml0eSBtb25pdG9yaW5nIGFuZCBjb21tdW5pdHkgZGV2ZWxvcG1lbnQuDQoNClRvIHVzZSBhIHBhcnRpY3VsYXIgcGFja2FnZSB3ZSBmaXJzdCBuZWVkIHRvIGluc3RhbGwgdGhlIHBhY2thZ2UgaW4gb3VyIFIgU3R1ZGlvIGluc3RhbGxhdGlvbi4NCg0KVGhpcyBpcyBhIG9uZSB0aW1lIHRhc2sgZm9yIGV2ZXJ5IGluc3RhbGxhdGlvbiBvZiBSU3R1ZGlvLiBUaGVyZSBhcmUgdHdvIHdheXMgaW4gd2hpY2ggYSBwYWNrYWdlIGNhbiBiZSBpbnN0YWxsZWQgaW4gUi4NCg0KVG8gYmVnaW4gd2l0aCB3ZSBzaGFsbCBpbnN0YWxsIHRoZSBwYWNrYWdlICdkcGx5cicuICdkcGx5cicgaXMgYSBwYWNrYWdlIHRoYXQgaXMgZXF1aXBwZWQgdG8gcGVyZm9ybSBzb3BoaXN0aWNhdGVkIGRhdGEgdHJhbnNmb3JtYXRpb24sIGZpbHRlcmluZywgc3VtbWFyaXppbmcuDQoNCiMjIEdVSSBpbnN0YWxsYXRpb24NCg0KKyBJbiB0aGUgVmlld2luZyBib3ggYXQgdGhlIEJvdHRvbSBSaWdodGhhbmQgY29ybmVyIG9mIFJTdHVkaW8gY2xpY2tlZCB0aGUgIlBhY2thZ2VzIiB0YWINCisgR28gdG8gIlBhY2thZ2VzPkluc3RhbGwiDQorIEluIHRoZSAnUGFja2FnZXMnY29sdW1uIHNlYXJjaCBmb3IgdGhlIHBhY2thZ2UgdGhhdCB5b3Ugd2FudCB0byBpbnN0YWxsLiBJbiB0aGlzIGNhc2UgaXQgaXMgImRwbHlyIi4NCisgS2VlcCBhbGwgZGVmYXVsdCBvcHRpb25zIGluY2x1ZGluZyAiSW5zdGFsbCBkZXBlbmRlbmNpZXMiDQorIENsaWNrIGluc3RhbGwuDQoNClIgd2lsbCBpbnN0YWxsIHRoZSBwYWNrYWdlLg0KDQojIyBDb25zb2xlIGluc3RhbGxhdGlvbg0KTG9vayBjbG9zZWx5IGF0IHlvdXIgQ29uc29sZS4gVGhlIEdVSSBhY3Rpb24gaGFzIHJlc3VsdGVkIGluIGEgY29tbWFuZC4NCg0KYGBge3J9DQppbnN0YWxsLnBhY2thZ2VzKCJkcGx5ciIpDQpgYGANCg0KV2UgY2FuIGFsc28gdXNlIHRoaXMgY29tbWFuZCB0byBpbnN0YWxsIHBhY2thZ2VzLg0KDQpVc3VhbGx5LCBzaW5jZSwgaW5zdGFsbGF0aW9uIG9mIGEgcGFja2FnZSBpcyBleHBlY3RlZCB0byBiZSBhIG9uZSB0aW1lIHByb2Nlc3MgZm9yIGVhY2ggUlN0dWRpbyBpbnN0YWxsYXRpb24uIEJ1dCBvbiBSIGl0IGlzIG5vdCBlbm91Z2ggdG8gaW5zdGFsbCBhIHBhY2thZ2UuIEluIGVhY2ggc2Vzc2lvbiBvZiBSIHdlIG5lZWQgdG8gY2FsbCB0aGUgcGFja2FnZSB0byBiZSBhYmxlIHRvIHVzZSBpdHMgbGlzdGVkIGZ1bmN0aW9ucy4gVGhpcyBjYW4gYmUgZG9uZSB3aXRoIHRoZSAnbGlicmFyeScgZnVuY3Rpb24uDQoNCg0KYGBge3J9DQpsaWJyYXJ5KGRwbHlyKQ0KYGBgDQoNCkdpdmVuIHRoZSBuZWVkIHRvIGNhbGwgYSBwYWNrYWdlIGJlZm9yZSB1c2luZyBhbnkgb2YgaXRzIGZ1bmN0aW9ucy4gVGhpcyBjYW4gYmUgZG9uZSBieSBpbmNsdWRpbmcgdGhlICdsaWJyYXJ5JyBmdW5jdGlvbiBmb3IgZWFjaCBvZiB0aGUgcGFja2FnZXMgY2FsbGVkIGFzIHBhcnQgb2YgYSBzY3JpcHQuDQoNCldlIGFyZSBub3cgZ29pbmcgdG8gdHVybiBvdXIgYXR0ZW50aW9uIHRvIHRoZSBQaXBlcyBvcGVyYXRpb24gaW4gUi4NClBpcGVzIGNhbiBiZSB0eXBpY2FsbHkgc3VwcG9ydGVkIHRocm91Z2ggdHdvIHBhY2thZ2VzICdkcGx5cicgYW5kICdtYWdyaXR0cicuIA0KJ2RwbHlyJyBpcyB0YWlsb3JlZCB0byB3b3JrIGJldHRlciB3aXRoIGRhdGFmcmFtZXMgb3IgdGlkeSBkYXRhc2V0cyAobmVhdCByZWN0YW5ndWxhciBkYXRhc2V0cykuDQonbWFncml0dHInIHdvcmtzIGJldHRlciB3aXRoIGFyaXRobWV0aWMgb3BlcmF0aW9ucy4gSW4gdGhpcyBsZXNzb24gSSB3b3VsZCBsaWtlIHRvIGludHJvZHVjZSB0aGUgd29ya2luZyBvZiBQaXBlcyB1c2luZyBzaW1wbGUgYXJpdGhtZXRpYyBvcGVyYXRpb25zIGJlZm9yZSB3ZSBtb3ZlIHRvIGRhdGFmcmFtZXMuDQoNClNvIGxldCB1cyBpbnN0YWxsIGFuZCBjYWxsICdtYWdyaXR0cicNCg0KYGBge3J9DQppbnN0YWxsLnBhY2thZ2VzKCJtYWdyaXR0ciIpDQpsaWJyYXJ5KG1hZ3JpdHRyKQ0KYGBgDQoNCg0KIyBQaXBlcw0KDQpUaGUgbWVjaGFuaXNtIG9mIHByb2dyYW1taW5nIHRoYXQgd2UgaGF2ZSBsZWFybnQgdGh1cyBmYXIgaXMgdXN1YWxseSB3b3JrcyBpbiBhIG5vbi1saW5lYXIgZmFzaGlvbi4gTGV0IG1lIGV4cGxhaW4uIA0KDQojIyBNdWx0aWxpbmUgYXBwcm9hY2gNClN0dWR5IHRoZSBmb2xsb3dpbmcgY29kZSB3aGVyZSB3ZSBjYXJyeSBvdXQgc29tZSBiYXNpYyBhcml0aG1ldGljIG9wZXJhdGlvbnM6DQoNCmBgYHtyfQ0KDQp4IDwtIDEwICMgU3RhcnQgd2l0aCBhIG51bWJlcg0KeCA8LSB4ICogMiAjIE11bHRpcGx5IGJ5IDINCnggPC0geCAtIDUgIyBTdWJ0cmFjdCA1DQp4IDwtIHheMiAjIFJhaXNlIHRoZSByZXN1bHQgdG8gdGhlIHBvd2VyIG9mIDINCnggPC0geCAvIDMgIyBEaXZpZGUgYnkgMw0KcHJpbnQoeCkgIyBQcmludCB0aGUgcmVzdWx0DQoNCmBgYA0KIyMgTmVzdGVkIGFwcHJvYWNoDQoNCmBgYHtyfQ0KeCA8LSAxMCAjYXNzaWduIGEgdmFsdWUNCnggPC0gKCgoeCoyKS01KV4yKS8zICNuZXN0ZWQgb3BlcmF0aW9uDQpwcmludCh4KSAjUHJpbnQgdGhlIHJlc3VsdA0KYGBgDQpCb3RoIHByb2R1Y2UgdGhlIHJlc3VsdC4gQnV0IHRoZSBmaXJzdCBhcHByb2FjaCByZXBlYXRlZGx5IHJld3JpdGVzIHRoZSB2YWx1ZSBvZiB4IGluIGludGVybWVkaWF0ZSBsaW5lcy4gSW4gdmVyeSBjb21wbGV4IG9wZXJhdGlvbnMgdGhpcyBpcyBkZWZpbml0ZWx5IG5vbi1vcHRpbWFsLiBUaGUgTmVzdGVkIGFwcHJvYWNoIGlzIHByb2JhYmx5IG1vcmUgZGlmZmljdWx0IGZvciB0aGUgaHVtYW4gZXllIHRvIGZvbGxvdy4NCg0KIyMgTGluZWFyIG9wZXJhdGlvbnMgdXNpbmcgUGlwZXMNCg0KV2l0aCBQaXBlcyB0aGUgb3BlcmF0aW9ucyB0YWtlIGEgbGluZWFyIHNoYXBlIHdpdGggdGhlIG91dHB1dCBvZiBvbmUgb3BlcmF0aW9uIGRpcmVjdGx5IHB1c2hlZCB0byB0aGUgbmV4dCBvcGVyYXRpb24gd2l0aG91dCBhbnkgaW50ZXJtZWRpYXRlIHZhcmlhYmxlIGJlaW5nIGNyZWF0ZWQuDQoNCmBgYHtyfQ0KeCA8LSAxMCAlPiUNCiAgbXVsdGlwbHlfYnkoMikgJT4lDQogIHN1YnRyYWN0KDUpICU+JQ0KICByYWlzZV90b19wb3dlcigyKSAlPiUNCiAgZGl2aWRlX2J5KDMpDQoNCnByaW50KHgpICMgUHJpbnQgdGhlIHJlc3VsdA0KYGBgDQoNCkluIHRoZSBhYm92ZSBjb2RlIHRoZSB2YWx1ZSBvZiAneCcgaXMgcHVzaGVkIHRocm91Z2ggKHBpcGVzISkgYSBudW1iZXIgb2YgYXJpdGhtZXRpYyBvcGVyYXRpb25zIGFuZCB1bHRpbWF0ZWx5IHRoZSByZXN1bHRpbmcgdmFsdWUgaXMgYXNzaWduZWQgdG8gdGhlIG9yaWdpbmFsIHZhcmlhYmxlIC0gJ3gnLg0KDQpUaGVzZSBzZXQgb2Ygb3BlcmF0aW9ucyBoYXZlIGEgbGluZWFyIHN0cnVjdHVyZS4gVGhvdWdoIC0gaW4gdGhlIGFib3ZlIGV4YW1wbGUgLSBlYWNoIG9wZXJhdGlvbiBpcyB3cml0dGVuIGluIHNlcGFyYXRlIGxpbmVzIHZpc3VhbGx5LCBvcGVyYXRpb25hbGx5IHRoZXkgbWFrZSBhIHNpbmdsZSBsaW5lIG9mIGNvZGUgYW5kIHRoZSBlbnRpcmUgY2hhaW4gb2Ygb3BlcmF0aW9ucyBydW4gYXMgcGFydCBvZiBhIHNpbmdsZSBjb21tYW5kLg0KDQoNCiMjIFRyYW5zZm9ybWluZyBkYXRhZnJhbWVzDQoNClBpcGVzIC0gdXNpbmcgdGhlICdkcGx5cicgcGFja2FnZSBhcmUgdmVyeSBlZmZlY3RpdmUgaW4gc3Vic2V0dGluZyBhbmQgbWFuaXB1bGF0aW5nIGRhdGEgaW4gZGF0YWZyYW1lcw0KDQpMZXQgdXMgd29yayB3aXRoIGEgYnVpbHQtaW4gUiBkYXRhc2V0ICdpcmlzJw0KDQpgYGB7cn0NCmhlYWQobXRjYXJzKQ0KYGBgDQoNCg0KIyMjIEZpbHRlcmluZyBSb3dzIHdpdGggYGZpbHRlcigpYA0KDQpUaGlzIG9wZXJhdGlvbiBmaWx0ZXJzIHJvd3MgYmFzZWQgb24gY29uZGl0aW9ucy4NCg0KYGBge3J9DQojIEZpbHRlciBjYXJzIHdpdGggNiBjeWxpbmRlcnMgYW5kIG1wZyBncmVhdGVyIHRoYW4gMjANCmZpbHRlcmVkX2RhdGEgPC0gbXRjYXJzICU+JQ0KICBmaWx0ZXIoY3lsID09IDYsIG1wZyA+IDIwKQ0KDQpwcmludChmaWx0ZXJlZF9kYXRhKQ0KYGBgDQoNCg0KIyMjIFNlbGVjdGluZyBDb2x1bW5zIHdpdGggYHNlbGVjdCgpYA0KDQpUaGlzIGFsbG93cyB5b3UgdG8gc2VsZWN0IHNwZWNpZmljIGNvbHVtbnMgZnJvbSBhIGRhdGEgZnJhbWUuDQoNCmBgYHtyfQ0KIyBTZWxlY3Qgb25seSAnbXBnJywgJ2N5bCcsIGFuZCAnaHAnIGNvbHVtbnMNCnNlbGVjdGVkX2NvbHVtbnMgPC0gbXRjYXJzICU+JQ0KICBzZWxlY3QobXBnLCBjeWwsIGhwKQ0KDQpwcmludChzZWxlY3RlZF9jb2x1bW5zKQ0KYGBgDQoNCg0KDQojIyMgQXJyYW5naW5nIFJvd3Mgd2l0aCBgYXJyYW5nZSgpYA0KDQpTb3J0IHJvd3MgYnkgc3BlY2lmaWMgY29sdW1uIHZhbHVlcy4NCg0KYGBge3J9DQojIEFycmFuZ2UgZGF0YSBieSBtcGcgaW4gZGVzY2VuZGluZyBvcmRlcg0KYXJyYW5nZWRfZGF0YSA8LSBtdGNhcnMgJT4lDQogIGFycmFuZ2UoZGVzYyhtcGcpKQ0KDQpwcmludChhcnJhbmdlZF9kYXRhKQ0KYGBgDQoNCg0KDQojIyMgQWRkaW5nIE5ldyBDb2x1bW5zIHdpdGggYG11dGF0ZSgpYA0KDQpDcmVhdGUgbmV3IGNvbHVtbnMgYmFzZWQgb24gZXhpc3Rpbmcgb25lcy4NCg0KYGBge3J9DQojIENyZWF0ZSBhIG5ldyBjb2x1bW4gJ3dlaWdodF9wZXJfaHAnIHdoaWNoIGlzIHdlaWdodCAod3QpIGRpdmlkZWQgYnkgaG9yc2Vwb3dlciAoaHApDQptdXRhdGVkX2RhdGEgPC0gbXRjYXJzICU+JQ0KICBtdXRhdGUod2VpZ2h0X3Blcl9ocCA9IHd0IC8gaHApDQoNCnByaW50KG11dGF0ZWRfZGF0YSkNCmBgYA0KDQoNCg0KIyMjIFN1bW1hcml6aW5nIERhdGEgd2l0aCBgc3VtbWFyaXplKClgDQoNClN1bW1hcml6ZSBkYXRhIHdpdGggYWdncmVnYXRpb24gZnVuY3Rpb25zIHN1Y2ggYXMgYG1lYW4oKWAsIGBzdW0oKWAsIGV0Yy4NCg0KYGBge3J9DQojIENhbGN1bGF0ZSB0aGUgYXZlcmFnZSBtcGcgZm9yIHRoZSBkYXRhc2V0DQpzdW1tYXJ5X2RhdGEgPC0gbXRjYXJzICU+JQ0KICBzdW1tYXJpemUobWVhbl9tcGcgPSBtZWFuKG1wZykpDQoNCnByaW50KHN1bW1hcnlfZGF0YSkNCmBgYA0KDQoNCg0KIyMjIEdyb3VwaW5nIERhdGEgd2l0aCBgZ3JvdXBfYnkoKWAgYW5kIGBzdW1tYXJpemUoKWANCg0KR3JvdXAgZGF0YSBieSBhIGNhdGVnb3JpY2FsIHZhcmlhYmxlIGFuZCBjYWxjdWxhdGUgc3VtbWFyeSBzdGF0aXN0aWNzIGZvciBlYWNoIGdyb3VwLg0KDQpgYGB7cn0NCiMgR3JvdXAgYnkgJ2N5bCcgYW5kIGNhbGN1bGF0ZSB0aGUgYXZlcmFnZSBtcGcgZm9yIGVhY2ggZ3JvdXANCmdyb3VwZWRfc3VtbWFyeSA8LSBtdGNhcnMgJT4lDQogIGdyb3VwX2J5KGN5bCkgJT4lDQogIHN1bW1hcml6ZShtZWFuX21wZyA9IG1lYW4obXBnKSkNCg0KcHJpbnQoZ3JvdXBlZF9zdW1tYXJ5KQ0KYGBgDQoNCg0KDQojIyMgQ2hhaW5pbmcgTXVsdGlwbGUgT3BlcmF0aW9ucw0KDQpZb3UgY2FuIGNoYWluIG11bHRpcGxlIGBkcGx5cmAgb3BlcmF0aW9ucyB0b2dldGhlciB0byBwZXJmb3JtIG1vcmUgY29tcGxleCB0cmFuc2Zvcm1hdGlvbnMuDQoNCmBgYHtyfQ0KIyBGaWx0ZXIgZm9yIGNhcnMgd2l0aCBtcGcgZ3JlYXRlciB0aGFuIDIwLCBzZWxlY3QgY2VydGFpbiBjb2x1bW5zLCBhbmQgYXJyYW5nZSBieSBob3JzZXBvd2VyDQpjaGFpbmVkX29wZXJhdGlvbnMgPC0gbXRjYXJzICU+JQ0KICBmaWx0ZXIobXBnID4gMjApICU+JQ0KICBzZWxlY3QobXBnLCBjeWwsIGhwKSAlPiUNCiAgYXJyYW5nZShkZXNjKGhwKSkNCg0KcHJpbnQoY2hhaW5lZF9vcGVyYXRpb25zKQ0KYGBgDQoNCg0KDQojIyMgVXNpbmcgYG11dGF0ZSgpYCB3aXRoIGBpZmVsc2UoKWAgZm9yIENvbmRpdGlvbmFsIENhbGN1bGF0aW9ucw0KDQpZb3UgY2FuIGNyZWF0ZSBjb25kaXRpb25hbCBjb2x1bW5zIHdpdGggYGlmZWxzZSgpYCBpbnNpZGUgYG11dGF0ZSgpYC4NCg0KYGBge3J9DQojIEFkZCBhIG5ldyBjb2x1bW4gJ2VmZmljaWVuY3knIGJhc2VkIG9uIG1wZyB2YWx1ZXMgKGhpZ2ggaWYgbXBnID4gMjUsIG90aGVyd2lzZSBsb3cpDQpjb25kaXRpb25hbF9jb2x1bW4gPC0gbXRjYXJzICU+JQ0KICBtdXRhdGUoZWZmaWNpZW5jeSA9IGlmZWxzZShtcGcgPiAyNSwgImhpZ2giLCAibG93IikpDQoNCnByaW50KGNvbmRpdGlvbmFsX2NvbHVtbikNCmBgYA0KDQoNCg0KIyMjIFN1bW1hcml6aW5nIE11bHRpcGxlIE1ldHJpY3MNCg0KWW91IGNhbiBzdW1tYXJpemUgbXVsdGlwbGUgbWV0cmljcyBhdCB0aGUgc2FtZSB0aW1lLg0KDQpgYGB7cn0NCiMgQ2FsY3VsYXRlIGJvdGggYXZlcmFnZSBtcGcgYW5kIGhvcnNlcG93ZXINCm11bHRpX3N1bW1hcnkgPC0gbXRjYXJzICU+JQ0KICBzdW1tYXJpemUobWVhbl9tcGcgPSBtZWFuKG1wZyksIG1lYW5faHAgPSBtZWFuKGhwKSkNCg0KcHJpbnQobXVsdGlfc3VtbWFyeSkNCmBgYA0KDQoNCg0KIyMjIFNhbXBsaW5nIFJvd3Mgd2l0aCBgc2FtcGxlX24oKWAgb3IgYHNhbXBsZV9mcmFjKClgDQoNCllvdSBjYW4gcmFuZG9tbHkgc2FtcGxlIGEgZml4ZWQgbnVtYmVyIG9mIHJvd3Mgb3IgYSBmcmFjdGlvbiBvZiB0aGUgZGF0YS4NCg0KYGBge3J9DQojIFNhbXBsZSA1IHJhbmRvbSByb3dzIGZyb20gdGhlIGRhdGFzZXQNCnNhbXBsZWRfZGF0YSA8LSBtdGNhcnMgJT4lDQogIHNhbXBsZV9uKDUpDQoNCnByaW50KHNhbXBsZWRfZGF0YSkNCmBgYA0KDQoNCg0KIyMjIENvdW50aW5nIFJvd3Mgd2l0aCBgY291bnQoKWANCg0KRWFzaWx5IGNvdW50IHRoZSBudW1iZXIgb2Ygb2NjdXJyZW5jZXMgb2YgYSBjZXJ0YWluIGdyb3VwLg0KDQpgYGB7cn0NCiMgQ291bnQgdGhlIG51bWJlciBvZiBjYXJzIGZvciBlYWNoIHZhbHVlIG9mICdjeWwnDQpjeWxpbmRlcl9jb3VudHMgPC0gbXRjYXJzICU+JQ0KICBjb3VudChjeWwpDQoNCnByaW50KGN5bGluZGVyX2NvdW50cykNCmBgYA0KDQoNCg0KIyMjIFJlbW92aW5nIE1pc3NpbmcgVmFsdWVzIHdpdGggYGRyb3BfbmEoKWAgKGZyb20gYHRpZHlyYCkNCg0KVGhpcyBvcGVyYXRpb24gZHJvcHMgcm93cyB3aXRoIG1pc3NpbmcgdmFsdWVzIGluIGEgc3BlY2lmaWVkIGNvbHVtbi4NCg0KYGBge3J9DQpsaWJyYXJ5KHRpZHlyKQ0KDQojIEFzc3VtaW5nIHRoZXJlIGFyZSBOQSB2YWx1ZXMgaW4gdGhlIGRhdGFzZXQgKGZvciBkZW1vbnN0cmF0aW9uIHB1cnBvc2VzKQ0KIyBEcm9wIHJvd3Mgd2l0aCBtaXNzaW5nICdtcGcnIHZhbHVlcw0KY2xlYW5lZF9kYXRhIDwtIG10Y2FycyAlPiUNCiAgZHJvcF9uYShtcGcpDQoNCnByaW50KGNsZWFuZWRfZGF0YSkNCmBgYA0KDQoNCg0KIyMjIFBpdm90aW5nIERhdGEgd2l0aCBgcGl2b3RfbG9uZ2VyKClgIGFuZCBgcGl2b3Rfd2lkZXIoKWANCg0KWW91IGNhbiByZXNoYXBlIGRhdGEgZnJvbSB3aWRlIHRvIGxvbmcgZm9ybWF0IG9yIHZpY2UgdmVyc2EuIEZvciBleGFtcGxlOg0KDQpgYGB7cn0NCiMgUGl2b3QgZGF0YSB0byBsb25nZXIgZm9ybWF0DQpsb25nZXJfZGF0YSA8LSBtdGNhcnMgJT4lDQogIHBpdm90X2xvbmdlcihjb2xzID0gYyhtcGcsIGhwLCB3dCksIG5hbWVzX3RvID0gInZhcmlhYmxlIiwgdmFsdWVzX3RvID0gInZhbHVlIikNCg0KcHJpbnQobG9uZ2VyX2RhdGEpDQpgYGANCg0KDQoNCiMjIyBKb2luaW5nIERhdGEgRnJhbWVzIHdpdGggYGxlZnRfam9pbigpYA0KDQpZb3UgY2FuIGpvaW4gdHdvIGRhdGFzZXRzIHRvZ2V0aGVyIGJhc2VkIG9uIGEgY29tbW9uIGNvbHVtbi4NCg0KYGBge3J9DQojIENyZWF0ZSB0d28gc2FtcGxlIGRhdGEgZnJhbWVzDQpkZjEgPC0gZGF0YS5mcmFtZShJRCA9IDE6NSwgTmFtZSA9IGMoIkFsaWNlIiwgIkJvYiIsICJDaGFybGllIiwgIkRhdmlkIiwgIkV2YSIpKQ0KZGYyIDwtIGRhdGEuZnJhbWUoSUQgPSAzOjcsIFNjb3JlID0gYyg4OSwgOTUsIDc2LCA4OCwgOTIpKQ0KDQojIFBlcmZvcm0gYSBsZWZ0IGpvaW4gb24gdGhlICdJRCcgY29sdW1uDQpqb2luZWRfZGF0YSA8LSBkZjEgJT4lDQogIGxlZnRfam9pbihkZjIsIGJ5ID0gIklEIikNCg0KcHJpbnQoam9pbmVkX2RhdGEpDQpgYGANCg0KDQoNClRoZXNlIGFyZSBqdXN0IHNvbWUgb2YgdGhlIG1hbnkgcG93ZXJmdWwgZGF0YSBtYW5pcHVsYXRpb24gZnVuY3Rpb25zIHRoYXQgYGRwbHlyYCBwcm92aWRlcy4gQnkgdXNpbmcgcGlwZXMgKGAlPiVgKSwgeW91IGNhbiBjaGFpbiB0aGVzZSBvcGVyYXRpb25zIHRvZ2V0aGVyIHRvIGJ1aWxkIGNvbXBsZXggdHJhbnNmb3JtYXRpb25zIGluIGEgdmVyeSByZWFkYWJsZSBhbmQgZWZmaWNpZW50IHdheS4NCg0KDQoNCg0KDQpbTWFpbg0KTWVudV0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMubmIuaHRtbCkNCg==</div>
 
 
 

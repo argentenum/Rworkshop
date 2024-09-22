@@ -101,3 +101,23 @@ Functions: print, str, nchar
 
 
 # [Lesson 7](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities07.nb.html)
+
++ Installing Packages
+  + GUI Installation
+  + Console Installation
++ Pipes
+  + Multiline Approach
+  + Nested Approach
+  + Linear Operations using Pipes
+  + Transforming Dataframes
+  
+# [Plotting](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesPlotting.nb.html)
+
++ Plotting points in on a chart
++ Add Axis Labels
++ Plotting Lines
++ Frequency Counts
++ piechart
++ Histogram
++ Bar Plot
++ ggplot2

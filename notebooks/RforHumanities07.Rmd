@@ -11,120 +11,325 @@ editor_options:
 [Main
 Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
 
-# Regular Expressions
+# Installing packages
 
-In the previous lesson we looked at one instance of a regular
-expressions function. But let us now look at it at greater detail.
+Now, let us go beyond R's native functions. As mentioned earlier in R has a wide array of specialized packages to perform specific tasks. Tasks big and small. This helps customize R to a specific task at hand.
 
-## grep
+These packages are usually written by volunteer coders. R is an Open Source tool. Which means it's source code (the machine language) is available for everyone to modify and improve. This enables community monitoring and community development.
 
-grep gives us the line or vector index where a particular substring
-pattern match is found.
+To use a particular package we first need to install the package in our R Studio installation.
 
-```{r}
-grep("Shall I compare", sonnets)
-```
+This is a one time task for every installation of RStudio. There are two ways in which a package can be installed in R.
 
-The result is a vector
+To begin with we shall install the package 'dplyr'. 'dplyr' is a package that is equipped to perform sophisticated data transformation, filtering, summarizing.
 
-```{r}
-week
-grep("e",week)
-```
+## GUI installation
 
-It gives all the indices where the pattern has found a match.
++ In the Viewing box at the Bottom Righthand corner of RStudio clicked the "Packages" tab
++ Go to "Packages>Install"
++ In the 'Packages'column search for the package that you want to install. In this case it is "dplyr".
++ Keep all default options including "Install dependencies"
++ Click install.
 
-We can also return the values instead of the indices.
+R will install the package.
 
-```{r}
-grep("e",week, value = TRUE)
-```
-
-## regexpr
-
-This tells us if a serach string is present in a given string and also gives us the starting position of the search string within the given string.
+## Console installation
+Look closely at your Console. The GUI action has resulted in a command.
 
 ```{r}
-regexpr("uat","Equator")
+install.packages("dplyr")
 ```
-Here it tells us that the search string match was found from the 3rd character of the given string, the search string was 4 characters in length. This only finds the firs instance of a match.
 
-## gregexpr 
+We can also use this command to install packages.
 
-This functions in a way similar to that of regexpr, but it traces all instances of matches between the search string and the given string.
+Usually, since, installation of a package is expected to be a one time process for each RStudio installation. But on R it is not enough to install a package. In each session of R we need to call the package to be able to use its listed functions. This can be done with the 'library' function.
+
 
 ```{r}
-gregexpr("iss", "Mississipi")
+library(dplyr)
 ```
-## Replacing substrings
 
-### sub
+Given the need to call a package before using any of its functions. This can be done by including the 'library' function for each of the packages called as part of a script.
 
-replace substring - only first instance 
+We are now going to turn our attention to the Pipes operation in R.
+Pipes can be typically supported through two packages 'dplyr' and 'magrittr'. 
+'dplyr' is tailored to work better with dataframes or tidy datasets (neat rectangular datasets).
+'magrittr' works better with arithmetic operations. In this lesson I would like to introduce the working of Pipes using simple arithmetic operations before we move to dataframes.
+
+So let us install and call 'magrittr'
 
 ```{r}
-sub("iss","ant","Mississipi")
+install.packages("magrittr")
+library(magrittr)
 ```
 
-### gsub 
-replace substrings - all instances 
+
+# Pipes
+
+The mechanism of programming that we have learnt thus far is usually works in a non-linear fashion. Let me explain. 
+
+## Multiline approach
+Study the following code where we carry out some basic arithmetic operations:
 
 ```{r}
-gsub("iss","ant","Mississipi")
+
+x <- 10 # Start with a number
+x <- x * 2 # Multiply by 2
+x <- x - 5 # Subtract 5
+x <- x^2 # Raise the result to the power of 2
+x <- x / 3 # Divide by 3
+print(x) # Print the result
+
 ```
-For some more on regular expressions [visit this website](https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432)
+## Nested approach
+
+```{r}
+x <- 10 #assign a value
+x <- (((x*2)-5)^2)/3 #nested operation
+print(x) #Print the result
+```
+Both produce the result. But the first approach repeatedly rewrites the value of x in intermediate lines. In very complex operations this is definitely non-optimal. The Nested approach is probably more difficult for the human eye to follow.
+
+## Linear operations using Pipes
+
+With Pipes the operations take a linear shape with the output of one operation directly pushed to the next operation without any intermediate variable being created.
+
+```{r}
+x <- 10 %>%
+  multiply_by(2) %>%
+  subtract(5) %>%
+  raise_to_power(2) %>%
+  divide_by(3)
+
+print(x) # Print the result
+```
+
+In the above code the value of 'x' is pushed through (pipes!) a number of arithmetic operations and ultimately the resulting value is assigned to the original variable - 'x'.
+
+These set of operations have a linear structure. Though - in the above example - each operation is written in separate lines visually, operationally they make a single line of code and the entire chain of operations run as part of a single command.
+
+
+## Transforming dataframes
+
+Pipes - using the 'dplyr' package are very effective in subsetting and manipulating data in dataframes
+
+Let us work with a built-in R dataset 'iris'
+
+```{r}
+head(mtcars)
+```
+
+
+### Filtering Rows with `filter()`
+
+This operation filters rows based on conditions.
+
+```{r}
+# Filter cars with 6 cylinders and mpg greater than 20
+filtered_data <- mtcars %>%
+  filter(cyl == 6, mpg > 20)
+
+print(filtered_data)
+```
+
+
+### Selecting Columns with `select()`
+
+This allows you to select specific columns from a data frame.
+
+```{r}
+# Select only 'mpg', 'cyl', and 'hp' columns
+selected_columns <- mtcars %>%
+  select(mpg, cyl, hp)
+
+print(selected_columns)
+```
 
 
 
-library(stringr) basicString \<- "Drew has 3 watermelons, Alex has 4
-hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels"
-#pulling out every instance of one person's name from a string
-basicExtractAll \<- str_extract_all(basicString, "Drew") #replacing
-pattern with a replacement string basicReplaceAll \<-
-str_replace_all(basicString, "Alex", "Shawn") #matching character set
-#here matching vowels charSets01 \<- str_extract_all(basicString,
-"[aeiou]") #matching character range - are case sensitive charSets02 \<-
-str_extract_all(basicString, "[A-Z]") #matching number range charSets03
-\<- str_extract_all(basicString, "[0-9]") #matching mix of charter types
-charset04 \<- str_extract_all(basicString, "[A-Ct-z1-6]")
-#Metacharacters #matching spaces space \<- str_extract_all(basicString,
-"\\s") #matching alphanumeric characters alpha \<-
-str_extract_all(basicString, "\\w") #matching digits digits \<-
-str_extract_all(basicString, "\\d") #Quantifiers - specifying how many
-characters are expected quantExample \<- "B.BB.BBB.BBBB" quantPlus \<-
-str_extract_all(quantExample, "B+") #matches Bs till end of the group of
-Bs quantExact = str_extract_all(quantExample, "B{2}") #matches exactly
-two Bs till the end of the group of Bs quantRange \<-
-str_extract_all(quantExample, "B{2,4}") #matches any number from 2 to 4
-quantUpperBound \<- str_extract_all(quantExample, "B{2,}") #picking up
-words using quantifier combine1 \<- str_extract_all(basicString,
-"[A-Za-z]+") #find numbers combine2 \<- str_extract_all(basicString,
-"\\d{1,2}") #find quantity of each food item #each number directly
-followed by name of the food item separated by space combine3 \<-
-str_extract_all(basicString, "\\d{1,2}\\s\\w+\\s*\\w*") #Capture groups
-captureGroup1 \<- str_match_all(basicString,
-"[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*") #leaving out 'has' and
-preparing data in columns #it is basically the same formula as
-captureGroup1, just brackets around those strings which are collected as
-list captureGroup2 \<- str_match_all(basicString,
-"([A-Z][a-z]+)\\s\\w+\\s(\\d{1,2})\\s(\\w+\\s*\\w*)") #converting to
-dataframe picnic \<- data.frame(captureGroup2[[1]][,-1])
-colnames(picnic) \<- c("Name", "Quantity", "Item") #Stringr cheatsheet
-<https://github.com/rstudio/cheatsheets/blob/main/strings.pdf>
-#cheatsheet
-<https://regenerativetoday.com/a-complete-beginners-guide-to-regular-expressions-in-r/>
-urls \<- "Here are urls ONE www.jnu.ac.in, TWO <https://arjunghosh.in>,
-THREE <http://dharti.wordpress.com>" str_extract_all(urls,
-"(https?)?(://)?(www\\.)?\\w+\\.[a-zA_Z0-9-.]+") #extract all
-capitalized words fewNames \<- "My name is Anthony Gonsalves and I am
-not Amar Akbar Anthony" str_extract_all(fewNames, "([A-Z][a-z]+)")[[1]]
-#two names together str_extract_all(fewNames,
-"([A-Z][a-z]+)\\s([A-Z][a-z]+)") #multiple names together
-str_extract_all(fewNames, "(([A-Z][a-z]+)\\s?){1,}") #need to strip
-extra spaces trimws(str_extract_all(fewNames,
-"(([A-Z][a-z]+)\\s?){1,}")[[1]]) king \<- "The king of England is
-Charles Phillip Arthur George, also known as Charles III"
-str_extract_all(king, "((([A-Z][a-z]+)\\s\*)+){2,}")
+### Arranging Rows with `arrange()`
+
+Sort rows by specific column values.
+
+```{r}
+# Arrange data by mpg in descending order
+arranged_data <- mtcars %>%
+  arrange(desc(mpg))
+
+print(arranged_data)
+```
+
+
+
+### Adding New Columns with `mutate()`
+
+Create new columns based on existing ones.
+
+```{r}
+# Create a new column 'weight_per_hp' which is weight (wt) divided by horsepower (hp)
+mutated_data <- mtcars %>%
+  mutate(weight_per_hp = wt / hp)
+
+print(mutated_data)
+```
+
+
+
+### Summarizing Data with `summarize()`
+
+Summarize data with aggregation functions such as `mean()`, `sum()`, etc.
+
+```{r}
+# Calculate the average mpg for the dataset
+summary_data <- mtcars %>%
+  summarize(mean_mpg = mean(mpg))
+
+print(summary_data)
+```
+
+
+
+### Grouping Data with `group_by()` and `summarize()`
+
+Group data by a categorical variable and calculate summary statistics for each group.
+
+```{r}
+# Group by 'cyl' and calculate the average mpg for each group
+grouped_summary <- mtcars %>%
+  group_by(cyl) %>%
+  summarize(mean_mpg = mean(mpg))
+
+print(grouped_summary)
+```
+
+
+
+### Chaining Multiple Operations
+
+You can chain multiple `dplyr` operations together to perform more complex transformations.
+
+```{r}
+# Filter for cars with mpg greater than 20, select certain columns, and arrange by horsepower
+chained_operations <- mtcars %>%
+  filter(mpg > 20) %>%
+  select(mpg, cyl, hp) %>%
+  arrange(desc(hp))
+
+print(chained_operations)
+```
+
+
+
+### Using `mutate()` with `ifelse()` for Conditional Calculations
+
+You can create conditional columns with `ifelse()` inside `mutate()`.
+
+```{r}
+# Add a new column 'efficiency' based on mpg values (high if mpg > 25, otherwise low)
+conditional_column <- mtcars %>%
+  mutate(efficiency = ifelse(mpg > 25, "high", "low"))
+
+print(conditional_column)
+```
+
+
+
+### Summarizing Multiple Metrics
+
+You can summarize multiple metrics at the same time.
+
+```{r}
+# Calculate both average mpg and horsepower
+multi_summary <- mtcars %>%
+  summarize(mean_mpg = mean(mpg), mean_hp = mean(hp))
+
+print(multi_summary)
+```
+
+
+
+### Sampling Rows with `sample_n()` or `sample_frac()`
+
+You can randomly sample a fixed number of rows or a fraction of the data.
+
+```{r}
+# Sample 5 random rows from the dataset
+sampled_data <- mtcars %>%
+  sample_n(5)
+
+print(sampled_data)
+```
+
+
+
+### Counting Rows with `count()`
+
+Easily count the number of occurrences of a certain group.
+
+```{r}
+# Count the number of cars for each value of 'cyl'
+cylinder_counts <- mtcars %>%
+  count(cyl)
+
+print(cylinder_counts)
+```
+
+
+
+### Removing Missing Values with `drop_na()` (from `tidyr`)
+
+This operation drops rows with missing values in a specified column.
+
+```{r}
+library(tidyr)
+
+# Assuming there are NA values in the dataset (for demonstration purposes)
+# Drop rows with missing 'mpg' values
+cleaned_data <- mtcars %>%
+  drop_na(mpg)
+
+print(cleaned_data)
+```
+
+
+
+### Pivoting Data with `pivot_longer()` and `pivot_wider()`
+
+You can reshape data from wide to long format or vice versa. For example:
+
+```{r}
+# Pivot data to longer format
+longer_data <- mtcars %>%
+  pivot_longer(cols = c(mpg, hp, wt), names_to = "variable", values_to = "value")
+
+print(longer_data)
+```
+
+
+
+### Joining Data Frames with `left_join()`
+
+You can join two datasets together based on a common column.
+
+```{r}
+# Create two sample data frames
+df1 <- data.frame(ID = 1:5, Name = c("Alice", "Bob", "Charlie", "David", "Eva"))
+df2 <- data.frame(ID = 3:7, Score = c(89, 95, 76, 88, 92))
+
+# Perform a left join on the 'ID' column
+joined_data <- df1 %>%
+  left_join(df2, by = "ID")
+
+print(joined_data)
+```
+
+
+
+These are just some of the many powerful data manipulation functions that `dplyr` provides. By using pipes (`%>%`), you can chain these operations together to build complex transformations in a very readable and efficient way.
+
+
+
+
 
 [Main
 Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
