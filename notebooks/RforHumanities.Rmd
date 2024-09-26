@@ -121,3 +121,8 @@ Functions: print, str, nchar
 + Histogram
 + Bar Plot
 + ggplot2
++ Basics of ggplot syntax
+  + Line chart
+  + Scatter Plot
+  + Bar Plot
+  + Histogram

@@ -148,45 +148,169 @@ barplot(
 
 # ggplot2
 
-Ggplot 2 is a package th
+Ggplot2 is a graphics package for R. It can be used to visualize the results of data analysis.
 
+Install the package ggplot2. Then call it to action.
 
 ```{r}
 library(ggplot2)
 ```
 
-Given the need to call a package before using any of its functions. This can be done by including the 'library' function for each of the packages called as part of a script.
 
+Charts with ggplot2 are structured as layers with each layer adding additional information and features to the layers beneath in order to produce the final graphic. Let us demonstrate with a chart produced through an anaylsis of R's native dataset 'diamonds'. In this demonstration you can ignore what the chart is actually demonstrating. Let us just understand the structure of the chart.
 
+```{r}
+ggplot(diamonds) #this just defines the dataset that we are working with. It could be a dataframe.
+```
 
+You will see that the moment we call the ggplot function it create a chart background.
 
+```{r}
+ggplot(diamonds, aes(x=carat)) #this specifies the x-axis
+```
 
+Now let us specify the variables for the y-axis
 
-library(ggplot2)
-ggplot(diamonds)
-ggplot(diamonds, aes(x=carat))
+```{r}
 ggplot(diamonds, aes(x=carat, y=price))
-ggplot(diamonds, aes(x=carat, color=cut))
-ggplot(diamonds, aes(x=carat), color="steelblue")
-ggplot(diamonds, aes(x=carat, y=price, color=cut)) + geom_point() + geom_smooth()
+```
+
+
+Thereafter we can add some additional aiesthetic information:
+
+```{r}
+ggplot(diamonds, aes(x=carat, y=price, color=cut))
+```
+
+You don't see any addtion in the above layer. But the command 'color=cut' defines that each different factor for the variable 'cut' is assigned a different color.
+
+Now we are ready to add some data to the chart and define the type of chart element we want to use to visualize our data. In this case we shall use points for a scatter plot.
+
+```{r}
+ggplot(diamonds, aes(x=carat, y=price, color=cut)) + geom_point()
+```
+
+This the ggplot workflow defines and arranges layer by layer 
+
+![7 composable parts of a ggplot chart](https://ggplot2.tidyverse.org/articles/ggplot2_files/figure-html/overview_graphic-1.png)
+
+
+Image courtesy: https://ggplot2.tidyverse.org/articles/ggplot2.html
+
+# Basics of R ggplot syntax
+
+Now these layers translate to different parts and attributes of a single ggplot statement: the function [ggplot()], the data [data =], the aesthetics ie. the indices, color, size etc. [aes()], labels [labs] and the geom ie. the chart type - line, bar, point etc.
+
+![ggplot Syntax](https://www.sharpsightlabs.com/wp-content/uploads/2018/10/a-visual-explanation-of-ggplot2-syntax-with-geom_line.png)
+
+Image courtesy: https://www.sharpsightlabs.com/blog/ggplot2-tutorial/#syntax-of-ggplot2
+
+The elements can be strung together as a single statement.
+If scripted as a standalone statement it will generate a chart as in the above example.
+If the statement is assigned to a variable, the variable can be used to call the image when required.
+
+```{r}
 gg <- ggplot(diamonds, aes(x=carat, y=price, color=cut)) + 
   geom_point() + 
   labs(title="Scatterplot", x="Carat", y="Price")
 print(gg)
-plot1 <- ggplot(mtcars, aes(x=cyl)) + geom_bar() + labs(title="Frequency bar chart")
+```
+
+Let us now look at a few more examples.
+
+For the first one we shall use the 'mtcars' dataset.
+
+```{r}
+plot1 <- ggplot(mtcars, aes(x=cyl)) + geom_bar(width = 0.5) + labs(title="Frequency bar chart")
 print(plot1)
+```
+
+This exports a frequency chart of the cars with particular cylinder sizes.
+
+Now let us try to create a dataframe and them visualize it.
+
+```{r}
 df <- data.frame(var=c("a", "b", "c"), nums=c(1:3))
-plot2 <- ggplot(df, aes(x=var, y=nums))+ geom_bar(stat = "identity")
+plot2 <- ggplot(df, aes(x=var, y=nums))+ geom_bar(stat = "identity", width = 0.5)
 print(plot2)
-NileDF <- data.frame(c(1871:1970),Nile)
+```
+
+Thus we see that the x-axis can have string values as well.
+
+Now let us try to examine how particular geometric types work in ggplot.
+For our examples we shall use the the 'nile' dataset in R.
+'Nile' is a timeseries dataset giving the flow of the Nile between the years 1871 and 1970.
+
+```{r}
+str(Nile)
+```
+To work with ggplot we need to convert it to a dataframe.
+
+```{r}
+NileDF <- data.frame(c(1871:1970),as.numeric(Nile))
 names(NileDF) <- c("Year", "Flow")
+```
+
+## Line chart
+
+```{r}
 ggplot(data = NileDF, aes(x = Year, y = Flow)) +
-  geom_line()
+  geom_line(linetype = "dashed")
+```
+
+## Scatter PLot
+
+```{r}
 ggplot(data = NileDF, aes(x = Year, y = Flow)) +
   geom_point()
-ggplot(data = NileDF, aes(x = Year, y = Flow)) + geom_bar(stat = 'identity', color = "red", fill = "blue")
-ggplot(data =NileDF, aes(x=Flow)) + geom_histogram(bins = 10)  
+```
 
+## Bar Plot
+
+```{r}
+ggplot(data = NileDF, aes(x = Year, y = Flow)) + geom_bar(stat = 'identity', color = "blue", fill = "turquoise")
+```
+
+## Histogram
+
+```{r}
+ggplot(data =NileDF, aes(x=Flow)) + geom_histogram(bins = 10) 
+```
+
+## Pie Chart
+
+The data.frame 'NileDF' is not formed for pie charts. So, let us recreate the dataset of the kind that was used for creating the pie chart on R's default packages.
+
+```{r}
+cityDF <- data.frame(c("London", "New York", "Singapore", "Mumbai"),c(21, 62, 10, 53))
+names(cityDF) <- c("City","Value")
+```
+
+Now we are ready to plot the Pie Chart using ggplot2
+
+```{r}
+ggplot((data = cityDF), aes(x = "", y = Value, fill = City)) +
+  geom_col() +
+  coord_polar(theta = "y")
+```
+
+You can change the borders.
+
+```{r}
+ggplot((data = cityDF), aes(x = "", y = Value, fill = City)) +
+  geom_col(color = "black") +
+  coord_polar(theta = "y")
+```
+
+
+
+The ggplot2 package allows a high degree of customization through attributes and specifications. There are many tutorials and cheat sheets on the web. Here is one:
+
+[Data visualization with ggplot2 :: Cheat Sheet](https://rstudio.github.io/cheatsheets/html/data-visualization.html)
+
+As you start using R you would be handling more types of data and want to produce more aesthetically pleasing charts. It is a playground and you should explore.
+
+[R Charts by R Coder](https://r-charts.com/)
 
 [Main
 Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
