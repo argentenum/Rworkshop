@@ -11,7 +11,7 @@
 
 
 
-<title>R for Humanities: Regular Expressions</title>
+<title>R for Humanities: Map plotting</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1746,7 +1746,7 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">R for Humanities: Regular Expressions</h1>
+<h1 class="title toc-ignore">R for Humanities: Map plotting</h1>
 
 </div>
 
@@ -1754,545 +1754,62 @@ display: none;
 <!-- rnb-text-begin -->
 <p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
 Menu</a></p>
-<div id="regular-expressions" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Regular
-Expressions</h1>
-<p>In the previous lesson we looked at one instance of a regular
-expressions function. But let us now look at it at greater detail.</p>
-<div id="grep" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> grep</h2>
-<p>grep gives us the line or vector index where a particular substring
-pattern match is found.</p>
+<p><a href="https://map-rfun.library.duke.edu/01_georeference.html">Georeferencing</a></p>
+<p>For plotting points on a map we need to install and run two
+libraries</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29ubmV0cyA8LSByZWFkTGluZXMoXCJodHRwczovL3d3dy5ndXRlbmJlcmcub3JnL2ZpbGVzLzEwNDEvMTA0MS0wLnR4dFwiKVxuYGBgIn0= -->
-<pre class="r"><code>sonnets &lt;- readLines(&quot;https://www.gutenberg.org/files/1041/1041-0.txt&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzZilcbmxpYnJhcnkobWFwdmlldylcbmBgYCJ9 -->
+<pre class="r"><code>library(sf)
+library(mapview)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiByZWFkTGluZXMoXCJodHRwczovL3d3dy5ndXRlbmJlcmcub3JnL2ZpbGVzLzEwNDEvMTA0MS0wLnR4dFwiKSA6XG4gIGluY29tcGxldGUgZmluYWwgbGluZSBmb3VuZCBvbiAnaHR0cHM6Ly93d3cuZ3V0ZW5iZXJnLm9yZy9maWxlcy8xMDQxLzEwNDEtMC50eHQnXG4ifQ== -->
-<pre><code>Warning in readLines(&quot;https://www.gutenberg.org/files/1041/1041-0.txt&quot;) :
-  incomplete final line found on &#39;https://www.gutenberg.org/files/1041/1041-0.txt&#39;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JlcChcIlNoYWxsIEkgY29tcGFyZVwiLCBzb25uZXRzKVxuYGBgIn0= -->
-<pre class="r"><code>grep(&quot;Shall I compare&quot;, sonnets)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMwMVxuIn0= -->
-<pre><code>[1] 301</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>The result is a vector</p>
+<div id="reading-the-data" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> reading the data</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2Vla1xuYGBgIn0= -->
-<pre class="r"><code>week</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlmZURGIDwtIHJlYWQuY3N2KFwiLi9kYXRhL2NsZWFub3V0cHV0LmNzdlwiLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpXG5gYGAifQ== -->
+<pre class="r"><code>lifeDF &lt;- read.csv(&quot;./data/cleanoutput.csv&quot;, stringsAsFactors = FALSE)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibW9uXCIgXCJ0dWVcIiBcIndlZFwiIFwidGh1XCIgXCJmcmlcIiBcInNhdFwiIFwic3VuXCJcbiJ9 -->
-<pre><code>[1] &quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JlcChcImVcIix3ZWVrKVxuYGBgIn0= -->
-<pre class="r"><code>grep(&quot;e&quot;,week)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIgM1xuIn0= -->
-<pre><code>[1] 2 3</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>It gives all the indices where the pattern has found a match.</p>
-<p>We can also return the values instead of the indices.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JlcChcImVcIix3ZWVrLCB2YWx1ZSA9IFRSVUUpXG5gYGAifQ== -->
-<pre class="r"><code>grep(&quot;e&quot;,week, value = TRUE)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidHVlXCIgXCJ3ZWRcIlxuIn0= -->
-<pre><code>[1] &quot;tue&quot; &quot;wed&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
+<p>In ‘mapview’ the coordintes are pushed separately as Longtitude and
+Latitude in decimal format.</p>
 </div>
-<div id="regexpr" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> regexpr</h2>
-<p>This tells us if a search string is present in a given string and
-also gives us the starting position of the search string within the
-given string.</p>
+<div id="converting-data-into-spatial-objects" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> converting data into
+spatial objects</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVnZXhwcihcInVhdFwiLFwiRXF1YXRvclwiKVxuYGBgIn0= -->
-<pre class="r"><code>regexpr(&quot;uat&quot;,&quot;Equator&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmlydGhMb2MgPC0gc3RfYXNfc2YobGlmZURGLCBjb29yZHMgPSBjKFwiYmlydGhsb25cIixcImJpcnRobGF0XCIpLFxuICAgICAgICAgICAgICAgICAgICAgY3JzPTQzMjYpXG5kZWF0aExvYyA8LSBzdF9hc19zZihsaWZlREYsIGNvb3JkcyA9IGMoXCJkZWF0aGxvblwiLFwiZGVhdGhsYXRcIiksXG4gICAgICAgICAgICAgICAgICAgICBjcnM9NDMyNilcbmBgYCJ9 -->
+<pre class="r"><code>birthLoc &lt;- st_as_sf(lifeDF, coords = c(&quot;birthlon&quot;,&quot;birthlat&quot;),
+                     crs=4326)
+deathLoc &lt;- st_as_sf(lifeDF, coords = c(&quot;deathlon&quot;,&quot;deathlat&quot;),
+                     crs=4326)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDNcbmF0dHIoLFwibWF0Y2gubGVuZ3RoXCIpXG5bMV0gM1xuYXR0cigsXCJpbmRleC50eXBlXCIpXG5bMV0gXCJjaGFyc1wiXG5hdHRyKCxcInVzZUJ5dGVzXCIpXG5bMV0gVFJVRVxuIn0= -->
-<pre><code>[1] 3
-attr(,&quot;match.length&quot;)
-[1] 3
-attr(,&quot;index.type&quot;)
-[1] &quot;chars&quot;
-attr(,&quot;useBytes&quot;)
-[1] TRUE</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Here it tells us that the search string match was found from the 3rd
-character of the given string, the search string was 4 characters in
-length. This only finds the first instance of a match.</p>
-</div>
-<div id="gregexpr" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> gregexpr</h2>
-<p>This functions in a way similar to that of regexpr, but it traces all
-instances of matches between the search string and the given string.</p>
+<p>#plotting the map</p>
+<div id="just-one-type-of-location" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> just one type of
+location</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JlZ2V4cHIoXCJpc3NcIiwgXCJNaXNzaXNzaXBpXCIpXG5gYGAifQ== -->
-<pre class="r"><code>gregexpr(&quot;iss&quot;, &quot;Mississipi&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFwdmlldyhiaXJ0aExvYylcbmBgYCJ9 -->
+<pre class="r"><code>mapview(birthLoc)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="replacing-substrings" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Replacing
-substrings</h2>
-<div id="sub" class="section level3" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> sub</h3>
-<p>replace substring - only first instance</p>
+<div id="multiple-location-types" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> multiple location
+types</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViKFwiaXNzXCIsXCJhbnRcIixcIk1pc3Npc3NpcGlcIilcbmBgYCJ9 -->
-<pre class="r"><code>sub(&quot;iss&quot;,&quot;ant&quot;,&quot;Mississipi&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFwdmlldyhsaXN0KGJpcnRoTG9jLGRlYXRoTG9jKSxjb2wucmVnaW9ucz1saXN0KFwiYmx1ZVwiLFwicmVkXCIpLGNvbD1saXN0KFwiYmx1ZVwiLFwicmVkXCIpLGxhYmVsPWxpZmVERiROYW1lKVxuYGBgIn0= -->
+<pre class="r"><code>mapview(list(birthLoc,deathLoc),col.regions=list(&quot;blue&quot;,&quot;red&quot;),col=list(&quot;blue&quot;,&quot;red&quot;),label=lifeDF$Name)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTWFudGlzc2lwaVwiXG4ifQ== -->
-<pre><code>[1] &quot;Mantissipi&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="gsub" class="section level3" number="1.4.2">
-<h3><span class="header-section-number">1.4.2</span> gsub</h3>
-<p>replace substrings - all instances</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3N1YihcImlzc1wiLFwiYW50XCIsXCJNaXNzaXNzaXBpXCIpXG5gYGAifQ== -->
-<pre class="r"><code>gsub(&quot;iss&quot;,&quot;ant&quot;,&quot;Mississipi&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTWFudGFudGlwaVwiXG4ifQ== -->
-<pre><code>[1] &quot;Mantantipi&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-</div>
-</div>
-<div id="install-stringr" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Install ‘stringr’</h1>
-<p>For more advanced regular expressions operations we need the
-‘stringr’ package. The ‘stringr’ package is part of the ‘tidyverse’
-package. One can also choose to install and call the ‘stringr’
-package.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5zdGFsbC5wYWNrYWdlcyhcInN0cmluZ3JcIilcbmxpYnJhcnkoc3RyaW5ncilcbmBgYCJ9 -->
-<pre class="r"><code>install.packages(&quot;stringr&quot;)
-library(stringr)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Let us create a string.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNTdHJpbmcgPC0gXCJEcmV3IGhhcyAzIHdhdGVybWVsb25zLCBBbGV4IGhhcyA0IGhhbWJ1cmdlcnMsIEthcmluYSBoYXMgMTIgdGFtYWxlcywgYW5kIEFubmEgaGFzIDYgc29mdCBwcmV0emVsc1wiXG5gYGAifQ== -->
-<pre class="r"><code>basicString &lt;- &quot;Drew has 3 watermelons, Alex has 4 hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels&quot;</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="pulling-out-every-instance-of-one-persons-name-from-a-string" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> pulling out every
-instance of one person’s name from a string</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNFeHRyYWN0QWxsIDwtIHN0cl9leHRyYWN0X2FsbChiYXNpY1N0cmluZywgXCJEcmV3XCIpXG5iYXNpY0V4dHJhY3RBbGxcbmBgYCJ9 -->
-<pre class="r"><code>basicExtractAll &lt;- str_extract_all(basicString, &quot;Drew&quot;)
-basicExtractAll</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIkRyZXdcIlxuIn0= -->
-<pre><code>[[1]]
-[1] &quot;Drew&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>The result is a list.</p>
-</div>
-<div id="replacing-pattern-with-a-replacement-string" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> replacing pattern
-with a replacement string</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNSZXBsYWNlQWxsIDwtIHN0cl9yZXBsYWNlX2FsbChiYXNpY1N0cmluZywgXCJBbGV4XCIsIFwiU2hhd25cIilcbmJhc2ljUmVwbGFjZUFsbFxuYGBgIn0= -->
-<pre class="r"><code>basicReplaceAll &lt;- str_replace_all(basicString, &quot;Alex&quot;, &quot;Shawn&quot;)
-basicReplaceAll</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiRHJldyBoYXMgMyB3YXRlcm1lbG9ucywgU2hhd24gaGFzIDQgaGFtYnVyZ2VycywgS2FyaW5hIGhhcyAxMiB0YW1hbGVzLCBhbmQgQW5uYSBoYXMgNiBzb2Z0IHByZXR6ZWxzXCJcbiJ9 -->
-<pre><code>[1] &quot;Drew has 3 watermelons, Shawn has 4 hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="matching-character-set" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> matching character
-set</h2>
-<div id="here-matching-vowels" class="section level3" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> here matching
-vowels</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hhclNldHMwMSA8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsXCJbYWVpb3VdXCIpXG5jaGFyU2V0czAxXG5gYGAifQ== -->
-<pre class="r"><code>charSets01 &lt;- str_extract_all(basicString,&quot;[aeiou]&quot;)
-charSets01</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiBbMV0gXCJlXCIgXCJhXCIgXCJhXCIgXCJlXCIgXCJlXCIgXCJvXCIgXCJlXCIgXCJhXCIgXCJhXCIgXCJ1XCIgXCJlXCIgXCJhXCIgXCJpXCIgXCJhXCIgXCJhXCIgXCJhXCIgXCJhXCIgXCJlXCIgXCJhXCIgXCJhXCIgXCJhXCIgXCJvXCIgXCJlXCIgXCJlXCJcbiJ9 -->
-<pre><code>[[1]]
- [1] &quot;e&quot; &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;e&quot; &quot;o&quot; &quot;e&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;e&quot; &quot;a&quot; &quot;i&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;o&quot; &quot;e&quot; &quot;e&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="matching-character-range---are-case-sensitive" class="section level3" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> matching character
-range - are case sensitive</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hhclNldHMwMiA8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsIFwiW0EtWl1cIilcbmNoYXJTZXRzMDJcbmBgYCJ9 -->
-<pre class="r"><code>charSets02 &lt;- str_extract_all(basicString, &quot;[A-Z]&quot;)
-charSets02</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIkRcIiBcIkFcIiBcIktcIiBcIkFcIlxuIn0= -->
-<pre><code>[[1]]
-[1] &quot;D&quot; &quot;A&quot; &quot;K&quot; &quot;A&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="matching-number-range" class="section level3" number="2.3.3">
-<h3><span class="header-section-number">2.3.3</span> matching number
-range</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hhclNldHMwMyA8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsIFwiWzAtOV1cIilcbmNoYXJTZXRzMDNcbmBgYCJ9 -->
-<pre class="r"><code>charSets03 &lt;- str_extract_all(basicString, &quot;[0-9]&quot;)
-charSets03</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIjNcIiBcIjRcIiBcIjFcIiBcIjJcIiBcIjZcIlxuIn0= -->
-<pre><code>[[1]]
-[1] &quot;3&quot; &quot;4&quot; &quot;1&quot; &quot;2&quot; &quot;6&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="matching-mix-of-charter-types" class="section level3" number="2.3.4">
-<h3><span class="header-section-number">2.3.4</span> matching mix of
-charter types</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hhcnNldDA0IDwtIHN0cl9leHRyYWN0X2FsbChiYXNpY1N0cmluZywgXCJbQS1DdC16MS02XVwiKVxuY2hhcnNldDA0XG5gYGAifQ== -->
-<pre class="r"><code>charset04 &lt;- str_extract_all(basicString, &quot;[A-Ct-z1-6]&quot;)
-charset04</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiBbMV0gXCJ3XCIgXCIzXCIgXCJ3XCIgXCJ0XCIgXCJBXCIgXCJ4XCIgXCI0XCIgXCJ1XCIgXCIxXCIgXCIyXCIgXCJ0XCIgXCJBXCIgXCI2XCIgXCJ0XCIgXCJ0XCIgXCJ6XCJcbiJ9 -->
-<pre><code>[[1]]
- [1] &quot;w&quot; &quot;3&quot; &quot;w&quot; &quot;t&quot; &quot;A&quot; &quot;x&quot; &quot;4&quot; &quot;u&quot; &quot;1&quot; &quot;2&quot; &quot;t&quot; &quot;A&quot; &quot;6&quot; &quot;t&quot; &quot;t&quot; &quot;z&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-</div>
-<div id="metacharacters" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Metacharacters</h2>
-<div id="matching-spaces" class="section level3" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> matching
-spaces</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLFwiXFxcXHNcIilcbmBgYCJ9 -->
-<pre class="r"><code>str_extract_all(basicString,&quot;\\s&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiBbMV0gXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCIgXCJcbiJ9 -->
-<pre><code>[[1]]
- [1] &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="matching-alphanumeric-characters" class="section level3" number="2.4.2">
-<h3><span class="header-section-number">2.4.2</span> matching
-alphanumeric characters</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCBcIlxcXFx3XCIpXG5gYGAifQ== -->
-<pre class="r"><code>str_extract_all(basicString, &quot;\\w&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiBbMV0gXCJEXCIgXCJyXCIgXCJlXCIgXCJ3XCIgXCJoXCIgXCJhXCIgXCJzXCIgXCIzXCIgXCJ3XCIgXCJhXCIgXCJ0XCIgXCJlXCIgXCJyXCIgXCJtXCIgXCJlXCIgXCJsXCIgXCJvXCIgXCJuXCIgXCJzXCIgXCJBXCIgXCJsXCIgXCJlXCIgXCJ4XCIgXCJoXCIgXCJhXCJcblsyNl0gXCJzXCIgXCI0XCIgXCJoXCIgXCJhXCIgXCJtXCIgXCJiXCIgXCJ1XCIgXCJyXCIgXCJnXCIgXCJlXCIgXCJyXCIgXCJzXCIgXCJLXCIgXCJhXCIgXCJyXCIgXCJpXCIgXCJuXCIgXCJhXCIgXCJoXCIgXCJhXCIgXCJzXCIgXCIxXCIgXCIyXCIgXCJ0XCIgXCJhXCJcbls1MV0gXCJtXCIgXCJhXCIgXCJsXCIgXCJlXCIgXCJzXCIgXCJhXCIgXCJuXCIgXCJkXCIgXCJBXCIgXCJuXCIgXCJuXCIgXCJhXCIgXCJoXCIgXCJhXCIgXCJzXCIgXCI2XCIgXCJzXCIgXCJvXCIgXCJmXCIgXCJ0XCIgXCJwXCIgXCJyXCIgXCJlXCIgXCJ0XCIgXCJ6XCJcbls3Nl0gXCJlXCIgXCJsXCIgXCJzXCJcbiJ9 -->
-<pre><code>[[1]]
- [1] &quot;D&quot; &quot;r&quot; &quot;e&quot; &quot;w&quot; &quot;h&quot; &quot;a&quot; &quot;s&quot; &quot;3&quot; &quot;w&quot; &quot;a&quot; &quot;t&quot; &quot;e&quot; &quot;r&quot; &quot;m&quot; &quot;e&quot; &quot;l&quot; &quot;o&quot; &quot;n&quot; &quot;s&quot; &quot;A&quot; &quot;l&quot; &quot;e&quot; &quot;x&quot; &quot;h&quot; &quot;a&quot;
-[26] &quot;s&quot; &quot;4&quot; &quot;h&quot; &quot;a&quot; &quot;m&quot; &quot;b&quot; &quot;u&quot; &quot;r&quot; &quot;g&quot; &quot;e&quot; &quot;r&quot; &quot;s&quot; &quot;K&quot; &quot;a&quot; &quot;r&quot; &quot;i&quot; &quot;n&quot; &quot;a&quot; &quot;h&quot; &quot;a&quot; &quot;s&quot; &quot;1&quot; &quot;2&quot; &quot;t&quot; &quot;a&quot;
-[51] &quot;m&quot; &quot;a&quot; &quot;l&quot; &quot;e&quot; &quot;s&quot; &quot;a&quot; &quot;n&quot; &quot;d&quot; &quot;A&quot; &quot;n&quot; &quot;n&quot; &quot;a&quot; &quot;h&quot; &quot;a&quot; &quot;s&quot; &quot;6&quot; &quot;s&quot; &quot;o&quot; &quot;f&quot; &quot;t&quot; &quot;p&quot; &quot;r&quot; &quot;e&quot; &quot;t&quot; &quot;z&quot;
-[76] &quot;e&quot; &quot;l&quot; &quot;s&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="matching-digits-digits" class="section level3" number="2.4.3">
-<h3><span class="header-section-number">2.4.3</span> matching digits
-digits</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCBcIlxcXFxkXCIpXG5gYGAifQ== -->
-<pre class="r"><code>str_extract_all(basicString, &quot;\\d&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIjNcIiBcIjRcIiBcIjFcIiBcIjJcIiBcIjZcIlxuIn0= -->
-<pre><code>[[1]]
-[1] &quot;3&quot; &quot;4&quot; &quot;1&quot; &quot;2&quot; &quot;6&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="quantifiers---specifying-how-many-characters-are-expected" class="section level3" number="2.4.4">
-<h3><span class="header-section-number">2.4.4</span> Quantifiers -
-specifying how many characters are expected</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucXVhbnRFeGFtcGxlIDwtIFwiQi5CQi5CQkIuQkJCQlwiIFxuc3RyX2V4dHJhY3RfYWxsKHF1YW50RXhhbXBsZSwgXCJCK1wiKVxuYGBgIn0= -->
-<pre class="r"><code>quantExample &lt;- &quot;B.BB.BBB.BBBB&quot; 
-str_extract_all(quantExample, &quot;B+&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIkJcIiAgICBcIkJCXCIgICBcIkJCQlwiICBcIkJCQkJcIlxuIn0= -->
-<pre><code>[[1]]
-[1] &quot;B&quot;    &quot;BB&quot;   &quot;BBB&quot;  &quot;BBBB&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Here the function matches Bs till end of the group of Bs</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX2V4dHJhY3RfYWxsKHF1YW50RXhhbXBsZSwgXCJCezJ9XCIpXG5gYGAifQ== -->
-<pre class="r"><code>str_extract_all(quantExample, &quot;B{2}&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIkJCXCIgXCJCQlwiIFwiQkJcIiBcIkJCXCJcbiJ9 -->
-<pre><code>[[1]]
-[1] &quot;BB&quot; &quot;BB&quot; &quot;BB&quot; &quot;BB&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>This matches exactly two Bs till the end of the group of Bs</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX2V4dHJhY3RfYWxsKHF1YW50RXhhbXBsZSwgXCJCezIsNH1cIilcbmBgYCJ9 -->
-<pre class="r"><code>str_extract_all(quantExample, &quot;B{2,4}&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIkJCXCIgICBcIkJCQlwiICBcIkJCQkJcIlxuIn0= -->
-<pre><code>[[1]]
-[1] &quot;BB&quot;   &quot;BBB&quot;  &quot;BBBB&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>This matches any number from 2 to 4</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX2V4dHJhY3RfYWxsKHF1YW50RXhhbXBsZSwgXCJCezIsfVwiKVxuYGBgIn0= -->
-<pre class="r"><code>str_extract_all(quantExample, &quot;B{2,}&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIkJCXCIgICBcIkJCQlwiICBcIkJCQkJcIlxuIn0= -->
-<pre><code>[[1]]
-[1] &quot;BB&quot;   &quot;BBB&quot;  &quot;BBBB&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="picking-up-words-using-quantifier" class="section level3" number="2.4.5">
-<h3><span class="header-section-number">2.4.5</span> Picking up words
-using quantifier</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLFwiW0EtWmEtel0rXCIpXG5gYGAifQ== -->
-<pre class="r"><code>str_extract_all(basicString,&quot;[A-Za-z]+&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiBbMV0gXCJEcmV3XCIgICAgICAgIFwiaGFzXCIgICAgICAgICBcIndhdGVybWVsb25zXCIgXCJBbGV4XCIgICAgICAgIFwiaGFzXCIgICAgICAgICBcImhhbWJ1cmdlcnNcIiAgXCJLYXJpbmFcIiAgICAgXG4gWzhdIFwiaGFzXCIgICAgICAgICBcInRhbWFsZXNcIiAgICAgXCJhbmRcIiAgICAgICAgIFwiQW5uYVwiICAgICAgICBcImhhc1wiICAgICAgICAgXCJzb2Z0XCIgICAgICAgIFwicHJldHplbHNcIiAgIFxuIn0= -->
-<pre><code>[[1]]
- [1] &quot;Drew&quot;        &quot;has&quot;         &quot;watermelons&quot; &quot;Alex&quot;        &quot;has&quot;         &quot;hamburgers&quot;  &quot;Karina&quot;     
- [8] &quot;has&quot;         &quot;tamales&quot;     &quot;and&quot;         &quot;Anna&quot;        &quot;has&quot;         &quot;soft&quot;        &quot;pretzels&quot;   </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="find-numbers" class="section level3" number="2.4.6">
-<h3><span class="header-section-number">2.4.6</span> find numbers</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLFwiXFxcXGR7MSwyfVwiKVxuYGBgIn0= -->
-<pre class="r"><code>str_extract_all(basicString,&quot;\\d{1,2}&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIjNcIiAgXCI0XCIgIFwiMTJcIiBcIjZcIiBcbiJ9 -->
-<pre><code>[[1]]
-[1] &quot;3&quot;  &quot;4&quot;  &quot;12&quot; &quot;6&quot; </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Find the quantity of each food item ie. each number directly followed
-by name of the food item separated by space</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCBcIlxcXFxkezEsMn1cXFxcc1xcXFx3K1xcXFxzKlxcXFx3KlwiKVxuYGBgIn0= -->
-<pre class="r"><code>str_extract_all(basicString, &quot;\\d{1,2}\\s\\w+\\s*\\w*&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIjMgd2F0ZXJtZWxvbnNcIiAgIFwiNCBoYW1idXJnZXJzXCIgICAgXCIxMiB0YW1hbGVzXCIgICAgICBcIjYgc29mdCBwcmV0emVsc1wiXG4ifQ== -->
-<pre><code>[[1]]
-[1] &quot;3 watermelons&quot;   &quot;4 hamburgers&quot;    &quot;12 tamales&quot;      &quot;6 soft pretzels&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="capture-groups" class="section level3" number="2.4.7">
-<h3><span class="header-section-number">2.4.7</span> Capture groups</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FwdHVyZUdyb3VwMSA8LSBzdHJfbWF0Y2hfYWxsKGJhc2ljU3RyaW5nLFwiW0EtWl1bYS16XStcXFxcc1xcXFx3K1xcXFxzXFxcXGR7MSwyfVxcXFxzXFxcXHcrXFxcXHMqXFxcXHcqXCIpXG5jYXB0dXJlR3JvdXAxXG5gYGAifQ== -->
-<pre class="r"><code>captureGroup1 &lt;- str_match_all(basicString,&quot;[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*&quot;)
-captureGroup1</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiAgICAgWywxXSAgICAgICAgICAgICAgICAgICAgICBcblsxLF0gXCJEcmV3IGhhcyAzIHdhdGVybWVsb25zXCIgIFxuWzIsXSBcIkFsZXggaGFzIDQgaGFtYnVyZ2Vyc1wiICAgXG5bMyxdIFwiS2FyaW5hIGhhcyAxMiB0YW1hbGVzXCIgICBcbls0LF0gXCJBbm5hIGhhcyA2IHNvZnQgcHJldHplbHNcIlxuIn0= -->
-<pre><code>[[1]]
-     [,1]                      
-[1,] &quot;Drew has 3 watermelons&quot;  
-[2,] &quot;Alex has 4 hamburgers&quot;   
-[3,] &quot;Karina has 12 tamales&quot;   
-[4,] &quot;Anna has 6 soft pretzels&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Leaving out ‘has’ and preparing data in columns. It is basically the
-same formula as captureGroup1, just brackets around those strings which
-are collected as list</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FwdHVyZUdyb3VwMiA8LXN0cl9tYXRjaF9hbGwoYmFzaWNTdHJpbmcsXCIoW0EtWl1bYS16XSspXFxcXHNcXFxcdytcXFxccyhcXFxcZHsxLDJ9KVxcXFxzKFxcXFx3K1xcXFxzKlxcXFx3KilcIilcbmNhcHR1cmVHcm91cDJcbmBgYCJ9 -->
-<pre class="r"><code>captureGroup2 &lt;-str_match_all(basicString,&quot;([A-Z][a-z]+)\\s\\w+\\s(\\d{1,2})\\s(\\w+\\s*\\w*)&quot;)
-captureGroup2</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiAgICAgWywxXSAgICAgICAgICAgICAgICAgICAgICAgWywyXSAgICAgWywzXSBbLDRdICAgICAgICAgICBcblsxLF0gXCJEcmV3IGhhcyAzIHdhdGVybWVsb25zXCIgICBcIkRyZXdcIiAgIFwiM1wiICBcIndhdGVybWVsb25zXCIgIFxuWzIsXSBcIkFsZXggaGFzIDQgaGFtYnVyZ2Vyc1wiICAgIFwiQWxleFwiICAgXCI0XCIgIFwiaGFtYnVyZ2Vyc1wiICAgXG5bMyxdIFwiS2FyaW5hIGhhcyAxMiB0YW1hbGVzXCIgICAgXCJLYXJpbmFcIiBcIjEyXCIgXCJ0YW1hbGVzXCIgICAgICBcbls0LF0gXCJBbm5hIGhhcyA2IHNvZnQgcHJldHplbHNcIiBcIkFubmFcIiAgIFwiNlwiICBcInNvZnQgcHJldHplbHNcIlxuIn0= -->
-<pre><code>[[1]]
-     [,1]                       [,2]     [,3] [,4]           
-[1,] &quot;Drew has 3 watermelons&quot;   &quot;Drew&quot;   &quot;3&quot;  &quot;watermelons&quot;  
-[2,] &quot;Alex has 4 hamburgers&quot;    &quot;Alex&quot;   &quot;4&quot;  &quot;hamburgers&quot;   
-[3,] &quot;Karina has 12 tamales&quot;    &quot;Karina&quot; &quot;12&quot; &quot;tamales&quot;      
-[4,] &quot;Anna has 6 soft pretzels&quot; &quot;Anna&quot;   &quot;6&quot;  &quot;soft pretzels&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="converting-to-dataframe" class="section level3" number="2.4.8">
-<h3><span class="header-section-number">2.4.8</span> converting to
-dataframe</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGljbmljIDwtIGRhdGEuZnJhbWUoY2FwdHVyZUdyb3VwMltbMV1dWywtMV0pXG5jb2xuYW1lcyhwaWNuaWMpIDwtIGMoXCJOYW1lXCIsIFwiUXVhbnRpdHlcIiwgXCJJdGVtXCIpXG5waWNuaWNcbmBgYCJ9 -->
-<pre class="r"><code>picnic &lt;- data.frame(captureGroup2[[1]][,-1])
-colnames(picnic) &lt;- c(&quot;Name&quot;, &quot;Quantity&quot;, &quot;Item&quot;)
-picnic</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NCwibmNvbCI6Mywic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbNCDDlyAzXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVJZVXZETUJDOXR1bm1LbFBCUCtBZmFFRTN4Sy9DRUVRUUZJVjl2VzFaVjB6VGtxWjIrc2xmUGszYW5HZ0NwUy92N3QyN3V6d3Zsck5rbVFCQUJDd0tJWW9OaFBqMTVTNjlBV0NodVFUQVlHTC9lNU4wM21jQ25KbVB1UUJiS040UnZoVjg3L0RvQVZVaDhUY2lEZjZ2REdZRTVnNkVsMWRFWFh2Snh4MXFya291S3RrNEt0bGh1V3BWemhVeFk0MGxDazdYYVZOdDlVV3R1UDdrb3ZFR2lpV1dKbk53aWFqTlIwTTZmUFRVb3RTRi9xRFl2ZWFsVjJTaXFpNmpRbE03d1JmMGgvbHVhNEVOdVJHWmJGQmp0bFhXRStEZ1NjWlZyUXM3TFlSMjd5TlBIQ2lQT0cybDdXU1RybmV0ZkV2blhqaXFaVzQ5ZTJvNFU0ZlpIeHdOWFlUZlRqNmk1K1F5THlUdEpoYTQ0b0lxYi9pN2d5ZG1ILzA2c3RvOHZxWTVEZHRrdXRKSWttUmRDV0w2eWVId0EvNk01a1dNQWdBQSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["Name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Quantity"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Item"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Drew","2":"3","3":"watermelons"},{"1":"Alex","2":"4","3":"hamburgers"},{"1":"Karina","2":"12","3":"tamales"},{"1":"Anna","2":"6","3":"soft pretzels"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p><a href="https://github.com/rstudio/cheatsheets/blob/main/strings.pdf">Stringr
-cheatsheet1</a></p>
-<p><a href="https://regenerativetoday.com/a-complete-beginners-guide-to-regular-expressions-in-r/">Stringr
-cheatsheet2</a></p>
-</div>
-<div id="extracting-urls" class="section level3" number="2.4.9">
-<h3><span class="header-section-number">2.4.9</span> Extracting
-URLs</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXJscyA8LSBcIkhlcmUgYXJlIHVybHMgT05FIHd3dy5qbnUuYWMuaW4sIFRXTyBodHRwczovL2FyanVuZ2hvc2guaW4sIFRIUkVFIGh0dHA6Ly9kaGFydGkud29yZHByZXNzLmNvbVwiXG5zdHJfZXh0cmFjdF9hbGwodXJscywgXCIoaHR0cHM/KT8oOi8vKT8od3d3XFxcXC4pP1xcXFx3K1xcXFwuW2EtekFfWjAtOS0uXStcIilcbmBgYCJ9 -->
-<pre class="r"><code>urls &lt;- &quot;Here are urls ONE www.jnu.ac.in, TWO https://arjunghosh.in, THREE http://dharti.wordpress.com&quot;
-str_extract_all(urls, &quot;(https?)?(://)?(www\\.)?\\w+\\.[a-zA_Z0-9-.]+&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcInd3dy5qbnUuYWMuaW5cIiAgICAgICAgICAgICAgIFwiaHR0cHM6Ly9hcmp1bmdob3NoLmluXCIgICAgICAgXCJodHRwOi8vZGhhcnRpLndvcmRwcmVzcy5jb21cIlxuIn0= -->
-<pre><code>[[1]]
-[1] &quot;www.jnu.ac.in&quot;               &quot;https://arjunghosh.in&quot;       &quot;http://dharti.wordpress.com&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="extract-all-capitalized-words" class="section level3" number="2.4.10">
-<h3><span class="header-section-number">2.4.10</span> extract all
-capitalized words</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmV3TmFtZXMgPC0gXCJNeSBuYW1lIGlzIEFudGhvbnkgR29uc2FsdmVzIGFuZCBJIGFtIG5vdCBBbWFyIEFrYmFyIEFudGhvbnlcIiBcbnN0cl9leHRyYWN0X2FsbChmZXdOYW1lcywgXCIoW0EtWl1bYS16XSspXCIpW1sxXV1cbmBgYCJ9 -->
-<pre class="r"><code>fewNames &lt;- &quot;My name is Anthony Gonsalves and I am not Amar Akbar Anthony&quot; 
-str_extract_all(fewNames, &quot;([A-Z][a-z]+)&quot;)[[1]]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTXlcIiAgICAgICAgXCJBbnRob255XCIgICBcIkdvbnNhbHZlc1wiIFwiQW1hclwiICAgICAgXCJBa2JhclwiICAgICBcIkFudGhvbnlcIiAgXG4ifQ== -->
-<pre><code>[1] &quot;My&quot;        &quot;Anthony&quot;   &quot;Gonsalves&quot; &quot;Amar&quot;      &quot;Akbar&quot;     &quot;Anthony&quot;  </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="two-names-together" class="section level3" number="2.4.11">
-<h3><span class="header-section-number">2.4.11</span> two names
-together</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX2V4dHJhY3RfYWxsKGZld05hbWVzLFwiKFtBLVpdW2Etel0rKVxcXFxzKFtBLVpdW2Etel0rKVwiKVxuYGBgIn0= -->
-<pre class="r"><code>str_extract_all(fewNames,&quot;([A-Z][a-z]+)\\s([A-Z][a-z]+)&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIkFudGhvbnkgR29uc2FsdmVzXCIgXCJBbWFyIEFrYmFyXCIgICAgICAgXG4ifQ== -->
-<pre><code>[[1]]
-[1] &quot;Anthony Gonsalves&quot; &quot;Amar Akbar&quot;       </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="multiple-names-together" class="section level3" number="2.4.12">
-<h3><span class="header-section-number">2.4.12</span> multiple names
-together</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX2V4dHJhY3RfYWxsKGZld05hbWVzLCBcIigoW0EtWl1bYS16XSspXFxcXHM/KXsxLH1cIilcbmBgYCJ9 -->
-<pre class="r"><code>str_extract_all(fewNames, &quot;(([A-Z][a-z]+)\\s?){1,}&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIk15IFwiICAgICAgICAgICAgICAgIFwiQW50aG9ueSBHb25zYWx2ZXMgXCIgXCJBbWFyIEFrYmFyIEFudGhvbnlcIlxuIn0= -->
-<pre><code>[[1]]
-[1] &quot;My &quot;                &quot;Anthony Gonsalves &quot; &quot;Amar Akbar Anthony&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="strip-extra-spaces" class="section level3" number="2.4.13">
-<h3><span class="header-section-number">2.4.13</span> strip extra
-spaces</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHJpbXdzKHN0cl9leHRyYWN0X2FsbChmZXdOYW1lcyxcIigoW0EtWl1bYS16XSspXFxcXHM/KXsxLH1cIilbWzFdXSlcbmBgYCJ9 -->
-<pre class="r"><code>trimws(str_extract_all(fewNames,&quot;(([A-Z][a-z]+)\\s?){1,}&quot;)[[1]])</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTXlcIiAgICAgICAgICAgICAgICAgXCJBbnRob255IEdvbnNhbHZlc1wiICBcIkFtYXIgQWtiYXIgQW50aG9ueVwiXG4ifQ== -->
-<pre><code>[1] &quot;My&quot;                 &quot;Anthony Gonsalves&quot;  &quot;Amar Akbar Anthony&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxua2luZyA8LSBcIlRoZSBraW5nIG9mIEVuZ2xhbmQgaXMgQ2hhcmxlcyBQaGlsbGlwIEFydGh1ciBHZW9yZ2UsIGFsc28ga25vd24gYXMgQ2hhcmxlcyBJSUlcIlxuc3RyX2V4dHJhY3RfYWxsKGtpbmcsIFwiKCgoW0EtWl1bYS16XSspXFxcXHMqKSspezIsfVwiKVxuYGBgIn0= -->
-<pre class="r"><code>king &lt;- &quot;The king of England is Charles Phillip Arthur George, also known as Charles III&quot;
-str_extract_all(king, &quot;((([A-Z][a-z]+)\\s*)+){2,}&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIkNoYXJsZXMgUGhpbGxpcCBBcnRodXIgR2VvcmdlXCJcbiJ9 -->
-<pre><code>[[1]]
-[1] &quot;Charles Phillip Arthur George&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
@@ -2300,9 +1817,8 @@ Menu</a></p>
 <!-- rnb-text-end -->
 </div>
 </div>
-</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IFJlZ3VsYXIgRXhwcmVzc2lvbnMiDQpvdXRwdXQ6IA0KICBodG1sX25vdGVib29rOiANCiAgICBudW1iZXJfc2VjdGlvbnM6IHRydWUNCmVkaXRvcl9vcHRpb25zOiANCiAgbWFya2Rvd246IA0KICAgIHdyYXA6IDcyDQotLS0NCg0KW01haW4NCk1lbnVdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzLm5iLmh0bWwpDQoNCiMgUmVndWxhciBFeHByZXNzaW9ucw0KDQpJbiB0aGUgcHJldmlvdXMgbGVzc29uIHdlIGxvb2tlZCBhdCBvbmUgaW5zdGFuY2Ugb2YgYSByZWd1bGFyDQpleHByZXNzaW9ucyBmdW5jdGlvbi4gQnV0IGxldCB1cyBub3cgbG9vayBhdCBpdCBhdCBncmVhdGVyIGRldGFpbC4NCg0KIyMgZ3JlcA0KDQpncmVwIGdpdmVzIHVzIHRoZSBsaW5lIG9yIHZlY3RvciBpbmRleCB3aGVyZSBhIHBhcnRpY3VsYXIgc3Vic3RyaW5nDQpwYXR0ZXJuIG1hdGNoIGlzIGZvdW5kLg0KDQpgYGB7cn0NCnNvbm5ldHMgPC0gcmVhZExpbmVzKCJodHRwczovL3d3dy5ndXRlbmJlcmcub3JnL2ZpbGVzLzEwNDEvMTA0MS0wLnR4dCIpDQpncmVwKCJTaGFsbCBJIGNvbXBhcmUiLCBzb25uZXRzKQ0KYGBgDQoNClRoZSByZXN1bHQgaXMgYSB2ZWN0b3INCg0KYGBge3J9DQp3ZWVrDQpncmVwKCJlIix3ZWVrKQ0KYGBgDQoNCkl0IGdpdmVzIGFsbCB0aGUgaW5kaWNlcyB3aGVyZSB0aGUgcGF0dGVybiBoYXMgZm91bmQgYSBtYXRjaC4NCg0KV2UgY2FuIGFsc28gcmV0dXJuIHRoZSB2YWx1ZXMgaW5zdGVhZCBvZiB0aGUgaW5kaWNlcy4NCg0KYGBge3J9DQpncmVwKCJlIix3ZWVrLCB2YWx1ZSA9IFRSVUUpDQpgYGANCg0KIyMgcmVnZXhwcg0KDQpUaGlzIHRlbGxzIHVzIGlmIGEgc2VhcmNoIHN0cmluZyBpcyBwcmVzZW50IGluIGEgZ2l2ZW4gc3RyaW5nIGFuZCBhbHNvIGdpdmVzIHVzIHRoZSBzdGFydGluZyBwb3NpdGlvbiBvZiB0aGUgc2VhcmNoIHN0cmluZyB3aXRoaW4gdGhlIGdpdmVuIHN0cmluZy4NCg0KYGBge3J9DQpyZWdleHByKCJ1YXQiLCJFcXVhdG9yIikNCmBgYA0KSGVyZSBpdCB0ZWxscyB1cyB0aGF0IHRoZSBzZWFyY2ggc3RyaW5nIG1hdGNoIHdhcyBmb3VuZCBmcm9tIHRoZSAzcmQgY2hhcmFjdGVyIG9mIHRoZSBnaXZlbiBzdHJpbmcsIHRoZSBzZWFyY2ggc3RyaW5nIHdhcyA0IGNoYXJhY3RlcnMgaW4gbGVuZ3RoLiBUaGlzIG9ubHkgZmluZHMgdGhlIGZpcnN0IGluc3RhbmNlIG9mIGEgbWF0Y2guDQoNCiMjIGdyZWdleHByIA0KDQpUaGlzIGZ1bmN0aW9ucyBpbiBhIHdheSBzaW1pbGFyIHRvIHRoYXQgb2YgcmVnZXhwciwgYnV0IGl0IHRyYWNlcyBhbGwgaW5zdGFuY2VzIG9mIG1hdGNoZXMgYmV0d2VlbiB0aGUgc2VhcmNoIHN0cmluZyBhbmQgdGhlIGdpdmVuIHN0cmluZy4NCg0KYGBge3J9DQpncmVnZXhwcigiaXNzIiwgIk1pc3Npc3NpcGkiKQ0KYGBgDQojIyBSZXBsYWNpbmcgc3Vic3RyaW5ncw0KDQojIyMgc3ViDQoNCnJlcGxhY2Ugc3Vic3RyaW5nIC0gb25seSBmaXJzdCBpbnN0YW5jZSANCg0KYGBge3J9DQpzdWIoImlzcyIsImFudCIsIk1pc3Npc3NpcGkiKQ0KYGBgDQoNCiMjIyBnc3ViIA0KcmVwbGFjZSBzdWJzdHJpbmdzIC0gYWxsIGluc3RhbmNlcyANCg0KYGBge3J9DQpnc3ViKCJpc3MiLCJhbnQiLCJNaXNzaXNzaXBpIikNCmBgYA0KDQojIEluc3RhbGwgJ3N0cmluZ3InDQoNCkZvciBtb3JlIGFkdmFuY2VkIHJlZ3VsYXIgZXhwcmVzc2lvbnMgb3BlcmF0aW9ucyB3ZSBuZWVkIHRoZSAnc3RyaW5ncicgcGFja2FnZS4gVGhlICdzdHJpbmdyJyBwYWNrYWdlIGlzIHBhcnQgb2YgdGhlICd0aWR5dmVyc2UnIHBhY2thZ2UuIE9uZSBjYW4gYWxzbyBjaG9vc2UgdG8gaW5zdGFsbCBhbmQgY2FsbCB0aGUgJ3N0cmluZ3InIHBhY2thZ2UuDQoNCmBgYHtyfQ0KaW5zdGFsbC5wYWNrYWdlcygic3RyaW5nciIpDQpsaWJyYXJ5KHN0cmluZ3IpDQpgYGANCg0KTGV0IHVzIGNyZWF0ZSBhIHN0cmluZy4NCg0KYGBge3J9DQpiYXNpY1N0cmluZyA8LSAiRHJldyBoYXMgMyB3YXRlcm1lbG9ucywgQWxleCBoYXMgNCBoYW1idXJnZXJzLCBLYXJpbmEgaGFzIDEyIHRhbWFsZXMsIGFuZCBBbm5hIGhhcyA2IHNvZnQgcHJldHplbHMiDQpgYGANCg0KIyMgcHVsbGluZyBvdXQgZXZlcnkgaW5zdGFuY2Ugb2Ygb25lIHBlcnNvbidzIG5hbWUgZnJvbSBhIHN0cmluZw0KDQpgYGB7cn0NCmJhc2ljRXh0cmFjdEFsbCA8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsICJEcmV3IikNCmJhc2ljRXh0cmFjdEFsbA0KYGBgDQpUaGUgcmVzdWx0IGlzIGEgbGlzdC4NCg0KDQojIyByZXBsYWNpbmcgcGF0dGVybiB3aXRoIGEgcmVwbGFjZW1lbnQgc3RyaW5nDQoNCmBgYHtyfQ0KYmFzaWNSZXBsYWNlQWxsIDwtIHN0cl9yZXBsYWNlX2FsbChiYXNpY1N0cmluZywgIkFsZXgiLCAiU2hhd24iKQ0KYmFzaWNSZXBsYWNlQWxsDQpgYGANCg0KIyMgbWF0Y2hpbmcgY2hhcmFjdGVyIHNldA0KDQojIyMgaGVyZSBtYXRjaGluZyB2b3dlbHMgDQoNCmBgYHtyfQ0KY2hhclNldHMwMSA8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsIlthZWlvdV0iKQ0KY2hhclNldHMwMQ0KYGBgDQoNCiMjIyBtYXRjaGluZyBjaGFyYWN0ZXIgcmFuZ2UgLSBhcmUgY2FzZSBzZW5zaXRpdmUgDQoNCmBgYHtyfQ0KY2hhclNldHMwMiA8LSBzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsICJbQS1aXSIpDQpjaGFyU2V0czAyDQpgYGANCg0KDQojIyMgbWF0Y2hpbmcgbnVtYmVyIHJhbmdlIA0KDQpgYGB7cn0NCmNoYXJTZXRzMDMgPC0gc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCAiWzAtOV0iKQ0KY2hhclNldHMwMw0KYGBgDQoNCg0KIyMjIG1hdGNoaW5nIG1peCBvZiBjaGFydGVyIHR5cGVzDQoNCmBgYHtyfQ0KY2hhcnNldDA0IDwtIHN0cl9leHRyYWN0X2FsbChiYXNpY1N0cmluZywgIltBLUN0LXoxLTZdIikNCmNoYXJzZXQwNA0KYGBgDQoNCiMjIE1ldGFjaGFyYWN0ZXJzIA0KDQojIyMgbWF0Y2hpbmcgc3BhY2VzIA0KDQpgYGB7cn0NCnN0cl9leHRyYWN0X2FsbChiYXNpY1N0cmluZywiXFxzIikNCg0KYGBgDQoNCiMjIyBtYXRjaGluZyBhbHBoYW51bWVyaWMgY2hhcmFjdGVycw0KDQpgYGB7cn0NCnN0cl9leHRyYWN0X2FsbChiYXNpY1N0cmluZywgIlxcdyIpDQpgYGANCg0KIyMjIG1hdGNoaW5nIGRpZ2l0cyBkaWdpdHMNCg0KYGBge3J9DQpzdHJfZXh0cmFjdF9hbGwoYmFzaWNTdHJpbmcsICJcXGQiKQ0KYGBgDQoNCiMjIyBRdWFudGlmaWVycyAtIHNwZWNpZnlpbmcgaG93IG1hbnkgY2hhcmFjdGVycyBhcmUgZXhwZWN0ZWQgDQoNCmBgYHtyfQ0KcXVhbnRFeGFtcGxlIDwtICJCLkJCLkJCQi5CQkJCIiANCnN0cl9leHRyYWN0X2FsbChxdWFudEV4YW1wbGUsICJCKyIpDQpgYGANCkhlcmUgdGhlIGZ1bmN0aW9uIG1hdGNoZXMgQnMgdGlsbCBlbmQgb2YgdGhlIGdyb3VwIG9mIEJzDQoNCmBgYHtyfQ0Kc3RyX2V4dHJhY3RfYWxsKHF1YW50RXhhbXBsZSwgIkJ7Mn0iKQ0KYGBgDQpUaGlzIG1hdGNoZXMgZXhhY3RseSB0d28gQnMgdGlsbCB0aGUgZW5kIG9mIHRoZSBncm91cCBvZiBCcyANCg0KYGBge3J9DQpzdHJfZXh0cmFjdF9hbGwocXVhbnRFeGFtcGxlLCAiQnsyLDR9IikNCmBgYA0KVGhpcyBtYXRjaGVzIGFueSBudW1iZXIgZnJvbSAyIHRvIDQNCg0KYGBge3J9DQpzdHJfZXh0cmFjdF9hbGwocXVhbnRFeGFtcGxlLCAiQnsyLH0iKQ0KYGBgDQojIyMgUGlja2luZyB1cCB3b3JkcyB1c2luZyBxdWFudGlmaWVyDQoNCmBgYHtyfQ0Kc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCJbQS1aYS16XSsiKQ0KYGBgDQoNCiMjIyBmaW5kIG51bWJlcnMgDQoNCmBgYHtyfQ0Kc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCJcXGR7MSwyfSIpDQpgYGANCg0KRmluZCB0aGUgcXVhbnRpdHkgb2YgZWFjaCBmb29kIGl0ZW0gaWUuIGVhY2ggbnVtYmVyIGRpcmVjdGx5IGZvbGxvd2VkIGJ5IG5hbWUgb2YgdGhlIGZvb2QgaXRlbSBzZXBhcmF0ZWQgYnkgc3BhY2UgDQoNCmBgYHtyfQ0Kc3RyX2V4dHJhY3RfYWxsKGJhc2ljU3RyaW5nLCAiXFxkezEsMn1cXHNcXHcrXFxzKlxcdyoiKQ0KYGBgDQoNCiMjIyBDYXB0dXJlIGdyb3Vwcw0KDQpgYGB7cn0NCmNhcHR1cmVHcm91cDEgPC0gc3RyX21hdGNoX2FsbChiYXNpY1N0cmluZywiW0EtWl1bYS16XStcXHNcXHcrXFxzXFxkezEsMn1cXHNcXHcrXFxzKlxcdyoiKQ0KY2FwdHVyZUdyb3VwMQ0KYGBgDQoNCkxlYXZpbmcgb3V0ICdoYXMnIGFuZCBwcmVwYXJpbmcgZGF0YSBpbiBjb2x1bW5zLiBJdCBpcyBiYXNpY2FsbHkgdGhlIHNhbWUgZm9ybXVsYSBhcyBjYXB0dXJlR3JvdXAxLCBqdXN0IGJyYWNrZXRzIGFyb3VuZCB0aG9zZSBzdHJpbmdzIHdoaWNoIGFyZSBjb2xsZWN0ZWQgYXMgbGlzdCANCg0KYGBge3J9DQpjYXB0dXJlR3JvdXAyIDwtc3RyX21hdGNoX2FsbChiYXNpY1N0cmluZywiKFtBLVpdW2Etel0rKVxcc1xcdytcXHMoXFxkezEsMn0pXFxzKFxcdytcXHMqXFx3KikiKQ0KY2FwdHVyZUdyb3VwMg0KYGBgDQoNCiMjIyBjb252ZXJ0aW5nIHRvIGRhdGFmcmFtZSANCg0KYGBge3J9DQpwaWNuaWMgPC0gZGF0YS5mcmFtZShjYXB0dXJlR3JvdXAyW1sxXV1bLC0xXSkNCmNvbG5hbWVzKHBpY25pYykgPC0gYygiTmFtZSIsICJRdWFudGl0eSIsICJJdGVtIikNCnBpY25pYw0KYGBgDQoNCg0KW1N0cmluZ3IgY2hlYXRzaGVldDFdKGh0dHBzOi8vZ2l0aHViLmNvbS9yc3R1ZGlvL2NoZWF0c2hlZXRzL2Jsb2IvbWFpbi9zdHJpbmdzLnBkZikNCg0KW1N0cmluZ3IgY2hlYXRzaGVldDJdKGh0dHBzOi8vcmVnZW5lcmF0aXZldG9kYXkuY29tL2EtY29tcGxldGUtYmVnaW5uZXJzLWd1aWRlLXRvLXJlZ3VsYXItZXhwcmVzc2lvbnMtaW4tci8pDQoNCiMjIyBFeHRyYWN0aW5nIFVSTHMNCg0KYGBge3J9DQp1cmxzIDwtICJIZXJlIGFyZSB1cmxzIE9ORSB3d3cuam51LmFjLmluLCBUV08gaHR0cHM6Ly9hcmp1bmdob3NoLmluLCBUSFJFRSBodHRwOi8vZGhhcnRpLndvcmRwcmVzcy5jb20iDQpzdHJfZXh0cmFjdF9hbGwodXJscywgIihodHRwcz8pPyg6Ly8pPyh3d3dcXC4pP1xcdytcXC5bYS16QV9aMC05LS5dKyIpDQpgYGANCg0KIyMjIGV4dHJhY3QgYWxsIGNhcGl0YWxpemVkIHdvcmRzIA0KDQpgYGB7cn0NCmZld05hbWVzIDwtICJNeSBuYW1lIGlzIEFudGhvbnkgR29uc2FsdmVzIGFuZCBJIGFtIG5vdCBBbWFyIEFrYmFyIEFudGhvbnkiIA0Kc3RyX2V4dHJhY3RfYWxsKGZld05hbWVzLCAiKFtBLVpdW2Etel0rKSIpW1sxXV0NCmBgYA0KDQojIyMgdHdvIG5hbWVzIHRvZ2V0aGVyIA0KDQpgYGB7cn0NCnN0cl9leHRyYWN0X2FsbChmZXdOYW1lcywiKFtBLVpdW2Etel0rKVxccyhbQS1aXVthLXpdKykiKQ0KYGBgDQoNCiMjIyBtdWx0aXBsZSBuYW1lcyB0b2dldGhlcg0KDQpgYGB7cn0NCnN0cl9leHRyYWN0X2FsbChmZXdOYW1lcywgIigoW0EtWl1bYS16XSspXFxzPyl7MSx9IikNCmBgYA0KDQojIyMgc3RyaXAgZXh0cmEgc3BhY2VzIA0KDQpgYGB7cn0NCnRyaW13cyhzdHJfZXh0cmFjdF9hbGwoZmV3TmFtZXMsIigoW0EtWl1bYS16XSspXFxzPyl7MSx9IilbWzFdXSkNCmBgYA0KDQoNCmBgYHtyfQ0Ka2luZyA8LSAiVGhlIGtpbmcgb2YgRW5nbGFuZCBpcyBDaGFybGVzIFBoaWxsaXAgQXJ0aHVyIEdlb3JnZSwgYWxzbyBrbm93biBhcyBDaGFybGVzIElJSSINCnN0cl9leHRyYWN0X2FsbChraW5nLCAiKCgoW0EtWl1bYS16XSspXFxzKikrKXsyLH0iKQ0KYGBgDQoNCltNYWluIE1lbnVdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzLm5iLmh0bWwpDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IE1hcCBwbG90dGluZyINCm91dHB1dDogDQogIGh0bWxfbm90ZWJvb2s6IA0KICAgIG51bWJlcl9zZWN0aW9uczogdHJ1ZQ0KZWRpdG9yX29wdGlvbnM6IA0KICBtYXJrZG93bjogDQogICAgd3JhcDogNzINCi0tLQ0KDQpbTWFpbg0KTWVudV0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMubmIuaHRtbCkNCg0KDQpbR2VvcmVmZXJlbmNpbmddKGh0dHBzOi8vbWFwLXJmdW4ubGlicmFyeS5kdWtlLmVkdS8wMV9nZW9yZWZlcmVuY2UuaHRtbCkNCg0KRm9yIHBsb3R0aW5nIHBvaW50cyBvbiBhIG1hcCB3ZSBuZWVkIHRvIGluc3RhbGwgYW5kIHJ1biB0d28gbGlicmFyaWVzDQoNCmBgYHtyfQ0KbGlicmFyeShzZikNCmxpYnJhcnkobWFwdmlldykNCmBgYA0KDQoNCiMgcmVhZGluZyB0aGUgZGF0YQ0KDQpgYGB7cn0NCmxpZmVERiA8LSByZWFkLmNzdigiLi9kYXRhL2NsZWFub3V0cHV0LmNzdiIsIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkNCmBgYA0KDQpJbiAnbWFwdmlldycgdGhlIGNvb3JkaW50ZXMgYXJlIHB1c2hlZCBzZXBhcmF0ZWx5IGFzIExvbmd0aXR1ZGUgYW5kIExhdGl0dWRlIGluIGRlY2ltYWwgZm9ybWF0Lg0KDQojIGNvbnZlcnRpbmcgZGF0YSBpbnRvIHNwYXRpYWwgb2JqZWN0cw0KYGBge3J9DQpiaXJ0aExvYyA8LSBzdF9hc19zZihsaWZlREYsIGNvb3JkcyA9IGMoImJpcnRobG9uIiwiYmlydGhsYXQiKSwNCiAgICAgICAgICAgICAgICAgICAgIGNycz00MzI2KQ0KZGVhdGhMb2MgPC0gc3RfYXNfc2YobGlmZURGLCBjb29yZHMgPSBjKCJkZWF0aGxvbiIsImRlYXRobGF0IiksDQogICAgICAgICAgICAgICAgICAgICBjcnM9NDMyNikNCmBgYA0KDQoNCiNwbG90dGluZyB0aGUgbWFwDQoNCiMjIGp1c3Qgb25lIHR5cGUgb2YgbG9jYXRpb24NCg0KYGBge3J9DQptYXB2aWV3KGJpcnRoTG9jKQ0KYGBgDQoNCiMjIG11bHRpcGxlIGxvY2F0aW9uIHR5cGVzDQoNCmBgYHtyfQ0KbWFwdmlldyhsaXN0KGJpcnRoTG9jLGRlYXRoTG9jKSxjb2wucmVnaW9ucz1saXN0KCJibHVlIiwicmVkIiksY29sPWxpc3QoImJsdWUiLCJyZWQiKSxsYWJlbD1saWZlREYkTmFtZSkNCmBgYA0KDQoNCg0KDQpbTWFpbg0KTWVudV0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMubmIuaHRtbCk=</div>
 
 
 
@@ -2349,7 +1865,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("RforHumanitiesRegex.Rmd");
+  window.initializeSourceEmbed("RforHumanitiesMapplot.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

@@ -22,6 +22,7 @@ grep gives us the line or vector index where a particular substring
 pattern match is found.
 
 ```{r}
+sonnets <- readLines("https://www.gutenberg.org/files/1041/1041-0.txt")
 grep("Shall I compare", sonnets)
 ```
 
@@ -42,12 +43,12 @@ grep("e",week, value = TRUE)
 
 ## regexpr
 
-This tells us if a serach string is present in a given string and also gives us the starting position of the search string within the given string.
+This tells us if a search string is present in a given string and also gives us the starting position of the search string within the given string.
 
 ```{r}
 regexpr("uat","Equator")
 ```
-Here it tells us that the search string match was found from the 3rd character of the given string, the search string was 4 characters in length. This only finds the firs instance of a match.
+Here it tells us that the search string match was found from the 3rd character of the given string, the search string was 4 characters in length. This only finds the first instance of a match.
 
 ## gregexpr 
 
@@ -72,59 +73,193 @@ replace substrings - all instances
 ```{r}
 gsub("iss","ant","Mississipi")
 ```
-For some more on regular expressions [visit this website](https://towardsdatascience.com/a-gentle-introduction-to-regular-expressions-with-r-df5e897ca432)
+
+# Install 'stringr'
+
+For more advanced regular expressions operations we need the 'stringr' package. The 'stringr' package is part of the 'tidyverse' package. One can also choose to install and call the 'stringr' package.
+
+```{r}
+install.packages("stringr")
+library(stringr)
+```
+
+Let us create a string.
+
+```{r}
+basicString <- "Drew has 3 watermelons, Alex has 4 hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels"
+```
+
+## pulling out every instance of one person's name from a string
+
+```{r}
+basicExtractAll <- str_extract_all(basicString, "Drew")
+basicExtractAll
+```
+The result is a list.
 
 
+## replacing pattern with a replacement string
 
-library(stringr) basicString \<- "Drew has 3 watermelons, Alex has 4
-hamburgers, Karina has 12 tamales, and Anna has 6 soft pretzels"
-#pulling out every instance of one person's name from a string
-basicExtractAll \<- str_extract_all(basicString, "Drew") #replacing
-pattern with a replacement string basicReplaceAll \<-
-str_replace_all(basicString, "Alex", "Shawn") #matching character set
-#here matching vowels charSets01 \<- str_extract_all(basicString,
-"[aeiou]") #matching character range - are case sensitive charSets02 \<-
-str_extract_all(basicString, "[A-Z]") #matching number range charSets03
-\<- str_extract_all(basicString, "[0-9]") #matching mix of charter types
-charset04 \<- str_extract_all(basicString, "[A-Ct-z1-6]")
-#Metacharacters #matching spaces space \<- str_extract_all(basicString,
-"\\s") #matching alphanumeric characters alpha \<-
-str_extract_all(basicString, "\\w") #matching digits digits \<-
-str_extract_all(basicString, "\\d") #Quantifiers - specifying how many
-characters are expected quantExample \<- "B.BB.BBB.BBBB" quantPlus \<-
-str_extract_all(quantExample, "B+") #matches Bs till end of the group of
-Bs quantExact = str_extract_all(quantExample, "B{2}") #matches exactly
-two Bs till the end of the group of Bs quantRange \<-
-str_extract_all(quantExample, "B{2,4}") #matches any number from 2 to 4
-quantUpperBound \<- str_extract_all(quantExample, "B{2,}") #picking up
-words using quantifier combine1 \<- str_extract_all(basicString,
-"[A-Za-z]+") #find numbers combine2 \<- str_extract_all(basicString,
-"\\d{1,2}") #find quantity of each food item #each number directly
-followed by name of the food item separated by space combine3 \<-
-str_extract_all(basicString, "\\d{1,2}\\s\\w+\\s*\\w*") #Capture groups
-captureGroup1 \<- str_match_all(basicString,
-"[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*") #leaving out 'has' and
-preparing data in columns #it is basically the same formula as
-captureGroup1, just brackets around those strings which are collected as
-list captureGroup2 \<- str_match_all(basicString,
-"([A-Z][a-z]+)\\s\\w+\\s(\\d{1,2})\\s(\\w+\\s*\\w*)") #converting to
-dataframe picnic \<- data.frame(captureGroup2[[1]][,-1])
-colnames(picnic) \<- c("Name", "Quantity", "Item") #Stringr cheatsheet
-<https://github.com/rstudio/cheatsheets/blob/main/strings.pdf>
-#cheatsheet
-<https://regenerativetoday.com/a-complete-beginners-guide-to-regular-expressions-in-r/>
-urls \<- "Here are urls ONE www.jnu.ac.in, TWO <https://arjunghosh.in>,
-THREE <http://dharti.wordpress.com>" str_extract_all(urls,
-"(https?)?(://)?(www\\.)?\\w+\\.[a-zA_Z0-9-.]+") #extract all
-capitalized words fewNames \<- "My name is Anthony Gonsalves and I am
-not Amar Akbar Anthony" str_extract_all(fewNames, "([A-Z][a-z]+)")[[1]]
-#two names together str_extract_all(fewNames,
-"([A-Z][a-z]+)\\s([A-Z][a-z]+)") #multiple names together
-str_extract_all(fewNames, "(([A-Z][a-z]+)\\s?){1,}") #need to strip
-extra spaces trimws(str_extract_all(fewNames,
-"(([A-Z][a-z]+)\\s?){1,}")[[1]]) king \<- "The king of England is
-Charles Phillip Arthur George, also known as Charles III"
-str_extract_all(king, "((([A-Z][a-z]+)\\s\*)+){2,}")
+```{r}
+basicReplaceAll <- str_replace_all(basicString, "Alex", "Shawn")
+basicReplaceAll
+```
 
-[Main
-Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
+## matching character set
+
+### here matching vowels 
+
+```{r}
+charSets01 <- str_extract_all(basicString,"[aeiou]")
+charSets01
+```
+
+### matching character range - are case sensitive 
+
+```{r}
+charSets02 <- str_extract_all(basicString, "[A-Z]")
+charSets02
+```
+
+
+### matching number range 
+
+```{r}
+charSets03 <- str_extract_all(basicString, "[0-9]")
+charSets03
+```
+
+
+### matching mix of charter types
+
+```{r}
+charset04 <- str_extract_all(basicString, "[A-Ct-z1-6]")
+charset04
+```
+
+## Metacharacters 
+
+### matching spaces 
+
+```{r}
+str_extract_all(basicString,"\\s")
+
+```
+
+### matching alphanumeric characters
+
+```{r}
+str_extract_all(basicString, "\\w")
+```
+
+### matching digits digits
+
+```{r}
+str_extract_all(basicString, "\\d")
+```
+
+### Quantifiers - specifying how many characters are expected 
+
+```{r}
+quantExample <- "B.BB.BBB.BBBB" 
+str_extract_all(quantExample, "B+")
+```
+Here the function matches Bs till end of the group of Bs
+
+```{r}
+str_extract_all(quantExample, "B{2}")
+```
+This matches exactly two Bs till the end of the group of Bs 
+
+```{r}
+str_extract_all(quantExample, "B{2,4}")
+```
+This matches any number from 2 to 4
+
+```{r}
+str_extract_all(quantExample, "B{2,}")
+```
+### Picking up words using quantifier
+
+```{r}
+str_extract_all(basicString,"[A-Za-z]+")
+```
+
+### find numbers 
+
+```{r}
+str_extract_all(basicString,"\\d{1,2}")
+```
+
+Find the quantity of each food item ie. each number directly followed by name of the food item separated by space 
+
+```{r}
+str_extract_all(basicString, "\\d{1,2}\\s\\w+\\s*\\w*")
+```
+
+### Capture groups
+
+```{r}
+captureGroup1 <- str_match_all(basicString,"[A-Z][a-z]+\\s\\w+\\s\\d{1,2}\\s\\w+\\s*\\w*")
+captureGroup1
+```
+
+Leaving out 'has' and preparing data in columns. It is basically the same formula as captureGroup1, just brackets around those strings which are collected as list 
+
+```{r}
+captureGroup2 <-str_match_all(basicString,"([A-Z][a-z]+)\\s\\w+\\s(\\d{1,2})\\s(\\w+\\s*\\w*)")
+captureGroup2
+```
+
+### converting to dataframe 
+
+```{r}
+picnic <- data.frame(captureGroup2[[1]][,-1])
+colnames(picnic) <- c("Name", "Quantity", "Item")
+picnic
+```
+
+
+[Stringr cheatsheet1](https://github.com/rstudio/cheatsheets/blob/main/strings.pdf)
+
+[Stringr cheatsheet2](https://regenerativetoday.com/a-complete-beginners-guide-to-regular-expressions-in-r/)
+
+### Extracting URLs
+
+```{r}
+urls <- "Here are urls ONE www.jnu.ac.in, TWO https://arjunghosh.in, THREE http://dharti.wordpress.com"
+str_extract_all(urls, "(https?)?(://)?(www\\.)?\\w+\\.[a-zA_Z0-9-.]+")
+```
+
+### extract all capitalized words 
+
+```{r}
+fewNames <- "My name is Anthony Gonsalves and I am not Amar Akbar Anthony" 
+str_extract_all(fewNames, "([A-Z][a-z]+)")[[1]]
+```
+
+### two names together 
+
+```{r}
+str_extract_all(fewNames,"([A-Z][a-z]+)\\s([A-Z][a-z]+)")
+```
+
+### multiple names together
+
+```{r}
+str_extract_all(fewNames, "(([A-Z][a-z]+)\\s?){1,}")
+```
+
+### strip extra spaces 
+
+```{r}
+trimws(str_extract_all(fewNames,"(([A-Z][a-z]+)\\s?){1,}")[[1]])
+```
+
+
+```{r}
+king <- "The king of England is Charles Phillip Arthur George, also known as Charles III"
+str_extract_all(king, "((([A-Z][a-z]+)\\s*)+){2,}")
+```
+
+[Main Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
