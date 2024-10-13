@@ -57,6 +57,16 @@ mapview(list(birthLoc,deathLoc),col.regions=list("blue","red"),col=list("blue","
 
 [View result](https://web.iitd.ac.in/~arjunghosh/files/birdealoc.html)
 
+## Map types
+As you can see 'mapview' uses the Leaflet library. [Leaflet](https://leafletjs.com/) is an open-source Javascript library that uses OpenStreetMap as a base layer.
+
+OpenStreetMap provides several views. It gives "CartoDB.Positron" as the default base layer. We can choose to use a different layer.
+
+```{r}
+mapview(list(birthLoc,deathLoc),col.regions=list("blue","red"),col=list("blue","red"),label=lifeDF$Name, map.types = "CartoDB.DarkMatter")
+```
+
+[View result](https://web.iitd.ac.in/~arjunghosh/files/birdeadark.html)
 
 [Main
 Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
