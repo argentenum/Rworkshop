@@ -38,8 +38,14 @@ deathLoc <- st_as_sf(lifeDF, coords = c("deathlon","deathlat"),
                      crs=4326)
 ```
 
+These are defined as a 'spatial' data type
 
-#plotting the map
+```{r}
+str(birthLoc)
+```
+
+
+# plotting the map
 
 ## just one type of location
 
@@ -63,10 +69,47 @@ As you can see 'mapview' uses the Leaflet library. [Leaflet](https://leafletjs.c
 OpenStreetMap provides several views. It gives "CartoDB.Positron" as the default base layer. We can choose to use a different layer.
 
 ```{r}
-mapview(list(birthLoc,deathLoc),col.regions=list("blue","red"),col=list("blue","red"),label=lifeDF$Name, map.types = "CartoDB.DarkMatter")
+mapview(list(birthLoc,deathLoc),col.regions=list("blue","red"),col=list("blue","red"),label=lifeDF$Name, map.types = "Esri.WorldShadedRelief")
 ```
 
 [View result](https://web.iitd.ac.in/~arjunghosh/files/birdeadark.html)
 
-[Main
-Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
+## Pop-up labels
+
+In the above maps you get the name of the person as a popup label. That is because we have defined 'label' as a specific vector within the 'lifeDF'.
+
+It is possible to generate an entire table as popup data for each point. This can be done by defining the 'label' as a data.frame
+
+```{r}
+mapview(list(birthLoc,deathLoc),col.regions=list("blue","red"),col=list("blue","red"),label=lifeDF, map.types = "Esri.WorldShadedRelief")
+```
+
+[View result](https://web.iitd.ac.in/~arjunghosh/files/birdeatable.html)
+
+
+# Map for analysis
+
+Maps can be used not only as visualization, but also for analysis. Let us demostrate with the following dataset.
+
+```{r}
+iitdDF <- read.csv("http://web.iitd.ac.in/~arjunghosh/files/iitdPersons.csv")
+head(iitdDF)
+```
+This is a dataset obtained from wikidata of IIT Delhi alumni and their places of birth.
+
+Lets us create a spatial object and visualize to an interactive map.
+
+```{r}
+birthiitd <- st_as_sf(iitdDF, coords = c("Long","Lat"), crs=4326)
+mapview(birthiitd, zcol = "yob", label = birthiitd$personLabel, legend = TRUE)
+```
+
+Here we are using the 'mapview' function to plot values according to the the Year of Birth (yob).
+[View Result](https://web.iitd.ac.in/~arjunghosh/files/iitdmap.html)
+
+As we can see the in the resulting map the points are coloured according to a gradient - old to recent according to the Year of Birth. Using this we can try to ascertain if there has been a change in the places of origin of successful IITD alumni over the years.
+
+# More mapping on R
+Though 'mapview' is an easy to use geospatial visualizer, much more is possible using R. Beyond 'mapview', mapping on R can also be undertaken using 'ggplot' and 'ggmaps'. Take a look at this tutorial which advises us on how to create a [Chloropleth map](https://r-graph-gallery.com/183-choropleth-map-with-leaflet.html) or one where we can analyse data available for specific spatial shapes or polygons. This allows us to analyse distribution accross deographical categories like districts, states or countries.
+
+[Main Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)

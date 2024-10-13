@@ -1790,9 +1790,34 @@ deathLoc &lt;- st_as_sf(lifeDF, coords = c(&quot;deathlon&quot;,&quot;deathlat&q
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>#plotting the map</p>
-<div id="just-one-type-of-location" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> just one type of
+<p>These are defined as a ‘spatial’ data type</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGJpcnRoTG9jKVxuYGBgIn0= -->
+<pre class="r"><code>str(birthLoc)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiQ2xhc3NlcyDigJhzZuKAmSBhbmQgJ2RhdGEuZnJhbWUnOlx0OCBvYnMuIG9mICA5IHZhcmlhYmxlczpcbiAkIE5hbWUgICAgICAgOiBjaHIgIFwiSmF3YWhhcmxhbF9OZWhydVwiIFwiSnlvdGlfQmFzdVwiIFwiUmFiaW5kcmFuYXRoX1RhZ29yZVwiIFwiSmFnYWRpc2hfQ2hhbmRyYV9Cb3NlXCIgLi4uXG4gJCBGaWVsZCAgICAgIDogY2hyICBcIlBvbGl0aWNzXCIgXCJQb2xpdGljc1wiIFwiTGl0ZXJhdHVyZVwiIFwiU2NpZW5jZVwiIC4uLlxuICQgYmlydGgueWVhciA6IGludCAgMTg4OSAxOTE0IDE4NjEgMTg1OCAxODg3IDE5MTEgMTkyNSAxOTMxXG4gJCBCaXJ0aC5QbGFjZTogY2hyICBcIkFsbGFoYWJhZFwiIFwiS29sa2F0YVwiIFwiS29sa2F0YVwiIFwiQmlrcmFtcHVyXCIgLi4uXG4gJCBkZWF0aC55ZWFyIDogaW50ICAxOTY0IDIwMTAgMTk0MSAxOTM3IDE5MzIgMTkzMiAxOTc2IDIwMTRcbiAkIERlYXRoLlBsYWNlOiBjaHIgIFwiTmV3X0RlbGhpXCIgXCJLb2xrYXRhXCIgXCJLb2xrYXRhXCIgXCJHaXJpZGloXCIgLi4uXG4gJCBkZWF0aGxvbiAgIDogbnVtICA3Ny4yIDg4LjQgODguNCA4Ni4zIDg1LjggLi4uXG4gJCBkZWF0aGxhdCAgIDogbnVtICAyOC42IDIyLjYgMjIuNiAyNC4yIDE5LjggLi4uXG4gJCBnZW9tZXRyeSAgIDpzZmNfUE9JTlQgb2YgbGVuZ3RoIDg7IGZpcnN0IGxpc3QgZWxlbWVudDogICdYWScgbnVtICA4Mi41IDI1LjRcbiAtIGF0dHIoKiwgXCJzZl9jb2x1bW5cIik9IGNociBcImdlb21ldHJ5XCJcbiAtIGF0dHIoKiwgXCJhZ3JcIik9IEZhY3RvciB3LyAzIGxldmVscyBcImNvbnN0YW50XCIsXCJhZ2dyZWdhdGVcIiwuLjogTkEgTkEgTkEgTkEgTkEgTkEgTkEgTkFcbiAgLi4tIGF0dHIoKiwgXCJuYW1lc1wiKT0gY2hyIFsxOjhdIFwiTmFtZVwiIFwiRmllbGRcIiBcImJpcnRoLnllYXJcIiBcIkJpcnRoLlBsYWNlXCIgLi4uXG4ifQ== -->
+<pre><code>Classes ‘sf’ and &#39;data.frame&#39;:  8 obs. of  9 variables:
+ $ Name       : chr  &quot;Jawaharlal_Nehru&quot; &quot;Jyoti_Basu&quot; &quot;Rabindranath_Tagore&quot; &quot;Jagadish_Chandra_Bose&quot; ...
+ $ Field      : chr  &quot;Politics&quot; &quot;Politics&quot; &quot;Literature&quot; &quot;Science&quot; ...
+ $ birth.year : int  1889 1914 1861 1858 1887 1911 1925 1931
+ $ Birth.Place: chr  &quot;Allahabad&quot; &quot;Kolkata&quot; &quot;Kolkata&quot; &quot;Bikrampur&quot; ...
+ $ death.year : int  1964 2010 1941 1937 1932 1932 1976 2014
+ $ Death.Place: chr  &quot;New_Delhi&quot; &quot;Kolkata&quot; &quot;Kolkata&quot; &quot;Giridih&quot; ...
+ $ deathlon   : num  77.2 88.4 88.4 86.3 85.8 ...
+ $ deathlat   : num  28.6 22.6 22.6 24.2 19.8 ...
+ $ geometry   :sfc_POINT of length 8; first list element:  &#39;XY&#39; num  82.5 25.4
+ - attr(*, &quot;sf_column&quot;)= chr &quot;geometry&quot;
+ - attr(*, &quot;agr&quot;)= Factor w/ 3 levels &quot;constant&quot;,&quot;aggregate&quot;,..: NA NA NA NA NA NA NA NA
+  ..- attr(*, &quot;names&quot;)= chr [1:8] &quot;Name&quot; &quot;Field&quot; &quot;birth.year&quot; &quot;Birth.Place&quot; ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="plotting-the-map" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> plotting the map</h1>
+<div id="just-one-type-of-location" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> just one type of
 location</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -1804,8 +1829,8 @@ location</h2>
 <p><a href="https://web.iitd.ac.in/~arjunghosh/files/birthloc.html">View
 result</a></p>
 </div>
-<div id="multiple-location-types" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> multiple location
+<div id="multiple-location-types" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> multiple location
 types</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -1817,28 +1842,94 @@ types</h2>
 <p><a href="https://web.iitd.ac.in/~arjunghosh/files/birdealoc.html">View
 result</a></p>
 </div>
-<div id="map-types" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Map types</h2>
+<div id="map-types" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Map types</h2>
 <p>As you can see ‘mapview’ uses the Leaflet library. <a href="https://leafletjs.com/">Leaflet</a> is an open-source Javascript
 library that uses OpenStreetMap as a base layer.</p>
 <p>OpenStreetMap provides several views. It gives “CartoDB.Positron” as
 the default base layer. We can choose to use a different layer.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFwdmlldyhsaXN0KGJpcnRoTG9jLGRlYXRoTG9jKSxjb2wucmVnaW9ucz1saXN0KFwiYmx1ZVwiLFwicmVkXCIpLGNvbD1saXN0KFwiYmx1ZVwiLFwicmVkXCIpLGxhYmVsPWxpZmVERiROYW1lLCBtYXAudHlwZXMgPSBcIkNhcnRvREIuRGFya01hdHRlclwiKVxuYGBgIn0= -->
-<pre class="r"><code>mapview(list(birthLoc,deathLoc),col.regions=list(&quot;blue&quot;,&quot;red&quot;),col=list(&quot;blue&quot;,&quot;red&quot;),label=lifeDF$Name, map.types = &quot;CartoDB.DarkMatter&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFwdmlldyhsaXN0KGJpcnRoTG9jLGRlYXRoTG9jKSxjb2wucmVnaW9ucz1saXN0KFwiYmx1ZVwiLFwicmVkXCIpLGNvbD1saXN0KFwiYmx1ZVwiLFwicmVkXCIpLGxhYmVsPWxpZmVERiROYW1lLCBtYXAudHlwZXMgPSBcIkVzcmkuV29ybGRTaGFkZWRSZWxpZWZcIilcbmBgYCJ9 -->
+<pre class="r"><code>mapview(list(birthLoc,deathLoc),col.regions=list(&quot;blue&quot;,&quot;red&quot;),col=list(&quot;blue&quot;,&quot;red&quot;),label=lifeDF$Name, map.types = &quot;Esri.WorldShadedRelief&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><a href="https://web.iitd.ac.in/~arjunghosh/files/birdeadark.html">View
 result</a></p>
+</div>
+<div id="pop-up-labels" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Pop-up labels</h2>
+<p>In the above maps you get the name of the person as a popup label.
+That is because we have defined ‘label’ as a specific vector within the
+‘lifeDF’.</p>
+<p>It is possible to generate an entire table as popup data for each
+point. This can be done by defining the ‘label’ as a data.frame</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFwdmlldyhsaXN0KGJpcnRoTG9jLGRlYXRoTG9jKSxjb2wucmVnaW9ucz1saXN0KFwiYmx1ZVwiLFwicmVkXCIpLGNvbD1saXN0KFwiYmx1ZVwiLFwicmVkXCIpLGxhYmVsPWxpZmVERiwgbWFwLnR5cGVzID0gXCJFc3JpLldvcmxkU2hhZGVkUmVsaWVmXCIpXG5gYGAifQ== -->
+<pre class="r"><code>mapview(list(birthLoc,deathLoc),col.regions=list(&quot;blue&quot;,&quot;red&quot;),col=list(&quot;blue&quot;,&quot;red&quot;),label=lifeDF, map.types = &quot;Esri.WorldShadedRelief&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><a href="https://web.iitd.ac.in/~arjunghosh/files/birdeatable.html">View
+result</a></p>
+</div>
+</div>
+<div id="map-for-analysis" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Map for analysis</h1>
+<p>Maps can be used not only as visualization, but also for analysis.
+Let us demostrate with the following dataset.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaWl0ZERGIDwtIHJlYWQuY3N2KFwiaHR0cDovL3dlYi5paXRkLmFjLmluL35hcmp1bmdob3NoL2ZpbGVzL2lpdGRQZXJzb25zLmNzdlwiKVxuaGVhZChpaXRkREYpXG5gYGAifQ== -->
+<pre class="r"><code>iitdDF &lt;- read.csv(&quot;http://web.iitd.ac.in/~arjunghosh/files/iitdPersons.csv&quot;)
+head(iitdDF)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6OSwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbNiDDlyA5XSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJwMVV6V3NUUVJUZjVxdE4ybHBEZSt2QkZRVGJ3MjczKzZNbzNiYkJDcTFnVFZLS2dqQkp4dXpTWkhlZDNUUkdFUHhYUkx6MElDSW9oWUo2MXBNSDhXSVAvVHVFNnV4bUprMFhiYXVQZWJ2emZ1KzltZmZlekp0N3BXMjVzRjFnR0NiTlpOSXBKcDNGVXlaYnJkemlESWJKcExBd3dtU1lmUFIvZ28ybThTUVNMbVBPRWNXY0hZYis0c0pDdDl2bHU4Nk8wd0FoNEQzVVhJQnU2SVM5aFUzSk5HUlZWZ1JpUDMrZXZTanB1cUZLcHZLL0R1ZEdwT3FLS29qcXhTTVNOTkVVWkUyL3NJTW9tTHFNS1ZHcmlXVzNDd09iTFFQYjh3ZzJWZTY0RFFoOWRoMTBBaHUwem9ZbjdnSUUyazRJMkJJSUNEWmRBUzYyUVJDeUpWaGpWd0JxQTZLNnRCellMb1NJWFVQZUxrUVlpUTQ3OXh4Ly9zU0pjR2RFMDFRNVFlY0VwU0lJaS9HNFA2UlRPRUhFNDE5MXhsazZpUk1Gdk9WZmRJTEdpY094bkk1M2ZNWHUxSUFMZ3k1QUJDcmV4dFZDZmdleERTY0lrVk1QejFPTXIzcGUzV1pYb0QxWVpHeTVDVkFJV3JTcTJSSnMyVTVpODlrNVErVU55UkRVaUZoSjRDVk42ZE04UGJ3NVhlTlZWaFo1WGFYWVpJeEpFYWlaOHlkcm1id2lFMklsalpkRnJVOG5KcWFJZHlERVNqSnZVUHNURTEzbkpYRmdZdkRVSEsrQzcwWVV2S1dzdm4zeHpINXZMWDJLajk5YWV2UHllK0htWTJ0eHMxaThVcHUxOUcvVjZscG0zYnF4dDdlMy8vUGR3SzhhSHYvNCtQQ2FWV2I3ZnVXcmE2OW5uaDVaV3c4T0R2YXY5Nnl0cjhYaXpLdUtWYjV6ZUhpRUlxUEp1RmpNNkJmTW53bmpUVWMvOVBuVWE1TjFRUnNHcE1KNUF1WjhpQUxQcGVmVWx6WkFEZExteURwdDBJUkV5TmNjRk5xNE5Ta3dGUU4rQzlUaHNOTllFM3B0R0tJZWtkTWJnRjZGeklibk5pbmM4MnFKSVBQSTYvSTAwQ2k3Rk9taFhES2JlZ3NFTkJzS0Z1Slg0eEh1Wm9pbDQ0VExxT2VIanVkaXA5UjBmOFZUemlNb0FVeDEzQ2lTQmxlM08rNE9KeWJVYVI4bjBtLytFY0tUNUo4Ym11ZjdVYVIrSmU1MkRycE54NldGekxhR3lwZHV3RjM2Mk9CNnhPWGdmZVM0dElnRmpBWjg2SVdETjZ4UTkxb1VpVE5uam44RFdVTmErNGtHQUFBPSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["person"],"name":[1],"type":["chr"],"align":["left"]},{"label":["personLabel"],"name":[2],"type":["chr"],"align":["left"]},{"label":["image"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["birthdate"],"name":[4],"type":["chr"],"align":["left"]},{"label":["birthplaceLabel"],"name":[5],"type":["chr"],"align":["left"]},{"label":["geometry"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Lat"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Long"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["yob"],"name":[9],"type":["int"],"align":["right"]}],"data":[{"1":"http://www.wikidata.org/entity/Q29835340","2":"Anwesh Sahoo","3":"NA","4":"1995-07-04T00:00:00Z","5":"Bhubaneswar","6":"(85.828055555 20.264444444)","7":"20.26444","8":"85.82806","9":"1995","_rn_":"1"},{"1":"http://www.wikidata.org/entity/Q127785294","2":"Sundeep Kaushal","3":"NA","4":"1994-01-01T00:00:00Z","5":"Hamirpur district","6":"(76.5 31.75)","7":"31.75000","8":"76.50000","9":"1994","_rn_":"2"},{"1":"http://www.wikidata.org/entity/Q127785294","2":"Sundeep Kaushal","3":"NA","4":"1994-01-01T00:00:00Z","5":"Hamirpur district","6":"(76.52 31.69)","7":"31.69000","8":"76.52000","9":"1994","_rn_":"3"},{"1":"http://www.wikidata.org/entity/Q57450150","2":"Paramita Das","3":"NA","4":"1984-01-01T00:00:00Z","5":"Cooch Behar","6":"(89.433333333 26.316666666)","7":"26.31667","8":"89.43333","9":"1984","_rn_":"4"},{"1":"http://www.wikidata.org/entity/Q106190367","2":"Tanushree Deb Barma","3":"NA","4":"1982-10-07T00:00:00Z","5":"Agartala","6":"(91.266666666 23.833333333)","7":"23.83333","8":"91.26667","9":"1982","_rn_":"5"},{"1":"http://www.wikidata.org/entity/Q110973333","2":"Ashneer Grover","3":"NA","4":"1982-06-14T00:00:00Z","5":"Delhi","6":"(77.216666666 28.666666666)","7":"28.66667","8":"77.21667","9":"1982","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[9]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>This is a dataset obtained from wikidata of IIT Delhi alumni and
+their places of birth.</p>
+<p>Lets us create a spatial object and visualize to an interactive
+map.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmlydGhpaXRkIDwtIHN0X2FzX3NmKGlpdGRERiwgY29vcmRzID0gYyhcIkxvbmdcIixcIkxhdFwiKSwgY3JzPTQzMjYpXG5tYXB2aWV3KGJpcnRoaWl0ZCwgemNvbCA9IFwieW9iXCIsIGxhYmVsID0gYmlydGhpaXRkJHBlcnNvbkxhYmVsLCBsZWdlbmQgPSBUUlVFKVxuYGBgIn0= -->
+<pre class="r"><code>birthiitd &lt;- st_as_sf(iitdDF, coords = c(&quot;Long&quot;,&quot;Lat&quot;), crs=4326)
+mapview(birthiitd, zcol = &quot;yob&quot;, label = birthiitd$personLabel, legend = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Here we are using the ‘mapview’ function to plot values according to
+the the Year of Birth (yob). <a href="https://web.iitd.ac.in/~arjunghosh/files/iitdmap.html">View
+Result</a></p>
+<p>As we can see the in the resulting map the points are coloured
+according to a gradient - old to recent according to the Year of Birth.
+Using this we can try to ascertain if there has been a change in the
+places of origin of successful IITD alumni over the years.</p>
+</div>
+<div id="more-mapping-on-r" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> More mapping on R</h1>
+<p>Though ‘mapview’ is an easy to use geospatial visualizer, much more
+is possible using R. Beyond ‘mapview’, mapping on R can also be
+undertaken using ‘ggplot’ and ‘ggmaps’. Take a look at this tutorial
+which advises us on how to create a <a href="https://r-graph-gallery.com/183-choropleth-map-with-leaflet.html">Chloropleth
+map</a> or one where we can analyse data available for specific spatial
+shapes or polygons. This allows us to analyse distribution accross
+deographical categories like districts, states or countries.</p>
 <p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
 Menu</a></p>
 <!-- rnb-text-end -->
 </div>
-</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IE1hcCBwbG90dGluZyINCm91dHB1dDogDQogIGh0bWxfbm90ZWJvb2s6IA0KICAgIG51bWJlcl9zZWN0aW9uczogdHJ1ZQ0KZWRpdG9yX29wdGlvbnM6IA0KICBtYXJrZG93bjogDQogICAgd3JhcDogNzINCi0tLQ0KDQpbTWFpbg0KTWVudV0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMubmIuaHRtbCkNCg0KDQpbR2VvcmVmZXJlbmNpbmddKGh0dHBzOi8vbWFwLXJmdW4ubGlicmFyeS5kdWtlLmVkdS8wMV9nZW9yZWZlcmVuY2UuaHRtbCkNCg0KRm9yIHBsb3R0aW5nIHBvaW50cyBvbiBhIG1hcCB3ZSBuZWVkIHRvIGluc3RhbGwgYW5kIHJ1biB0d28gbGlicmFyaWVzDQoNCmBgYHtyfQ0KbGlicmFyeShzZikNCmxpYnJhcnkobWFwdmlldykNCmBgYA0KDQoNCiMgcmVhZGluZyB0aGUgZGF0YQ0KDQpgYGB7cn0NCmxpZmVERiA8LSByZWFkLmNzdigiLi9kYXRhL2NsZWFub3V0cHV0LmNzdiIsIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkNCmBgYA0KDQpJbiAnbWFwdmlldycgdGhlIGNvb3JkaW50ZXMgYXJlIHB1c2hlZCBzZXBhcmF0ZWx5IGFzIExvbmdpdHVkZSBhbmQgTGF0aXR1ZGUgaW4gZGVjaW1hbCBmb3JtYXQuDQoNCiMgY29udmVydGluZyBkYXRhIGludG8gc3BhdGlhbCBvYmplY3RzDQpgYGB7cn0NCmJpcnRoTG9jIDwtIHN0X2FzX3NmKGxpZmVERiwgY29vcmRzID0gYygiYmlydGhsb24iLCJiaXJ0aGxhdCIpLA0KICAgICAgICAgICAgICAgICAgICAgY3JzPTQzMjYpDQpkZWF0aExvYyA8LSBzdF9hc19zZihsaWZlREYsIGNvb3JkcyA9IGMoImRlYXRobG9uIiwiZGVhdGhsYXQiKSwNCiAgICAgICAgICAgICAgICAgICAgIGNycz00MzI2KQ0KYGBgDQoNCg0KI3Bsb3R0aW5nIHRoZSBtYXANCg0KIyMganVzdCBvbmUgdHlwZSBvZiBsb2NhdGlvbg0KDQpgYGB7cn0NCm1hcHZpZXcoYmlydGhMb2MpDQpgYGANCg0KW1ZpZXcgcmVzdWx0XShodHRwczovL3dlYi5paXRkLmFjLmluL35hcmp1bmdob3NoL2ZpbGVzL2JpcnRobG9jLmh0bWwpDQoNCiMjIG11bHRpcGxlIGxvY2F0aW9uIHR5cGVzDQoNCmBgYHtyfQ0KbWFwdmlldyhsaXN0KGJpcnRoTG9jLGRlYXRoTG9jKSxjb2wucmVnaW9ucz1saXN0KCJibHVlIiwicmVkIiksY29sPWxpc3QoImJsdWUiLCJyZWQiKSxsYWJlbD1saWZlREYkTmFtZSkNCmBgYA0KDQpbVmlldyByZXN1bHRdKGh0dHBzOi8vd2ViLmlpdGQuYWMuaW4vfmFyanVuZ2hvc2gvZmlsZXMvYmlyZGVhbG9jLmh0bWwpDQoNCiMjIE1hcCB0eXBlcw0KQXMgeW91IGNhbiBzZWUgJ21hcHZpZXcnIHVzZXMgdGhlIExlYWZsZXQgbGlicmFyeS4gW0xlYWZsZXRdKGh0dHBzOi8vbGVhZmxldGpzLmNvbS8pIGlzIGFuIG9wZW4tc291cmNlIEphdmFzY3JpcHQgbGlicmFyeSB0aGF0IHVzZXMgT3BlblN0cmVldE1hcCBhcyBhIGJhc2UgbGF5ZXIuDQoNCk9wZW5TdHJlZXRNYXAgcHJvdmlkZXMgc2V2ZXJhbCB2aWV3cy4gSXQgZ2l2ZXMgIkNhcnRvREIuUG9zaXRyb24iIGFzIHRoZSBkZWZhdWx0IGJhc2UgbGF5ZXIuIFdlIGNhbiBjaG9vc2UgdG8gdXNlIGEgZGlmZmVyZW50IGxheWVyLg0KDQpgYGB7cn0NCm1hcHZpZXcobGlzdChiaXJ0aExvYyxkZWF0aExvYyksY29sLnJlZ2lvbnM9bGlzdCgiYmx1ZSIsInJlZCIpLGNvbD1saXN0KCJibHVlIiwicmVkIiksbGFiZWw9bGlmZURGJE5hbWUsIG1hcC50eXBlcyA9ICJDYXJ0b0RCLkRhcmtNYXR0ZXIiKQ0KYGBgDQoNCltWaWV3IHJlc3VsdF0oaHR0cHM6Ly93ZWIuaWl0ZC5hYy5pbi9+YXJqdW5naG9zaC9maWxlcy9iaXJkZWFkYXJrLmh0bWwpDQoNCltNYWluDQpNZW51XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllcy5uYi5odG1sKQ==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IE1hcCBwbG90dGluZyINCm91dHB1dDogDQogIGh0bWxfbm90ZWJvb2s6IA0KICAgIG51bWJlcl9zZWN0aW9uczogdHJ1ZQ0KZWRpdG9yX29wdGlvbnM6IA0KICBtYXJrZG93bjogDQogICAgd3JhcDogNzINCi0tLQ0KDQpbTWFpbg0KTWVudV0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMubmIuaHRtbCkNCg0KDQpbR2VvcmVmZXJlbmNpbmddKGh0dHBzOi8vbWFwLXJmdW4ubGlicmFyeS5kdWtlLmVkdS8wMV9nZW9yZWZlcmVuY2UuaHRtbCkNCg0KRm9yIHBsb3R0aW5nIHBvaW50cyBvbiBhIG1hcCB3ZSBuZWVkIHRvIGluc3RhbGwgYW5kIHJ1biB0d28gbGlicmFyaWVzDQoNCmBgYHtyfQ0KbGlicmFyeShzZikNCmxpYnJhcnkobWFwdmlldykNCmBgYA0KDQoNCiMgcmVhZGluZyB0aGUgZGF0YQ0KDQpgYGB7cn0NCmxpZmVERiA8LSByZWFkLmNzdigiLi9kYXRhL2NsZWFub3V0cHV0LmNzdiIsIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkNCmBgYA0KDQpJbiAnbWFwdmlldycgdGhlIGNvb3JkaW50ZXMgYXJlIHB1c2hlZCBzZXBhcmF0ZWx5IGFzIExvbmdpdHVkZSBhbmQgTGF0aXR1ZGUgaW4gZGVjaW1hbCBmb3JtYXQuDQoNCiMgY29udmVydGluZyBkYXRhIGludG8gc3BhdGlhbCBvYmplY3RzDQpgYGB7cn0NCmJpcnRoTG9jIDwtIHN0X2FzX3NmKGxpZmVERiwgY29vcmRzID0gYygiYmlydGhsb24iLCJiaXJ0aGxhdCIpLA0KICAgICAgICAgICAgICAgICAgICAgY3JzPTQzMjYpDQpkZWF0aExvYyA8LSBzdF9hc19zZihsaWZlREYsIGNvb3JkcyA9IGMoImRlYXRobG9uIiwiZGVhdGhsYXQiKSwNCiAgICAgICAgICAgICAgICAgICAgIGNycz00MzI2KQ0KYGBgDQoNClRoZXNlIGFyZSBkZWZpbmVkIGFzIGEgJ3NwYXRpYWwnIGRhdGEgdHlwZQ0KDQpgYGB7cn0NCnN0cihiaXJ0aExvYykNCmBgYA0KDQoNCiMgcGxvdHRpbmcgdGhlIG1hcA0KDQojIyBqdXN0IG9uZSB0eXBlIG9mIGxvY2F0aW9uDQoNCmBgYHtyfQ0KbWFwdmlldyhiaXJ0aExvYykNCmBgYA0KDQpbVmlldyByZXN1bHRdKGh0dHBzOi8vd2ViLmlpdGQuYWMuaW4vfmFyanVuZ2hvc2gvZmlsZXMvYmlydGhsb2MuaHRtbCkNCg0KIyMgbXVsdGlwbGUgbG9jYXRpb24gdHlwZXMNCg0KYGBge3J9DQptYXB2aWV3KGxpc3QoYmlydGhMb2MsZGVhdGhMb2MpLGNvbC5yZWdpb25zPWxpc3QoImJsdWUiLCJyZWQiKSxjb2w9bGlzdCgiYmx1ZSIsInJlZCIpLGxhYmVsPWxpZmVERiROYW1lKQ0KYGBgDQoNCltWaWV3IHJlc3VsdF0oaHR0cHM6Ly93ZWIuaWl0ZC5hYy5pbi9+YXJqdW5naG9zaC9maWxlcy9iaXJkZWFsb2MuaHRtbCkNCg0KIyMgTWFwIHR5cGVzDQpBcyB5b3UgY2FuIHNlZSAnbWFwdmlldycgdXNlcyB0aGUgTGVhZmxldCBsaWJyYXJ5LiBbTGVhZmxldF0oaHR0cHM6Ly9sZWFmbGV0anMuY29tLykgaXMgYW4gb3Blbi1zb3VyY2UgSmF2YXNjcmlwdCBsaWJyYXJ5IHRoYXQgdXNlcyBPcGVuU3RyZWV0TWFwIGFzIGEgYmFzZSBsYXllci4NCg0KT3BlblN0cmVldE1hcCBwcm92aWRlcyBzZXZlcmFsIHZpZXdzLiBJdCBnaXZlcyAiQ2FydG9EQi5Qb3NpdHJvbiIgYXMgdGhlIGRlZmF1bHQgYmFzZSBsYXllci4gV2UgY2FuIGNob29zZSB0byB1c2UgYSBkaWZmZXJlbnQgbGF5ZXIuDQoNCmBgYHtyfQ0KbWFwdmlldyhsaXN0KGJpcnRoTG9jLGRlYXRoTG9jKSxjb2wucmVnaW9ucz1saXN0KCJibHVlIiwicmVkIiksY29sPWxpc3QoImJsdWUiLCJyZWQiKSxsYWJlbD1saWZlREYkTmFtZSwgbWFwLnR5cGVzID0gIkVzcmkuV29ybGRTaGFkZWRSZWxpZWYiKQ0KYGBgDQoNCltWaWV3IHJlc3VsdF0oaHR0cHM6Ly93ZWIuaWl0ZC5hYy5pbi9+YXJqdW5naG9zaC9maWxlcy9iaXJkZWFkYXJrLmh0bWwpDQoNCiMjIFBvcC11cCBsYWJlbHMNCg0KSW4gdGhlIGFib3ZlIG1hcHMgeW91IGdldCB0aGUgbmFtZSBvZiB0aGUgcGVyc29uIGFzIGEgcG9wdXAgbGFiZWwuIFRoYXQgaXMgYmVjYXVzZSB3ZSBoYXZlIGRlZmluZWQgJ2xhYmVsJyBhcyBhIHNwZWNpZmljIHZlY3RvciB3aXRoaW4gdGhlICdsaWZlREYnLg0KDQpJdCBpcyBwb3NzaWJsZSB0byBnZW5lcmF0ZSBhbiBlbnRpcmUgdGFibGUgYXMgcG9wdXAgZGF0YSBmb3IgZWFjaCBwb2ludC4gVGhpcyBjYW4gYmUgZG9uZSBieSBkZWZpbmluZyB0aGUgJ2xhYmVsJyBhcyBhIGRhdGEuZnJhbWUNCg0KYGBge3J9DQptYXB2aWV3KGxpc3QoYmlydGhMb2MsZGVhdGhMb2MpLGNvbC5yZWdpb25zPWxpc3QoImJsdWUiLCJyZWQiKSxjb2w9bGlzdCgiYmx1ZSIsInJlZCIpLGxhYmVsPWxpZmVERiwgbWFwLnR5cGVzID0gIkVzcmkuV29ybGRTaGFkZWRSZWxpZWYiKQ0KYGBgDQoNCltWaWV3IHJlc3VsdF0oaHR0cHM6Ly93ZWIuaWl0ZC5hYy5pbi9+YXJqdW5naG9zaC9maWxlcy9iaXJkZWF0YWJsZS5odG1sKQ0KDQoNCiMgTWFwIGZvciBhbmFseXNpcw0KDQpNYXBzIGNhbiBiZSB1c2VkIG5vdCBvbmx5IGFzIHZpc3VhbGl6YXRpb24sIGJ1dCBhbHNvIGZvciBhbmFseXNpcy4gTGV0IHVzIGRlbW9zdHJhdGUgd2l0aCB0aGUgZm9sbG93aW5nIGRhdGFzZXQuDQoNCmBgYHtyfQ0KaWl0ZERGIDwtIHJlYWQuY3N2KCJodHRwOi8vd2ViLmlpdGQuYWMuaW4vfmFyanVuZ2hvc2gvZmlsZXMvaWl0ZFBlcnNvbnMuY3N2IikNCmhlYWQoaWl0ZERGKQ0KYGBgDQpUaGlzIGlzIGEgZGF0YXNldCBvYnRhaW5lZCBmcm9tIHdpa2lkYXRhIG9mIElJVCBEZWxoaSBhbHVtbmkgYW5kIHRoZWlyIHBsYWNlcyBvZiBiaXJ0aC4NCg0KTGV0cyB1cyBjcmVhdGUgYSBzcGF0aWFsIG9iamVjdCBhbmQgdmlzdWFsaXplIHRvIGFuIGludGVyYWN0aXZlIG1hcC4NCg0KYGBge3J9DQpiaXJ0aGlpdGQgPC0gc3RfYXNfc2YoaWl0ZERGLCBjb29yZHMgPSBjKCJMb25nIiwiTGF0IiksIGNycz00MzI2KQ0KbWFwdmlldyhiaXJ0aGlpdGQsIHpjb2wgPSAieW9iIiwgbGFiZWwgPSBiaXJ0aGlpdGQkcGVyc29uTGFiZWwsIGxlZ2VuZCA9IFRSVUUpDQpgYGANCg0KSGVyZSB3ZSBhcmUgdXNpbmcgdGhlICdtYXB2aWV3JyBmdW5jdGlvbiB0byBwbG90IHZhbHVlcyBhY2NvcmRpbmcgdG8gdGhlIHRoZSBZZWFyIG9mIEJpcnRoICh5b2IpLg0KW1ZpZXcgUmVzdWx0XShodHRwczovL3dlYi5paXRkLmFjLmluL35hcmp1bmdob3NoL2ZpbGVzL2lpdGRtYXAuaHRtbCkNCg0KQXMgd2UgY2FuIHNlZSB0aGUgaW4gdGhlIHJlc3VsdGluZyBtYXAgdGhlIHBvaW50cyBhcmUgY29sb3VyZWQgYWNjb3JkaW5nIHRvIGEgZ3JhZGllbnQgLSBvbGQgdG8gcmVjZW50IGFjY29yZGluZyB0byB0aGUgWWVhciBvZiBCaXJ0aC4gVXNpbmcgdGhpcyB3ZSBjYW4gdHJ5IHRvIGFzY2VydGFpbiBpZiB0aGVyZSBoYXMgYmVlbiBhIGNoYW5nZSBpbiB0aGUgcGxhY2VzIG9mIG9yaWdpbiBvZiBzdWNjZXNzZnVsIElJVEQgYWx1bW5pIG92ZXIgdGhlIHllYXJzLg0KDQojIE1vcmUgbWFwcGluZyBvbiBSDQpUaG91Z2ggJ21hcHZpZXcnIGlzIGFuIGVhc3kgdG8gdXNlIGdlb3NwYXRpYWwgdmlzdWFsaXplciwgbXVjaCBtb3JlIGlzIHBvc3NpYmxlIHVzaW5nIFIuIEJleW9uZCAnbWFwdmlldycsIG1hcHBpbmcgb24gUiBjYW4gYWxzbyBiZSB1bmRlcnRha2VuIHVzaW5nICdnZ3Bsb3QnIGFuZCAnZ2dtYXBzJy4gVGFrZSBhIGxvb2sgYXQgdGhpcyB0dXRvcmlhbCB3aGljaCBhZHZpc2VzIHVzIG9uIGhvdyB0byBjcmVhdGUgYSBbQ2hsb3JvcGxldGggbWFwXShodHRwczovL3ItZ3JhcGgtZ2FsbGVyeS5jb20vMTgzLWNob3JvcGxldGgtbWFwLXdpdGgtbGVhZmxldC5odG1sKSBvciBvbmUgd2hlcmUgd2UgY2FuIGFuYWx5c2UgZGF0YSBhdmFpbGFibGUgZm9yIHNwZWNpZmljIHNwYXRpYWwgc2hhcGVzIG9yIHBvbHlnb25zLiBUaGlzIGFsbG93cyB1cyB0byBhbmFseXNlIGRpc3RyaWJ1dGlvbiBhY2Nyb3NzIGRlb2dyYXBoaWNhbCBjYXRlZ29yaWVzIGxpa2UgZGlzdHJpY3RzLCBzdGF0ZXMgb3IgY291bnRyaWVzLg0KDQpbTWFpbiBNZW51XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllcy5uYi5odG1sKQ==</div>
 
 
 
