@@ -28,7 +28,7 @@ library(mapview)
 lifeDF <- read.csv("./data/cleanoutput.csv", stringsAsFactors = FALSE)
 ```
 
-In 'mapview' the coordintes are pushed separately as Longtitude and Latitude in decimal format.
+In 'mapview' the coordintes are pushed separately as Longitude and Latitude in decimal format.
 
 # converting data into spatial objects
 ```{r}
@@ -47,13 +47,15 @@ deathLoc <- st_as_sf(lifeDF, coords = c("deathlon","deathlat"),
 mapview(birthLoc)
 ```
 
+[View result](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/birthloc.html)
+
 ## multiple location types
 
 ```{r}
 mapview(list(birthLoc,deathLoc),col.regions=list("blue","red"),col=list("blue","red"),label=lifeDF$Name)
 ```
 
-
+[View result](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/birdealoc.html)
 
 
 [Main
