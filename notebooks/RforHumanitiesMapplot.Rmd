@@ -110,6 +110,6 @@ Here we are using the 'mapview' function to plot values according to the the Yea
 As we can see the in the resulting map the points are coloured according to a gradient - old to recent according to the Year of Birth. Using this we can try to ascertain if there has been a change in the places of origin of successful IITD alumni over the years.
 
 # More mapping on R
-Though 'mapview' is an easy to use geospatial visualizer, much more is possible using R. Beyond 'mapview', mapping on R can also be undertaken using 'ggplot' and 'ggmaps'. Take a look at this tutorial which advises us on how to create a [Chloropleth map](https://r-graph-gallery.com/183-choropleth-map-with-leaflet.html) or one where we can analyse data available for specific spatial shapes or polygons. This allows us to analyse distribution accross deographical categories like districts, states or countries.
+Though 'mapview' is an easy to use geospatial visualizer, much more is possible using R. Beyond 'mapview', mapping on R can also be undertaken using 'ggplot' and 'ggmaps'. Take a look at this tutorial which advises us on how to create a [Chloropleth map](https://r-graph-gallery.com/183-choropleth-map-with-leaflet.html) or one where we can analyse data available for specific spatial shapes or polygons. This allows us to analyse distribution across geographical categories like districts, states or countries.
 
 [Main Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
