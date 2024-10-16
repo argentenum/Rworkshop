@@ -1,4 +1,4 @@
-#setwd("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/data")
+setwd("C:/Users/DELL/Dropbox/Arjun/02-research/digital-humanities/workshops/Rworkshop/")
 #https://map-rfun.library.duke.edu/01_georeference.html
 #reading the data
 lifeDF <- read.csv("./data/cleanoutput.csv", stringsAsFactors = FALSE)

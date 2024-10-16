@@ -1,0 +1,132 @@
+---
+title: "R for Humanities: Sentiment Analysis"
+output: html_notebook
+---
+
+[Main Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
+
+In this lesson we shall learn preliminary steps in conducting Sentiment Analysis of texts.
+
+In order to do so we need to learn how to define custom functions in R.
+
+# generating custom functions
+
+In R we can create a macro by defining a series of operations to a function variable.
+
+```{r}
+funcofx <- function(x){x+1}
+```
+
+Here we are defining a custom function 'funcofx' as any function of a numeric value 'x' that will then peform the arithmetic operation 'x+1'.
+
+Once defined 'funcofx' will perform the artimetic operation over any value of x that is supplied to it.
+
+```{r}
+funcofx(10)
+```
+Such functions can be defined for string operations as well.
+
+```{r}
+funcofy <- function(y){
+  paste(y, "is the phrase", sep = " ")
+}
+funcofy("expecto petronum")
+```
+
+
+Now that we have learnt how to define a function let us move on to Sentiment Analysis. We need the package 'sentimentr'
+
+```{r}
+library(sentimentr)
+```
+
+It gives us a score when we push a string to it.
+
+```{r}
+sentiment("The queen is dead. Long live the king")
+```
+
+We can see here that the function 'sentiment' recognizes that the string consists of two sentences. It assigns a sentiment score of -0.5 for the first sentence and 0.05 for the second sentence. We can interpret this on a scale of -1 to +1 from negative to positive emotion. Thus the first sentence is assigned a strong negative value on emotions. The second sentence is largely neutral emotionally if only mildly positive.
+
+If we want a deep dive into the words that are producing the sentiment value as assigned by 'sentimentr' we can do so by extracting the sentiment terms.
+
+```{r}
+extract_sentiment_terms("The queen is dead. Long live the king")
+```
+
+In the console this function produces the following result:
+
+Key: <element_id, sentence_id>
+   element_id sentence_id negative positive
+        <int>       <int>   <list>   <list>
+1:          1           1     dead         
+2:          1           2              king
+
+Beyond the assignment of sentiment value within the positive and negative range, we can also extract deeper level of emotions from the string.
+
+```{r}
+emotion("The queen is dead. Long live the king")
+```
+
+Now let us work with a larger [dataset](https://github.com/argentenum/Rworkshop/blob/master/data/corpus/1836MrPickwickChristmas.txt)
+
+```{r}
+sampleText <- readLines("./data/corpus/1836MrPickwickChristmas.txt")
+```
+
+
+# plotting emotions
+
+With series of statements we can plot the emotions.
+
+```{r}
+senti <- sentiment(get_sentences(sampleText))
+senti <- subset(senti,senti$sentiment!=0) #get rid of emotions non-existent in the text
+densitySentiments <- density(senti$sentiment) #get statistics on the sentiments
+plot(densitySentiments,main='Density of sentiments')
+polygon(densitySentiments,col='dark green')
+```
+
+
+# making a function of the above steps
+
+```{r}
+makeSentiPlot <- function(txt){
+  senti <- sentiment(get_sentences(txt))
+  senti <- subset(senti,senti$sentiment!=0)
+  densitySentiments <- density(senti$sentiment) 
+  plot(densitySentiments,main='Density of sentiments')
+  polygon(densitySentiments,col='dark green')
+}
+makeSentiPlot(sampleText)
+```
+
+
+# plotting emotions
+
+```{r}
+emoti <- emotion_by(get_sentences(sampleText), drop.unused.emotions=TRUE)
+plot(emoti) #gives variations of individual emotions in a given piece of text
+```
+
+
+# make a barplot of different emotions 
+
+```{r}
+library(dplyr)
+```
+
+
+```{r}
+
+sampleText %>%
+  get_sentences() %>%
+  emotion_by(drop.unused.emotions=TRUE) %>%
+  group_by(emotion_type)  %>%
+  summarise(ave_emotion=mean(ave_emotion)) -> txtSummary
+barplot(txtSummary$ave_emotion,
+        names.arg = txtSummary$emotion_type, las=2, col='red')
+```
+
+
+[Main Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
