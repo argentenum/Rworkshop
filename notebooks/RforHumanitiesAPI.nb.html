@@ -11,7 +11,7 @@
 
 
 
-<title>RforHumanities</title>
+<title>RforHumanities: API</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1746,195 +1746,361 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">RforHumanities</h1>
+<h1 class="title toc-ignore">RforHumanities: API</h1>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<p>In the following set of lessons we shall be closely following the
-instructions given at <a href="https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf">The
-Art of R Programming by Norman Matloff</a></p>
-<div id="lesson-1" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities01.nb.html">Lesson
-1</a></h1>
-<ul>
-<li>Installation and getting started
-<ul>
-<li>sub-item</li>
-<li>sub-item</li>
-</ul></li>
-<li>Basic operations</li>
-<li>Variables</li>
-</ul>
-<p>Functions: print, str, nchar</p>
+<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
+Menu</a></p>
+<div id="what-is-an-api" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> What is an API</h1>
+<p>Wikipedia says: An application programming interface is a connection
+between computers or between computer programs. It is a type of software
+interface, offering a service to other pieces of software. A document or
+standard that describes how to build such a connection or interface is
+called an API specification.</p>
+<p>Using the API connection we can draw data from an existing
+source.</p>
+<p>API’s can be called by R in two ways (1) Thorugh an API URL or (2)
+Thorugh an exclusive package that interfaces with the API. API’s can be
+open or may require an authentication key. They could be paid or free.
+API’s usually have a rate limit.</p>
 </div>
-<div id="lesson-2" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.nb.html">Lesson
-2</a></h1>
-<ul>
-<li>Vectors
-<ul>
-<li>Numerical Vectors</li>
-<li>String Vectors</li>
-<li>sort</li>
-<li>Creating vectors</li>
-<li>Adding values to vectors</li>
-<li>Vector length</li>
-</ul></li>
-<li>Vector indices</li>
-<li>Vector arithmetic</li>
-<li>Logical operations
-<ul>
-<li>Logical operations</li>
-<li>which</li>
-<li>any and all</li>
-<li>ifelse</li>
-</ul></li>
-</ul>
+<div id="wikipedia-api" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Wikipedia API</h1>
+<p>Wikipedia maintains a set of APIs for querying data as well as
+posting data.</p>
+<p><a href="https://en.wikipedia.org/w/api.php">Wikipedia API</a> <a href="https://www.mediawiki.org/wiki/API:Main_page">Wikipedia API
+page</a></p>
+<p>Each Wikipedia article has an unique id. For the Wikipedia page on <a href="https://en.wikipedia.org/wiki/Daron_Acemoglu">Daron Acemoglu</a>,
+the url is “<a href="https://en.wikipedia.org/wiki/Daron_Acemoglu" class="uri">https://en.wikipedia.org/wiki/Daron_Acemoglu</a>” and the
+page identifier is “Daron_Acemoglu”.</p>
+<p>Wikipedia maintains detailed <a href="https://en.wikipedia.org/w/index.php?title=Daron_Acemoglu&amp;action=history">revision
+history</a> of each page. Here Wikipedia maintains details of each
+editor who have contributed to the page.</p>
+<p>Each editor has an unique id. For instance the user <a href="https://en.wikipedia.org/wiki/User:Yerevantsi">Yerevatnsi</a>.</p>
+<div id="example-of-direct-api-query" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Example of direct API
+query</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShodHRyKVxuYGBgIn0= -->
+<pre class="r"><code>library(httr)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
-<div id="lesson-3" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities03.nb.html">Lesson
-3</a></h1>
-<ul>
-<li>Lists
-<ul>
-<li>Creating a List</li>
-<li>length of a List</li>
-<li>unlist</li>
-<li>Index a List</li>
-</ul></li>
-<li>Dataframes
-<ul>
-<li>Creating a dataframe</li>
-<li>Indexing a dataframe</li>
-<li>length of a dataframe</li>
-<li>Column labels</li>
-<li>nrow and ncol</li>
-</ul></li>
-<li>Exercise</li>
-</ul>
+<div id="get-contributions-to-wikipedia-by-editor---latest-500-edits" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> get contributions to
+Wikipedia by editor - latest 500 edits</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuVXNlckNvbnRyaWJzVXJsIDwtIFwiaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3cvYXBpLnBocD9hY3Rpb249cXVlcnkmZm9ybWF0PWpzb24mbGlzdD11c2VyY29udHJpYnMmdWN1c2VyPVdpa2lDbGVhbmVyTWFuJnVjbGltaXQ9NTAwJnVjc2hvdz0hbWlub3JcIlxuY29udHJpYnMxIDwtIEdFVChVc2VyQ29udHJpYnNVcmwpXG5jb250cmliczFcbmBgYCJ9 -->
+<pre class="r"><code>UserContribsUrl &lt;- &quot;https://en.wikipedia.org/w/api.php?action=query&amp;format=json&amp;list=usercontribs&amp;ucuser=WikiCleanerMan&amp;uclimit=500&amp;ucshow=!minor&quot;
+contribs1 &lt;- GET(UserContribsUrl)
+contribs1</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVzcG9uc2UgW2h0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93L2FwaS5waHA/YWN0aW9uPXF1ZXJ5JmZvcm1hdD1qc29uJmxpc3Q9dXNlcmNvbnRyaWJzJnVjdXNlcj1XaWtpQ2xlYW5lck1hbiZ1Y2xpbWl0PTUwMCZ1Y3Nob3c9IW1pbm9yXVxuICBEYXRlOiAyMDI0LTEwLTE3IDAxOjU2XG4gIFN0YXR1czogMjAwXG4gIENvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOFxuICBTaXplOiAxMjgga0JcbiJ9 -->
+<pre><code>Response [https://en.wikipedia.org/w/api.php?action=query&amp;format=json&amp;list=usercontribs&amp;ucuser=WikiCleanerMan&amp;uclimit=500&amp;ucshow=!minor]
+  Date: 2024-10-17 01:56
+  Status: 200
+  Content-Type: application/json; charset=utf-8
+  Size: 128 kB</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The response is a list that provides details of the user’s
+contributions.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGNvbnRyaWJzMSlcbmBgYCJ9 -->
+<pre class="r"><code>str(contribs1)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAxMFxuICQgdXJsICAgICAgICA6IGNociBcImh0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93L2FwaS5waHA/YWN0aW9uPXF1ZXJ5JmZvcm1hdD1qc29uJmxpc3Q9dXNlcmNvbnRyaWJzJnVjdXNlcj1XaWtpQ2xlYW5lck1hbiZ1Y2xpbWl0PTUwMCZ1Y3Nob3c9IW1pbm9yXCJcbiAkIHN0YXR1c19jb2RlOiBpbnQgMjAwXG4gJCBoZWFkZXJzICAgIDpMaXN0IG9mIDIyXG4gIC4uJCBkYXRlICAgICAgICAgICAgICAgICAgICAgOiBjaHIgXCJUaHUsIDE3IE9jdCAyMDI0IDAxOjU2OjUwIEdNVFwiXG4gIC4uJCBzZXJ2ZXIgICAgICAgICAgICAgICAgICAgOiBjaHIgXCJtdy1hcGktZXh0LmNvZGZ3Lm1haW4tNTk4OThiODc4Yi03aHYyc1wiXG4gIC4uJCB4LWNvbnRlbnQtdHlwZS1vcHRpb25zICAgOiBjaHIgXCJub3NuaWZmXCJcbiAgLi4kIHgtZnJhbWUtb3B0aW9ucyAgICAgICAgICA6IGNociBcIkRFTllcIlxuICAuLiQgY29udGVudC1kaXNwb3NpdGlvbiAgICAgIDogY2hyIFwiaW5saW5lOyBmaWxlbmFtZT1hcGktcmVzdWx0Lmpzb25cIlxuICAuLiQgdmFyeSAgICAgICAgICAgICAgICAgICAgIDogY2hyIFwiQWNjZXB0LUVuY29kaW5nLFRyZWF0LWFzLVVudHJ1c3RlZCxYLUZvcndhcmRlZC1Qcm90byxDb29raWUsQXV0aG9yaXphdGlvblwiXG4gIC4uJCBjYWNoZS1jb250cm9sICAgICAgICAgICAgOiBjaHIgXCJwcml2YXRlLCBtdXN0LXJldmFsaWRhdGUsIG1heC1hZ2U9MFwiXG4gIC4uJCBjb250ZW50LXR5cGUgICAgICAgICAgICAgOiBjaHIgXCJhcHBsaWNhdGlvbi9qc29uOyBjaGFyc2V0PXV0Zi04XCJcbiAgLi4kIGNvbnRlbnQtZW5jb2RpbmcgICAgICAgICA6IGNociBcImd6aXBcIlxuICAuLiQgYWdlICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFwiMlwiXG4gIC4uJCB4LWNhY2hlICAgICAgICAgICAgICAgICAgOiBjaHIgXCJjcDUwMjAgbWlzcywgY3A1MDIwIHBhc3NcIlxuICAuLiQgeC1jYWNoZS1zdGF0dXMgICAgICAgICAgIDogY2hyIFwicGFzc1wiXG4gIC4uJCBzZXJ2ZXItdGltaW5nICAgICAgICAgICAgOiBjaHIgXCJjYWNoZTtkZXNjPVxcXCJwYXNzXFxcIiwgaG9zdDtkZXNjPVxcXCJjcDUwMjBcXFwiXCJcbiAgLi4kIHN0cmljdC10cmFuc3BvcnQtc2VjdXJpdHk6IGNociBcIm1heC1hZ2U9MTA2Mzg0NzEwOyBpbmNsdWRlU3ViRG9tYWluczsgcHJlbG9hZFwiXG4gIC4uJCByZXBvcnQtdG8gICAgICAgICAgICAgICAgOiBjaHIgXCJ7IFxcXCJncm91cFxcXCI6IFxcXCJ3bV9uZWxcXFwiLCBcXFwibWF4X2FnZVxcXCI6IDYwNDgwMCwgXFxcImVuZHBvaW50c1xcXCI6IFt7IFxcXCJ1cmxcXFwiOiBcXFwiaHR0cHM6Ly9pbnRha2UtbG9nZ2luZy53aWtpbWVkaWEub3JnXCJ8IF9fdHJ1bmNhdGVkX19cbiAgLi4kIG5lbCAgICAgICAgICAgICAgICAgICAgICA6IGNociBcInsgXFxcInJlcG9ydF90b1xcXCI6IFxcXCJ3bV9uZWxcXFwiLCBcXFwibWF4X2FnZVxcXCI6IDYwNDgwMCwgXFxcImZhaWx1cmVfZnJhY3Rpb25cXFwiOiAwLjA1LCBcXFwic3VjY2Vzc19mcmFjdGlvblxcXCI6IDAuMH1cIlxuICAuLiQgc2V0LWNvb2tpZSAgICAgICAgICAgICAgIDogY2hyIFwiV01GLUxhc3QtQWNjZXNzPTE3LU9jdC0yMDI0O1BhdGg9LztIdHRwT25seTtzZWN1cmU7RXhwaXJlcz1Nb24sIDE4IE5vdiAyMDI0IDAwOjAwOjAwIEdNVFwiXG4gIC4uJCBzZXQtY29va2llICAgICAgICAgICAgICAgOiBjaHIgXCJXTUYtTGFzdC1BY2Nlc3MtR2xvYmFsPTE3LU9jdC0yMDI0O1BhdGg9LztEb21haW49Lndpa2lwZWRpYS5vcmc7SHR0cE9ubHk7c2VjdXJlO0V4cGlyZXM9TW9uLCAxOCBOb3YgMjAyNCAwMDowMDowMCBHTVRcIlxuICAuLiQgeC1jbGllbnQtaXAgICAgICAgICAgICAgIDogY2hyIFwiMTAzLjI3LjkuMjQ1XCJcbiAgLi4kIHNldC1jb29raWUgICAgICAgICAgICAgICA6IGNociBcIk5ldHdvcmtQcm9iZUxpbWl0PTAuMDAxO1BhdGg9LztTZWN1cmU7U2FtZVNpdGU9TGF4O01heC1BZ2U9MzYwMFwiXG4gIC4uJCBhY2NlcHQtcmFuZ2VzICAgICAgICAgICAgOiBjaHIgXCJieXRlc1wiXG4gIC4uJCB0cmFuc2Zlci1lbmNvZGluZyAgICAgICAgOiBjaHIgXCJjaHVua2VkXCJcbiAgLi4tIGF0dHIoKiwgXCJjbGFzc1wiKT0gY2hyIFsxOjJdIFwiaW5zZW5zaXRpdmVcIiBcImxpc3RcIlxuICQgYWxsX2hlYWRlcnM6TGlzdCBvZiAxXG4gIC4uJCA6TGlzdCBvZiAzXG4gIC4uIC4uJCBzdGF0dXMgOiBpbnQgMjAwXG4gIC4uIC4uJCB2ZXJzaW9uOiBjaHIgXCJIVFRQLzEuMVwiXG4gIC4uIC4uJCBoZWFkZXJzOkxpc3Qgb2YgMjJcbiAgLi4gLi4gLi4kIGRhdGUgICAgICAgICAgICAgICAgICAgICA6IGNociBcIlRodSwgMTcgT2N0IDIwMjQgMDE6NTY6NTAgR01UXCJcbiAgLi4gLi4gLi4kIHNlcnZlciAgICAgICAgICAgICAgICAgICA6IGNociBcIm13LWFwaS1leHQuY29kZncubWFpbi01OTg5OGI4NzhiLTdodjJzXCJcbiAgLi4gLi4gLi4kIHgtY29udGVudC10eXBlLW9wdGlvbnMgICA6IGNociBcIm5vc25pZmZcIlxuICAuLiAuLiAuLiQgeC1mcmFtZS1vcHRpb25zICAgICAgICAgIDogY2hyIFwiREVOWVwiXG4gIC4uIC4uIC4uJCBjb250ZW50LWRpc3Bvc2l0aW9uICAgICAgOiBjaHIgXCJpbmxpbmU7IGZpbGVuYW1lPWFwaS1yZXN1bHQuanNvblwiXG4gIC4uIC4uIC4uJCB2YXJ5ICAgICAgICAgICAgICAgICAgICAgOiBjaHIgXCJBY2NlcHQtRW5jb2RpbmcsVHJlYXQtYXMtVW50cnVzdGVkLFgtRm9yd2FyZGVkLVByb3RvLENvb2tpZSxBdXRob3JpemF0aW9uXCJcbiAgLi4gLi4gLi4kIGNhY2hlLWNvbnRyb2wgICAgICAgICAgICA6IGNociBcInByaXZhdGUsIG11c3QtcmV2YWxpZGF0ZSwgbWF4LWFnZT0wXCJcbiAgLi4gLi4gLi4kIGNvbnRlbnQtdHlwZSAgICAgICAgICAgICA6IGNociBcImFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9dXRmLThcIlxuICAuLiAuLiAuLiQgY29udGVudC1lbmNvZGluZyAgICAgICAgIDogY2hyIFwiZ3ppcFwiXG4gIC4uIC4uIC4uJCBhZ2UgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgXCIyXCJcbiAgLi4gLi4gLi4kIHgtY2FjaGUgICAgICAgICAgICAgICAgICA6IGNociBcImNwNTAyMCBtaXNzLCBjcDUwMjAgcGFzc1wiXG4gIC4uIC4uIC4uJCB4LWNhY2hlLXN0YXR1cyAgICAgICAgICAgOiBjaHIgXCJwYXNzXCJcbiAgLi4gLi4gLi4kIHNlcnZlci10aW1pbmcgICAgICAgICAgICA6IGNociBcImNhY2hlO2Rlc2M9XFxcInBhc3NcXFwiLCBob3N0O2Rlc2M9XFxcImNwNTAyMFxcXCJcIlxuICAuLiAuLiAuLiQgc3RyaWN0LXRyYW5zcG9ydC1zZWN1cml0eTogY2hyIFwibWF4LWFnZT0xMDYzODQ3MTA7IGluY2x1ZGVTdWJEb21haW5zOyBwcmVsb2FkXCJcbiAgLi4gLi4gLi4kIHJlcG9ydC10byAgICAgICAgICAgICAgICA6IGNociBcInsgXFxcImdyb3VwXFxcIjogXFxcIndtX25lbFxcXCIsIFxcXCJtYXhfYWdlXFxcIjogNjA0ODAwLCBcXFwiZW5kcG9pbnRzXFxcIjogW3sgXFxcInVybFxcXCI6IFxcXCJodHRwczovL2ludGFrZS1sb2dnaW5nLndpa2ltZWRpYS5vcmdcInwgX190cnVuY2F0ZWRfX1xuICAuLiAuLiAuLiQgbmVsICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFwieyBcXFwicmVwb3J0X3RvXFxcIjogXFxcIndtX25lbFxcXCIsIFxcXCJtYXhfYWdlXFxcIjogNjA0ODAwLCBcXFwiZmFpbHVyZV9mcmFjdGlvblxcXCI6IDAuMDUsIFxcXCJzdWNjZXNzX2ZyYWN0aW9uXFxcIjogMC4wfVwiXG4gIC4uIC4uIC4uJCBzZXQtY29va2llICAgICAgICAgICAgICAgOiBjaHIgXCJXTUYtTGFzdC1BY2Nlc3M9MTctT2N0LTIwMjQ7UGF0aD0vO0h0dHBPbmx5O3NlY3VyZTtFeHBpcmVzPU1vbiwgMTggTm92IDIwMjQgMDA6MDA6MDAgR01UXCJcbiAgLi4gLi4gLi4kIHNldC1jb29raWUgICAgICAgICAgICAgICA6IGNociBcIldNRi1MYXN0LUFjY2Vzcy1HbG9iYWw9MTctT2N0LTIwMjQ7UGF0aD0vO0RvbWFpbj0ud2lraXBlZGlhLm9yZztIdHRwT25seTtzZWN1cmU7RXhwaXJlcz1Nb24sIDE4IE5vdiAyMDI0IDAwOjAwOjAwIEdNVFwiXG4gIC4uIC4uIC4uJCB4LWNsaWVudC1pcCAgICAgICAgICAgICAgOiBjaHIgXCIxMDMuMjcuOS4yNDVcIlxuICAuLiAuLiAuLiQgc2V0LWNvb2tpZSAgICAgICAgICAgICAgIDogY2hyIFwiTmV0d29ya1Byb2JlTGltaXQ9MC4wMDE7UGF0aD0vO1NlY3VyZTtTYW1lU2l0ZT1MYXg7TWF4LUFnZT0zNjAwXCJcbiAgLi4gLi4gLi4kIGFjY2VwdC1yYW5nZXMgICAgICAgICAgICA6IGNociBcImJ5dGVzXCJcbiAgLi4gLi4gLi4kIHRyYW5zZmVyLWVuY29kaW5nICAgICAgICA6IGNociBcImNodW5rZWRcIlxuICAuLiAuLiAuLi0gYXR0cigqLCBcImNsYXNzXCIpPSBjaHIgWzE6Ml0gXCJpbnNlbnNpdGl2ZVwiIFwibGlzdFwiXG4gJCBjb29raWVzICAgIDonZGF0YS5mcmFtZSc6XHQ0IG9icy4gb2YgIDcgdmFyaWFibGVzOlxuICAuLiQgZG9tYWluICAgIDogY2hyIFsxOjRdIFwiI0h0dHBPbmx5X2VuLndpa2lwZWRpYS5vcmdcIiBcIiNIdHRwT25seV8ud2lraXBlZGlhLm9yZ1wiIFwiLndpa2lwZWRpYS5vcmdcIiBcImVuLndpa2lwZWRpYS5vcmdcIlxuICAuLiQgZmxhZyAgICAgIDogbG9naSBbMTo0XSBGQUxTRSBUUlVFIFRSVUUgRkFMU0VcbiAgLi4kIHBhdGggICAgICA6IGNociBbMTo0XSBcIi9cIiBcIi9cIiBcIi9cIiBcIi9cIlxuICAuLiQgc2VjdXJlICAgIDogbG9naSBbMTo0XSBUUlVFIFRSVUUgVFJVRSBUUlVFXG4gIC4uJCBleHBpcmF0aW9uOiBQT1NJWGN0WzE6NF0sIGZvcm1hdDogXCIyMDI0LTExLTE4IDA1OjMwOjAwXCIgXCIyMDI0LTExLTE4IDA1OjMwOjAwXCIgLi4uXG4gIC4uJCBuYW1lICAgICAgOiBjaHIgWzE6NF0gXCJXTUYtTGFzdC1BY2Nlc3NcIiBcIldNRi1MYXN0LUFjY2Vzcy1HbG9iYWxcIiBcIkdlb0lQXCIgXCJOZXR3b3JrUHJvYmVMaW1pdFwiXG4gIC4uJCB2YWx1ZSAgICAgOiBjaHIgWzE6NF0gXCIxNy1PY3QtMjAyNFwiIFwiMTctT2N0LTIwMjRcIiBcIklOOkRMOk5ld19EZWxoaToyOC42NTo3Ny4xNzp2NFwiIFwiMC4wMDFcIlxuICQgY29udGVudCAgICA6IHJhdyBbMToxMjgwMzldIDdiIDIyIDYyIDYxIC4uLlxuICQgZGF0ZSAgICAgICA6IFBPU0lYY3RbMToxXSwgZm9ybWF0OiBcIjIwMjQtMTAtMTcgMDE6NTY6NTBcIlxuICQgdGltZXMgICAgICA6IE5hbWVkIG51bSBbMTo2XSAwIDAuMDA3NjggMC4wOTM4NCAwLjE3MzkzIDEuMTAzMjUgLi4uXG4gIC4uLSBhdHRyKCosIFwibmFtZXNcIik9IGNociBbMTo2XSBcInJlZGlyZWN0XCIgXCJuYW1lbG9va3VwXCIgXCJjb25uZWN0XCIgXCJwcmV0cmFuc2ZlclwiIC4uLlxuICQgcmVxdWVzdCAgICA6TGlzdCBvZiA3XG4gIC4uJCBtZXRob2QgICAgOiBjaHIgXCJHRVRcIlxuICAuLiQgdXJsICAgICAgIDogY2hyIFwiaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3cvYXBpLnBocD9hY3Rpb249cXVlcnkmZm9ybWF0PWpzb24mbGlzdD11c2VyY29udHJpYnMmdWN1c2VyPVdpa2lDbGVhbmVyTWFuJnVjbGltaXQ9NTAwJnVjc2hvdz0hbWlub3JcIlxuICAuLiQgaGVhZGVycyAgIDogTmFtZWQgY2hyIFwiYXBwbGljYXRpb24vanNvbiwgdGV4dC94bWwsIGFwcGxpY2F0aW9uL3htbCwgKi8qXCJcbiAgLi4gLi4tIGF0dHIoKiwgXCJuYW1lc1wiKT0gY2hyIFwiQWNjZXB0XCJcbiAgLi4kIGZpZWxkcyAgICA6IE5VTExcbiAgLi4kIG9wdGlvbnMgICA6TGlzdCBvZiAyXG4gIC4uIC4uJCB1c2VyYWdlbnQ6IGNociBcImxpYmN1cmwvOC4zLjAgci1jdXJsLzUuMi4zIGh0dHIvMS40LjdcIlxuICAuLiAuLiQgaHR0cGdldCAgOiBsb2dpIFRSVUVcbiAgLi4kIGF1dGhfdG9rZW46IE5VTExcbiAgLi4kIG91dHB1dCAgICA6IGxpc3QoKVxuICAuLiAuLi0gYXR0cigqLCBcImNsYXNzXCIpPSBjaHIgWzE6Ml0gXCJ3cml0ZV9tZW1vcnlcIiBcIndyaXRlX2Z1bmN0aW9uXCJcbiAgLi4tIGF0dHIoKiwgXCJjbGFzc1wiKT0gY2hyIFwicmVxdWVzdFwiXG4gJCBoYW5kbGUgICAgIDpDbGFzcyAnY3VybF9oYW5kbGUnIDxleHRlcm5hbHB0cj4gXG4gLSBhdHRyKCosIFwiY2xhc3NcIik9IGNociBcInJlc3BvbnNlXCJcbiJ9 -->
+<pre><code>List of 10
+ $ url        : chr &quot;https://en.wikipedia.org/w/api.php?action=query&amp;format=json&amp;list=usercontribs&amp;ucuser=WikiCleanerMan&amp;uclimit=500&amp;ucshow=!minor&quot;
+ $ status_code: int 200
+ $ headers    :List of 22
+  ..$ date                     : chr &quot;Thu, 17 Oct 2024 01:56:50 GMT&quot;
+  ..$ server                   : chr &quot;mw-api-ext.codfw.main-59898b878b-7hv2s&quot;
+  ..$ x-content-type-options   : chr &quot;nosniff&quot;
+  ..$ x-frame-options          : chr &quot;DENY&quot;
+  ..$ content-disposition      : chr &quot;inline; filename=api-result.json&quot;
+  ..$ vary                     : chr &quot;Accept-Encoding,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization&quot;
+  ..$ cache-control            : chr &quot;private, must-revalidate, max-age=0&quot;
+  ..$ content-type             : chr &quot;application/json; charset=utf-8&quot;
+  ..$ content-encoding         : chr &quot;gzip&quot;
+  ..$ age                      : chr &quot;2&quot;
+  ..$ x-cache                  : chr &quot;cp5020 miss, cp5020 pass&quot;
+  ..$ x-cache-status           : chr &quot;pass&quot;
+  ..$ server-timing            : chr &quot;cache;desc=\&quot;pass\&quot;, host;desc=\&quot;cp5020\&quot;&quot;
+  ..$ strict-transport-security: chr &quot;max-age=106384710; includeSubDomains; preload&quot;
+  ..$ report-to                : chr &quot;{ \&quot;group\&quot;: \&quot;wm_nel\&quot;, \&quot;max_age\&quot;: 604800, \&quot;endpoints\&quot;: [{ \&quot;url\&quot;: \&quot;https://intake-logging.wikimedia.org&quot;| __truncated__
+  ..$ nel                      : chr &quot;{ \&quot;report_to\&quot;: \&quot;wm_nel\&quot;, \&quot;max_age\&quot;: 604800, \&quot;failure_fraction\&quot;: 0.05, \&quot;success_fraction\&quot;: 0.0}&quot;
+  ..$ set-cookie               : chr &quot;WMF-Last-Access=17-Oct-2024;Path=/;HttpOnly;secure;Expires=Mon, 18 Nov 2024 00:00:00 GMT&quot;
+  ..$ set-cookie               : chr &quot;WMF-Last-Access-Global=17-Oct-2024;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon, 18 Nov 2024 00:00:00 GMT&quot;
+  ..$ x-client-ip              : chr &quot;103.27.9.245&quot;
+  ..$ set-cookie               : chr &quot;NetworkProbeLimit=0.001;Path=/;Secure;SameSite=Lax;Max-Age=3600&quot;
+  ..$ accept-ranges            : chr &quot;bytes&quot;
+  ..$ transfer-encoding        : chr &quot;chunked&quot;
+  ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
+ $ all_headers:List of 1
+  ..$ :List of 3
+  .. ..$ status : int 200
+  .. ..$ version: chr &quot;HTTP/1.1&quot;
+  .. ..$ headers:List of 22
+  .. .. ..$ date                     : chr &quot;Thu, 17 Oct 2024 01:56:50 GMT&quot;
+  .. .. ..$ server                   : chr &quot;mw-api-ext.codfw.main-59898b878b-7hv2s&quot;
+  .. .. ..$ x-content-type-options   : chr &quot;nosniff&quot;
+  .. .. ..$ x-frame-options          : chr &quot;DENY&quot;
+  .. .. ..$ content-disposition      : chr &quot;inline; filename=api-result.json&quot;
+  .. .. ..$ vary                     : chr &quot;Accept-Encoding,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization&quot;
+  .. .. ..$ cache-control            : chr &quot;private, must-revalidate, max-age=0&quot;
+  .. .. ..$ content-type             : chr &quot;application/json; charset=utf-8&quot;
+  .. .. ..$ content-encoding         : chr &quot;gzip&quot;
+  .. .. ..$ age                      : chr &quot;2&quot;
+  .. .. ..$ x-cache                  : chr &quot;cp5020 miss, cp5020 pass&quot;
+  .. .. ..$ x-cache-status           : chr &quot;pass&quot;
+  .. .. ..$ server-timing            : chr &quot;cache;desc=\&quot;pass\&quot;, host;desc=\&quot;cp5020\&quot;&quot;
+  .. .. ..$ strict-transport-security: chr &quot;max-age=106384710; includeSubDomains; preload&quot;
+  .. .. ..$ report-to                : chr &quot;{ \&quot;group\&quot;: \&quot;wm_nel\&quot;, \&quot;max_age\&quot;: 604800, \&quot;endpoints\&quot;: [{ \&quot;url\&quot;: \&quot;https://intake-logging.wikimedia.org&quot;| __truncated__
+  .. .. ..$ nel                      : chr &quot;{ \&quot;report_to\&quot;: \&quot;wm_nel\&quot;, \&quot;max_age\&quot;: 604800, \&quot;failure_fraction\&quot;: 0.05, \&quot;success_fraction\&quot;: 0.0}&quot;
+  .. .. ..$ set-cookie               : chr &quot;WMF-Last-Access=17-Oct-2024;Path=/;HttpOnly;secure;Expires=Mon, 18 Nov 2024 00:00:00 GMT&quot;
+  .. .. ..$ set-cookie               : chr &quot;WMF-Last-Access-Global=17-Oct-2024;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon, 18 Nov 2024 00:00:00 GMT&quot;
+  .. .. ..$ x-client-ip              : chr &quot;103.27.9.245&quot;
+  .. .. ..$ set-cookie               : chr &quot;NetworkProbeLimit=0.001;Path=/;Secure;SameSite=Lax;Max-Age=3600&quot;
+  .. .. ..$ accept-ranges            : chr &quot;bytes&quot;
+  .. .. ..$ transfer-encoding        : chr &quot;chunked&quot;
+  .. .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
+ $ cookies    :&#39;data.frame&#39;:    4 obs. of  7 variables:
+  ..$ domain    : chr [1:4] &quot;#HttpOnly_en.wikipedia.org&quot; &quot;#HttpOnly_.wikipedia.org&quot; &quot;.wikipedia.org&quot; &quot;en.wikipedia.org&quot;
+  ..$ flag      : logi [1:4] FALSE TRUE TRUE FALSE
+  ..$ path      : chr [1:4] &quot;/&quot; &quot;/&quot; &quot;/&quot; &quot;/&quot;
+  ..$ secure    : logi [1:4] TRUE TRUE TRUE TRUE
+  ..$ expiration: POSIXct[1:4], format: &quot;2024-11-18 05:30:00&quot; &quot;2024-11-18 05:30:00&quot; ...
+  ..$ name      : chr [1:4] &quot;WMF-Last-Access&quot; &quot;WMF-Last-Access-Global&quot; &quot;GeoIP&quot; &quot;NetworkProbeLimit&quot;
+  ..$ value     : chr [1:4] &quot;17-Oct-2024&quot; &quot;17-Oct-2024&quot; &quot;IN:DL:New_Delhi:28.65:77.17:v4&quot; &quot;0.001&quot;
+ $ content    : raw [1:128039] 7b 22 62 61 ...
+ $ date       : POSIXct[1:1], format: &quot;2024-10-17 01:56:50&quot;
+ $ times      : Named num [1:6] 0 0.00768 0.09384 0.17393 1.10325 ...
+  ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;redirect&quot; &quot;namelookup&quot; &quot;connect&quot; &quot;pretransfer&quot; ...
+ $ request    :List of 7
+  ..$ method    : chr &quot;GET&quot;
+  ..$ url       : chr &quot;https://en.wikipedia.org/w/api.php?action=query&amp;format=json&amp;list=usercontribs&amp;ucuser=WikiCleanerMan&amp;uclimit=500&amp;ucshow=!minor&quot;
+  ..$ headers   : Named chr &quot;application/json, text/xml, application/xml, */*&quot;
+  .. ..- attr(*, &quot;names&quot;)= chr &quot;Accept&quot;
+  ..$ fields    : NULL
+  ..$ options   :List of 2
+  .. ..$ useragent: chr &quot;libcurl/8.3.0 r-curl/5.2.3 httr/1.4.7&quot;
+  .. ..$ httpget  : logi TRUE
+  ..$ auth_token: NULL
+  ..$ output    : list()
+  .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;write_memory&quot; &quot;write_function&quot;
+  ..- attr(*, &quot;class&quot;)= chr &quot;request&quot;
+ $ handle     :Class &#39;curl_handle&#39; &lt;externalptr&gt; 
+ - attr(*, &quot;class&quot;)= chr &quot;response&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can parse this list using the function ‘content’</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29udHJpYnNDb250ZW50MSA8LSBjb250ZW50KGNvbnRyaWJzMSwgYXMgPSAncGFyc2VkJylcbmBgYCJ9 -->
+<pre class="r"><code>contribsContent1 &lt;- content(contribs1, as = &#39;parsed&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Since the result will be a very long file please check its content in
+your console.</p>
+<p>Since we had limited the number of entries to 500 we can check one of
+the entries.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29udHJpYnNDb250ZW50MSRxdWVyeSR1c2VyY29udHJpYnNbNDg1XVxuYGBgIn0= -->
+<pre class="r"><code>contribsContent1$query$usercontribs[485]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbltbMV1dJHVzZXJpZFxuWzFdIDQwMTM4NjkxXG5cbltbMV1dJHVzZXJcblsxXSBcIldpa2lDbGVhbmVyTWFuXCJcblxuW1sxXV0kcGFnZWlkXG5bMV0gNzcxMTY1NTBcblxuW1sxXV0kcmV2aWRcblsxXSAxMjQ3MjUxODUwXG5cbltbMV1dJHBhcmVudGlkXG5bMV0gMTI0NzIyOTYzOFxuXG5bWzFdXSRuc1xuWzFdIDBcblxuW1sxXV0kdGl0bGVcblsxXSBcIjIwMjQgQ3plY2ggcmVnaW9uYWwgZWxlY3Rpb25zXCJcblxuW1sxXV0kdGltZXN0YW1wXG5bMV0gXCIyMDI0LTA5LTIzVDEzOjU2OjE0WlwiXG5cbltbMV1dJGNvbW1lbnRcblsxXSBcIi8qIFJlZmVyZW5jZXMgKi9cIlxuXG5bWzFdXSRzaXplXG5bMV0gMzAyMDFcbiJ9 -->
+<pre><code>[[1]]
+[[1]]$userid
+[1] 40138691
+
+[[1]]$user
+[1] &quot;WikiCleanerMan&quot;
+
+[[1]]$pageid
+[1] 77116550
+
+[[1]]$revid
+[1] 1247251850
+
+[[1]]$parentid
+[1] 1247229638
+
+[[1]]$ns
+[1] 0
+
+[[1]]$title
+[1] &quot;2024 Czech regional elections&quot;
+
+[[1]]$timestamp
+[1] &quot;2024-09-23T13:56:14Z&quot;
+
+[[1]]$comment
+[1] &quot;/* References */&quot;
+
+[[1]]$size
+[1] 30201</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
-<div id="lesson-4" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities04.nb.html">Lesson
-4</a></h1>
-<ul>
-<li>Appending data to dataframe +rbind +cbind</li>
-<li>Merging dataframes</li>
-<li>Subsetting dataframes</li>
-<li>Exporting dataframe</li>
-<li>Concatenating strings</li>
-<li>Getting date and time</li>
-<li>Creating dynamic file name</li>
-</ul>
+<div id="get-info-about-a-page" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> get info about a
+page</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUGFnZUluZm8gPC0gR0VUKFwiaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3cvYXBpLnBocD9hY3Rpb249cXVlcnkmZm9ybWF0PWpzb24mcHJvcD1pbmZvJnRpdGxlcz1BbGJlcnQlRWluc3RlaW5cIilcbmNvbnRlbnQoUGFnZUluZm8sIGFzID0gJ3BhcnNlZCcpXG5gYGAifQ== -->
+<pre class="r"><code>PageInfo &lt;- GET(&quot;https://en.wikipedia.org/w/api.php?action=query&amp;format=json&amp;prop=info&amp;titles=Albert%Einstein&quot;)
+content(PageInfo, as = &#39;parsed&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJGJhdGNoY29tcGxldGVcblsxXSBcIlwiXG5cbiRxdWVyeVxuJHF1ZXJ5JHBhZ2VzXG4kcXVlcnkkcGFnZXMkYC0xYFxuJHF1ZXJ5JHBhZ2VzJGAtMWAkbnNcblsxXSAwXG5cbiRxdWVyeSRwYWdlcyRgLTFgJHRpdGxlXG5bMV0gXCJBbGJlcnQlRWluc3RlaW5cIlxuXG4kcXVlcnkkcGFnZXMkYC0xYCRtaXNzaW5nXG5bMV0gXCJcIlxuXG4kcXVlcnkkcGFnZXMkYC0xYCRjb250ZW50bW9kZWxcblsxXSBcIndpa2l0ZXh0XCJcblxuJHF1ZXJ5JHBhZ2VzJGAtMWAkcGFnZWxhbmd1YWdlXG5bMV0gXCJlblwiXG5cbiRxdWVyeSRwYWdlcyRgLTFgJHBhZ2VsYW5ndWFnZWh0bWxjb2RlXG5bMV0gXCJlblwiXG5cbiRxdWVyeSRwYWdlcyRgLTFgJHBhZ2VsYW5ndWFnZWRpclxuWzFdIFwibHRyXCJcbiJ9 -->
+<pre><code>$batchcomplete
+[1] &quot;&quot;
+
+$query
+$query$pages
+$query$pages$`-1`
+$query$pages$`-1`$ns
+[1] 0
+
+$query$pages$`-1`$title
+[1] &quot;Albert%Einstein&quot;
+
+$query$pages$`-1`$missing
+[1] &quot;&quot;
+
+$query$pages$`-1`$contentmodel
+[1] &quot;wikitext&quot;
+
+$query$pages$`-1`$pagelanguage
+[1] &quot;en&quot;
+
+$query$pages$`-1`$pagelanguagehtmlcode
+[1] &quot;en&quot;
+
+$query$pages$`-1`$pagelanguagedir
+[1] &quot;ltr&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
-<div id="lesson-5" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities05.nb.html">Lesson
-5</a></h1>
-<ul>
-<li>Logical operations
-<ul>
-<li>ifelse</li>
-</ul></li>
-<li>Loops
-<ul>
-<li>while</li>
-<li>for</li>
-</ul></li>
-<li>Importing data from csv file</li>
-<li>Exercise</li>
-<li>Importing a text file</li>
-<li>Using loops</li>
-<li>Additional functions
-<ul>
-<li>unique</li>
-<li>as.numeric</li>
-<li>as.character</li>
-<li>as.Date</li>
-<li>Check presence of a value in a Vector</li>
-<li>Deduplication</li>
-<li>Frequency counts</li>
-<li>sorting a table</li>
-</ul></li>
-</ul>
+<div id="wikipedir" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> WikipediR</h2>
+<p>Now let us use the package ‘WikipediR’</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShXaWtpcGVkaVIpXG5gYGAifQ== -->
+<pre class="r"><code>library(WikipediR)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can pull the contents of a page.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUGFnZUNvbnRlbnQgPC0gcGFnZV9jb250ZW50KFwiZW5cIixcIndpa2lwZWRpYVwiLCBwYWdlX25hbWUgPSBcIk1haGF0bWEgR2FuZGhpXCIpXG5zdHIoUGFnZUNvbnRlbnQpXG5gYGAifQ== -->
+<pre class="r"><code>PageContent &lt;- page_content(&quot;en&quot;,&quot;wikipedia&quot;, page_name = &quot;Mahatma Gandhi&quot;)
+str(PageContent)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAxXG4gJCBwYXJzZTpMaXN0IG9mIDRcbiAgLi4kIHRpdGxlIDogY2hyIFwiTWFoYXRtYSBHYW5kaGlcIlxuICAuLiQgcGFnZWlkOiBpbnQgMTkzNzlcbiAgLi4kIHJldmlkIDogaW50IDEyNTE1MjUyNDJcbiAgLi4kIHRleHQgIDpMaXN0IG9mIDFcbiAgLi4gLi4kICo6IGNociBcIjxkaXYgY2xhc3M9XFxcIm13LWNvbnRlbnQtbHRyIG13LXBhcnNlci1vdXRwdXRcXFwiIGxhbmc9XFxcImVuXFxcIiBkaXI9XFxcImx0clxcXCI+PGRpdiBjbGFzcz1cXFwic2hvcnRkZXNjcmlwdGlvbiBub21vYmlsZSBuXCJ8IF9fdHJ1bmNhdGVkX19cbiAtIGF0dHIoKiwgXCJjbGFzc1wiKT0gY2hyIFwicGNvbnRlbnRcIlxuIn0= -->
+<pre><code>List of 1
+ $ parse:List of 4
+  ..$ title : chr &quot;Mahatma Gandhi&quot;
+  ..$ pageid: int 19379
+  ..$ revid : int 1251525242
+  ..$ text  :List of 1
+  .. ..$ *: chr &quot;&lt;div class=\&quot;mw-content-ltr mw-parser-output\&quot; lang=\&quot;en\&quot; dir=\&quot;ltr\&quot;&gt;&lt;div class=\&quot;shortdescription nomobile n&quot;| __truncated__
+ - attr(*, &quot;class&quot;)= chr &quot;pcontent&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>You can get one of the list elements by</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUGFnZUNvbnRlbnQkcGFyc2UkdGl0bGVcbmBgYCJ9 -->
+<pre class="r"><code>PageContent$parse$title</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTWFoYXRtYSBHYW5kaGlcIlxuIn0= -->
+<pre><code>[1] &quot;Mahatma Gandhi&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The above call gives the text of the page in html format. We can use
+a variation if we want to get the text in the wiki format.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUGFnZUNvbnRlbnRUcnVlIDwtIHBhZ2VfY29udGVudChcImVuXCIsXCJ3aWtpcGVkaWFcIiwgcGFnZV9uYW1lID0gXCJNYWhhdG1hIEdhbmRoaVwiLCBhc193aWtpdGV4dCA9IFRSVUUpXG5gYGAifQ== -->
+<pre class="r"><code>PageContentTrue &lt;- page_content(&quot;en&quot;,&quot;wikipedia&quot;, page_name = &quot;Mahatma Gandhi&quot;, as_wikitext = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The above gives us current version of a page.</p>
+<p>We can also get to a particular version of a page by calling its <a href="https://en.wikipedia.org/w/index.php?title=Mahatma_Gandhi&amp;oldid=1105239780">revision
+id/ oldid</a></p>
 </div>
-<div id="lesson-6" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities06.nb.html">Lesson
-6</a></h1>
-<ul>
-<li>String manipulation
-<ul>
-<li>substr</li>
-<li>strsplit
-<ul>
-<li>parse sentences</li>
-</ul></li>
-</ul></li>
-<li>Solved Exercise</li>
-<li>Trimming white space</li>
-<li>Regular expressions
-<ul>
-<li>grep</li>
-</ul></li>
-<li>Solved Exercise</li>
-</ul>
-</div>
-<div id="lesson-7" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities07.nb.html">Lesson
-7</a></h1>
-<ul>
-<li>Installing Packages
-<ul>
-<li>GUI Installation</li>
-<li>Console Installation</li>
-</ul></li>
-<li>Pipes
-<ul>
-<li>Multiline Approach</li>
-<li>Nested Approach</li>
-<li>Linear Operations using Pipes</li>
-<li>Transforming Dataframes</li>
-</ul></li>
-</ul>
-</div>
-<div id="plotting" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesPlotting.nb.html">Plotting</a></h1>
-<ul>
-<li>Plotting points in on a chart</li>
-<li>Add Axis Labels</li>
-<li>Plotting Lines</li>
-<li>Frequency Counts</li>
-<li>piechart</li>
-<li>Histogram</li>
-<li>Bar Plot</li>
-<li>ggplot2</li>
-<li>Basics of ggplot syntax
-<ul>
-<li>Line chart</li>
-<li>Scatter Plot</li>
-<li>Bar Plot</li>
-<li>Histogram</li>
-</ul></li>
-</ul>
-</div>
-<div id="map-plotting" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesMapplot.nb.html">Map
-plotting</a></h1>
-</div>
-<div id="regular-expresions" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesRegex.nb.html">Regular
-Expresions</a></h1>
-</div>
-<div id="sentiment-analysis" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesSentiment.nb.html">Sentiment
-Analysis</a></h1>
-</div>
-<div id="api" class="section level1" number="12">
-<h1><span class="header-section-number">12</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesAPI.nb.html">API</a></h1>
+<div id="difference-between-two-consequtive-versions-of-a-page" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> difference between
+two consequtive versions of a page</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRGlmZlBhZ2VzIDwtIHJldmlzaW9uX2RpZmYoXCJlblwiLFwid2lraXBlZGlhXCIsIHJldmlzaW9ucyA9IDExMDUyMzk3ODAsIGRpcmVjdGlvbiA9IFwibmV4dFwiKVxuc3RyKERpZmZQYWdlcylcbmBgYCJ9 -->
+<pre class="r"><code>DiffPages &lt;- revision_diff(&quot;en&quot;,&quot;wikipedia&quot;, revisions = 1105239780, direction = &quot;next&quot;)
+str(DiffPages)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAzXG4gJCBiYXRjaGNvbXBsZXRlOiBjaHIgXCJcIlxuICQgd2FybmluZ3MgICAgIDpMaXN0IG9mIDJcbiAgLi4kIG1haW4gICAgIDpMaXN0IG9mIDFcbiAgLi4gLi4kICo6IGNociBcIlN1YnNjcmliZSB0byB0aGUgbWVkaWF3aWtpLWFwaS1hbm5vdW5jZSBtYWlsaW5nIGxpc3QgYXQgPGh0dHBzOi8vbGlzdHMud2lraW1lZGlhLm9yZy9wb3N0b3JpdXMvbGlzdHMvbWVkaWF3aWtpLVwifCBfX3RydW5jYXRlZF9fXG4gIC4uJCByZXZpc2lvbnM6TGlzdCBvZiAxXG4gIC4uIC4uJCAqOiBjaHIgXCJUaGUgcGFyYW1ldGVyIFxcXCJydmRpZmZ0b1xcXCIgaGFzIGJlZW4gZGVwcmVjYXRlZC5cXG5UaGUgcGFyYW1ldGVyIFxcXCJydmNvbnRlbnRmb3JtYXRcXFwiIGhhcyBiZWVuIGRlcHJlY2F0ZWQuXFxuQmVjYXVzXCJ8IF9fdHJ1bmNhdGVkX19cbiAkIHF1ZXJ5ICAgICAgICA6TGlzdCBvZiAxXG4gIC4uJCBwYWdlczpMaXN0IG9mIDFcbiAgLi4gLi4kIDE5Mzc5Okxpc3Qgb2YgNFxuICAuLiAuLiAuLiQgcGFnZWlkICAgOiBpbnQgMTkzNzlcbiAgLi4gLi4gLi4kIG5zICAgICAgIDogaW50IDBcbiAgLi4gLi4gLi4kIHRpdGxlICAgIDogY2hyIFwiTWFoYXRtYSBHYW5kaGlcIlxuICAuLiAuLiAuLiQgcmV2aXNpb25zOkxpc3Qgb2YgMVxuICAuLiAuLiAuLiAuLiQgOkxpc3Qgb2YgMTJcbiAgLi4gLi4gLi4gLi4gLi4kIHJldmlkICAgICAgICA6IGludCAxMTA1MjM5NzgwXG4gIC4uIC4uIC4uIC4uIC4uJCBwYXJlbnRpZCAgICAgOiBpbnQgMTEwNTIzNDgwMVxuICAuLiAuLiAuLiAuLiAuLiQgdXNlciAgICAgICAgIDogY2hyIFwiU2FpbGVzaHBhdFwiXG4gIC4uIC4uIC4uIC4uIC4uJCB1c2VyaWQgICAgICAgOiBpbnQgMTY1NjMyMTRcbiAgLi4gLi4gLi4gLi4gLi4kIHRpbWVzdGFtcCAgICA6IGNociBcIjIwMjItMDgtMTlUMDc6NTA6MzVaXCJcbiAgLi4gLi4gLi4gLi4gLi4kIHNpemUgICAgICAgICA6IGludCAyOTk2NTdcbiAgLi4gLi4gLi4gLi4gLi4kIHNoYTEgICAgICAgICA6IGNociBcIjYxOTJlMTA1YzllZWQ2MjdkODFjMTQ5NmQ5Njk3NzVkMDg5MzFjYmFcIlxuICAuLiAuLiAuLiAuLiAuLiQgY29udGVudG1vZGVsIDogY2hyIFwid2lraXRleHRcIlxuICAuLiAuLiAuLiAuLiAuLiQgZGlmZiAgICAgICAgIDpMaXN0IG9mIDNcbiAgLi4gLi4gLi4gLi4gLi4gLi4kIGZyb206IGludCAxMTA1MjM5NzgwXG4gIC4uIC4uIC4uIC4uIC4uIC4uJCB0byAgOiBpbnQgMTEwNTI1NjE2MFxuICAuLiAuLiAuLiAuLiAuLiAuLiQgKiAgIDogY2hyIFwiPHRyPlxcbiAgPHRkIGNvbHNwYW49XFxcIjJcXFwiIGNsYXNzPVxcXCJkaWZmLWxpbmVub1xcXCI+TGluZSAyNDE6PFwvdGQ+XFxuICA8dGQgY29sc3Bhbj1cXFwiMlxcXCIgY2xhc3M9XFxcImRpZmYtbGluZW5vXFxcIj5MaW5lIFwifCBfX3RydW5jYXRlZF9fXG4gIC4uIC4uIC4uIC4uIC4uJCBjb21tZW50ICAgICAgOiBjaHIgXCJhZGRlZCB5ZWFyXCJcbiAgLi4gLi4gLi4gLi4gLi4kIHBhcnNlZGNvbW1lbnQ6IGNociBcImFkZGVkIHllYXJcIlxuICAuLiAuLiAuLiAuLiAuLiQgdGFncyAgICAgICAgIDpMaXN0IG9mIDFcbiAgLi4gLi4gLi4gLi4gLi4gLi4kIDogY2hyIFwid2lraWVkaXRvclwiXG4gLSBhdHRyKCosIFwiY2xhc3NcIik9IGNociBcInJkaWZmXCJcbiJ9 -->
+<pre><code>List of 3
+ $ batchcomplete: chr &quot;&quot;
+ $ warnings     :List of 2
+  ..$ main     :List of 1
+  .. ..$ *: chr &quot;Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-&quot;| __truncated__
+  ..$ revisions:List of 1
+  .. ..$ *: chr &quot;The parameter \&quot;rvdiffto\&quot; has been deprecated.\nThe parameter \&quot;rvcontentformat\&quot; has been deprecated.\nBecaus&quot;| __truncated__
+ $ query        :List of 1
+  ..$ pages:List of 1
+  .. ..$ 19379:List of 4
+  .. .. ..$ pageid   : int 19379
+  .. .. ..$ ns       : int 0
+  .. .. ..$ title    : chr &quot;Mahatma Gandhi&quot;
+  .. .. ..$ revisions:List of 1
+  .. .. .. ..$ :List of 12
+  .. .. .. .. ..$ revid        : int 1105239780
+  .. .. .. .. ..$ parentid     : int 1105234801
+  .. .. .. .. ..$ user         : chr &quot;Saileshpat&quot;
+  .. .. .. .. ..$ userid       : int 16563214
+  .. .. .. .. ..$ timestamp    : chr &quot;2022-08-19T07:50:35Z&quot;
+  .. .. .. .. ..$ size         : int 299657
+  .. .. .. .. ..$ sha1         : chr &quot;6192e105c9eed627d81c1496d969775d08931cba&quot;
+  .. .. .. .. ..$ contentmodel : chr &quot;wikitext&quot;
+  .. .. .. .. ..$ diff         :List of 3
+  .. .. .. .. .. ..$ from: int 1105239780
+  .. .. .. .. .. ..$ to  : int 1105256160
+  .. .. .. .. .. ..$ *   : chr &quot;&lt;tr&gt;\n  &lt;td colspan=\&quot;2\&quot; class=\&quot;diff-lineno\&quot;&gt;Line 241:&lt;/td&gt;\n  &lt;td colspan=\&quot;2\&quot; class=\&quot;diff-lineno\&quot;&gt;Line &quot;| __truncated__
+  .. .. .. .. ..$ comment      : chr &quot;added year&quot;
+  .. .. .. .. ..$ parsedcomment: chr &quot;added year&quot;
+  .. .. .. .. ..$ tags         :List of 1
+  .. .. .. .. .. ..$ : chr &quot;wikieditor&quot;
+ - attr(*, &quot;class&quot;)= chr &quot;rdiff&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
+Menu</a></p>
 <!-- rnb-text-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJmb3JIdW1hbml0aWVzIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KDQpJbiB0aGUgZm9sbG93aW5nIHNldCBvZiBsZXNzb25zIHdlIHNoYWxsIGJlIGNsb3NlbHkgZm9sbG93aW5nIHRoZSBpbnN0cnVjdGlvbnMgZ2l2ZW4gYXQNCltUaGUgQXJ0IG9mIFIgUHJvZ3JhbW1pbmcgYnkgTm9ybWFuIE1hdGxvZmZdKGh0dHBzOi8vZGl5dHJhbnNjcmlwdG9taWNzLmNvbS9SZWFkaW5nL2ZpbGVzL1RoZSUyMEFydCUyMG9mJTIwUiUyMFByb2dyYW1taW5nLnBkZikNCg0KIyBbTGVzc29uIDFdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDEubmIuaHRtbCkNCg0KKyBJbnN0YWxsYXRpb24gYW5kIGdldHRpbmcgc3RhcnRlZA0KICArIHN1Yi1pdGVtDQogICsgc3ViLWl0ZW0NCisgQmFzaWMgb3BlcmF0aW9ucw0KKyBWYXJpYWJsZXMNCg0KRnVuY3Rpb25zOiBwcmludCwgc3RyLCBuY2hhcg0KDQoNCg0KIyBbTGVzc29uIDJdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDIubmIuaHRtbCkNCg0KKyBWZWN0b3JzDQogICsgTnVtZXJpY2FsIFZlY3RvcnMNCiAgKyBTdHJpbmcgVmVjdG9ycw0KICArIHNvcnQNCiAgKyBDcmVhdGluZyB2ZWN0b3JzDQogICsgQWRkaW5nIHZhbHVlcyB0byB2ZWN0b3JzDQogICsgVmVjdG9yIGxlbmd0aA0KKyBWZWN0b3IgaW5kaWNlcw0KKyBWZWN0b3IgYXJpdGhtZXRpYw0KKyBMb2dpY2FsIG9wZXJhdGlvbnMNCiAgKyBMb2dpY2FsIG9wZXJhdGlvbnMNCiAgKyB3aGljaA0KICArIGFueSBhbmQgYWxsDQogICsgaWZlbHNlDQoNCiMgW0xlc3NvbiAzXShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczAzLm5iLmh0bWwpDQoNCisgTGlzdHMNCiAgKyBDcmVhdGluZyBhIExpc3QNCiAgKyBsZW5ndGggb2YgYSBMaXN0DQogICsgdW5saXN0DQogICsgSW5kZXggYSBMaXN0DQorIERhdGFmcmFtZXMNCiAgKyBDcmVhdGluZyBhIGRhdGFmcmFtZQ0KICArIEluZGV4aW5nIGEgZGF0YWZyYW1lDQogICsgbGVuZ3RoIG9mIGEgZGF0YWZyYW1lDQogICsgQ29sdW1uIGxhYmVscw0KICArIG5yb3cgYW5kIG5jb2wNCisgRXhlcmNpc2UNCg0KIyBbTGVzc29uIDRdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDQubmIuaHRtbCkNCg0KKyBBcHBlbmRpbmcgZGF0YSB0byBkYXRhZnJhbWUNCiAgK3JiaW5kDQogICtjYmluZA0KKyBNZXJnaW5nIGRhdGFmcmFtZXMNCisgU3Vic2V0dGluZyBkYXRhZnJhbWVzDQorIEV4cG9ydGluZyBkYXRhZnJhbWUNCisgQ29uY2F0ZW5hdGluZyBzdHJpbmdzDQorIEdldHRpbmcgZGF0ZSBhbmQgdGltZQ0KKyBDcmVhdGluZyBkeW5hbWljIGZpbGUgbmFtZQ0KDQoNCiMgW0xlc3NvbiA1XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczA1Lm5iLmh0bWwpDQoNCisgTG9naWNhbCBvcGVyYXRpb25zDQogICsgaWZlbHNlDQorIExvb3BzDQogICsgd2hpbGUNCiAgKyBmb3INCisgSW1wb3J0aW5nIGRhdGEgZnJvbSBjc3YgZmlsZQ0KKyBFeGVyY2lzZQ0KKyBJbXBvcnRpbmcgYSB0ZXh0IGZpbGUNCisgVXNpbmcgbG9vcHMNCisgQWRkaXRpb25hbCBmdW5jdGlvbnMNCiAgKyB1bmlxdWUNCiAgKyBhcy5udW1lcmljDQogICsgYXMuY2hhcmFjdGVyDQogICsgYXMuRGF0ZQ0KICArIENoZWNrIHByZXNlbmNlIG9mIGEgdmFsdWUgaW4gYSBWZWN0b3INCiAgKyBEZWR1cGxpY2F0aW9uDQogICsgRnJlcXVlbmN5IGNvdW50cw0KICArIHNvcnRpbmcgYSB0YWJsZQ0KDQojIFtMZXNzb24gNl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNi5uYi5odG1sKQ0KDQorIFN0cmluZyBtYW5pcHVsYXRpb24NCiAgKyBzdWJzdHINCiAgKyBzdHJzcGxpdA0KICAgICsgcGFyc2Ugc2VudGVuY2VzDQorIFNvbHZlZCBFeGVyY2lzZQ0KKyBUcmltbWluZyB3aGl0ZSBzcGFjZQ0KKyBSZWd1bGFyIGV4cHJlc3Npb25zDQogICsgZ3JlcA0KKyBTb2x2ZWQgRXhlcmNpc2UNCg0KDQojIFtMZXNzb24gN10oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNy5uYi5odG1sKQ0KDQorIEluc3RhbGxpbmcgUGFja2FnZXMNCiAgKyBHVUkgSW5zdGFsbGF0aW9uDQogICsgQ29uc29sZSBJbnN0YWxsYXRpb24NCisgUGlwZXMNCiAgKyBNdWx0aWxpbmUgQXBwcm9hY2gNCiAgKyBOZXN0ZWQgQXBwcm9hY2gNCiAgKyBMaW5lYXIgT3BlcmF0aW9ucyB1c2luZyBQaXBlcw0KICArIFRyYW5zZm9ybWluZyBEYXRhZnJhbWVzDQogIA0KIyBbUGxvdHRpbmddKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzUGxvdHRpbmcubmIuaHRtbCkNCg0KKyBQbG90dGluZyBwb2ludHMgaW4gb24gYSBjaGFydA0KKyBBZGQgQXhpcyBMYWJlbHMNCisgUGxvdHRpbmcgTGluZXMNCisgRnJlcXVlbmN5IENvdW50cw0KKyBwaWVjaGFydA0KKyBIaXN0b2dyYW0NCisgQmFyIFBsb3QNCisgZ2dwbG90Mg0KKyBCYXNpY3Mgb2YgZ2dwbG90IHN5bnRheA0KICArIExpbmUgY2hhcnQNCiAgKyBTY2F0dGVyIFBsb3QNCiAgKyBCYXIgUGxvdA0KICArIEhpc3RvZ3JhbQ0KICANCiMgW01hcCBwbG90dGluZ10oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXNNYXBwbG90Lm5iLmh0bWwpDQoNCiMgW1JlZ3VsYXIgRXhwcmVzaW9uc10oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXNSZWdleC5uYi5odG1sKQ0KDQojIFtTZW50aW1lbnQgQW5hbHlzaXNdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzU2VudGltZW50Lm5iLmh0bWwpDQoNCiMgW0FQSV0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXNBUEkubmIuaHRtbCk=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJmb3JIdW1hbml0aWVzOiBBUEkiDQpvdXRwdXQ6IA0KICBodG1sX25vdGVib29rOiANCiAgICBudW1iZXJfc2VjdGlvbnM6IHRydWUNCi0tLQ0KDQpbTWFpbiBNZW51XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllcy5uYi5odG1sKQ0KDQojIFdoYXQgaXMgYW4gQVBJDQoNCldpa2lwZWRpYSBzYXlzOiBBbiBhcHBsaWNhdGlvbiBwcm9ncmFtbWluZyBpbnRlcmZhY2UgaXMgYSBjb25uZWN0aW9uIGJldHdlZW4gY29tcHV0ZXJzIG9yIGJldHdlZW4gY29tcHV0ZXIgcHJvZ3JhbXMuIEl0IGlzIGEgdHlwZSBvZiBzb2Z0d2FyZSBpbnRlcmZhY2UsIG9mZmVyaW5nIGEgc2VydmljZSB0byBvdGhlciBwaWVjZXMgb2Ygc29mdHdhcmUuIEEgZG9jdW1lbnQgb3Igc3RhbmRhcmQgdGhhdCBkZXNjcmliZXMgaG93IHRvIGJ1aWxkIHN1Y2ggYSBjb25uZWN0aW9uIG9yIGludGVyZmFjZSBpcyBjYWxsZWQgYW4gQVBJIHNwZWNpZmljYXRpb24uDQoNClVzaW5nIHRoZSBBUEkgY29ubmVjdGlvbiB3ZSBjYW4gZHJhdyBkYXRhIGZyb20gYW4gZXhpc3Rpbmcgc291cmNlLg0KDQpBUEkncyBjYW4gYmUgY2FsbGVkIGJ5IFIgaW4gdHdvIHdheXMgKDEpIFRob3J1Z2ggYW4gQVBJIFVSTCBvciAoMikgVGhvcnVnaCBhbiBleGNsdXNpdmUgcGFja2FnZSB0aGF0IGludGVyZmFjZXMgd2l0aCB0aGUgQVBJLiBBUEkncyBjYW4gYmUgb3BlbiBvciBtYXkgcmVxdWlyZSBhbiBhdXRoZW50aWNhdGlvbiBrZXkuIFRoZXkgY291bGQgYmUgcGFpZCBvciBmcmVlLiBBUEkncyB1c3VhbGx5IGhhdmUgYSByYXRlIGxpbWl0Lg0KDQojIFdpa2lwZWRpYSBBUEkNCg0KV2lraXBlZGlhIG1haW50YWlucyBhIHNldCBvZiBBUElzIGZvciBxdWVyeWluZyBkYXRhIGFzIHdlbGwgYXMgcG9zdGluZyBkYXRhLg0KDQpbV2lraXBlZGlhIEFQSV0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3cvYXBpLnBocCkNCltXaWtpcGVkaWEgQVBJIHBhZ2VdKGh0dHBzOi8vd3d3Lm1lZGlhd2lraS5vcmcvd2lraS9BUEk6TWFpbl9wYWdlKQ0KDQpFYWNoIFdpa2lwZWRpYSBhcnRpY2xlIGhhcyBhbiB1bmlxdWUgaWQuDQpGb3IgdGhlIFdpa2lwZWRpYSBwYWdlIG9uIFtEYXJvbiBBY2Vtb2dsdV0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRGFyb25fQWNlbW9nbHUpLCB0aGUgdXJsIGlzICJodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9EYXJvbl9BY2Vtb2dsdSIgYW5kIHRoZSBwYWdlIGlkZW50aWZpZXIgaXMgIkRhcm9uX0FjZW1vZ2x1Ii4NCg0KV2lraXBlZGlhIG1haW50YWlucyBkZXRhaWxlZCBbcmV2aXNpb24gaGlzdG9yeV0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3cvaW5kZXgucGhwP3RpdGxlPURhcm9uX0FjZW1vZ2x1JmFjdGlvbj1oaXN0b3J5KSBvZiBlYWNoIHBhZ2UuIEhlcmUgV2lraXBlZGlhIG1haW50YWlucyBkZXRhaWxzIG9mIGVhY2ggZWRpdG9yIHdobyBoYXZlIGNvbnRyaWJ1dGVkIHRvIHRoZSBwYWdlLg0KDQpFYWNoIGVkaXRvciBoYXMgYW4gdW5pcXVlIGlkLiBGb3IgaW5zdGFuY2UgdGhlIHVzZXIgW1llcmV2YXRuc2ldKGh0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93aWtpL1VzZXI6WWVyZXZhbnRzaSkuDQoNCiMjIEV4YW1wbGUgb2YgZGlyZWN0IEFQSSBxdWVyeQ0KDQpgYGB7cn0NCmxpYnJhcnkoaHR0cikNCmBgYA0KDQojIyBnZXQgY29udHJpYnV0aW9ucyB0byBXaWtpcGVkaWEgYnkgZWRpdG9yIC0gbGF0ZXN0IDUwMCBlZGl0cw0KDQpgYGB7cn0NClVzZXJDb250cmlic1VybCA8LSAiaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3cvYXBpLnBocD9hY3Rpb249cXVlcnkmZm9ybWF0PWpzb24mbGlzdD11c2VyY29udHJpYnMmdWN1c2VyPVdpa2lDbGVhbmVyTWFuJnVjbGltaXQ9NTAwJnVjc2hvdz0hbWlub3IiDQpjb250cmliczEgPC0gR0VUKFVzZXJDb250cmlic1VybCkNCmNvbnRyaWJzMQ0KYGBgDQpUaGUgcmVzcG9uc2UgaXMgYSBsaXN0IHRoYXQgcHJvdmlkZXMgZGV0YWlscyBvZiB0aGUgdXNlcidzIGNvbnRyaWJ1dGlvbnMuDQoNCmBgYHtyfQ0Kc3RyKGNvbnRyaWJzMSkNCmBgYA0KDQpXZSBjYW4gcGFyc2UgdGhpcyBsaXN0IHVzaW5nIHRoZSBmdW5jdGlvbiAnY29udGVudCcNCg0KYGBge3J9DQpjb250cmlic0NvbnRlbnQxIDwtIGNvbnRlbnQoY29udHJpYnMxLCBhcyA9ICdwYXJzZWQnKQ0KYGBgDQoNClNpbmNlIHRoZSByZXN1bHQgd2lsbCBiZSBhIHZlcnkgbG9uZyBmaWxlIHBsZWFzZSBjaGVjayBpdHMgY29udGVudCBpbiB5b3VyIGNvbnNvbGUuDQoNClNpbmNlIHdlIGhhZCBsaW1pdGVkIHRoZSBudW1iZXIgb2YgZW50cmllcyB0byA1MDAgd2UgY2FuIGNoZWNrIG9uZSBvZiB0aGUgZW50cmllcy4NCg0KYGBge3J9DQpjb250cmlic0NvbnRlbnQxJHF1ZXJ5JHVzZXJjb250cmlic1s0ODVdDQpgYGANCg0KIyMgZ2V0IGluZm8gYWJvdXQgYSBwYWdlIA0KDQpgYGB7cn0NClBhZ2VJbmZvIDwtIEdFVCgiaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3cvYXBpLnBocD9hY3Rpb249cXVlcnkmZm9ybWF0PWpzb24mcHJvcD1pbmZvJnRpdGxlcz1BbGJlcnQlRWluc3RlaW4iKQ0KY29udGVudChQYWdlSW5mbywgYXMgPSAncGFyc2VkJykNCmBgYA0KDQojIyBXaWtpcGVkaVINCg0KTm93IGxldCB1cyB1c2UgdGhlIHBhY2thZ2UgJ1dpa2lwZWRpUicNCg0KYGBge3J9DQpsaWJyYXJ5KFdpa2lwZWRpUikNCmBgYA0KDQpXZSBjYW4gcHVsbCB0aGUgY29udGVudHMgb2YgYSBwYWdlLg0KDQpgYGB7cn0NClBhZ2VDb250ZW50IDwtIHBhZ2VfY29udGVudCgiZW4iLCJ3aWtpcGVkaWEiLCBwYWdlX25hbWUgPSAiTWFoYXRtYSBHYW5kaGkiKQ0Kc3RyKFBhZ2VDb250ZW50KQ0KYGBgDQpZb3UgY2FuIGdldCBvbmUgb2YgdGhlIGxpc3QgZWxlbWVudHMgYnkNCg0KYGBge3J9DQpQYWdlQ29udGVudCRwYXJzZSR0aXRsZQ0KYGBgDQpUaGUgYWJvdmUgY2FsbCBnaXZlcyB0aGUgdGV4dCBvZiB0aGUgcGFnZSBpbiBodG1sIGZvcm1hdC4gV2UgY2FuIHVzZSBhIHZhcmlhdGlvbiBpZiB3ZSB3YW50IHRvIGdldCB0aGUgdGV4dCBpbiB0aGUgd2lraSBmb3JtYXQuDQoNCmBgYHtyfQ0KUGFnZUNvbnRlbnRUcnVlIDwtIHBhZ2VfY29udGVudCgiZW4iLCJ3aWtpcGVkaWEiLCBwYWdlX25hbWUgPSAiTWFoYXRtYSBHYW5kaGkiLCBhc193aWtpdGV4dCA9IFRSVUUpDQpgYGANCg0KVGhlIGFib3ZlIGdpdmVzIHVzIGN1cnJlbnQgdmVyc2lvbiBvZiBhIHBhZ2UuDQoNCldlIGNhbiBhbHNvIGdldCB0byBhIHBhcnRpY3VsYXIgdmVyc2lvbiBvZiBhIHBhZ2UgYnkgY2FsbGluZyBpdHMgW3JldmlzaW9uIGlkLyBvbGRpZF0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3cvaW5kZXgucGhwP3RpdGxlPU1haGF0bWFfR2FuZGhpJm9sZGlkPTExMDUyMzk3ODApDQoNCiMjIGRpZmZlcmVuY2UgYmV0d2VlbiB0d28gY29uc2VxdXRpdmUgdmVyc2lvbnMgb2YgYSBwYWdlDQoNCmBgYHtyfQ0KRGlmZlBhZ2VzIDwtIHJldmlzaW9uX2RpZmYoImVuIiwid2lraXBlZGlhIiwgcmV2aXNpb25zID0gMTEwNTIzOTc4MCwgZGlyZWN0aW9uID0gIm5leHQiKQ0Kc3RyKERpZmZQYWdlcykNCmBgYA0KDQoNCg0KDQoNCltNYWluIE1lbnVdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzLm5iLmh0bWwp</div>
 
 
 
@@ -1981,7 +2147,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("RforHumanities.Rmd");
+  window.initializeSourceEmbed("RforHumanitiesAPI.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

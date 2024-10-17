@@ -132,3 +132,5 @@ Functions: print, str, nchar
 # [Regular Expresions](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesRegex.nb.html)
 
 # [Sentiment Analysis](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesSentiment.nb.html)
+
+# [API](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesAPI.nb.html)

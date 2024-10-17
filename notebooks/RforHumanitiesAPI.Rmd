@@ -1,0 +1,112 @@
+---
+title: "RforHumanities: API"
+output: 
+  html_notebook: 
+    number_sections: true
+---
+
+[Main Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
+
+# What is an API
+
+Wikipedia says: An application programming interface is a connection between computers or between computer programs. It is a type of software interface, offering a service to other pieces of software. A document or standard that describes how to build such a connection or interface is called an API specification.
+
+Using the API connection we can draw data from an existing source.
+
+API's can be called by R in two ways (1) Thorugh an API URL or (2) Thorugh an exclusive package that interfaces with the API. API's can be open or may require an authentication key. They could be paid or free. API's usually have a rate limit.
+
+# Wikipedia API
+
+Wikipedia maintains a set of APIs for querying data as well as posting data.
+
+[Wikipedia API](https://en.wikipedia.org/w/api.php)
+[Wikipedia API page](https://www.mediawiki.org/wiki/API:Main_page)
+
+Each Wikipedia article has an unique id.
+For the Wikipedia page on [Daron Acemoglu](https://en.wikipedia.org/wiki/Daron_Acemoglu), the url is "https://en.wikipedia.org/wiki/Daron_Acemoglu" and the page identifier is "Daron_Acemoglu".
+
+Wikipedia maintains detailed [revision history](https://en.wikipedia.org/w/index.php?title=Daron_Acemoglu&action=history) of each page. Here Wikipedia maintains details of each editor who have contributed to the page.
+
+Each editor has an unique id. For instance the user [Yerevatnsi](https://en.wikipedia.org/wiki/User:Yerevantsi).
+
+## Example of direct API query
+
+```{r}
+library(httr)
+```
+
+## get contributions to Wikipedia by editor - latest 500 edits
+
+```{r}
+UserContribsUrl <- "https://en.wikipedia.org/w/api.php?action=query&format=json&list=usercontribs&ucuser=WikiCleanerMan&uclimit=500&ucshow=!minor"
+contribs1 <- GET(UserContribsUrl)
+contribs1
+```
+The response is a list that provides details of the user's contributions.
+
+```{r}
+str(contribs1)
+```
+
+We can parse this list using the function 'content'
+
+```{r}
+contribsContent1 <- content(contribs1, as = 'parsed')
+```
+
+Since the result will be a very long file please check its content in your console.
+
+Since we had limited the number of entries to 500 we can check one of the entries.
+
+```{r}
+contribsContent1$query$usercontribs[485]
+```
+
+## get info about a page 
+
+```{r}
+PageInfo <- GET("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=info&titles=Albert%Einstein")
+content(PageInfo, as = 'parsed')
+```
+
+## WikipediR
+
+Now let us use the package 'WikipediR'
+
+```{r}
+library(WikipediR)
+```
+
+We can pull the contents of a page.
+
+```{r}
+PageContent <- page_content("en","wikipedia", page_name = "Mahatma Gandhi")
+str(PageContent)
+```
+You can get one of the list elements by
+
+```{r}
+PageContent$parse$title
+```
+The above call gives the text of the page in html format. We can use a variation if we want to get the text in the wiki format.
+
+```{r}
+PageContentTrue <- page_content("en","wikipedia", page_name = "Mahatma Gandhi", as_wikitext = TRUE)
+```
+
+The above gives us current version of a page.
+
+We can also get to a particular version of a page by calling its [revision id/ oldid](https://en.wikipedia.org/w/index.php?title=Mahatma_Gandhi&oldid=1105239780)
+
+## difference between two consequtive versions of a page
+
+```{r}
+DiffPages <- revision_diff("en","wikipedia", revisions = 1105239780, direction = "next")
+str(DiffPages)
+```
+
+
+
+
+
+[Main Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
