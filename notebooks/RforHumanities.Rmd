@@ -140,3 +140,5 @@ Functions: print, str, nchar
 # [Sentiment Analysis](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesSentiment.nb.html)
 
 # [API](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesAPI.nb.html)
+
+# [Wikidata Query](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesWikidataQuery.nb.html)
