@@ -1,0 +1,109 @@
+---
+title: "R for Humanities: Functions and List Operations"
+output: 
+  html_notebook: 
+    number_sections: true
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+[Main
+Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
+
+In this lesson will discuss additional R operations. These may be important as certain packages or libraries may work with these operations. The introduction here would be basic and designed to provide an initiation. For specific usages specialized understanding may be necessary. In that case the initiation here will enable further exploration.
+
+# Custom functions
+
+R allows users to create custom function which can be run to perform repeated operations. The functions are assigned to a variable.
+
+Let us explain using a very simple function.
+
+```{r}
+squaring <- function(x){x^2}
+```
+
+Once the function is assigned it can be run using any value of x.
+
+```{r}
+squaring(3)
+```
+
+We can do this with string operations as well.
+
+```{r}
+combine_and_upper <- function(string1, string2) {
+  combined_string <- paste(string1, string2) # Concatenate strings
+  toupper(combined_string) # Convert to uppercase
+}
+
+combine_and_upper("hello", "world")
+
+```
+Here we see that the custom function can be defined as a multiline operation.
+
+# apply functions
+
+We can use the apply() function to carry out a certain operation over a data structure. Let us create a dataframe for an example.
+
+```{r}
+matDF <- data.frame(c(1,2,3),c(4,5,6))
+matDF
+```
+
+Now if we use apply() across the rows to generate a mean of each row.
+
+```{r}
+apply(matDF,1,mean)
+```
+This gives us a vector with the mean of each of the rows.
+
+```{r}
+str(apply(matDF,1,mean))
+```
+
+To do the same across the columns we have to change the dimension to "2".
+
+```{r}
+apply(matDF,2,mean)
+```
+In this case, however, the result is a named dataframe.
+
+```{r}
+str(apply(matDF,2,mean))
+```
+Let us try to use the apply() function using the "squaring" function that we had created earlier.
+
+```{r}
+apply(matDF,1,squaring)
+```
+We can see that the command has squared all the numbers in the matrix.
+
+The result is a dataframe.
+
+Thus the structure of the result will depend on the operation that is conducted.
+
+We can similarly apply functions to dataframes or lists using lapply() or sapply()
+
+# lapply
+
+```{r}
+lapply(matDF,mean)
+```
+The result is a list.
+
+```{r}
+str(lapply(matDF,mean))
+```
+# sapply
+
+We can do something similar with sapply() - for the result to be a vector.
+
+```{r}
+sapply(matDF,mean)
+str(lapply(matDF,mean))
+```
+
+
+[Main
+Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)

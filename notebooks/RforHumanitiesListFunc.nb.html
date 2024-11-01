@@ -11,7 +11,7 @@
 
 
 
-<title>RforHumanities</title>
+<title>R for Humanities: Functions and List Operations</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1746,205 +1746,208 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">RforHumanities</h1>
+<h1 class="title toc-ignore">R for Humanities: Functions and List
+Operations</h1>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<p>In the following set of lessons we shall be closely following the
-instructions given at <a href="https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf">The
-Art of R Programming by Norman Matloff</a></p>
-<div id="lesson-1" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities01.nb.html">Lesson
-1</a></h1>
-<ul>
-<li>Installation and getting started
-<ul>
-<li>sub-item</li>
-<li>sub-item</li>
-</ul></li>
-<li>Basic operations</li>
-<li>Variables</li>
-</ul>
-<p>Functions: print, str, nchar</p>
+<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
+Menu</a></p>
+<p>In this lesson will discuss additional R operations. These may be
+important as certain packages or libraries may work with these
+operations. The introduction here would be basic and designed to provide
+an initiation. For specific usages specialized understanding may be
+necessary. In that case the initiation here will enable further
+exploration.</p>
+<div id="custom-functions" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Custom functions</h1>
+<p>R allows users to create custom function which can be run to perform
+repeated operations. The functions are assigned to a variable.</p>
+<p>Let us explain using a very simple function.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Once the function is assigned it can be run using any value of x.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3F1YXJpbmcoMylcbmBgYCJ9 -->
+<pre class="r"><code>squaring(3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDlcbiJ9 -->
+<pre><code>[1] 9</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can do this with string operations as well.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29tYmluZV9hbmRfdXBwZXIgPC0gZnVuY3Rpb24oc3RyaW5nMSwgc3RyaW5nMikge1xuICBjb21iaW5lZF9zdHJpbmcgPC0gcGFzdGUoc3RyaW5nMSwgc3RyaW5nMikgIyBDb25jYXRlbmF0ZSBzdHJpbmdzXG4gIHRvdXBwZXIoY29tYmluZWRfc3RyaW5nKSAjIENvbnZlcnQgdG8gdXBwZXJjYXNlXG59XG5cbmNvbWJpbmVfYW5kX3VwcGVyKFwiaGVsbG9cIiwgXCJ3b3JsZFwiKVxuYGBgIn0= -->
+<pre class="r"><code>combine_and_upper &lt;- function(string1, string2) {
+  combined_string &lt;- paste(string1, string2) # Concatenate strings
+  toupper(combined_string) # Convert to uppercase
+}
+
+combine_and_upper(&quot;hello&quot;, &quot;world&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiSEVMTE8gV09STERcIlxuIn0= -->
+<pre><code>[1] &quot;HELLO WORLD&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Here we see that the custom function can be defined as a multiline
+operation.</p>
 </div>
-<div id="lesson-2" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.nb.html">Lesson
-2</a></h1>
-<ul>
-<li>Vectors
-<ul>
-<li>Numerical Vectors</li>
-<li>String Vectors</li>
-<li>sort</li>
-<li>Creating vectors</li>
-<li>Adding values to vectors</li>
-<li>Vector length</li>
-</ul></li>
-<li>Vector indices</li>
-<li>Vector arithmetic</li>
-<li>Logical operations
-<ul>
-<li>Logical operations</li>
-<li>which</li>
-<li>any and all</li>
-<li>ifelse</li>
-</ul></li>
-</ul>
+<div id="apply-functions" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> apply functions</h1>
+<p>We can use the apply() function to carry out a certain operation over
+a data structure. Let us create a dataframe for an example.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0REYgPC0gZGF0YS5mcmFtZShjKDEsMiwzKSxjKDQsNSw2KSlcbm1hdERGXG5gYGAifQ== -->
+<pre class="r"><code>matDF &lt;- data.frame(c(1,2,3),c(4,5,6))
+matDF</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Miwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbMyDDlyAyXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVFUVS9ETUF6MW1yWmpsVFltc1FOL29wYkdBSEZqQjhRUG1FRGFOYlJoVklTa2FqUGd5RS9tRnd5Y05PRWp2dmo1T2U4NTl1Wm11eXEyQlFBd1NGa0NMQ01JMmYzZGJYa0ZrQ1pVakNDRmljM3Y5T2lFZ0NWblZuSDlDUzdXNFBNUmhIRDk5ZHp6QzU5UFEvdWZjYWI0aStnSnpKMzVRQllWTGhIUEVGZjR5NXdqWGlCZVltUXc2ZlFiQnBPcE5ma1l4ckI0VWlWNUh5WUZzcWk1NGZqWWtaNnFReVFaNjlZMFdwRW9zYnZua1hqVVJjVHhYdG1mMUdYMXRGZlA1VEpxczFidDdFeEhEVEgxbVAzQnlmQ0w1TXZMY3kvUGhkbzFTb1IxSkg4UU1qalg0dFhER2QzRG5RUGJybEVtN0Vsc2owWWJMbjh1cW1WZzNPWncrQVpMTVBybUVBSUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["c.1..2..3."],"name":[1],"type":["dbl"],"align":["right"]},{"label":["c.4..5..6."],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"4"},{"1":"2","2":"5"},{"1":"3","2":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
 </div>
-<div id="lesson-3" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities03.nb.html">Lesson
-3</a></h1>
-<ul>
-<li>Lists
-<ul>
-<li>Creating a List</li>
-<li>length of a List</li>
-<li>unlist</li>
-<li>Index a List</li>
-</ul></li>
-<li>Dataframes
-<ul>
-<li>Creating a dataframe</li>
-<li>Indexing a dataframe</li>
-<li>length of a dataframe</li>
-<li>Column labels</li>
-<li>nrow and ncol</li>
-</ul></li>
-<li>Exercise</li>
-</ul>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now if we use apply() across the rows to generate a mean of each
+row.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXBwbHkobWF0REYsMSxtZWFuKVxuYGBgIn0= -->
+<pre class="r"><code>apply(matDF,1,mean)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIuNSAzLjUgNC41XG4ifQ== -->
+<pre><code>[1] 2.5 3.5 4.5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>This gives us a vector with the mean of each of the rows.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGFwcGx5KG1hdERGLDEsbWVhbikpXG5gYGAifQ== -->
+<pre class="r"><code>str(apply(matDF,1,mean))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIG51bSBbMTozXSAyLjUgMy41IDQuNVxuIn0= -->
+<pre><code> num [1:3] 2.5 3.5 4.5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>To do the same across the columns we have to change the dimension to
+“2”.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXBwbHkobWF0REYsMixtZWFuKVxuYGBgIn0= -->
+<pre class="r"><code>apply(matDF,2,mean)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYy4xLi4yLi4zLiBjLjQuLjUuLjYuIFxuICAgICAgICAgMiAgICAgICAgICA1IFxuIn0= -->
+<pre><code>c.1..2..3. c.4..5..6. 
+         2          5 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>In this case, however, the result is a named dataframe.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGFwcGx5KG1hdERGLDIsbWVhbikpXG5gYGAifQ== -->
+<pre class="r"><code>str(apply(matDF,2,mean))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIE5hbWVkIG51bSBbMToyXSAyIDVcbiAtIGF0dHIoKiwgXCJuYW1lc1wiKT0gY2hyIFsxOjJdIFwiYy4xLi4yLi4zLlwiIFwiYy40Li41Li42LlwiXG4ifQ== -->
+<pre><code> Named num [1:2] 2 5
+ - attr(*, &quot;names&quot;)= chr [1:2] &quot;c.1..2..3.&quot; &quot;c.4..5..6.&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Let us try to use the apply() function using the “squaring” function
+that we had created earlier.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXBwbHkobWF0REYsMSxzcXVhcmluZylcbmBgYCJ9 -->
+<pre class="r"><code>apply(matDF,1,squaring)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICBbLDFdIFssMl0gWywzXVxuYy4xLi4yLi4zLiAgICAxICAgIDQgICAgOVxuYy40Li41Li42LiAgIDE2ICAgMjUgICAzNlxuIn0= -->
+<pre><code>           [,1] [,2] [,3]
+c.1..2..3.    1    4    9
+c.4..5..6.   16   25   36</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can see that the command has squared all the numbers in the
+matrix.</p>
+<p>The result is a dataframe.</p>
+<p>Thus the structure of the result will depend on the operation that is
+conducted.</p>
+<p>We can similarly apply functions to dataframes or lists using
+lapply() or sapply()</p>
 </div>
-<div id="lesson-4" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities04.nb.html">Lesson
-4</a></h1>
-<ul>
-<li>Appending data to dataframe +rbind +cbind</li>
-<li>Merging dataframes</li>
-<li>Subsetting dataframes</li>
-<li>Exporting dataframe</li>
-<li>Concatenating strings</li>
-<li>Getting date and time</li>
-<li>Creating dynamic file name</li>
-</ul>
+<div id="lapply" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> lapply</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFwcGx5KG1hdERGLG1lYW4pXG5gYGAifQ== -->
+<pre class="r"><code>lapply(matDF,mean)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJGMuMS4uMi4uMy5cblsxXSAyXG5cbiRjLjQuLjUuLjYuXG5bMV0gNVxuIn0= -->
+<pre><code>$c.1..2..3.
+[1] 2
+
+$c.4..5..6.
+[1] 5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The result is a list.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGxhcHBseShtYXRERixtZWFuKSlcbmBgYCJ9 -->
+<pre class="r"><code>str(lapply(matDF,mean))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAyXG4gJCBjLjEuLjIuLjMuOiBudW0gMlxuICQgYy40Li41Li42LjogbnVtIDVcbiJ9 -->
+<pre><code>List of 2
+ $ c.1..2..3.: num 2
+ $ c.4..5..6.: num 5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
-<div id="lesson-5" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities05.nb.html">Lesson
-5</a></h1>
-<ul>
-<li>Logical operations
-<ul>
-<li>ifelse</li>
-</ul></li>
-<li>Loops
-<ul>
-<li>while</li>
-<li>for</li>
-</ul></li>
-<li>Importing data from csv file</li>
-<li>Exercise</li>
-<li>Importing a text file</li>
-<li>Using loops</li>
-<li>Additional functions
-<ul>
-<li>unique</li>
-<li>as.numeric</li>
-<li>as.character</li>
-<li>as.Date</li>
-<li>Check presence of a value in a Vector</li>
-<li>Deduplication</li>
-<li>Frequency counts</li>
-<li>sorting a table</li>
-</ul></li>
-</ul>
-</div>
-<div id="lesson-6" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities06.nb.html">Lesson
-6</a></h1>
-<ul>
-<li>String manipulation
-<ul>
-<li>substr</li>
-<li>strsplit
-<ul>
-<li>parse sentences</li>
-</ul></li>
-</ul></li>
-<li>Solved Exercise</li>
-<li>Trimming white space</li>
-<li>Regular expressions
-<ul>
-<li>grep</li>
-</ul></li>
-<li>Solved Exercise</li>
-</ul>
-</div>
-<div id="lesson-7" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities07.nb.html">Lesson
-7</a></h1>
-<ul>
-<li>Installing Packages
-<ul>
-<li>GUI Installation</li>
-<li>Console Installation</li>
-</ul></li>
-<li>Pipes
-<ul>
-<li>Multiline Approach</li>
-<li>Nested Approach</li>
-<li>Linear Operations using Pipes</li>
-<li>Transforming Dataframes</li>
-</ul></li>
-</ul>
-</div>
-<div id="functions-and-apply" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesListFunc.nb.html">Functions
-and Apply</a></h1>
-<ul>
-<li>Custom functions</li>
-<li>apply()</li>
-<li>lapply()</li>
-<li>sapply()</li>
-</ul>
-</div>
-<div id="plotting" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesPlotting.nb.html">Plotting</a></h1>
-<ul>
-<li>Plotting points in on a chart</li>
-<li>Add Axis Labels</li>
-<li>Plotting Lines</li>
-<li>Frequency Counts</li>
-<li>piechart</li>
-<li>Histogram</li>
-<li>Bar Plot</li>
-<li>ggplot2</li>
-<li>Basics of ggplot syntax
-<ul>
-<li>Line chart</li>
-<li>Scatter Plot</li>
-<li>Bar Plot</li>
-<li>Histogram</li>
-</ul></li>
-</ul>
-</div>
-<div id="map-plotting" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesMapplot.nb.html">Map
-plotting</a></h1>
-</div>
-<div id="regular-expresions" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesRegex.nb.html">Regular
-Expresions</a></h1>
-</div>
-<div id="sentiment-analysis" class="section level1" number="12">
-<h1><span class="header-section-number">12</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesSentiment.nb.html">Sentiment
-Analysis</a></h1>
-</div>
-<div id="api" class="section level1" number="13">
-<h1><span class="header-section-number">13</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesAPI.nb.html">API</a></h1>
+<div id="sapply" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> sapply</h1>
+<p>We can do something similar with sapply() - for the result to be a
+vector.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2FwcGx5KG1hdERGLG1lYW4pXG5gYGAifQ== -->
+<pre class="r"><code>sapply(matDF,mean)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYy4xLi4yLi4zLiBjLjQuLjUuLjYuIFxuICAgICAgICAgMiAgICAgICAgICA1IFxuIn0= -->
+<pre><code>c.1..2..3. c.4..5..6. 
+         2          5 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGxhcHBseShtYXRERixtZWFuKSlcbmBgYCJ9 -->
+<pre class="r"><code>str(lapply(matDF,mean))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAyXG4gJCBjLjEuLjIuLjMuOiBudW0gMlxuICQgYy40Li41Li42LjogbnVtIDVcbiJ9 -->
+<pre><code>List of 2
+ $ c.1..2..3.: num 2
+ $ c.4..5..6.: num 5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
+Menu</a></p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJmb3JIdW1hbml0aWVzIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KDQpJbiB0aGUgZm9sbG93aW5nIHNldCBvZiBsZXNzb25zIHdlIHNoYWxsIGJlIGNsb3NlbHkgZm9sbG93aW5nIHRoZSBpbnN0cnVjdGlvbnMgZ2l2ZW4gYXQNCltUaGUgQXJ0IG9mIFIgUHJvZ3JhbW1pbmcgYnkgTm9ybWFuIE1hdGxvZmZdKGh0dHBzOi8vZGl5dHJhbnNjcmlwdG9taWNzLmNvbS9SZWFkaW5nL2ZpbGVzL1RoZSUyMEFydCUyMG9mJTIwUiUyMFByb2dyYW1taW5nLnBkZikNCg0KIyBbTGVzc29uIDFdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDEubmIuaHRtbCkNCg0KKyBJbnN0YWxsYXRpb24gYW5kIGdldHRpbmcgc3RhcnRlZA0KICArIHN1Yi1pdGVtDQogICsgc3ViLWl0ZW0NCisgQmFzaWMgb3BlcmF0aW9ucw0KKyBWYXJpYWJsZXMNCg0KRnVuY3Rpb25zOiBwcmludCwgc3RyLCBuY2hhcg0KDQoNCg0KIyBbTGVzc29uIDJdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDIubmIuaHRtbCkNCg0KKyBWZWN0b3JzDQogICsgTnVtZXJpY2FsIFZlY3RvcnMNCiAgKyBTdHJpbmcgVmVjdG9ycw0KICArIHNvcnQNCiAgKyBDcmVhdGluZyB2ZWN0b3JzDQogICsgQWRkaW5nIHZhbHVlcyB0byB2ZWN0b3JzDQogICsgVmVjdG9yIGxlbmd0aA0KKyBWZWN0b3IgaW5kaWNlcw0KKyBWZWN0b3IgYXJpdGhtZXRpYw0KKyBMb2dpY2FsIG9wZXJhdGlvbnMNCiAgKyBMb2dpY2FsIG9wZXJhdGlvbnMNCiAgKyB3aGljaA0KICArIGFueSBhbmQgYWxsDQogICsgaWZlbHNlDQoNCiMgW0xlc3NvbiAzXShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczAzLm5iLmh0bWwpDQoNCisgTGlzdHMNCiAgKyBDcmVhdGluZyBhIExpc3QNCiAgKyBsZW5ndGggb2YgYSBMaXN0DQogICsgdW5saXN0DQogICsgSW5kZXggYSBMaXN0DQorIERhdGFmcmFtZXMNCiAgKyBDcmVhdGluZyBhIGRhdGFmcmFtZQ0KICArIEluZGV4aW5nIGEgZGF0YWZyYW1lDQogICsgbGVuZ3RoIG9mIGEgZGF0YWZyYW1lDQogICsgQ29sdW1uIGxhYmVscw0KICArIG5yb3cgYW5kIG5jb2wNCisgRXhlcmNpc2UNCg0KIyBbTGVzc29uIDRdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDQubmIuaHRtbCkNCg0KKyBBcHBlbmRpbmcgZGF0YSB0byBkYXRhZnJhbWUNCiAgK3JiaW5kDQogICtjYmluZA0KKyBNZXJnaW5nIGRhdGFmcmFtZXMNCisgU3Vic2V0dGluZyBkYXRhZnJhbWVzDQorIEV4cG9ydGluZyBkYXRhZnJhbWUNCisgQ29uY2F0ZW5hdGluZyBzdHJpbmdzDQorIEdldHRpbmcgZGF0ZSBhbmQgdGltZQ0KKyBDcmVhdGluZyBkeW5hbWljIGZpbGUgbmFtZQ0KDQoNCiMgW0xlc3NvbiA1XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczA1Lm5iLmh0bWwpDQoNCisgTG9naWNhbCBvcGVyYXRpb25zDQogICsgaWZlbHNlDQorIExvb3BzDQogICsgd2hpbGUNCiAgKyBmb3INCisgSW1wb3J0aW5nIGRhdGEgZnJvbSBjc3YgZmlsZQ0KKyBFeGVyY2lzZQ0KKyBJbXBvcnRpbmcgYSB0ZXh0IGZpbGUNCisgVXNpbmcgbG9vcHMNCisgQWRkaXRpb25hbCBmdW5jdGlvbnMNCiAgKyB1bmlxdWUNCiAgKyBhcy5udW1lcmljDQogICsgYXMuY2hhcmFjdGVyDQogICsgYXMuRGF0ZQ0KICArIENoZWNrIHByZXNlbmNlIG9mIGEgdmFsdWUgaW4gYSBWZWN0b3INCiAgKyBEZWR1cGxpY2F0aW9uDQogICsgRnJlcXVlbmN5IGNvdW50cw0KICArIHNvcnRpbmcgYSB0YWJsZQ0KDQojIFtMZXNzb24gNl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNi5uYi5odG1sKQ0KDQorIFN0cmluZyBtYW5pcHVsYXRpb24NCiAgKyBzdWJzdHINCiAgKyBzdHJzcGxpdA0KICAgICsgcGFyc2Ugc2VudGVuY2VzDQorIFNvbHZlZCBFeGVyY2lzZQ0KKyBUcmltbWluZyB3aGl0ZSBzcGFjZQ0KKyBSZWd1bGFyIGV4cHJlc3Npb25zDQogICsgZ3JlcA0KKyBTb2x2ZWQgRXhlcmNpc2UNCg0KDQojIFtMZXNzb24gN10oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNy5uYi5odG1sKQ0KDQorIEluc3RhbGxpbmcgUGFja2FnZXMNCiAgKyBHVUkgSW5zdGFsbGF0aW9uDQogICsgQ29uc29sZSBJbnN0YWxsYXRpb24NCisgUGlwZXMNCiAgKyBNdWx0aWxpbmUgQXBwcm9hY2gNCiAgKyBOZXN0ZWQgQXBwcm9hY2gNCiAgKyBMaW5lYXIgT3BlcmF0aW9ucyB1c2luZyBQaXBlcw0KICArIFRyYW5zZm9ybWluZyBEYXRhZnJhbWVzDQogIA0KIyBbRnVuY3Rpb25zIGFuZCBBcHBseV0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXNMaXN0RnVuYy5uYi5odG1sKSAgDQorIEN1c3RvbSBmdW5jdGlvbnMNCisgYXBwbHkoKQ0KKyBsYXBwbHkoKQ0KKyBzYXBwbHkoKQ0KICANCiMgW1Bsb3R0aW5nXShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllc1Bsb3R0aW5nLm5iLmh0bWwpDQoNCisgUGxvdHRpbmcgcG9pbnRzIGluIG9uIGEgY2hhcnQNCisgQWRkIEF4aXMgTGFiZWxzDQorIFBsb3R0aW5nIExpbmVzDQorIEZyZXF1ZW5jeSBDb3VudHMNCisgcGllY2hhcnQNCisgSGlzdG9ncmFtDQorIEJhciBQbG90DQorIGdncGxvdDINCisgQmFzaWNzIG9mIGdncGxvdCBzeW50YXgNCiAgKyBMaW5lIGNoYXJ0DQogICsgU2NhdHRlciBQbG90DQogICsgQmFyIFBsb3QNCiAgKyBIaXN0b2dyYW0NCiAgDQojIFtNYXAgcGxvdHRpbmddKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzTWFwcGxvdC5uYi5odG1sKQ0KDQojIFtSZWd1bGFyIEV4cHJlc2lvbnNdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzUmVnZXgubmIuaHRtbCkNCg0KIyBbU2VudGltZW50IEFuYWx5c2lzXShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllc1NlbnRpbWVudC5uYi5odG1sKQ0KDQojIFtBUEldKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzQVBJLm5iLmh0bWwp</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IEZ1bmN0aW9ucyBhbmQgTGlzdCBPcGVyYXRpb25zIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQplZGl0b3Jfb3B0aW9uczogDQogIG1hcmtkb3duOiANCiAgICB3cmFwOiA3Mg0KLS0tDQoNCltNYWluDQpNZW51XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllcy5uYi5odG1sKQ0KDQpJbiB0aGlzIGxlc3NvbiB3aWxsIGRpc2N1c3MgYWRkaXRpb25hbCBSIG9wZXJhdGlvbnMuIFRoZXNlIG1heSBiZSBpbXBvcnRhbnQgYXMgY2VydGFpbiBwYWNrYWdlcyBvciBsaWJyYXJpZXMgbWF5IHdvcmsgd2l0aCB0aGVzZSBvcGVyYXRpb25zLiBUaGUgaW50cm9kdWN0aW9uIGhlcmUgd291bGQgYmUgYmFzaWMgYW5kIGRlc2lnbmVkIHRvIHByb3ZpZGUgYW4gaW5pdGlhdGlvbi4gRm9yIHNwZWNpZmljIHVzYWdlcyBzcGVjaWFsaXplZCB1bmRlcnN0YW5kaW5nIG1heSBiZSBuZWNlc3NhcnkuIEluIHRoYXQgY2FzZSB0aGUgaW5pdGlhdGlvbiBoZXJlIHdpbGwgZW5hYmxlIGZ1cnRoZXIgZXhwbG9yYXRpb24uDQoNCiMgQ3VzdG9tIGZ1bmN0aW9ucw0KDQpSIGFsbG93cyB1c2VycyB0byBjcmVhdGUgY3VzdG9tIGZ1bmN0aW9uIHdoaWNoIGNhbiBiZSBydW4gdG8gcGVyZm9ybSByZXBlYXRlZCBvcGVyYXRpb25zLiBUaGUgZnVuY3Rpb25zIGFyZSBhc3NpZ25lZCB0byBhIHZhcmlhYmxlLg0KDQpMZXQgdXMgZXhwbGFpbiB1c2luZyBhIHZlcnkgc2ltcGxlIGZ1bmN0aW9uLg0KDQpgYGB7cn0NCnNxdWFyaW5nIDwtIGZ1bmN0aW9uKHgpe3heMn0NCmBgYA0KDQpPbmNlIHRoZSBmdW5jdGlvbiBpcyBhc3NpZ25lZCBpdCBjYW4gYmUgcnVuIHVzaW5nIGFueSB2YWx1ZSBvZiB4Lg0KDQpgYGB7cn0NCnNxdWFyaW5nKDMpDQpgYGANCg0KV2UgY2FuIGRvIHRoaXMgd2l0aCBzdHJpbmcgb3BlcmF0aW9ucyBhcyB3ZWxsLg0KDQpgYGB7cn0NCmNvbWJpbmVfYW5kX3VwcGVyIDwtIGZ1bmN0aW9uKHN0cmluZzEsIHN0cmluZzIpIHsNCiAgY29tYmluZWRfc3RyaW5nIDwtIHBhc3RlKHN0cmluZzEsIHN0cmluZzIpICMgQ29uY2F0ZW5hdGUgc3RyaW5ncw0KICB0b3VwcGVyKGNvbWJpbmVkX3N0cmluZykgIyBDb252ZXJ0IHRvIHVwcGVyY2FzZQ0KfQ0KDQpjb21iaW5lX2FuZF91cHBlcigiaGVsbG8iLCAid29ybGQiKQ0KDQpgYGANCkhlcmUgd2Ugc2VlIHRoYXQgdGhlIGN1c3RvbSBmdW5jdGlvbiBjYW4gYmUgZGVmaW5lZCBhcyBhIG11bHRpbGluZSBvcGVyYXRpb24uDQoNCiMgYXBwbHkgZnVuY3Rpb25zDQoNCldlIGNhbiB1c2UgdGhlIGFwcGx5KCkgZnVuY3Rpb24gdG8gY2Fycnkgb3V0IGEgY2VydGFpbiBvcGVyYXRpb24gb3ZlciBhIGRhdGEgc3RydWN0dXJlLiBMZXQgdXMgY3JlYXRlIGEgZGF0YWZyYW1lIGZvciBhbiBleGFtcGxlLg0KDQpgYGB7cn0NCm1hdERGIDwtIGRhdGEuZnJhbWUoYygxLDIsMyksYyg0LDUsNikpDQptYXRERg0KYGBgDQoNCk5vdyBpZiB3ZSB1c2UgYXBwbHkoKSBhY3Jvc3MgdGhlIHJvd3MgdG8gZ2VuZXJhdGUgYSBtZWFuIG9mIGVhY2ggcm93Lg0KDQpgYGB7cn0NCmFwcGx5KG1hdERGLDEsbWVhbikNCmBgYA0KVGhpcyBnaXZlcyB1cyBhIHZlY3RvciB3aXRoIHRoZSBtZWFuIG9mIGVhY2ggb2YgdGhlIHJvd3MuDQoNCmBgYHtyfQ0Kc3RyKGFwcGx5KG1hdERGLDEsbWVhbikpDQpgYGANCg0KVG8gZG8gdGhlIHNhbWUgYWNyb3NzIHRoZSBjb2x1bW5zIHdlIGhhdmUgdG8gY2hhbmdlIHRoZSBkaW1lbnNpb24gdG8gIjIiLg0KDQpgYGB7cn0NCmFwcGx5KG1hdERGLDIsbWVhbikNCmBgYA0KSW4gdGhpcyBjYXNlLCBob3dldmVyLCB0aGUgcmVzdWx0IGlzIGEgbmFtZWQgZGF0YWZyYW1lLg0KDQpgYGB7cn0NCnN0cihhcHBseShtYXRERiwyLG1lYW4pKQ0KYGBgDQpMZXQgdXMgdHJ5IHRvIHVzZSB0aGUgYXBwbHkoKSBmdW5jdGlvbiB1c2luZyB0aGUgInNxdWFyaW5nIiBmdW5jdGlvbiB0aGF0IHdlIGhhZCBjcmVhdGVkIGVhcmxpZXIuDQoNCmBgYHtyfQ0KYXBwbHkobWF0REYsMSxzcXVhcmluZykNCmBgYA0KV2UgY2FuIHNlZSB0aGF0IHRoZSBjb21tYW5kIGhhcyBzcXVhcmVkIGFsbCB0aGUgbnVtYmVycyBpbiB0aGUgbWF0cml4Lg0KDQpUaGUgcmVzdWx0IGlzIGEgZGF0YWZyYW1lLg0KDQpUaHVzIHRoZSBzdHJ1Y3R1cmUgb2YgdGhlIHJlc3VsdCB3aWxsIGRlcGVuZCBvbiB0aGUgb3BlcmF0aW9uIHRoYXQgaXMgY29uZHVjdGVkLg0KDQpXZSBjYW4gc2ltaWxhcmx5IGFwcGx5IGZ1bmN0aW9ucyB0byBkYXRhZnJhbWVzIG9yIGxpc3RzIHVzaW5nIGxhcHBseSgpIG9yIHNhcHBseSgpDQoNCiMgbGFwcGx5DQoNCmBgYHtyfQ0KbGFwcGx5KG1hdERGLG1lYW4pDQpgYGANClRoZSByZXN1bHQgaXMgYSBsaXN0Lg0KDQpgYGB7cn0NCnN0cihsYXBwbHkobWF0REYsbWVhbikpDQpgYGANCiMgc2FwcGx5DQoNCldlIGNhbiBkbyBzb21ldGhpbmcgc2ltaWxhciB3aXRoIHNhcHBseSgpIC0gZm9yIHRoZSByZXN1bHQgdG8gYmUgYSB2ZWN0b3IuDQoNCmBgYHtyfQ0Kc2FwcGx5KG1hdERGLG1lYW4pDQpzdHIobGFwcGx5KG1hdERGLG1lYW4pKQ0KYGBgDQoNCg0KW01haW4NCk1lbnVdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzLm5iLmh0bWwpDQo=</div>
 
 
 
@@ -1991,7 +1994,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("RforHumanities.Rmd");
+  window.initializeSourceEmbed("RforHumanitiesListFunc.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

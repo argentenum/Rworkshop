@@ -1,0 +1,175 @@
+---
+title: "R for Humanities: Wikidata Query"
+output: 
+  html_notebook: 
+    number_sections: true
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+[Main
+Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)
+
+We can use R to also run Sparql queries from Wikidata (or from any sparql endpoint for that matter)
+
+The easier way of doing this was to copy the R code snippet from the Wikidata Query Builder and use it within R. This would have resulted in a tidy output (csv, dataframe). However, the SPARQL library is no longer supported. Hence, we shall have to use the "httr" library. This will give the result in the form of a list.
+
+```{r}
+library(httr)
+
+# Define the Wikidata SPARQL endpoint
+endpoint <- "https://query.wikidata.org/sparql"
+
+# Define your SPARQL query
+sparql_query <- '
+SELECT ?item ?itemLabel WHERE {
+  ?item wdt:P31 wd:Q146.  # example query to get items that are instances of "cat" (Q146)
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+} LIMIT 10
+'
+
+# Send the query to the endpoint
+response <- GET(url = endpoint, query = list(query = sparql_query), add_headers(Accept = "application/sparql-results+json"))
+
+# Parse the response as JSON
+content <- content(response, as = "parsed", type = "application/json")
+
+# Extract results
+results <- content$results$bindings
+
+str(results)
+```
+To query this list we have to carefully study the structure of the "results" and call the index.
+
+To get the details related to the first cat in the "results"
+
+```{r}
+results[[1]]
+```
+As we can see that this is a List within a list. The top list has a length of 2.
+
+We can call any of these two lists.
+
+```{r}
+results[[1]][[1]]
+```
+
+or
+
+```{r}
+results[[1]][[2]]
+```
+If we want to get the name of the cat we can call
+
+```{r}
+results[[1]][[2]]$value
+```
+
+If we want a vector of all all the cat names we can call
+
+```{r}
+sapply(results, function(x) x$itemLabel$value)
+```
+
+
+Now let us use this query technique to gather the names and URIs for all rivers of India.
+
+```{r}
+# Define the Wikidata SPARQL endpoint
+endpoint <- "https://query.wikidata.org/sparql"
+
+# Define your SPARQL query
+sparql_query <- '
+SELECT ?river ?riverLabel
+WHERE {
+  ?river wdt:P31 wd:Q4022 .
+  ?river wdt:P17 wd:Q668 .
+    
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+'
+
+# Send the query to the endpoint
+response <- GET(url = endpoint, query = list(query = sparql_query), add_headers(Accept = "application/sparql-results+json"))
+
+# Parse the response as JSON
+content <- content(response, as = "parsed", type = "application/json")
+
+# Extract results
+results <- content$results$bindings
+```
+
+How many results have we obtained?
+
+```{r}
+length(results)
+```
+Let us examine one such result:
+```{r}
+results[[100]]
+```
+Lets us now try to obtain a vector of the URIs of all the rivers.
+
+```{r}
+URIset <- sapply(results, function(x) x$river$value)
+URIset <- paste("wd:",substring(URIset,regexpr("Q",URIset),nchar(URIset)),sep = "")
+URIset[1:10]
+```
+
+Now let us attempt to capture a whole lot of data about each river.
+
+```{r}
+library(httr)
+
+# Define the Wikidata SPARQL endpoint
+endpoint <- "https://query.wikidata.org/sparql"
+
+# Define your SPARQL query
+sparql_query <- '
+SELECT ?river ?riverLabel ?originLabel ?mouthLabel ?tributaryLabel ?discharge ?watershed ?length
+WHERE {
+  VALUES ?river {wd:Q949183}.
+  OPTIONAL {?river wdt:P885 ?origin  .}
+  OPTIONAL {?river wdt:P403 ?mouth .}
+  OPTIONAL {?river wdt:P974 ?tributary .}
+  OPTIONAL {?river wdt:P2225 ?discharge .}
+  OPTIONAL {?river wdt:P2053 ?watershed .}
+  OPTIONAL {?river wdt:P2043 ?length .}
+    
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+'
+
+# Send the query to the endpoint
+response <- GET(url = endpoint, query = list(query = sparql_query), add_headers(Accept = "application/sparql-results+json"))
+
+# Parse the response as JSON
+content <- content(response, as = "parsed", type = "application/json")
+
+# Extract results
+results <- content$results$bindings
+```
+
+We can coerce the results to a data.frame
+
+```{r}
+riversDF <- data.frame(
+  river = sapply(results, function(x) x$river$value),
+  riverLabel = sapply(results, function(x) x$riverLabel$value),
+  discharge = sapply(results, function(x) x$discharge$value),
+  watershed = sapply(results, function(x) x$watershed$value),
+  rivlength = sapply(results, function(x) x$length$value),
+  originLabel = sapply(results, function(x) x$originLabel$value),
+  mouthLabel = sapply(results, function(x) x$mouthLabel$value),
+  tributaryLabel = sapply(results, function(x) x$tributaryLabel$value),
+  stringsAsFactors = FALSE)
+
+riversDF
+```
+
+We can now use the vector "URIset" across a loop to extract the dta about multiple rivers.
+
+
+[Main
+Menu](https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html)

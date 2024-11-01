@@ -11,7 +11,7 @@
 
 
 
-<title>RforHumanities</title>
+<title>R for Humanities: Wikidata Query</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1746,205 +1746,374 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">RforHumanities</h1>
+<h1 class="title toc-ignore">R for Humanities: Wikidata Query</h1>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<p>In the following set of lessons we shall be closely following the
-instructions given at <a href="https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf">The
-Art of R Programming by Norman Matloff</a></p>
-<div id="lesson-1" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities01.nb.html">Lesson
-1</a></h1>
-<ul>
-<li>Installation and getting started
-<ul>
-<li>sub-item</li>
-<li>sub-item</li>
-</ul></li>
-<li>Basic operations</li>
-<li>Variables</li>
-</ul>
-<p>Functions: print, str, nchar</p>
-</div>
-<div id="lesson-2" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities02.nb.html">Lesson
-2</a></h1>
-<ul>
-<li>Vectors
-<ul>
-<li>Numerical Vectors</li>
-<li>String Vectors</li>
-<li>sort</li>
-<li>Creating vectors</li>
-<li>Adding values to vectors</li>
-<li>Vector length</li>
-</ul></li>
-<li>Vector indices</li>
-<li>Vector arithmetic</li>
-<li>Logical operations
-<ul>
-<li>Logical operations</li>
-<li>which</li>
-<li>any and all</li>
-<li>ifelse</li>
-</ul></li>
-</ul>
-</div>
-<div id="lesson-3" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities03.nb.html">Lesson
-3</a></h1>
-<ul>
-<li>Lists
-<ul>
-<li>Creating a List</li>
-<li>length of a List</li>
-<li>unlist</li>
-<li>Index a List</li>
-</ul></li>
-<li>Dataframes
-<ul>
-<li>Creating a dataframe</li>
-<li>Indexing a dataframe</li>
-<li>length of a dataframe</li>
-<li>Column labels</li>
-<li>nrow and ncol</li>
-</ul></li>
-<li>Exercise</li>
-</ul>
-</div>
-<div id="lesson-4" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities04.nb.html">Lesson
-4</a></h1>
-<ul>
-<li>Appending data to dataframe +rbind +cbind</li>
-<li>Merging dataframes</li>
-<li>Subsetting dataframes</li>
-<li>Exporting dataframe</li>
-<li>Concatenating strings</li>
-<li>Getting date and time</li>
-<li>Creating dynamic file name</li>
-</ul>
-</div>
-<div id="lesson-5" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities05.nb.html">Lesson
-5</a></h1>
-<ul>
-<li>Logical operations
-<ul>
-<li>ifelse</li>
-</ul></li>
-<li>Loops
-<ul>
-<li>while</li>
-<li>for</li>
-</ul></li>
-<li>Importing data from csv file</li>
-<li>Exercise</li>
-<li>Importing a text file</li>
-<li>Using loops</li>
-<li>Additional functions
-<ul>
-<li>unique</li>
-<li>as.numeric</li>
-<li>as.character</li>
-<li>as.Date</li>
-<li>Check presence of a value in a Vector</li>
-<li>Deduplication</li>
-<li>Frequency counts</li>
-<li>sorting a table</li>
-</ul></li>
-</ul>
-</div>
-<div id="lesson-6" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities06.nb.html">Lesson
-6</a></h1>
-<ul>
-<li>String manipulation
-<ul>
-<li>substr</li>
-<li>strsplit
-<ul>
-<li>parse sentences</li>
-</ul></li>
-</ul></li>
-<li>Solved Exercise</li>
-<li>Trimming white space</li>
-<li>Regular expressions
-<ul>
-<li>grep</li>
-</ul></li>
-<li>Solved Exercise</li>
-</ul>
-</div>
-<div id="lesson-7" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities07.nb.html">Lesson
-7</a></h1>
-<ul>
-<li>Installing Packages
-<ul>
-<li>GUI Installation</li>
-<li>Console Installation</li>
-</ul></li>
-<li>Pipes
-<ul>
-<li>Multiline Approach</li>
-<li>Nested Approach</li>
-<li>Linear Operations using Pipes</li>
-<li>Transforming Dataframes</li>
-</ul></li>
-</ul>
-</div>
-<div id="functions-and-apply" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesListFunc.nb.html">Functions
-and Apply</a></h1>
-<ul>
-<li>Custom functions</li>
-<li>apply()</li>
-<li>lapply()</li>
-<li>sapply()</li>
-</ul>
-</div>
-<div id="plotting" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesPlotting.nb.html">Plotting</a></h1>
-<ul>
-<li>Plotting points in on a chart</li>
-<li>Add Axis Labels</li>
-<li>Plotting Lines</li>
-<li>Frequency Counts</li>
-<li>piechart</li>
-<li>Histogram</li>
-<li>Bar Plot</li>
-<li>ggplot2</li>
-<li>Basics of ggplot syntax
-<ul>
-<li>Line chart</li>
-<li>Scatter Plot</li>
-<li>Bar Plot</li>
-<li>Histogram</li>
-</ul></li>
-</ul>
-</div>
-<div id="map-plotting" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesMapplot.nb.html">Map
-plotting</a></h1>
-</div>
-<div id="regular-expresions" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesRegex.nb.html">Regular
-Expresions</a></h1>
-</div>
-<div id="sentiment-analysis" class="section level1" number="12">
-<h1><span class="header-section-number">12</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesSentiment.nb.html">Sentiment
-Analysis</a></h1>
-</div>
-<div id="api" class="section level1" number="13">
-<h1><span class="header-section-number">13</span> <a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanitiesAPI.nb.html">API</a></h1>
+<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
+Menu</a></p>
+<p>We can use R to also run Sparql queries from Wikidata (or from any
+sparql endpoint for that matter)</p>
+<p>The easier way of doing this was to copy the R code snippet from the
+Wikidata Query Builder and use it within R. This would have resulted in
+a tidy output (csv, dataframe). However, the SPARQL library is no longer
+supported. Hence, we shall have to use the “httr” library. This will
+give the result in the form of a list.</p>
 <!-- rnb-text-end -->
-</div>
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShodHRyKVxuXG4jIERlZmluZSB0aGUgV2lraWRhdGEgU1BBUlFMIGVuZHBvaW50XG5lbmRwb2ludCA8LSBcImh0dHBzOi8vcXVlcnkud2lraWRhdGEub3JnL3NwYXJxbFwiXG5cbiMgRGVmaW5lIHlvdXIgU1BBUlFMIHF1ZXJ5XG5zcGFycWxfcXVlcnkgPC0gJ1xuU0VMRUNUID9pdGVtID9pdGVtTGFiZWwgV0hFUkUge1xuICA/aXRlbSB3ZHQ6UDMxIHdkOlExNDYuICAjIGV4YW1wbGUgcXVlcnkgdG8gZ2V0IGl0ZW1zIHRoYXQgYXJlIGluc3RhbmNlcyBvZiBcImNhdFwiIChRMTQ2KVxuICBTRVJWSUNFIHdpa2liYXNlOmxhYmVsIHsgYmQ6c2VydmljZVBhcmFtIHdpa2liYXNlOmxhbmd1YWdlIFwiZW5cIi4gfVxufSBMSU1JVCAxMFxuJ1xuXG4jIFNlbmQgdGhlIHF1ZXJ5IHRvIHRoZSBlbmRwb2ludFxucmVzcG9uc2UgPC0gR0VUKHVybCA9IGVuZHBvaW50LCBxdWVyeSA9IGxpc3QocXVlcnkgPSBzcGFycWxfcXVlcnkpLCBhZGRfaGVhZGVycyhBY2NlcHQgPSBcImFwcGxpY2F0aW9uL3NwYXJxbC1yZXN1bHRzK2pzb25cIikpXG5cbiMgUGFyc2UgdGhlIHJlc3BvbnNlIGFzIEpTT05cbmNvbnRlbnQgPC0gY29udGVudChyZXNwb25zZSwgYXMgPSBcInBhcnNlZFwiLCB0eXBlID0gXCJhcHBsaWNhdGlvbi9qc29uXCIpXG5cbiMgRXh0cmFjdCByZXN1bHRzXG5yZXN1bHRzIDwtIGNvbnRlbnQkcmVzdWx0cyRiaW5kaW5nc1xuXG5zdHIocmVzdWx0cylcbmBgYCJ9 -->
+<pre class="r"><code>library(httr)
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJmb3JIdW1hbml0aWVzIg0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQotLS0NCg0KDQpJbiB0aGUgZm9sbG93aW5nIHNldCBvZiBsZXNzb25zIHdlIHNoYWxsIGJlIGNsb3NlbHkgZm9sbG93aW5nIHRoZSBpbnN0cnVjdGlvbnMgZ2l2ZW4gYXQNCltUaGUgQXJ0IG9mIFIgUHJvZ3JhbW1pbmcgYnkgTm9ybWFuIE1hdGxvZmZdKGh0dHBzOi8vZGl5dHJhbnNjcmlwdG9taWNzLmNvbS9SZWFkaW5nL2ZpbGVzL1RoZSUyMEFydCUyMG9mJTIwUiUyMFByb2dyYW1taW5nLnBkZikNCg0KIyBbTGVzc29uIDFdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDEubmIuaHRtbCkNCg0KKyBJbnN0YWxsYXRpb24gYW5kIGdldHRpbmcgc3RhcnRlZA0KICArIHN1Yi1pdGVtDQogICsgc3ViLWl0ZW0NCisgQmFzaWMgb3BlcmF0aW9ucw0KKyBWYXJpYWJsZXMNCg0KRnVuY3Rpb25zOiBwcmludCwgc3RyLCBuY2hhcg0KDQoNCg0KIyBbTGVzc29uIDJdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDIubmIuaHRtbCkNCg0KKyBWZWN0b3JzDQogICsgTnVtZXJpY2FsIFZlY3RvcnMNCiAgKyBTdHJpbmcgVmVjdG9ycw0KICArIHNvcnQNCiAgKyBDcmVhdGluZyB2ZWN0b3JzDQogICsgQWRkaW5nIHZhbHVlcyB0byB2ZWN0b3JzDQogICsgVmVjdG9yIGxlbmd0aA0KKyBWZWN0b3IgaW5kaWNlcw0KKyBWZWN0b3IgYXJpdGhtZXRpYw0KKyBMb2dpY2FsIG9wZXJhdGlvbnMNCiAgKyBMb2dpY2FsIG9wZXJhdGlvbnMNCiAgKyB3aGljaA0KICArIGFueSBhbmQgYWxsDQogICsgaWZlbHNlDQoNCiMgW0xlc3NvbiAzXShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczAzLm5iLmh0bWwpDQoNCisgTGlzdHMNCiAgKyBDcmVhdGluZyBhIExpc3QNCiAgKyBsZW5ndGggb2YgYSBMaXN0DQogICsgdW5saXN0DQogICsgSW5kZXggYSBMaXN0DQorIERhdGFmcmFtZXMNCiAgKyBDcmVhdGluZyBhIGRhdGFmcmFtZQ0KICArIEluZGV4aW5nIGEgZGF0YWZyYW1lDQogICsgbGVuZ3RoIG9mIGEgZGF0YWZyYW1lDQogICsgQ29sdW1uIGxhYmVscw0KICArIG5yb3cgYW5kIG5jb2wNCisgRXhlcmNpc2UNCg0KIyBbTGVzc29uIDRdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzMDQubmIuaHRtbCkNCg0KKyBBcHBlbmRpbmcgZGF0YSB0byBkYXRhZnJhbWUNCiAgK3JiaW5kDQogICtjYmluZA0KKyBNZXJnaW5nIGRhdGFmcmFtZXMNCisgU3Vic2V0dGluZyBkYXRhZnJhbWVzDQorIEV4cG9ydGluZyBkYXRhZnJhbWUNCisgQ29uY2F0ZW5hdGluZyBzdHJpbmdzDQorIEdldHRpbmcgZGF0ZSBhbmQgdGltZQ0KKyBDcmVhdGluZyBkeW5hbWljIGZpbGUgbmFtZQ0KDQoNCiMgW0xlc3NvbiA1XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllczA1Lm5iLmh0bWwpDQoNCisgTG9naWNhbCBvcGVyYXRpb25zDQogICsgaWZlbHNlDQorIExvb3BzDQogICsgd2hpbGUNCiAgKyBmb3INCisgSW1wb3J0aW5nIGRhdGEgZnJvbSBjc3YgZmlsZQ0KKyBFeGVyY2lzZQ0KKyBJbXBvcnRpbmcgYSB0ZXh0IGZpbGUNCisgVXNpbmcgbG9vcHMNCisgQWRkaXRpb25hbCBmdW5jdGlvbnMNCiAgKyB1bmlxdWUNCiAgKyBhcy5udW1lcmljDQogICsgYXMuY2hhcmFjdGVyDQogICsgYXMuRGF0ZQ0KICArIENoZWNrIHByZXNlbmNlIG9mIGEgdmFsdWUgaW4gYSBWZWN0b3INCiAgKyBEZWR1cGxpY2F0aW9uDQogICsgRnJlcXVlbmN5IGNvdW50cw0KICArIHNvcnRpbmcgYSB0YWJsZQ0KDQojIFtMZXNzb24gNl0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNi5uYi5odG1sKQ0KDQorIFN0cmluZyBtYW5pcHVsYXRpb24NCiAgKyBzdWJzdHINCiAgKyBzdHJzcGxpdA0KICAgICsgcGFyc2Ugc2VudGVuY2VzDQorIFNvbHZlZCBFeGVyY2lzZQ0KKyBUcmltbWluZyB3aGl0ZSBzcGFjZQ0KKyBSZWd1bGFyIGV4cHJlc3Npb25zDQogICsgZ3JlcA0KKyBTb2x2ZWQgRXhlcmNpc2UNCg0KDQojIFtMZXNzb24gN10oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXMwNy5uYi5odG1sKQ0KDQorIEluc3RhbGxpbmcgUGFja2FnZXMNCiAgKyBHVUkgSW5zdGFsbGF0aW9uDQogICsgQ29uc29sZSBJbnN0YWxsYXRpb24NCisgUGlwZXMNCiAgKyBNdWx0aWxpbmUgQXBwcm9hY2gNCiAgKyBOZXN0ZWQgQXBwcm9hY2gNCiAgKyBMaW5lYXIgT3BlcmF0aW9ucyB1c2luZyBQaXBlcw0KICArIFRyYW5zZm9ybWluZyBEYXRhZnJhbWVzDQogIA0KIyBbRnVuY3Rpb25zIGFuZCBBcHBseV0oaHR0cHM6Ly9odG1scHJldmlldy5naXRodWIuaW8vP2h0dHBzOi8vZ2l0aHViLmNvbS9hcmdlbnRlbnVtL1J3b3Jrc2hvcC9ibG9iL21hc3Rlci9ub3RlYm9va3MvUmZvckh1bWFuaXRpZXNMaXN0RnVuYy5uYi5odG1sKSAgDQorIEN1c3RvbSBmdW5jdGlvbnMNCisgYXBwbHkoKQ0KKyBsYXBwbHkoKQ0KKyBzYXBwbHkoKQ0KICANCiMgW1Bsb3R0aW5nXShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllc1Bsb3R0aW5nLm5iLmh0bWwpDQoNCisgUGxvdHRpbmcgcG9pbnRzIGluIG9uIGEgY2hhcnQNCisgQWRkIEF4aXMgTGFiZWxzDQorIFBsb3R0aW5nIExpbmVzDQorIEZyZXF1ZW5jeSBDb3VudHMNCisgcGllY2hhcnQNCisgSGlzdG9ncmFtDQorIEJhciBQbG90DQorIGdncGxvdDINCisgQmFzaWNzIG9mIGdncGxvdCBzeW50YXgNCiAgKyBMaW5lIGNoYXJ0DQogICsgU2NhdHRlciBQbG90DQogICsgQmFyIFBsb3QNCiAgKyBIaXN0b2dyYW0NCiAgDQojIFtNYXAgcGxvdHRpbmddKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzTWFwcGxvdC5uYi5odG1sKQ0KDQojIFtSZWd1bGFyIEV4cHJlc2lvbnNdKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzUmVnZXgubmIuaHRtbCkNCg0KIyBbU2VudGltZW50IEFuYWx5c2lzXShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllc1NlbnRpbWVudC5uYi5odG1sKQ0KDQojIFtBUEldKGh0dHBzOi8vaHRtbHByZXZpZXcuZ2l0aHViLmlvLz9odHRwczovL2dpdGh1Yi5jb20vYXJnZW50ZW51bS9Sd29ya3Nob3AvYmxvYi9tYXN0ZXIvbm90ZWJvb2tzL1Jmb3JIdW1hbml0aWVzQVBJLm5iLmh0bWwp</div>
+# Define the Wikidata SPARQL endpoint
+endpoint &lt;- &quot;https://query.wikidata.org/sparql&quot;
+
+# Define your SPARQL query
+sparql_query &lt;- &#39;
+SELECT ?item ?itemLabel WHERE {
+  ?item wdt:P31 wd:Q146.  # example query to get items that are instances of &quot;cat&quot; (Q146)
+  SERVICE wikibase:label { bd:serviceParam wikibase:language &quot;en&quot;. }
+} LIMIT 10
+&#39;
+
+# Send the query to the endpoint
+response &lt;- GET(url = endpoint, query = list(query = sparql_query), add_headers(Accept = &quot;application/sparql-results+json&quot;))
+
+# Parse the response as JSON
+content &lt;- content(response, as = &quot;parsed&quot;, type = &quot;application/json&quot;)
+
+# Extract results
+results &lt;- content$results$bindings
+
+str(results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAxMFxuICQgOkxpc3Qgb2YgMlxuICAuLiQgaXRlbSAgICAgOkxpc3Qgb2YgMlxuICAuLiAuLiQgdHlwZSA6IGNociBcInVyaVwiXG4gIC4uIC4uJCB2YWx1ZTogY2hyIFwiaHR0cDovL3d3dy53aWtpZGF0YS5vcmcvZW50aXR5L1EzNzg2MTlcIlxuICAuLiQgaXRlbUxhYmVsOkxpc3Qgb2YgM1xuICAuLiAuLiQgeG1sOmxhbmc6IGNociBcImVuXCJcbiAgLi4gLi4kIHR5cGUgICAgOiBjaHIgXCJsaXRlcmFsXCJcbiAgLi4gLi4kIHZhbHVlICAgOiBjaHIgXCJDQ1wiXG4gJCA6TGlzdCBvZiAyXG4gIC4uJCBpdGVtICAgICA6TGlzdCBvZiAyXG4gIC4uIC4uJCB0eXBlIDogY2hyIFwidXJpXCJcbiAgLi4gLi4kIHZhbHVlOiBjaHIgXCJodHRwOi8vd3d3Lndpa2lkYXRhLm9yZy9lbnRpdHkvUTQ5ODc4N1wiXG4gIC4uJCBpdGVtTGFiZWw6TGlzdCBvZiAzXG4gIC4uIC4uJCB4bWw6bGFuZzogY2hyIFwiZW5cIlxuICAuLiAuLiQgdHlwZSAgICA6IGNociBcImxpdGVyYWxcIlxuICAuLiAuLiQgdmFsdWUgICA6IGNociBcIk11ZXp6YVwiXG4gJCA6TGlzdCBvZiAyXG4gIC4uJCBpdGVtICAgICA6TGlzdCBvZiAyXG4gIC4uIC4uJCB0eXBlIDogY2hyIFwidXJpXCJcbiAgLi4gLi4kIHZhbHVlOiBjaHIgXCJodHRwOi8vd3d3Lndpa2lkYXRhLm9yZy9lbnRpdHkvUTY3NzUyNVwiXG4gIC4uJCBpdGVtTGFiZWw6TGlzdCBvZiAzXG4gIC4uIC4uJCB4bWw6bGFuZzogY2hyIFwiZW5cIlxuICAuLiAuLiQgdHlwZSAgICA6IGNociBcImxpdGVyYWxcIlxuICAuLiAuLiQgdmFsdWUgICA6IGNociBcIk9yYW5nZXlcIlxuICQgOkxpc3Qgb2YgMlxuICAuLiQgaXRlbSAgICAgOkxpc3Qgb2YgMlxuICAuLiAuLiQgdHlwZSA6IGNociBcInVyaVwiXG4gIC4uIC4uJCB2YWx1ZTogY2hyIFwiaHR0cDovL3d3dy53aWtpZGF0YS5vcmcvZW50aXR5L1E4NTExOTBcIlxuICAuLiQgaXRlbUxhYmVsOkxpc3Qgb2YgM1xuICAuLiAuLiQgeG1sOmxhbmc6IGNociBcImVuXCJcbiAgLi4gLi4kIHR5cGUgICAgOiBjaHIgXCJsaXRlcmFsXCJcbiAgLi4gLi4kIHZhbHVlICAgOiBjaHIgXCJNcnMuIENoaXBweVwiXG4gJCA6TGlzdCBvZiAyXG4gIC4uJCBpdGVtICAgICA6TGlzdCBvZiAyXG4gIC4uIC4uJCB0eXBlIDogY2hyIFwidXJpXCJcbiAgLi4gLi4kIHZhbHVlOiBjaHIgXCJodHRwOi8vd3d3Lndpa2lkYXRhLm9yZy9lbnRpdHkvUTg5MzQ1M1wiXG4gIC4uJCBpdGVtTGFiZWw6TGlzdCBvZiAzXG4gIC4uIC4uJCB4bWw6bGFuZzogY2hyIFwiZW5cIlxuICAuLiAuLiQgdHlwZSAgICA6IGNociBcImxpdGVyYWxcIlxuICAuLiAuLiQgdmFsdWUgICA6IGNociBcIlVuc2lua2FibGUgU2FtXCJcbiAkIDpMaXN0IG9mIDJcbiAgLi4kIGl0ZW0gICAgIDpMaXN0IG9mIDJcbiAgLi4gLi4kIHR5cGUgOiBjaHIgXCJ1cmlcIlxuICAuLiAuLiQgdmFsdWU6IGNociBcImh0dHA6Ly93d3cud2lraWRhdGEub3JnL2VudGl0eS9RMTA1MDA4M1wiXG4gIC4uJCBpdGVtTGFiZWw6TGlzdCBvZiAzXG4gIC4uIC4uJCB4bWw6bGFuZzogY2hyIFwiZW5cIlxuICAuLiAuLiQgdHlwZSAgICA6IGNociBcImxpdGVyYWxcIlxuICAuLiAuLiQgdmFsdWUgICA6IGNociBcIkNhdG1hbmRvXCJcbiAkIDpMaXN0IG9mIDJcbiAgLi4kIGl0ZW0gICAgIDpMaXN0IG9mIDJcbiAgLi4gLi4kIHR5cGUgOiBjaHIgXCJ1cmlcIlxuICAuLiAuLiQgdmFsdWU6IGNociBcImh0dHA6Ly93d3cud2lraWRhdGEub3JnL2VudGl0eS9RMTE4NTU1MFwiXG4gIC4uJCBpdGVtTGFiZWw6TGlzdCBvZiAzXG4gIC4uIC4uJCB4bWw6bGFuZzogY2hyIFwiZW5cIlxuICAuLiAuLiQgdHlwZSAgICA6IGNociBcImxpdGVyYWxcIlxuICAuLiAuLiQgdmFsdWUgICA6IGNociBcIk9zY2FyXCJcbiAkIDpMaXN0IG9mIDJcbiAgLi4kIGl0ZW0gICAgIDpMaXN0IG9mIDJcbiAgLi4gLi4kIHR5cGUgOiBjaHIgXCJ1cmlcIlxuICAuLiAuLiQgdmFsdWU6IGNociBcImh0dHA6Ly93d3cud2lraWRhdGEub3JnL2VudGl0eS9RMTIwMTkwMlwiXG4gIC4uJCBpdGVtTGFiZWw6TGlzdCBvZiAzXG4gIC4uIC4uJCB4bWw6bGFuZzogY2hyIFwiZW5cIlxuICAuLiAuLiQgdHlwZSAgICA6IGNociBcImxpdGVyYWxcIlxuICAuLiAuLiQgdmFsdWUgICA6IGNociBcIlRhbWFcIlxuICQgOkxpc3Qgb2YgMlxuICAuLiQgaXRlbSAgICAgOkxpc3Qgb2YgMlxuICAuLiAuLiQgdHlwZSA6IGNociBcInVyaVwiXG4gIC4uIC4uJCB2YWx1ZTogY2hyIFwiaHR0cDovL3d3dy53aWtpZGF0YS5vcmcvZW50aXR5L1ExMjA3MTM2XCJcbiAgLi4kIGl0ZW1MYWJlbDpMaXN0IG9mIDNcbiAgLi4gLi4kIHhtbDpsYW5nOiBjaHIgXCJlblwiXG4gIC4uIC4uJCB0eXBlICAgIDogY2hyIFwibGl0ZXJhbFwiXG4gIC4uIC4uJCB2YWx1ZSAgIDogY2hyIFwiRGV3ZXkgUmVhZG1vcmUgQm9va3NcIlxuICQgOkxpc3Qgb2YgMlxuICAuLiQgaXRlbSAgICAgOkxpc3Qgb2YgMlxuICAuLiAuLiQgdHlwZSA6IGNociBcInVyaVwiXG4gIC4uIC4uJCB2YWx1ZTogY2hyIFwiaHR0cDovL3d3dy53aWtpZGF0YS5vcmcvZW50aXR5L1ExMzcxMTQ1XCJcbiAgLi4kIGl0ZW1MYWJlbDpMaXN0IG9mIDNcbiAgLi4gLi4kIHhtbDpsYW5nOiBjaHIgXCJlblwiXG4gIC4uIC4uJCB0eXBlICAgIDogY2hyIFwibGl0ZXJhbFwiXG4gIC4uIC4uJCB2YWx1ZSAgIDogY2hyIFwiU29ja3NcIlxuIn0= -->
+<pre><code>List of 10
+ $ :List of 2
+  ..$ item     :List of 2
+  .. ..$ type : chr &quot;uri&quot;
+  .. ..$ value: chr &quot;http://www.wikidata.org/entity/Q378619&quot;
+  ..$ itemLabel:List of 3
+  .. ..$ xml:lang: chr &quot;en&quot;
+  .. ..$ type    : chr &quot;literal&quot;
+  .. ..$ value   : chr &quot;CC&quot;
+ $ :List of 2
+  ..$ item     :List of 2
+  .. ..$ type : chr &quot;uri&quot;
+  .. ..$ value: chr &quot;http://www.wikidata.org/entity/Q498787&quot;
+  ..$ itemLabel:List of 3
+  .. ..$ xml:lang: chr &quot;en&quot;
+  .. ..$ type    : chr &quot;literal&quot;
+  .. ..$ value   : chr &quot;Muezza&quot;
+ $ :List of 2
+  ..$ item     :List of 2
+  .. ..$ type : chr &quot;uri&quot;
+  .. ..$ value: chr &quot;http://www.wikidata.org/entity/Q677525&quot;
+  ..$ itemLabel:List of 3
+  .. ..$ xml:lang: chr &quot;en&quot;
+  .. ..$ type    : chr &quot;literal&quot;
+  .. ..$ value   : chr &quot;Orangey&quot;
+ $ :List of 2
+  ..$ item     :List of 2
+  .. ..$ type : chr &quot;uri&quot;
+  .. ..$ value: chr &quot;http://www.wikidata.org/entity/Q851190&quot;
+  ..$ itemLabel:List of 3
+  .. ..$ xml:lang: chr &quot;en&quot;
+  .. ..$ type    : chr &quot;literal&quot;
+  .. ..$ value   : chr &quot;Mrs. Chippy&quot;
+ $ :List of 2
+  ..$ item     :List of 2
+  .. ..$ type : chr &quot;uri&quot;
+  .. ..$ value: chr &quot;http://www.wikidata.org/entity/Q893453&quot;
+  ..$ itemLabel:List of 3
+  .. ..$ xml:lang: chr &quot;en&quot;
+  .. ..$ type    : chr &quot;literal&quot;
+  .. ..$ value   : chr &quot;Unsinkable Sam&quot;
+ $ :List of 2
+  ..$ item     :List of 2
+  .. ..$ type : chr &quot;uri&quot;
+  .. ..$ value: chr &quot;http://www.wikidata.org/entity/Q1050083&quot;
+  ..$ itemLabel:List of 3
+  .. ..$ xml:lang: chr &quot;en&quot;
+  .. ..$ type    : chr &quot;literal&quot;
+  .. ..$ value   : chr &quot;Catmando&quot;
+ $ :List of 2
+  ..$ item     :List of 2
+  .. ..$ type : chr &quot;uri&quot;
+  .. ..$ value: chr &quot;http://www.wikidata.org/entity/Q1185550&quot;
+  ..$ itemLabel:List of 3
+  .. ..$ xml:lang: chr &quot;en&quot;
+  .. ..$ type    : chr &quot;literal&quot;
+  .. ..$ value   : chr &quot;Oscar&quot;
+ $ :List of 2
+  ..$ item     :List of 2
+  .. ..$ type : chr &quot;uri&quot;
+  .. ..$ value: chr &quot;http://www.wikidata.org/entity/Q1201902&quot;
+  ..$ itemLabel:List of 3
+  .. ..$ xml:lang: chr &quot;en&quot;
+  .. ..$ type    : chr &quot;literal&quot;
+  .. ..$ value   : chr &quot;Tama&quot;
+ $ :List of 2
+  ..$ item     :List of 2
+  .. ..$ type : chr &quot;uri&quot;
+  .. ..$ value: chr &quot;http://www.wikidata.org/entity/Q1207136&quot;
+  ..$ itemLabel:List of 3
+  .. ..$ xml:lang: chr &quot;en&quot;
+  .. ..$ type    : chr &quot;literal&quot;
+  .. ..$ value   : chr &quot;Dewey Readmore Books&quot;
+ $ :List of 2
+  ..$ item     :List of 2
+  .. ..$ type : chr &quot;uri&quot;
+  .. ..$ value: chr &quot;http://www.wikidata.org/entity/Q1371145&quot;
+  ..$ itemLabel:List of 3
+  .. ..$ xml:lang: chr &quot;en&quot;
+  .. ..$ type    : chr &quot;literal&quot;
+  .. ..$ value   : chr &quot;Socks&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>To query this list we have to carefully study the structure of the
+“results” and call the index.</p>
+<p>To get the details related to the first cat in the “results”</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0c1tbMV1dXG5gYGAifQ== -->
+<pre class="r"><code>results[[1]]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJGl0ZW1cbiRpdGVtJHR5cGVcblsxXSBcInVyaVwiXG5cbiRpdGVtJHZhbHVlXG5bMV0gXCJodHRwOi8vd3d3Lndpa2lkYXRhLm9yZy9lbnRpdHkvUTM3ODYxOVwiXG5cblxuJGl0ZW1MYWJlbFxuJGl0ZW1MYWJlbCRgeG1sOmxhbmdgXG5bMV0gXCJlblwiXG5cbiRpdGVtTGFiZWwkdHlwZVxuWzFdIFwibGl0ZXJhbFwiXG5cbiRpdGVtTGFiZWwkdmFsdWVcblsxXSBcIkNDXCJcbiJ9 -->
+<pre><code>$item
+$item$type
+[1] &quot;uri&quot;
+
+$item$value
+[1] &quot;http://www.wikidata.org/entity/Q378619&quot;
+
+
+$itemLabel
+$itemLabel$`xml:lang`
+[1] &quot;en&quot;
+
+$itemLabel$type
+[1] &quot;literal&quot;
+
+$itemLabel$value
+[1] &quot;CC&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>As we can see that this is a List within a list. The top list has a
+length of 2.</p>
+<p>We can call any of these two lists.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0c1tbMV1dW1sxXV1cbmBgYCJ9 -->
+<pre class="r"><code>results[[1]][[1]]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHR5cGVcblsxXSBcInVyaVwiXG5cbiR2YWx1ZVxuWzFdIFwiaHR0cDovL3d3dy53aWtpZGF0YS5vcmcvZW50aXR5L1EzNzg2MTlcIlxuIn0= -->
+<pre><code>$type
+[1] &quot;uri&quot;
+
+$value
+[1] &quot;http://www.wikidata.org/entity/Q378619&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>or</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0c1tbMV1dW1syXV1cbmBgYCJ9 -->
+<pre class="r"><code>results[[1]][[2]]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJGB4bWw6bGFuZ2BcblsxXSBcImVuXCJcblxuJHR5cGVcblsxXSBcImxpdGVyYWxcIlxuXG4kdmFsdWVcblsxXSBcIkNDXCJcbiJ9 -->
+<pre><code>$`xml:lang`
+[1] &quot;en&quot;
+
+$type
+[1] &quot;literal&quot;
+
+$value
+[1] &quot;CC&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>If we want to get the name of the cat we can call</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0c1tbMV1dW1syXV0kdmFsdWVcbmBgYCJ9 -->
+<pre class="r"><code>results[[1]][[2]]$value</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQ0NcIlxuIn0= -->
+<pre><code>[1] &quot;CC&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>If we want a vector of all all the cat names we can call</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2FwcGx5KHJlc3VsdHMsIGZ1bmN0aW9uKHgpIHgkaXRlbUxhYmVsJHZhbHVlKVxuYGBgIn0= -->
+<pre class="r"><code>sapply(results, function(x) x$itemLabel$value)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkNDXCIgICAgICAgICAgICAgICAgICAgXCJNdWV6emFcIiAgICAgICAgICAgICAgIFwiT3JhbmdleVwiICAgICAgICAgICAgIFxuIFs0XSBcIk1ycy4gQ2hpcHB5XCIgICAgICAgICAgXCJVbnNpbmthYmxlIFNhbVwiICAgICAgIFwiQ2F0bWFuZG9cIiAgICAgICAgICAgIFxuIFs3XSBcIk9zY2FyXCIgICAgICAgICAgICAgICAgXCJUYW1hXCIgICAgICAgICAgICAgICAgIFwiRGV3ZXkgUmVhZG1vcmUgQm9va3NcIlxuWzEwXSBcIlNvY2tzXCIgICAgICAgICAgICAgICBcbiJ9 -->
+<pre><code> [1] &quot;CC&quot;                   &quot;Muezza&quot;               &quot;Orangey&quot;             
+ [4] &quot;Mrs. Chippy&quot;          &quot;Unsinkable Sam&quot;       &quot;Catmando&quot;            
+ [7] &quot;Oscar&quot;                &quot;Tama&quot;                 &quot;Dewey Readmore Books&quot;
+[10] &quot;Socks&quot;               </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now let us use this query technique to gather the names and URIs for
+all rivers of India.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBEZWZpbmUgdGhlIFdpa2lkYXRhIFNQQVJRTCBlbmRwb2ludFxuZW5kcG9pbnQgPC0gXCJodHRwczovL3F1ZXJ5Lndpa2lkYXRhLm9yZy9zcGFycWxcIlxuXG4jIERlZmluZSB5b3VyIFNQQVJRTCBxdWVyeVxuc3BhcnFsX3F1ZXJ5IDwtICdcblNFTEVDVCA/cml2ZXIgP3JpdmVyTGFiZWxcbldIRVJFIHtcbiAgP3JpdmVyIHdkdDpQMzEgd2Q6UTQwMjIgLlxuICA/cml2ZXIgd2R0OlAxNyB3ZDpRNjY4IC5cbiAgICBcbiAgU0VSVklDRSB3aWtpYmFzZTpsYWJlbCB7IGJkOnNlcnZpY2VQYXJhbSB3aWtpYmFzZTpsYW5ndWFnZSBcImVuXCIuIH1cbn1cbidcblxuIyBTZW5kIHRoZSBxdWVyeSB0byB0aGUgZW5kcG9pbnRcbnJlc3BvbnNlIDwtIEdFVCh1cmwgPSBlbmRwb2ludCwgcXVlcnkgPSBsaXN0KHF1ZXJ5ID0gc3BhcnFsX3F1ZXJ5KSwgYWRkX2hlYWRlcnMoQWNjZXB0ID0gXCJhcHBsaWNhdGlvbi9zcGFycWwtcmVzdWx0cytqc29uXCIpKVxuXG4jIFBhcnNlIHRoZSByZXNwb25zZSBhcyBKU09OXG5jb250ZW50IDwtIGNvbnRlbnQocmVzcG9uc2UsIGFzID0gXCJwYXJzZWRcIiwgdHlwZSA9IFwiYXBwbGljYXRpb24vanNvblwiKVxuXG4jIEV4dHJhY3QgcmVzdWx0c1xucmVzdWx0cyA8LSBjb250ZW50JHJlc3VsdHMkYmluZGluZ3NcbmBgYCJ9 -->
+<pre class="r"><code># Define the Wikidata SPARQL endpoint
+endpoint &lt;- &quot;https://query.wikidata.org/sparql&quot;
+
+# Define your SPARQL query
+sparql_query &lt;- &#39;
+SELECT ?river ?riverLabel
+WHERE {
+  ?river wdt:P31 wd:Q4022 .
+  ?river wdt:P17 wd:Q668 .
+    
+  SERVICE wikibase:label { bd:serviceParam wikibase:language &quot;en&quot;. }
+}
+&#39;
+
+# Send the query to the endpoint
+response &lt;- GET(url = endpoint, query = list(query = sparql_query), add_headers(Accept = &quot;application/sparql-results+json&quot;))
+
+# Parse the response as JSON
+content &lt;- content(response, as = &quot;parsed&quot;, type = &quot;application/json&quot;)
+
+# Extract results
+results &lt;- content$results$bindings</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>How many results have we obtained?</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHJlc3VsdHMpXG5gYGAifQ== -->
+<pre class="r"><code>length(results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDU3MThcbiJ9 -->
+<pre><code>[1] 5718</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Let us examine one such result:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0c1tbMTAwXV1cbmBgYCJ9 -->
+<pre class="r"><code>results[[100]]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHJpdmVyXG4kcml2ZXIkdHlwZVxuWzFdIFwidXJpXCJcblxuJHJpdmVyJHZhbHVlXG5bMV0gXCJodHRwOi8vd3d3Lndpa2lkYXRhLm9yZy9lbnRpdHkvUTI3MjMzODFcIlxuXG5cbiRyaXZlckxhYmVsXG4kcml2ZXJMYWJlbCRgeG1sOmxhbmdgXG5bMV0gXCJlblwiXG5cbiRyaXZlckxhYmVsJHR5cGVcblsxXSBcImxpdGVyYWxcIlxuXG4kcml2ZXJMYWJlbCR2YWx1ZVxuWzFdIFwiQmFuZ2FuZ2EgUml2ZXJcIlxuIn0= -->
+<pre><code>$river
+$river$type
+[1] &quot;uri&quot;
+
+$river$value
+[1] &quot;http://www.wikidata.org/entity/Q2723381&quot;
+
+
+$riverLabel
+$riverLabel$`xml:lang`
+[1] &quot;en&quot;
+
+$riverLabel$type
+[1] &quot;literal&quot;
+
+$riverLabel$value
+[1] &quot;Banganga River&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Lets us now try to obtain a vector of the URIs of all the rivers.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuVVJJc2V0IDwtIHNhcHBseShyZXN1bHRzLCBmdW5jdGlvbih4KSB4JHJpdmVyJHZhbHVlKVxuVVJJc2V0IDwtIHBhc3RlKFwid2Q6XCIsc3Vic3RyaW5nKFVSSXNldCxyZWdleHByKFwiUVwiLFVSSXNldCksbmNoYXIoVVJJc2V0KSksc2VwID0gXCJcIilcblVSSXNldFsxOjEwXVxuYGBgIn0= -->
+<pre class="r"><code>URIset &lt;- sapply(results, function(x) x$river$value)
+URIset &lt;- paste(&quot;wd:&quot;,substring(URIset,regexpr(&quot;Q&quot;,URIset),nchar(URIset)),sep = &quot;&quot;)
+URIset[1:10]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIndkOlE1MDg5XCIgICBcIndkOlE3MzQ4XCIgICBcIndkOlEzODE5OFwiICBcIndkOlE1MzIzM1wiICBcIndkOlExOTM0OTlcIiBcIndkOlEyMTQ4NzRcIlxuIFs3XSBcIndkOlEyMTY4NzVcIiBcIndkOlEyMzQwMDRcIiBcIndkOlEyNzEwNDRcIiBcIndkOlEyODkyNzNcIlxuIn0= -->
+<pre><code> [1] &quot;wd:Q5089&quot;   &quot;wd:Q7348&quot;   &quot;wd:Q38198&quot;  &quot;wd:Q53233&quot;  &quot;wd:Q193499&quot; &quot;wd:Q214874&quot;
+ [7] &quot;wd:Q216875&quot; &quot;wd:Q234004&quot; &quot;wd:Q271044&quot; &quot;wd:Q289273&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now let us attempt to capture a whole lot of data about each
+river.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShodHRyKVxuXG4jIERlZmluZSB0aGUgV2lraWRhdGEgU1BBUlFMIGVuZHBvaW50XG5lbmRwb2ludCA8LSBcImh0dHBzOi8vcXVlcnkud2lraWRhdGEub3JnL3NwYXJxbFwiXG5cbiMgRGVmaW5lIHlvdXIgU1BBUlFMIHF1ZXJ5XG5zcGFycWxfcXVlcnkgPC0gJ1xuU0VMRUNUID9yaXZlciA/cml2ZXJMYWJlbCA/b3JpZ2luTGFiZWwgP21vdXRoTGFiZWwgP3RyaWJ1dGFyeUxhYmVsID9kaXNjaGFyZ2UgP3dhdGVyc2hlZCA/bGVuZ3RoXG5XSEVSRSB7XG4gIFZBTFVFUyA/cml2ZXIge3dkOlE5NDkxODN9LlxuICBPUFRJT05BTCB7P3JpdmVyIHdkdDpQODg1ID9vcmlnaW4gIC59XG4gIE9QVElPTkFMIHs/cml2ZXIgd2R0OlA0MDMgP21vdXRoIC59XG4gIE9QVElPTkFMIHs/cml2ZXIgd2R0OlA5NzQgP3RyaWJ1dGFyeSAufVxuICBPUFRJT05BTCB7P3JpdmVyIHdkdDpQMjIyNSA/ZGlzY2hhcmdlIC59XG4gIE9QVElPTkFMIHs/cml2ZXIgd2R0OlAyMDUzID93YXRlcnNoZWQgLn1cbiAgT1BUSU9OQUwgez9yaXZlciB3ZHQ6UDIwNDMgP2xlbmd0aCAufVxuICAgIFxuICBTRVJWSUNFIHdpa2liYXNlOmxhYmVsIHsgYmQ6c2VydmljZVBhcmFtIHdpa2liYXNlOmxhbmd1YWdlIFwiZW5cIi4gfVxufVxuJ1xuXG4jIFNlbmQgdGhlIHF1ZXJ5IHRvIHRoZSBlbmRwb2ludFxucmVzcG9uc2UgPC0gR0VUKHVybCA9IGVuZHBvaW50LCBxdWVyeSA9IGxpc3QocXVlcnkgPSBzcGFycWxfcXVlcnkpLCBhZGRfaGVhZGVycyhBY2NlcHQgPSBcImFwcGxpY2F0aW9uL3NwYXJxbC1yZXN1bHRzK2pzb25cIikpXG5cbiMgUGFyc2UgdGhlIHJlc3BvbnNlIGFzIEpTT05cbmNvbnRlbnQgPC0gY29udGVudChyZXNwb25zZSwgYXMgPSBcInBhcnNlZFwiLCB0eXBlID0gXCJhcHBsaWNhdGlvbi9qc29uXCIpXG5cbiMgRXh0cmFjdCByZXN1bHRzXG5yZXN1bHRzIDwtIGNvbnRlbnQkcmVzdWx0cyRiaW5kaW5nc1xuYGBgIn0= -->
+<pre class="r"><code>library(httr)
+
+# Define the Wikidata SPARQL endpoint
+endpoint &lt;- &quot;https://query.wikidata.org/sparql&quot;
+
+# Define your SPARQL query
+sparql_query &lt;- &#39;
+SELECT ?river ?riverLabel ?originLabel ?mouthLabel ?tributaryLabel ?discharge ?watershed ?length
+WHERE {
+  VALUES ?river {wd:Q949183}.
+  OPTIONAL {?river wdt:P885 ?origin  .}
+  OPTIONAL {?river wdt:P403 ?mouth .}
+  OPTIONAL {?river wdt:P974 ?tributary .}
+  OPTIONAL {?river wdt:P2225 ?discharge .}
+  OPTIONAL {?river wdt:P2053 ?watershed .}
+  OPTIONAL {?river wdt:P2043 ?length .}
+    
+  SERVICE wikibase:label { bd:serviceParam wikibase:language &quot;en&quot;. }
+}
+&#39;
+
+# Send the query to the endpoint
+response &lt;- GET(url = endpoint, query = list(query = sparql_query), add_headers(Accept = &quot;application/sparql-results+json&quot;))
+
+# Parse the response as JSON
+content &lt;- content(response, as = &quot;parsed&quot;, type = &quot;application/json&quot;)
+
+# Extract results
+results &lt;- content$results$bindings</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can coerce the results to a data.frame</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucml2ZXJzREYgPC0gZGF0YS5mcmFtZShcbiAgcml2ZXIgPSBzYXBwbHkocmVzdWx0cywgZnVuY3Rpb24oeCkgeCRyaXZlciR2YWx1ZSksXG4gIHJpdmVyTGFiZWwgPSBzYXBwbHkocmVzdWx0cywgZnVuY3Rpb24oeCkgeCRyaXZlckxhYmVsJHZhbHVlKSxcbiAgZGlzY2hhcmdlID0gc2FwcGx5KHJlc3VsdHMsIGZ1bmN0aW9uKHgpIHgkZGlzY2hhcmdlJHZhbHVlKSxcbiAgd2F0ZXJzaGVkID0gc2FwcGx5KHJlc3VsdHMsIGZ1bmN0aW9uKHgpIHgkd2F0ZXJzaGVkJHZhbHVlKSxcbiAgcml2bGVuZ3RoID0gc2FwcGx5KHJlc3VsdHMsIGZ1bmN0aW9uKHgpIHgkbGVuZ3RoJHZhbHVlKSxcbiAgb3JpZ2luTGFiZWwgPSBzYXBwbHkocmVzdWx0cywgZnVuY3Rpb24oeCkgeCRvcmlnaW5MYWJlbCR2YWx1ZSksXG4gIG1vdXRoTGFiZWwgPSBzYXBwbHkocmVzdWx0cywgZnVuY3Rpb24oeCkgeCRtb3V0aExhYmVsJHZhbHVlKSxcbiAgdHJpYnV0YXJ5TGFiZWwgPSBzYXBwbHkocmVzdWx0cywgZnVuY3Rpb24oeCkgeCR0cmlidXRhcnlMYWJlbCR2YWx1ZSksXG4gIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSlcblxucml2ZXJzREZcbmBgYCJ9 -->
+<pre class="r"><code>riversDF &lt;- data.frame(
+  river = sapply(results, function(x) x$river$value),
+  riverLabel = sapply(results, function(x) x$riverLabel$value),
+  discharge = sapply(results, function(x) x$discharge$value),
+  watershed = sapply(results, function(x) x$watershed$value),
+  rivlength = sapply(results, function(x) x$length$value),
+  originLabel = sapply(results, function(x) x$originLabel$value),
+  mouthLabel = sapply(results, function(x) x$mouthLabel$value),
+  tributaryLabel = sapply(results, function(x) x$tributaryLabel$value),
+  stringsAsFactors = FALSE)
+
+riversDF</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6OCwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbMyDDlyA4XSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJyVlQzMC9DTUJDdUcwT1lJaHIvQVo1OFkveFV3RWRqOUVGZkpJaThIcXl1RGFNbFhjZmt6YjhjTFlPU2JRYWpKalpwZHZmZGZiZTdyMjMvZHRTeVJ6WkN5RVE1MDBDbXBVeGtQUS91cWwyRWNvWnlEbEFPRmRmZk41VjByb3lDMnFjYlJoeTRJRkxPcjJ1MUtJcWNpRTZwQ3hJY0xyd2FacExLWmUycDErNDF1cTEvelU1M2REWUltUWRqQXE2QVNwOHVzUGhESUYzU3ZMcXM3ekhUaVZhbjJhelh2M0V5ZFR1TitoNHpuVmg2d1lIRWdsWHVDY2pnRjJDbXpJT2dBV0hwNlg4Q3Bzc2MzM3pWc0R6RUxpeEFFcHFDODBNUTRFTG1ObGtNWmxnM1Y5Q2dTUERzMkhtRU1mYTNTTkdsd1lTQThMQUdJbENEQmdTN0dsQWNIek5Qa2kxd3hBWDFLRXRXc1djOGxDU0puRWhCeDZFRXNkeWc2VTZMZ2tlTzdyYWt0dkdPNG1WbVI1cjRFT2lSTkdqSE4vWlZLTDd5VmhuS0laOUx5cGtpR2V1WGxjK1FEMFFHS0lkczNZbGJuWkNRVGF2dFROaWNNMi85enhqYXJOTFdOaE4yWWRPRjhiR2w1L1ZKS2VVbzArSmFma0lpMDhVTHJaYlNJNWJEbVF2SzVPNjBlQlE0a2t2WTZUemh2a2JpeWRIcUUzUXJlK0p1QkFBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["river"],"name":[1],"type":["chr"],"align":["left"]},{"label":["riverLabel"],"name":[2],"type":["chr"],"align":["left"]},{"label":["discharge"],"name":[3],"type":["chr"],"align":["left"]},{"label":["watershed"],"name":[4],"type":["chr"],"align":["left"]},{"label":["rivlength"],"name":[5],"type":["chr"],"align":["left"]},{"label":["originLabel"],"name":[6],"type":["chr"],"align":["left"]},{"label":["mouthLabel"],"name":[7],"type":["chr"],"align":["left"]},{"label":["tributaryLabel"],"name":[8],"type":["chr"],"align":["left"]}],"data":[{"1":"http://www.wikidata.org/entity/Q949183","2":"Tungabhadra River","3":"650","4":"72200","5":"710","6":"Western Ghats","7":"Krishna River","8":"Bhadra River"},{"1":"http://www.wikidata.org/entity/Q949183","2":"Tungabhadra River","3":"650","4":"72200","5":"710","6":"Western Ghats","7":"Krishna River","8":"Vedavathi River"},{"1":"http://www.wikidata.org/entity/Q949183","2":"Tungabhadra River","3":"650","4":"72200","5":"710","6":"Western Ghats","7":"Krishna River","8":"Varada"}],"options":{"columns":{"min":{},"max":[10],"total":[8]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can now use the vector “URIset” across a loop to extract the dta
+about multiple rivers.</p>
+<p><a href="https://htmlpreview.github.io/?https://github.com/argentenum/Rworkshop/blob/master/notebooks/RforHumanities.nb.html">Main
+Menu</a></p>
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgZm9yIEh1bWFuaXRpZXM6IFdpa2lkYXRhIFF1ZXJ5Ig0Kb3V0cHV0OiANCiAgaHRtbF9ub3RlYm9vazogDQogICAgbnVtYmVyX3NlY3Rpb25zOiB0cnVlDQplZGl0b3Jfb3B0aW9uczogDQogIG1hcmtkb3duOiANCiAgICB3cmFwOiA3Mg0KLS0tDQoNCltNYWluDQpNZW51XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllcy5uYi5odG1sKQ0KDQpXZSBjYW4gdXNlIFIgdG8gYWxzbyBydW4gU3BhcnFsIHF1ZXJpZXMgZnJvbSBXaWtpZGF0YSAob3IgZnJvbSBhbnkgc3BhcnFsIGVuZHBvaW50IGZvciB0aGF0IG1hdHRlcikNCg0KVGhlIGVhc2llciB3YXkgb2YgZG9pbmcgdGhpcyB3YXMgdG8gY29weSB0aGUgUiBjb2RlIHNuaXBwZXQgZnJvbSB0aGUgV2lraWRhdGEgUXVlcnkgQnVpbGRlciBhbmQgdXNlIGl0IHdpdGhpbiBSLiBUaGlzIHdvdWxkIGhhdmUgcmVzdWx0ZWQgaW4gYSB0aWR5IG91dHB1dCAoY3N2LCBkYXRhZnJhbWUpLiBIb3dldmVyLCB0aGUgU1BBUlFMIGxpYnJhcnkgaXMgbm8gbG9uZ2VyIHN1cHBvcnRlZC4gSGVuY2UsIHdlIHNoYWxsIGhhdmUgdG8gdXNlIHRoZSAiaHR0ciIgbGlicmFyeS4gVGhpcyB3aWxsIGdpdmUgdGhlIHJlc3VsdCBpbiB0aGUgZm9ybSBvZiBhIGxpc3QuDQoNCmBgYHtyfQ0KbGlicmFyeShodHRyKQ0KDQojIERlZmluZSB0aGUgV2lraWRhdGEgU1BBUlFMIGVuZHBvaW50DQplbmRwb2ludCA8LSAiaHR0cHM6Ly9xdWVyeS53aWtpZGF0YS5vcmcvc3BhcnFsIg0KDQojIERlZmluZSB5b3VyIFNQQVJRTCBxdWVyeQ0Kc3BhcnFsX3F1ZXJ5IDwtICcNClNFTEVDVCA/aXRlbSA/aXRlbUxhYmVsIFdIRVJFIHsNCiAgP2l0ZW0gd2R0OlAzMSB3ZDpRMTQ2LiAgIyBleGFtcGxlIHF1ZXJ5IHRvIGdldCBpdGVtcyB0aGF0IGFyZSBpbnN0YW5jZXMgb2YgImNhdCIgKFExNDYpDQogIFNFUlZJQ0Ugd2lraWJhc2U6bGFiZWwgeyBiZDpzZXJ2aWNlUGFyYW0gd2lraWJhc2U6bGFuZ3VhZ2UgImVuIi4gfQ0KfSBMSU1JVCAxMA0KJw0KDQojIFNlbmQgdGhlIHF1ZXJ5IHRvIHRoZSBlbmRwb2ludA0KcmVzcG9uc2UgPC0gR0VUKHVybCA9IGVuZHBvaW50LCBxdWVyeSA9IGxpc3QocXVlcnkgPSBzcGFycWxfcXVlcnkpLCBhZGRfaGVhZGVycyhBY2NlcHQgPSAiYXBwbGljYXRpb24vc3BhcnFsLXJlc3VsdHMranNvbiIpKQ0KDQojIFBhcnNlIHRoZSByZXNwb25zZSBhcyBKU09ODQpjb250ZW50IDwtIGNvbnRlbnQocmVzcG9uc2UsIGFzID0gInBhcnNlZCIsIHR5cGUgPSAiYXBwbGljYXRpb24vanNvbiIpDQoNCiMgRXh0cmFjdCByZXN1bHRzDQpyZXN1bHRzIDwtIGNvbnRlbnQkcmVzdWx0cyRiaW5kaW5ncw0KDQpzdHIocmVzdWx0cykNCmBgYA0KVG8gcXVlcnkgdGhpcyBsaXN0IHdlIGhhdmUgdG8gY2FyZWZ1bGx5IHN0dWR5IHRoZSBzdHJ1Y3R1cmUgb2YgdGhlICJyZXN1bHRzIiBhbmQgY2FsbCB0aGUgaW5kZXguDQoNClRvIGdldCB0aGUgZGV0YWlscyByZWxhdGVkIHRvIHRoZSBmaXJzdCBjYXQgaW4gdGhlICJyZXN1bHRzIg0KDQpgYGB7cn0NCnJlc3VsdHNbWzFdXQ0KYGBgDQpBcyB3ZSBjYW4gc2VlIHRoYXQgdGhpcyBpcyBhIExpc3Qgd2l0aGluIGEgbGlzdC4gVGhlIHRvcCBsaXN0IGhhcyBhIGxlbmd0aCBvZiAyLg0KDQpXZSBjYW4gY2FsbCBhbnkgb2YgdGhlc2UgdHdvIGxpc3RzLg0KDQpgYGB7cn0NCnJlc3VsdHNbWzFdXVtbMV1dDQpgYGANCg0Kb3INCg0KYGBge3J9DQpyZXN1bHRzW1sxXV1bWzJdXQ0KYGBgDQpJZiB3ZSB3YW50IHRvIGdldCB0aGUgbmFtZSBvZiB0aGUgY2F0IHdlIGNhbiBjYWxsDQoNCmBgYHtyfQ0KcmVzdWx0c1tbMV1dW1syXV0kdmFsdWUNCmBgYA0KDQpJZiB3ZSB3YW50IGEgdmVjdG9yIG9mIGFsbCBhbGwgdGhlIGNhdCBuYW1lcyB3ZSBjYW4gY2FsbA0KDQpgYGB7cn0NCnNhcHBseShyZXN1bHRzLCBmdW5jdGlvbih4KSB4JGl0ZW1MYWJlbCR2YWx1ZSkNCmBgYA0KDQoNCk5vdyBsZXQgdXMgdXNlIHRoaXMgcXVlcnkgdGVjaG5pcXVlIHRvIGdhdGhlciB0aGUgbmFtZXMgYW5kIFVSSXMgZm9yIGFsbCByaXZlcnMgb2YgSW5kaWEuDQoNCmBgYHtyfQ0KIyBEZWZpbmUgdGhlIFdpa2lkYXRhIFNQQVJRTCBlbmRwb2ludA0KZW5kcG9pbnQgPC0gImh0dHBzOi8vcXVlcnkud2lraWRhdGEub3JnL3NwYXJxbCINCg0KIyBEZWZpbmUgeW91ciBTUEFSUUwgcXVlcnkNCnNwYXJxbF9xdWVyeSA8LSAnDQpTRUxFQ1QgP3JpdmVyID9yaXZlckxhYmVsDQpXSEVSRSB7DQogID9yaXZlciB3ZHQ6UDMxIHdkOlE0MDIyIC4NCiAgP3JpdmVyIHdkdDpQMTcgd2Q6UTY2OCAuDQogICAgDQogIFNFUlZJQ0Ugd2lraWJhc2U6bGFiZWwgeyBiZDpzZXJ2aWNlUGFyYW0gd2lraWJhc2U6bGFuZ3VhZ2UgImVuIi4gfQ0KfQ0KJw0KDQojIFNlbmQgdGhlIHF1ZXJ5IHRvIHRoZSBlbmRwb2ludA0KcmVzcG9uc2UgPC0gR0VUKHVybCA9IGVuZHBvaW50LCBxdWVyeSA9IGxpc3QocXVlcnkgPSBzcGFycWxfcXVlcnkpLCBhZGRfaGVhZGVycyhBY2NlcHQgPSAiYXBwbGljYXRpb24vc3BhcnFsLXJlc3VsdHMranNvbiIpKQ0KDQojIFBhcnNlIHRoZSByZXNwb25zZSBhcyBKU09ODQpjb250ZW50IDwtIGNvbnRlbnQocmVzcG9uc2UsIGFzID0gInBhcnNlZCIsIHR5cGUgPSAiYXBwbGljYXRpb24vanNvbiIpDQoNCiMgRXh0cmFjdCByZXN1bHRzDQpyZXN1bHRzIDwtIGNvbnRlbnQkcmVzdWx0cyRiaW5kaW5ncw0KYGBgDQoNCkhvdyBtYW55IHJlc3VsdHMgaGF2ZSB3ZSBvYnRhaW5lZD8NCg0KYGBge3J9DQpsZW5ndGgocmVzdWx0cykNCmBgYA0KTGV0IHVzIGV4YW1pbmUgb25lIHN1Y2ggcmVzdWx0Og0KYGBge3J9DQpyZXN1bHRzW1sxMDBdXQ0KYGBgDQpMZXRzIHVzIG5vdyB0cnkgdG8gb2J0YWluIGEgdmVjdG9yIG9mIHRoZSBVUklzIG9mIGFsbCB0aGUgcml2ZXJzLg0KDQpgYGB7cn0NClVSSXNldCA8LSBzYXBwbHkocmVzdWx0cywgZnVuY3Rpb24oeCkgeCRyaXZlciR2YWx1ZSkNClVSSXNldCA8LSBwYXN0ZSgid2Q6IixzdWJzdHJpbmcoVVJJc2V0LHJlZ2V4cHIoIlEiLFVSSXNldCksbmNoYXIoVVJJc2V0KSksc2VwID0gIiIpDQpVUklzZXRbMToxMF0NCmBgYA0KDQpOb3cgbGV0IHVzIGF0dGVtcHQgdG8gY2FwdHVyZSBhIHdob2xlIGxvdCBvZiBkYXRhIGFib3V0IGVhY2ggcml2ZXIuDQoNCmBgYHtyfQ0KbGlicmFyeShodHRyKQ0KDQojIERlZmluZSB0aGUgV2lraWRhdGEgU1BBUlFMIGVuZHBvaW50DQplbmRwb2ludCA8LSAiaHR0cHM6Ly9xdWVyeS53aWtpZGF0YS5vcmcvc3BhcnFsIg0KDQojIERlZmluZSB5b3VyIFNQQVJRTCBxdWVyeQ0Kc3BhcnFsX3F1ZXJ5IDwtICcNClNFTEVDVCA/cml2ZXIgP3JpdmVyTGFiZWwgP29yaWdpbkxhYmVsID9tb3V0aExhYmVsID90cmlidXRhcnlMYWJlbCA/ZGlzY2hhcmdlID93YXRlcnNoZWQgP2xlbmd0aA0KV0hFUkUgew0KICBWQUxVRVMgP3JpdmVyIHt3ZDpROTQ5MTgzfS4NCiAgT1BUSU9OQUwgez9yaXZlciB3ZHQ6UDg4NSA/b3JpZ2luICAufQ0KICBPUFRJT05BTCB7P3JpdmVyIHdkdDpQNDAzID9tb3V0aCAufQ0KICBPUFRJT05BTCB7P3JpdmVyIHdkdDpQOTc0ID90cmlidXRhcnkgLn0NCiAgT1BUSU9OQUwgez9yaXZlciB3ZHQ6UDIyMjUgP2Rpc2NoYXJnZSAufQ0KICBPUFRJT05BTCB7P3JpdmVyIHdkdDpQMjA1MyA/d2F0ZXJzaGVkIC59DQogIE9QVElPTkFMIHs/cml2ZXIgd2R0OlAyMDQzID9sZW5ndGggLn0NCiAgICANCiAgU0VSVklDRSB3aWtpYmFzZTpsYWJlbCB7IGJkOnNlcnZpY2VQYXJhbSB3aWtpYmFzZTpsYW5ndWFnZSAiZW4iLiB9DQp9DQonDQoNCiMgU2VuZCB0aGUgcXVlcnkgdG8gdGhlIGVuZHBvaW50DQpyZXNwb25zZSA8LSBHRVQodXJsID0gZW5kcG9pbnQsIHF1ZXJ5ID0gbGlzdChxdWVyeSA9IHNwYXJxbF9xdWVyeSksIGFkZF9oZWFkZXJzKEFjY2VwdCA9ICJhcHBsaWNhdGlvbi9zcGFycWwtcmVzdWx0cytqc29uIikpDQoNCiMgUGFyc2UgdGhlIHJlc3BvbnNlIGFzIEpTT04NCmNvbnRlbnQgPC0gY29udGVudChyZXNwb25zZSwgYXMgPSAicGFyc2VkIiwgdHlwZSA9ICJhcHBsaWNhdGlvbi9qc29uIikNCg0KIyBFeHRyYWN0IHJlc3VsdHMNCnJlc3VsdHMgPC0gY29udGVudCRyZXN1bHRzJGJpbmRpbmdzDQpgYGANCg0KV2UgY2FuIGNvZXJjZSB0aGUgcmVzdWx0cyB0byBhIGRhdGEuZnJhbWUNCg0KYGBge3J9DQpyaXZlcnNERiA8LSBkYXRhLmZyYW1lKA0KICByaXZlciA9IHNhcHBseShyZXN1bHRzLCBmdW5jdGlvbih4KSB4JHJpdmVyJHZhbHVlKSwNCiAgcml2ZXJMYWJlbCA9IHNhcHBseShyZXN1bHRzLCBmdW5jdGlvbih4KSB4JHJpdmVyTGFiZWwkdmFsdWUpLA0KICBkaXNjaGFyZ2UgPSBzYXBwbHkocmVzdWx0cywgZnVuY3Rpb24oeCkgeCRkaXNjaGFyZ2UkdmFsdWUpLA0KICB3YXRlcnNoZWQgPSBzYXBwbHkocmVzdWx0cywgZnVuY3Rpb24oeCkgeCR3YXRlcnNoZWQkdmFsdWUpLA0KICByaXZsZW5ndGggPSBzYXBwbHkocmVzdWx0cywgZnVuY3Rpb24oeCkgeCRsZW5ndGgkdmFsdWUpLA0KICBvcmlnaW5MYWJlbCA9IHNhcHBseShyZXN1bHRzLCBmdW5jdGlvbih4KSB4JG9yaWdpbkxhYmVsJHZhbHVlKSwNCiAgbW91dGhMYWJlbCA9IHNhcHBseShyZXN1bHRzLCBmdW5jdGlvbih4KSB4JG1vdXRoTGFiZWwkdmFsdWUpLA0KICB0cmlidXRhcnlMYWJlbCA9IHNhcHBseShyZXN1bHRzLCBmdW5jdGlvbih4KSB4JHRyaWJ1dGFyeUxhYmVsJHZhbHVlKSwNCiAgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKQ0KDQpyaXZlcnNERg0KYGBgDQoNCldlIGNhbiBub3cgdXNlIHRoZSB2ZWN0b3IgIlVSSXNldCIgYWNyb3NzIGEgbG9vcCB0byBleHRyYWN0IHRoZSBkdGEgYWJvdXQgbXVsdGlwbGUgcml2ZXJzLg0KDQoNCltNYWluDQpNZW51XShodHRwczovL2h0bWxwcmV2aWV3LmdpdGh1Yi5pby8/aHR0cHM6Ly9naXRodWIuY29tL2FyZ2VudGVudW0vUndvcmtzaG9wL2Jsb2IvbWFzdGVyL25vdGVib29rcy9SZm9ySHVtYW5pdGllcy5uYi5odG1sKQ0K</div>
 
 
 
@@ -1991,7 +2160,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("RforHumanities.Rmd");
+  window.initializeSourceEmbed("RforHumanitiesWikidataQuery.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
