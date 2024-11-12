@@ -129,7 +129,7 @@ endpoint <- "https://query.wikidata.org/sparql"
 sparql_query <- '
 SELECT ?river ?riverLabel ?originLabel ?mouthLabel ?tributaryLabel ?discharge ?watershed ?length
 WHERE {
-  VALUES ?river {wd:Q949183}.
+  VALUES ?river {URIset[n]}.
   OPTIONAL {?river wdt:P885 ?origin  .}
   OPTIONAL {?river wdt:P403 ?mouth .}
   OPTIONAL {?river wdt:P974 ?tributary .}

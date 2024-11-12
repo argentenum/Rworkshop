@@ -665,3 +665,18 @@ ORDER BY DESC (?count)
 LIMIT 100
 
 
+
+
+#cities located next to waterbodies
+SELECT DISTINCT ?city ?cityLabel ?countryLabel ?waterLabel ?typeLabel ?coords
+WHERE {
+    {?city wdt:P31 wd:Q200250 ;}
+  UNION
+    {?city wdt:P31 wd:Q174844 ;}
+     ?city     wdt:P206 ?water .
+    ?city wdt:P17  ?country .
+     ?water wdt:P31 ?type .
+    ?city wdt:P625 ?coords .
+       
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en" }
+}
